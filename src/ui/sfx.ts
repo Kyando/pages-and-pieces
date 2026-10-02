@@ -19,8 +19,8 @@ export class Sfx {
     this.rustle(0.4, 1500, 0.09);
   }
 
-  /** The seal pressed into wax: a soft, low thump. */
-  seal(): void {
+  /** A sheet settling on the desk: a soft, low thump. */
+  land(): void {
     this.tone(150, 0.18, 'sine', 0.16, 0, 70);
     this.rustle(0.08, 900, 0.06);
   }

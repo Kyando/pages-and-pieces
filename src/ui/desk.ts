@@ -2,7 +2,8 @@ import { BOOKS } from '../core/books.ts';
 import type { Word } from '../core/puzzle.ts';
 import type { LevelDef } from '../core/types.ts';
 import { t } from '../i18n/index.ts';
-import { h, reducedMotion } from './dom.ts';
+import { h, reducedMotion, svg } from './dom.ts';
+import { ICONS } from './icons.ts';
 
 export interface DeskOptions {
   def: LevelDef;
@@ -14,160 +15,310 @@ export interface DeskOptions {
   onNext(): void;
   onRestart(): void;
   onShare(): void;
+  /** A sheet moved in the pile. */
+  onTurn(): void;
 }
 
 const ROMAN: [number, string][] = [[50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
-const roman = (n: number) => ROMAN.reduce((out, [value, glyph]) => {
-  while (n >= value) {
-    out += glyph;
-    n -= value;
-  }
-  return out;
-}, '');
+const roman = (n: number) =>
+  ROMAN.reduce((out, [value, glyph]) => {
+    while (n >= value) {
+      out += glyph;
+      n -= value;
+    }
+    return out;
+  }, '');
+
+/** Each sheet's own lie on the desk (deg), and how far the ones below peek out (px), by depth. */
+const TILTS = [-1.4, 2.6, -3, 1.8, -2.2, 3.2];
+const DEPTH = [
+  [0, 0],
+  [12, 9],
+  [-11, 15],
+  [15, 19],
+  [-13, 23],
+];
+const SWIPE = 40;
+/** The desk's typefaces, which the browser only fetches once something uses them. */
+const FONTS = ['19px "EB Garamond"', 'italic 15px "IM Fell English"', '25px "IM Fell English"', '800 14px Fraunces'];
 
 /**
- * The reward for a finished chapter: the picture the player pieced together, as a print lying on a
- * desk, with the chapter's scene as an old letter under it, sealed in wax. Nothing is lined up; a
- * draft from the window stirs the papers now and then. Tapping one brings it to the front.
+ * The reward for a finished chapter: a small pile of loose sheets on the desk. On top, the drawing
+ * the player pieced together; under it, the chapter's scene, on as many pages as it takes to fit
+ * the screen. Tapping (or swiping) the top sheet slides it to the bottom of the pile. The sheets
+ * lie flat and drift a little, as if a draft lifted them off the desk now and then.
  */
 export class Desk {
   readonly el: HTMLElement;
-  private readonly photo: HTMLElement;
-  private readonly letter: HTMLElement;
-  private readonly seal: HTMLElement;
-  private readonly ribbon: HTMLElement;
-  private readonly links: HTMLElement;
+  private readonly opts: DeskOptions;
+  private readonly pile: HTMLElement;
+  private readonly drawing: HTMLElement;
   private readonly image: HTMLImageElement;
+  private readonly foot: HTMLElement;
+  private readonly hint: HTMLElement;
+  /** Every sheet; `order` lists them top first. */
+  private sheets: HTMLElement[] = [];
+  private order: HTMLElement[] = [];
+  private readonly resizeObserver: ResizeObserver;
+  private size = '';
+  private busy = false;
+  private arriving = false;
+  private readonly fonts: Promise<unknown>;
 
   constructor(opts: DeskOptions) {
-    const { def, words } = opts;
-    const book = BOOKS[def.book];
-    const story = def.story;
+    this.opts = opts;
+    const story = opts.def.story;
 
     this.image = h('img', { src: opts.image, alt: story.caption });
-    this.seal = h('div', { class: 'desk-seal', 'aria-hidden': 'true' }, h('span', {}, book.monogram ?? book.title.charAt(0)));
-    this.photo = h(
-      'figure',
-      { class: 'desk-photo' },
-      h(
-        'div',
-        { class: 'desk-sway' },
-        this.image,
-        h('figcaption', {}, story.caption),
-        this.seal,
-      ),
+    this.drawing = this.sheet(
+      'sheet--drawing',
+      h('div', { class: 'plate' }, this.image),
+      h('p', { class: 'plate-caption' }, story.caption, h('small', {}, story.credit)),
     );
 
-    this.letter = h(
-      'article',
-      { class: 'desk-letter' },
-      h(
-        'div',
-        { class: 'desk-sway letter-paper' },
-        h('p', { class: 'letter-chapter' }, t('desk.chapter', { n: roman(def.chapter) })),
-        h('h2', { class: 'letter-title' }, def.title),
-        letterBody(story.text, words, book.names),
-        h(
-          'p',
-          { class: 'letter-sign' },
-          book.title,
-          h('span', {}, t('desk.by', { author: book.author, year: book.year })),
-          h('span', {}, t('desk.illustration', { credit: story.credit })),
-        ),
-      ),
-    );
-    // Tapping a paper brings it to the front.
-    this.photo.addEventListener('click', () => this.el.classList.remove('letter-front'));
-    this.letter.addEventListener('click', () => this.el.classList.add('letter-front'));
-
-    // The way on: a silk ribbon bookmark, always peeking at the bottom edge; two quiet links after the letter.
-    this.ribbon = h(
+    this.pile = h('div', { class: 'pile', role: 'button', tabindex: '0', 'aria-label': t('desk.turn') });
+    this.hint = h('p', { class: 'desk-hint' }, t('desk.hint'));
+    const next = h(
       'button',
-      { type: 'button', class: 'desk-ribbon', onclick: () => opts.onNext() },
-      h('span', { class: 'ribbon-label' }, opts.nextTitle ? t('desk.next') : t('desk.chapters')),
-      opts.nextTitle ? h('span', { class: 'ribbon-title' }, opts.nextTitle) : '',
+      { type: 'button', class: 'btn btn--primary desk-next', onclick: () => opts.onNext() },
+      h('span', {}, opts.nextTitle ? t('desk.next') : t('desk.chapters')),
+      svg(ICONS.arrow),
     );
-    this.links = h(
-      'nav',
-      { class: 'desk-links' },
-      h('button', { type: 'button', class: 'desk-link', onclick: () => opts.onRestart() }, t('desk.again')),
-      h('button', { type: 'button', class: 'desk-link', onclick: () => opts.onShare() }, t('desk.share')),
+    this.foot = h(
+      'footer',
+      { class: 'desk-foot' },
+      this.hint,
+      next,
+      h(
+        'nav',
+        { class: 'desk-links' },
+        h('button', { type: 'button', class: 'desk-link', onclick: () => opts.onRestart() }, t('desk.again')),
+        h('button', { type: 'button', class: 'desk-link', onclick: () => opts.onShare() }, t('desk.share')),
+      ),
     );
+    this.el = h('section', { class: 'desk', 'aria-label': t('desk.label') }, this.pile, this.foot);
 
-    this.el = h('section', { class: 'desk', 'aria-label': t('desk.label') }, h('div', { class: 'desk-items' }, this.photo, this.letter), this.links, this.ribbon);
+    this.bindGestures();
+    this.resizeObserver = new ResizeObserver(() => this.layout());
+    this.resizeObserver.observe(this.pile);
+    // Pages are measured in their real typeface: lay them out again once it has arrived.
+    this.fonts = Promise.all(FONTS.map((f) => document.fonts.load(f))).catch(() => undefined);
+    void this.fonts.then(() => {
+      this.size = '';
+      this.layout();
+    });
   }
 
-  /** Resolves once the picture can be drawn, so the desk is laid out at its real size. */
-  ready(): Promise<void> {
-    return this.image.decode().catch(() => undefined);
+  destroy(): void {
+    this.resizeObserver.disconnect();
+  }
+
+  /** Resolves once the picture and the typefaces are in, so the desk is laid out at its real size. */
+  async ready(): Promise<void> {
+    await Promise.all([this.image.decode().catch(() => undefined), this.fonts]);
+  }
+
+  // ── the pile ────────────────────────────────────────────────────────────
+
+  private sheet(kind: string, ...content: (Node | string)[]): HTMLElement {
+    return h('div', { class: `sheet ${kind}` }, h('div', { class: 'sheet-float' }, h('div', { class: 'sheet-paper' }, ...content)));
+  }
+
+  /** Sizes the sheets to the space, and splits the scene into as many pages as that takes. */
+  layout(): void {
+    const w = this.pile.clientWidth;
+    const hgt = this.pile.clientHeight;
+    if (!w || !hgt) return;
+    const sheetW = Math.round(Math.min(w - 40, 440, (hgt - 30) / 1.12));
+    const sheetH = Math.round(Math.min(hgt - 30, sheetW * 1.5));
+    const size = `${sheetW}x${sheetH}`;
+    if (size === this.size) return;
+    this.size = size;
+    this.pile.style.setProperty('--sheet-w', `${sheetW}px`);
+    this.pile.style.setProperty('--sheet-h', `${sheetH}px`);
+
+    const topWasDrawing = !this.order.length || this.order[0] === this.drawing;
+    this.sheets.forEach((s) => s !== this.drawing && s.remove());
+    if (!this.drawing.isConnected) this.pile.append(this.drawing);
+    const pages = this.paginate();
+    this.sheets = [this.drawing, ...pages];
+    this.sheets.forEach((s, i) => {
+      s.style.setProperty('--tilt', `${TILTS[i % TILTS.length]}deg`);
+      const paper = s.querySelector('.sheet-paper')!;
+      const mark = paper.querySelector('.sheet-mark') ?? paper.appendChild(h('span', { class: 'sheet-mark' }));
+      mark.textContent = `${i + 1} / ${this.sheets.length}`;
+    });
+    // A resize starts the pile over from the drawing, or from the first page if that was being read.
+    this.order = topWasDrawing ? [...this.sheets] : [...pages, this.drawing];
+    this.stack();
+  }
+
+  /** The scene, page by page: words flow onto a page until it is full. */
+  private paginate(): HTMLElement[] {
+    const { def, words } = this.opts;
+    const book = BOOKS[def.book];
+    const pages: HTMLElement[] = [];
+    let body = h('p', { class: 'page-body' });
+    const newPage = (first: boolean) => {
+      body = h('p', { class: 'page-body' });
+      const head = first
+        ? h('header', { class: 'page-head' }, h('p', { class: 'page-chapter' }, t('desk.chapter', { n: roman(def.chapter) })), h('h2', { class: 'page-title' }, def.title))
+        : '';
+      const page = this.sheet('sheet--page', head, body);
+      this.pile.append(page);
+      pages.push(page);
+    };
+    const overflows = () => body.scrollHeight > body.clientHeight + 1;
+    newPage(true);
+    for (const token of tokens(def.story.text, words, book.names)) {
+      body.append(token);
+      if (overflows() && body.childNodes.length > 1) {
+        token.remove();
+        newPage(false);
+        body.append(token);
+      }
+    }
+    const sign = h('p', { class: 'page-sign' }, book.title, h('span', {}, t('desk.by', { author: book.author, year: book.year })));
+    body.append(sign);
+    if (overflows()) {
+      sign.remove();
+      newPage(false);
+      body.append(sign);
+    }
+    return pages;
+  }
+
+  /** Puts each sheet in its place in the pile. */
+  private stack(): void {
+    const n = this.order.length;
+    this.order.forEach((s, depth) => {
+      const [x, y] = DEPTH[Math.min(depth, DEPTH.length - 1)];
+      s.style.zIndex = String(n - depth);
+      s.style.setProperty('--x', `${x}px`);
+      s.style.setProperty('--y', `${y}px`);
+      s.classList.toggle('is-top', depth === 0);
+    });
+    // A page's found words ink in the first time it comes to the top.
+    const top = this.order[0];
+    if (top !== this.drawing && !top.dataset.read) {
+      top.dataset.read = '1';
+      if (!this.arriving && !reducedMotion()) top.classList.add('is-inking');
+    }
+  }
+
+  /** The top sheet slides off to one side and tucks under the pile; or the bottom one comes back up. */
+  private turn(forward: boolean, side = forward ? -1 : 1): void {
+    if (this.busy || this.order.length < 2) return;
+    this.hint.classList.add('is-gone');
+    this.opts.onTurn();
+    const moving = forward ? this.order[0] : this.order[this.order.length - 1];
+    this.order = forward ? [...this.order.slice(1), moving] : [moving, ...this.order.slice(0, -1)];
+    if (reducedMotion()) {
+      this.stack();
+      return;
+    }
+    this.busy = true;
+    const out = `translate(${side * 108}%, -4%) rotate(${side * 9}deg)`;
+    const from = getComputedStyle(moving).transform;
+    // Out to the side, clear of the pile, then in under (or on top of) it.
+    const leave = moving.animate([{ transform: from }, { transform: out }], { duration: 240, easing: 'cubic-bezier(0.4, 0, 0.7, 0.6)', fill: 'forwards' });
+    leave.finished.then(() => {
+      // Its new place, without the pile's own transition (the others glide to theirs).
+      moving.style.transition = 'none';
+      this.stack();
+      leave.cancel();
+      const to = getComputedStyle(moving).transform;
+      moving.animate([{ transform: out }, { transform: to }], { duration: 320, easing: 'cubic-bezier(0.2, 0.7, 0.3, 1)' }).finished.finally(() => {
+        moving.style.transition = '';
+        this.busy = false;
+      });
+    });
+  }
+
+  private bindGestures(): void {
+    let start: { x: number; y: number } | null = null;
+    this.pile.addEventListener('pointerdown', (e) => {
+      start = { x: e.clientX, y: e.clientY };
+    });
+    this.pile.addEventListener('pointerup', (e) => {
+      if (!start) return;
+      const dx = e.clientX - start.x;
+      const dy = e.clientY - start.y;
+      start = null;
+      if (Math.abs(dx) > SWIPE && Math.abs(dx) > Math.abs(dy)) this.turn(dx < 0, Math.sign(dx));
+      else if (Math.hypot(dx, dy) < 10) this.turn(true);
+    });
+    this.pile.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') this.turn(false);
+      else if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') this.turn(true);
+      else return;
+      e.preventDefault();
+    });
   }
 
   /**
-   * The arrival: the picture lifts off the board (`from`, its last place) and lands on the desk,
-   * the letter slides out from under it, its found words inking in one by one, and the seal is
-   * pressed. Call once the desk is in the page and ready(). Returns the moments worth a sound (ms
-   * from now).
+   * The arrival: the drawing lifts off the board (`from`, its last place) and lands on the pile,
+   * the pages slide in under it, and the way on rises below. Call once the desk is in the page and
+   * ready(). Returns the moments worth a sound (ms from now).
    */
-  arrive(from: DOMRect | null): { letter: number; seal: number } {
-    if (reducedMotion()) return { letter: 0, seal: 0 };
-    this.el.classList.add('is-arriving');
-    const easeOut = 'cubic-bezier(0.2, 0.8, 0.25, 1)';
-    const tilt = (el: HTMLElement) => getComputedStyle(el).getPropertyValue('--tilt').trim() || '0deg';
-    const to = this.photo.getBoundingClientRect();
-    if (from && to.width) {
-      const dx = from.left + from.width / 2 - (to.left + to.width / 2);
-      const dy = from.top + from.height / 2 - (to.top + to.height / 2);
-      const scale = from.width / to.width;
-      this.photo.animate(
+  arrive(from: DOMRect | null): { land: number; pages: number } {
+    this.layout();
+    if (reducedMotion()) return { land: 0, pages: 0 };
+    this.arriving = true;
+    window.setTimeout(() => (this.arriving = false), 1800);
+    const pic = this.image.getBoundingClientRect();
+    if (from && pic.width) {
+      const dx = from.left + from.width / 2 - (pic.left + pic.width / 2);
+      const dy = from.top + from.height / 2 - (pic.top + pic.height / 2);
+      const scale = Math.max(from.width / pic.width, from.height / pic.height);
+      const rest = getComputedStyle(this.drawing).transform;
+      this.drawing.animate(
         [
-          { transform: `translate(${dx}px, ${dy}px) scale(${scale}) rotate(0deg)` },
-          { transform: `translate(${dx * 0.4}px, ${dy * 0.4 - 24}px) scale(${1 + (scale - 1) * 0.4 + 0.04}) rotate(-5deg)`, offset: 0.55 },
-          { transform: `rotate(${tilt(this.photo)})` },
+          { transform: `translate(${dx}px, ${dy}px) scale(${scale})` },
+          { transform: `translate(${dx * 0.35}px, ${dy * 0.35 - 18}px) scale(${1 + (scale - 1) * 0.35 + 0.05}) rotate(-4deg)`, offset: 0.55 },
+          { transform: rest },
         ],
         { duration: 1100, easing: 'cubic-bezier(0.45, 0, 0.2, 1)' },
       );
     }
-    this.letter.animate(
-      [
-        { transform: 'translate(-6%, -55%) rotate(-2deg) scale(0.92)', opacity: 0 },
-        { opacity: 1, offset: 0.25 },
-        { transform: `rotate(${tilt(this.letter)})`, opacity: 1 },
-      ],
-      { duration: 900, delay: 750, easing: easeOut, fill: 'backwards' },
-    );
-    this.seal.animate(
-      [
-        { transform: 'scale(1.9) rotate(-25deg)', opacity: 0 },
-        { transform: 'scale(0.88) rotate(4deg)', opacity: 1, offset: 0.6 },
-        { transform: 'scale(1) rotate(0deg)', opacity: 1 },
-      ],
-      { duration: 420, delay: 1750, easing: 'cubic-bezier(0.5, 0, 0.6, 1)', fill: 'backwards' },
-    );
-    this.ribbon.animate([{ translate: '0 110%' }, { translate: '0 0' }], { duration: 650, delay: 2300, easing: 'cubic-bezier(0.3, 1.4, 0.5, 1)', fill: 'backwards' });
-    this.links.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 600, delay: 2300, fill: 'backwards' });
-    return { letter: 750, seal: 1950 };
+    this.order.slice(1).forEach((page, i) => {
+      const rest = getComputedStyle(page).transform;
+      page.animate([{ transform: `translate(0, 40%) rotate(${i % 2 ? 6 : -6}deg)`, opacity: 0 }, { opacity: 1, offset: 0.3 }, { transform: rest, opacity: 1 }], {
+        duration: 800,
+        delay: 900 + i * 160,
+        easing: 'cubic-bezier(0.2, 0.8, 0.25, 1)',
+        fill: 'backwards',
+      });
+    });
+    this.foot.animate([{ transform: 'translateY(18px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 600, delay: 1700, easing: 'ease-out', fill: 'backwards' });
+    return { land: 1000, pages: 900 };
   }
 }
 
 /**
- * The scene's text with the found words inked in: names keep their capital, other words are
- * written as in the sentence (capitalised only where a sentence starts).
+ * The scene as pieces for the pages: one per word with its trailing space, so pages break between
+ * words. The found words are written as in the game, on their kraft chips. Punctuation sticks to
+ * the word before it.
  */
-function letterBody(text: string, words: Word[], names: string[]): HTMLElement {
-  const parts = text.split(/\{([A-Z]+)\}/);
-  let n = 0;
-  return h(
-    'p',
-    { class: 'letter-body' },
-    ...parts.map((part, i) => {
-      if (i % 2 === 0) return part;
-      const before = parts.slice(0, i).join('');
-      const opensSentence = !before.trim() || /[.!?]["”’)]?\s*$/.test(before);
-      const lower = part.toLowerCase();
-      const written = names.includes(part) || opensSentence ? lower.charAt(0).toUpperCase() + lower.slice(1) : lower;
+function tokens(text: string, words: Word[], names: string[]): HTMLElement[] {
+  const out: HTMLElement[] = [];
+  let found = 0;
+  text.split(/\{([A-Z]+)\}/).forEach((part, k) => {
+    if (k % 2 === 1) {
       const known = words.some((w) => w.text === part);
-      const word = h('em', { class: 'letter-word', style: `--i: ${n++}` }, written);
-      return known ? word : written;
-    }),
-  );
+      const plain = names.includes(part) ? part.charAt(0) + part.slice(1).toLowerCase() : part.toLowerCase();
+      out.push(h('span', {}, known ? h('span', { class: 'page-word', style: `--i: ${found++}` }, part) : plain));
+      return;
+    }
+    for (const [, lead, word] of part.matchAll(/(\s*)(\S*\s*)/g)) {
+      const last = out[out.length - 1];
+      // Spaces end the piece before; a word with no space before it (punctuation after a found
+      // word, say) sticks to it.
+      if (lead && last) last.append(lead);
+      if (!word) continue;
+      if (last && !/\s$/.test(last.textContent ?? '')) last.append(word);
+      else out.push(h('span', {}, word));
+    }
+  });
+  return out;
 }

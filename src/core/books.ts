@@ -8,8 +8,6 @@ export interface Book {
    * after the player has met it in plain text (see `unintroducedNames`).
    */
   names: string[];
-  /** Pressed into the wax seal on a finished chapter's letter. */
-  monogram?: string;
 }
 
 export const BOOKS: Record<string, Book> = {
@@ -17,7 +15,6 @@ export const BOOKS: Record<string, Book> = {
     title: 'Pride and Prejudice',
     author: 'Jane Austen',
     year: 1813,
-    monogram: 'P&P',
     names: [
       'BENNET', 'ELIZABETH', 'LIZZY', 'JANE', 'MARY', 'KITTY', 'LYDIA',
       'BINGLEY', 'CAROLINE', 'HURST', 'DARCY', 'GEORGIANA', 'WICKHAM', 'DENNY',

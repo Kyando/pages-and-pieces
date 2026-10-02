@@ -168,6 +168,7 @@ export class LevelView {
   destroy(): void {
     this.resizeObserver.disconnect();
     this.pieces.destroy();
+    this.desk?.destroy();
   }
 
   // ── tracing ─────────────────────────────────────────────────────────────
@@ -359,6 +360,7 @@ export class LevelView {
   private restart(): void {
     if (!this.s.foundCount) return;
     this.s.reset();
+    this.desk?.destroy();
     this.desk?.el.remove();
     this.desk = null;
     this.board.classList.remove('is-complete');
@@ -374,7 +376,7 @@ export class LevelView {
 
   /**
    * The last piece settles and the whole picture comes into focus on the board; then it lifts off
-   * onto the desk, where the chapter's scene waits as a letter.
+   * onto the desk, with the chapter's scene on the pages under it.
    */
   private celebrate(): void {
     this.opts.sfx.win();
@@ -404,6 +406,7 @@ export class LevelView {
       nextTitle: this.opts.nextTitle,
       onNext: () => (this.opts.onNext ?? this.opts.onChapters)(),
       onRestart: () => this.restart(),
+      onTurn: () => this.opts.sfx.paper(),
       onShare: () => {
         const text = t('desk.shareText', { game: t('game.name'), book: BOOKS[def.book].title, chapter: def.chapter, title: def.title });
         navigator.clipboard?.writeText(text).then(
@@ -425,11 +428,11 @@ export class LevelView {
     const at = desk.arrive(from);
     const sfx = this.opts.sfx;
     sfx.paper();
-    window.setTimeout(() => sfx.paper(), at.letter);
     window.setTimeout(() => {
-      sfx.seal();
-      navigator.vibrate?.(18);
-    }, at.seal);
+      sfx.land();
+      navigator.vibrate?.(14);
+    }, at.land);
+    window.setTimeout(() => sfx.paper(), at.pages);
   }
 
   // ── rendering ───────────────────────────────────────────────────────────
