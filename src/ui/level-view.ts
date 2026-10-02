@@ -11,13 +11,9 @@ import { PieceLayer } from './pieces.ts';
 import type { Sfx } from './sfx.ts';
 import { passage } from './story.ts';
 
-/** How a found word's tiles turn into the picture (being play-tested, switchable in How to play). */
-export type RevealStyle = 'flip' | 'ink';
-
 export interface LevelViewOptions {
   session: Session;
   sfx: Sfx;
-  reveal: RevealStyle;
   onSolved(): void;
   /** Absent on the first / last chapter. */
   onPrev?: () => void;
@@ -30,15 +26,16 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 const RADII = ['13px 10px 14px 11px', '10px 14px 11px 13px', '14px 11px 10px 12px', '11px 13px 12px 10px'];
 /** Share of a cell, around its centre, that a dragging finger must reach: keeps diagonal slides from skipping. */
 const HIT = 0.78;
-/** A found word plays out letter by letter: this far apart (ms), each taking REVEAL_MS. */
-const STAGGER_MS = 55;
-const REVEAL_MS = 480;
+/** A found word's tiles leave one after another, this far apart (ms), each flight taking FLIGHT_MS. */
+const STAGGER_MS = 65;
+const FLIGHT_MS = 760;
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 /**
- * One chapter: the words to find on top, the letters below. Each word found uncovers its slice of
- * the chapter's illustration; at the end the full picture closes over the board and the panel turns
- * into the scene's passage, every found word in place.
+ * One chapter: the words to find on top, the letters below, and the chapter's illustration under
+ * the letters, cut into one piece per word. When a word is found its tiles fly off to the word
+ * list, uncovering that piece (shown soft while playing). At the end the picture comes into focus,
+ * seams and all, and the panel turns into the scene's passage, every found word in place.
  */
 export class LevelView {
   readonly el: HTMLElement;
@@ -47,10 +44,8 @@ export class LevelView {
   private readonly boardWrap: HTMLElement;
   private readonly board: HTMLElement;
   private readonly links: SVGSVGElement;
-  /** Only loads the picture, for its natural size (the tiles' slices need it); never shown. */
-  private readonly picture: HTMLImageElement;
   private readonly pieces: PieceLayer;
-  /** Words found whose letters are still flying to their chip. */
+  /** Words found whose tiles are still flying to their chip. */
   private readonly flying = new Set<number>();
   private readonly tiles: HTMLElement[] = [];
   private readonly traceEl: HTMLElement;
@@ -119,12 +114,10 @@ export class LevelView {
     );
     const panel = this.panel;
 
-    // Board: tiles underneath, the trace line in an SVG layer, letters on top, and the full picture
-    // waiting above everything for the end.
+    // Board: the picture's pieces at the bottom, the letter tiles over them, then the trace line.
     this.board = h('div', { class: 'board', role: 'grid', 'aria-label': t('level.board') });
     this.board.style.setProperty('--rows', String(p.rows));
     this.board.style.setProperty('--cols', String(p.cols));
-    this.board.style.setProperty('--picture', `url("${story.image}")`);
     for (let cell = 0; cell < p.rows * p.cols; cell++) {
       const tile = h(
         'div',
@@ -138,10 +131,7 @@ export class LevelView {
     this.links.classList.add('links');
     this.links.setAttribute('aria-hidden', 'true');
     this.pieces = new PieceLayer(story.image);
-    this.picture = h('img', { class: 'picture-probe', src: story.image, alt: '' }) as HTMLImageElement;
-    this.picture.addEventListener('load', () => this.fit());
-    this.board.classList.add(`reveal-${opts.reveal}`);
-    this.board.append(this.pieces.el, this.links, this.picture);
+    this.board.append(this.pieces.el, this.links);
     this.bindPointer();
 
     this.traceEl = h('div', { class: 'trace', role: 'status', 'aria-live': 'polite' }, h('span', { class: 'trace-hint' }, t('level.hint')));
@@ -281,52 +271,74 @@ export class LevelView {
       this.render();
       return;
     }
-    // A word found plays out in three beats: its letters fly up to cross it off the list, its tiles
-    // turn into the picture one by one (page flip or ink, in the order it was traced), then they snap
-    // together into one piece.
+    // A found word's tiles lift off the board one after another and fly to its chip in the word
+    // list, each along its own curve, uncovering the word's piece of the picture underneath.
     const { word } = result;
     const calm = reducedMotion();
-    const settle = calm ? 0 : (word.path.length - 1) * STAGGER_MS + REVEAL_MS;
-    if (!calm) this.flyLetters(word);
+    if (!calm) this.flyTiles(word);
     this.render();
-    if (!calm) {
-      word.path.forEach((c, i) => {
-        this.tiles[c].style.setProperty('--delay', `${i * STAGGER_MS}ms`);
-        replay(this.tiles[c], 'reveal');
-      });
-    }
-    this.pieces.add(word.index, word.path, settle);
+    this.pieces.add(word.index, word.path);
     this.showTrace(word.text, 'is-found');
     this.opts.sfx.piece(word.path.length, STAGGER_MS);
     navigator.vibrate?.(12);
-    if (result.solved) window.setTimeout(() => this.celebrate(), settle + 350);
+    const settle = calm ? 0 : (word.path.length - 1) * STAGGER_MS + FLIGHT_MS;
+    if (result.solved) window.setTimeout(() => this.celebrate(), settle + 250);
   }
 
-  /** The found word's letters lift off the board and fly into its chip, which then crosses itself off. */
-  private flyLetters(word: Word): void {
+  /**
+   * Copies of the found word's tiles fly from the board to its chip, which crosses itself off when
+   * the last one lands. Each takes its own arc (one side or the other, wider or tighter) and spins
+   * as it goes, like a card flicked off a table; the real tiles are hidden at once, so the picture
+   * shows wherever a copy has left.
+   */
+  private flyTiles(word: Word): void {
     const chip = this.chips[word.index];
     const to = chip.getBoundingClientRect();
     const tx = to.left + to.width / 2;
     const ty = to.top + to.height / 2;
     this.flying.add(word.index);
     const anims = word.path.map((c, i) => {
-      const from = this.tiles[c].getBoundingClientRect();
-      const x = from.left + from.width / 2;
-      const y = from.top + from.height / 2;
-      const letter = h('span', { class: 'fly-letter', 'aria-hidden': 'true' }, word.text[i]);
-      letter.style.cssText = `left:${x}px;top:${y}px;font-size:${this.cellPx * 0.48}px`;
-      document.body.append(letter);
-      const dx = tx - x;
-      const dy = ty - y;
-      const anim = letter.animate(
-        [
-          { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
-          { transform: `translate(calc(-50% + ${dx * 0.12}px), calc(-50% + ${dy * 0.12 - 22}px)) scale(1.2)`, opacity: 1, offset: 0.3 },
-          { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.4)`, opacity: 0.5 },
-        ],
-        { duration: 620, delay: i * STAGGER_MS, easing: 'cubic-bezier(0.45, 0, 0.7, 0.2)', fill: 'backwards' },
-      );
-      anim.onfinish = () => letter.remove();
+      const tile = this.tiles[c];
+      const from = tile.getBoundingClientRect();
+      const copy = tile.cloneNode(true) as HTMLElement;
+      copy.className = 'tile fly-tile';
+      copy.setAttribute('aria-hidden', 'true');
+      copy.style.left = `${from.left}px`;
+      copy.style.top = `${from.top}px`;
+      copy.style.width = `${from.width}px`;
+      copy.style.height = `${from.height}px`;
+      copy.style.setProperty('--cell', `${from.width}px`);
+      document.body.append(copy);
+
+      // A quadratic curve from the tile to the chip, bowed to a random side.
+      const dx = tx - (from.left + from.width / 2);
+      const dy = ty - (from.top + from.height / 2);
+      const side = Math.random() < 0.5 ? -1 : 1;
+      const len = Math.hypot(dx, dy) || 1;
+      const bow = (50 + Math.random() * 80) * side;
+      const cx = dx / 2 + (-dy / len) * bow;
+      const cy = dy / 2 + (dx / len) * bow - 40;
+      const spin = side * (120 + Math.random() * 160);
+      const tilt = side * (4 + Math.random() * 5);
+      // The tile keeps its inner rings; only the drop shadow grows as it lifts.
+      const rings = 'inset 0 0 0 3px var(--panel), inset 0 0 0 4.5px var(--faint)';
+      const frames: Keyframe[] = [
+        { transform: 'translate(0, 0) rotate(0deg) scale(1)', boxShadow: `${rings}, 0 4px 0 var(--stroke)`, opacity: 1, offset: 0 },
+        { transform: `translate(0, -10px) rotate(${tilt}deg) scale(1.14)`, boxShadow: `${rings}, 0 16px 20px rgb(0 0 0 / 0.28)`, opacity: 1, offset: 0.16 },
+      ];
+      for (let k = 1; k <= 6; k++) {
+        const t = k / 6;
+        const x = 2 * (1 - t) * t * cx + t * t * dx;
+        const y = 2 * (1 - t) * t * cy + t * t * dy - 10 * (1 - t);
+        frames.push({
+          transform: `translate(${x}px, ${y}px) rotate(${tilt + spin * t ** 1.4}deg) scale(${1.14 - 0.86 * t})`,
+          boxShadow: `${rings}, 0 16px 20px rgb(0 0 0 / 0.2)`,
+          opacity: t < 0.75 ? 1 : 1 - (t - 0.75) * 3.2,
+          offset: 0.16 + 0.84 * t,
+        });
+      }
+      const anim = copy.animate(frames, { duration: FLIGHT_MS, delay: i * STAGGER_MS, easing: 'cubic-bezier(0.35, 0, 0.45, 1)', fill: 'both' });
+      anim.finished.then(() => copy.remove(), () => copy.remove());
       return anim;
     });
     anims[anims.length - 1].finished.then(() => {
@@ -450,33 +462,13 @@ export class LevelView {
     this.links.setAttribute('width', String(w));
     this.links.setAttribute('height', String(hgt));
     this.links.style.setProperty('--stroke-w', `${size * 0.15}px`);
-    this.slicePicture(w, hgt, size + gap);
-    // Redraw the pieces at a new size, without animation (an unchanged size keeps them, mid-animation or not).
-    if (size === this.piecesCell) {
-      this.drawTrace();
-      return;
+    // Redraw the pieces at a new size (an unchanged size keeps them, mid-animation or not).
+    if (size !== this.piecesCell) {
+      this.piecesCell = size;
+      this.pieces.setLayout({ rows: p.rows, cols: p.cols, cell: size, gap });
+      for (const word of p.words) if (this.s.isFound(word.index)) this.pieces.add(word.index, word.path);
+      if (this.board.classList.contains('is-complete')) this.pieces.showWhole((cell) => this.s.ownerAt(cell), false);
     }
-    this.piecesCell = size;
-    this.pieces.setLayout({ rows: p.rows, cols: p.cols, cell: size, gap });
-    for (const word of p.words) if (this.s.isFound(word.index)) this.pieces.add(word.index, word.path, 0);
-    if (this.board.classList.contains('is-complete')) this.pieces.showWhole((cell) => this.s.ownerAt(cell), false);
     this.drawTrace();
-  }
-
-  /**
-   * Gives each tile its own slice of the picture, cropped to cover the whole board like the
-   * final reveal does, so the pieces line up with it exactly.
-   */
-  private slicePicture(w: number, hgt: number, step: number): void {
-    const img = this.picture;
-    if (!img.naturalWidth) return;
-    const scale = Math.max(w / img.naturalWidth, hgt / img.naturalHeight);
-    const sw = img.naturalWidth * scale;
-    const sh = img.naturalHeight * scale;
-    const cols = this.s.puzzle.cols;
-    this.tiles.forEach((tile, cell) => {
-      tile.style.backgroundSize = `${sw}px ${sh}px`;
-      tile.style.backgroundPosition = `${(w - sw) / 2 - colOf(cell, cols) * step}px ${(hgt - sh) / 2 - rowOf(cell, cols) * step}px`;
-    });
   }
 }

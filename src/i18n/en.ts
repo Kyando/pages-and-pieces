@@ -49,14 +49,10 @@ export const en = {
   'help.introStrong': 'every letter',
   'help.drag': 'Drag across neighbouring letters to spell a word. No diagonals, but words can {strong}: into an L, a Z, even a square.',
   'help.dragStrong': 'bend',
-  'help.reveal': 'Each word you find uncovers its piece of the chapter’s illustration.',
+  'help.reveal': 'Each word you find lifts off the board and uncovers its piece of the chapter’s illustration.',
   'help.both': 'Words read either way, and you can also tap letter by letter.',
-  'help.finish': 'Find them all to see the whole picture and read the scene they tell.',
+  'help.finish': 'Find them all to bring the whole picture into focus and read the scene it tells.',
   'help.go': 'Let’s read',
-
-  'reveal.label': 'Reveal style (test)',
-  'reveal.flip': 'Page flip',
-  'reveal.ink': 'Ink',
 
   'modal.close': 'Close',
   'empty': 'No valid chapters found in src/levels.',

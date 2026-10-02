@@ -9,6 +9,25 @@ const el = <K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, 
   return node;
 };
 
+/**
+ * The picture while the chapter is unfinished: a little blurred, warmed to sepia and with its
+ * contrast eased (`slope`, `intercept` per channel), so the hard black-on-white engraving sits
+ * quietly in the page. It comes into focus only when the chapter is complete.
+ * CSS picks the light or dark variant (`.piece-pic`).
+ */
+function softFilter(id: string, slope: number, intercept: number): SVGFilterElement {
+  const filter = el('filter', { id, x: 0, y: 0, width: '100%', height: '100%', 'color-interpolation-filters': 'sRGB' });
+  const transfer = el('feComponentTransfer');
+  for (const ch of ['feFuncR', 'feFuncG', 'feFuncB'] as const) transfer.append(el(ch, { type: 'linear', slope, intercept }));
+  filter.append(
+    el('feGaussianBlur', { stdDeviation: 0.9, edgeMode: 'duplicate' }),
+    // Sepia.
+    el('feColorMatrix', { type: 'matrix', values: '0.393 0.769 0.189 0 0  0.349 0.686 0.168 0 0  0.272 0.534 0.131 0 0  0 0 0 1 0' }),
+    transfer,
+  );
+  return filter;
+}
+
 interface Layout {
   rows: number;
   cols: number;
@@ -17,10 +36,10 @@ interface Layout {
 }
 
 /**
- * The picture, as pieces: each found word is one joined shape of the chapter's illustration with an
- * ink outline, separated from its neighbours by the board's gaps, so the board fills up like a
- * puzzle being assembled. Once every word is found, the gaps close but thin seams stay, so the
- * finished picture still shows the pieces it was made of.
+ * The picture, as pieces, under the letter tiles: each found word is one joined shape of the
+ * chapter's illustration with an ink outline, separated from its neighbours by the board's gaps, so
+ * the board fills up like a puzzle being assembled. While playing the picture is soft; once every
+ * word is found it comes into focus, whole, with ink seams still showing the pieces it was made of.
  */
 export class PieceLayer {
   readonly el: SVGSVGElement;
@@ -45,7 +64,7 @@ export class PieceLayer {
       el('feFlood', { class: 'piece-ink', result: 'ink' }),
       el('feComposite', { in: 'ink', in2: 'ring', operator: 'in' }),
     );
-    this.defs.append(filter);
+    this.defs.append(filter, softFilter('pp-soft', 0.9, 0.06), softFilter('pp-soft-dark', 0.62, 0.02));
     this.piecesG = el('g');
     this.wholeG = el('g', { class: 'pieces-whole' });
     this.el.append(this.defs, this.piecesG, this.wholeG);
@@ -76,11 +95,8 @@ export class PieceLayer {
     return this.drawn.has(index);
   }
 
-  /**
-   * Draws word `index` as one piece: its cells join across the gaps between them. With `delay` (ms),
-   * the piece joins after the tiles' own reveal, settling into place with a small snap.
-   */
-  add(index: number, path: number[], delay: number): void {
+  /** Draws word `index` as one piece: its cells join across the gaps between them. */
+  add(index: number, path: number[]): void {
     if (!this.layout || this.drawn.has(index)) return;
     const { cols, cell, gap } = this.layout;
     const step = cell + gap;
@@ -105,14 +121,12 @@ export class PieceLayer {
     this.defs.append(clip);
 
     const g = el('g', { class: 'piece' });
-    const pic = el('image', { href: this.image, x: 0, y: 0, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice', 'clip-path': `url(#${clipId})` });
+    // The picture inside a group: the group clips (crisp edges), the image itself takes the soft filter.
+    const pic = el('g', { 'clip-path': `url(#${clipId})` });
+    pic.append(el('image', { class: 'piece-pic', href: this.image, x: 0, y: 0, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice' }));
     const outline = el('g', { class: 'piece-outline', filter: `url(#${this.id}-outline)` });
     outline.append(...rects);
     g.append(outline, pic);
-    if (delay > 0) {
-      g.classList.add('is-joining');
-      g.style.animationDelay = `${delay}ms`;
-    }
     this.piecesG.append(g);
     this.drawn.set(index, g);
   }

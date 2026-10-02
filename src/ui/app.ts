@@ -1,5 +1,5 @@
 import { BOOKS } from '../core/books.ts';
-import { emptyProgress, loadSave, writeSave, type LevelProgress, type RevealChoice, type ThemeChoice } from '../game/save.ts';
+import { emptyProgress, loadSave, writeSave, type LevelProgress, type ThemeChoice } from '../game/save.ts';
 import { Session } from '../game/session.ts';
 import { detectLocale, setLocale, t, tn, type MessageKey } from '../i18n/index.ts';
 import { CATALOG } from '../levels/catalog.ts';
@@ -77,7 +77,6 @@ export class App {
     this.view = new LevelView({
       session,
       sfx: this.sfx,
-      reveal: this.save.settings.reveal,
       onSolved: () => this.showWin(session),
       onPrev: index > 0 ? () => this.openLevel(index - 1) : undefined,
       onNext: index < CATALOG.length - 1 ? () => this.openLevel(index + 1) : undefined,
@@ -162,36 +161,9 @@ export class App {
           h('li', {}, t('help.both')),
           h('li', {}, t('help.finish')),
         ),
-        this.revealPicker(),
       ),
       actions: [h('button', { type: 'button', class: 'btn btn--primary', onclick: (e: Event) => (e.target as HTMLElement).closest('dialog')?.close() }, t('help.go'))],
     });
-  }
-
-  /** Play-test switch: how found words turn into the picture. Applies from the next chapter opened. */
-  private revealPicker(): HTMLElement {
-    const options: [RevealChoice, MessageKey][] = [
-      ['flip', 'reveal.flip'],
-      ['ink', 'reveal.ink'],
-    ];
-    const buttons = options.map(([value, label]) =>
-      h(
-        'button',
-        {
-          type: 'button',
-          class: 'segment',
-          'aria-pressed': String(this.save.settings.reveal === value),
-          onclick: () => {
-            this.save.settings.reveal = value;
-            this.persist();
-            buttons.forEach((b, i) => b.setAttribute('aria-pressed', String(options[i][0] === value)));
-            this.openLevel(this.index);
-          },
-        },
-        t(label),
-      ),
-    );
-    return h('div', { class: 'reveal-picker' }, h('span', {}, t('reveal.label')), h('div', { class: 'segments' }, ...buttons));
   }
 
   private showWin(session: Session): void {
