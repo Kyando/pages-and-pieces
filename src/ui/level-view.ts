@@ -1,18 +1,23 @@
 import { BOOKS } from '../core/books.ts';
 import { adjacent, colOf, rowOf } from '../core/grid.ts';
-import { HOLE_LETTER, matchTrace } from '../core/puzzle.ts';
+import { HOLE_LETTER, matchTrace, type Word } from '../core/puzzle.ts';
 import type { Session } from '../game/session.ts';
 import { t, tn } from '../i18n/index.ts';
 import { h, svg } from './dom.ts';
 import { replay } from './fx.ts';
 import { ICONS } from './icons.ts';
 import { toast } from './overlay.ts';
+import { PieceLayer } from './pieces.ts';
 import type { Sfx } from './sfx.ts';
 import { passage } from './story.ts';
+
+/** How a found word's tiles turn into the picture (being play-tested, switchable in How to play). */
+export type RevealStyle = 'flip' | 'ink';
 
 export interface LevelViewOptions {
   session: Session;
   sfx: Sfx;
+  reveal: RevealStyle;
   onSolved(): void;
   /** Absent on the first / last chapter. */
   onPrev?: () => void;
@@ -25,6 +30,10 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 const RADII = ['13px 10px 14px 11px', '10px 14px 11px 13px', '14px 11px 10px 12px', '11px 13px 12px 10px'];
 /** Share of a cell, around its centre, that a dragging finger must reach: keeps diagonal slides from skipping. */
 const HIT = 0.78;
+/** A found word plays out letter by letter: this far apart (ms), each taking REVEAL_MS. */
+const STAGGER_MS = 55;
+const REVEAL_MS = 480;
+const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 /**
  * One chapter: the words to find on top, the letters below. Each word found uncovers its slice of
@@ -38,7 +47,11 @@ export class LevelView {
   private readonly boardWrap: HTMLElement;
   private readonly board: HTMLElement;
   private readonly links: SVGSVGElement;
+  /** Only loads the picture, for its natural size (the tiles' slices need it); never shown. */
   private readonly picture: HTMLImageElement;
+  private readonly pieces: PieceLayer;
+  /** Words found whose letters are still flying to their chip. */
+  private readonly flying = new Set<number>();
   private readonly tiles: HTMLElement[] = [];
   private readonly traceEl: HTMLElement;
   private readonly counter = h('span', { class: 'counter' });
@@ -53,6 +66,10 @@ export class LevelView {
   private trace: number[] = [];
   private gesture: { moved: boolean; onEnd: boolean } | null = null;
   private cellPx = 0;
+  /** Cell size the pieces were last drawn at. */
+  private piecesCell = 0;
+  /** The panel shows the scene's passage (only once the finished picture has settled). */
+  private reading = false;
   private gapPx = 0;
 
   constructor(opts: LevelViewOptions) {
@@ -120,9 +137,11 @@ export class LevelView {
     this.links = document.createElementNS(SVG_NS, 'svg');
     this.links.classList.add('links');
     this.links.setAttribute('aria-hidden', 'true');
-    this.picture = h('img', { class: 'board-picture', src: story.image, alt: story.caption, draggable: 'false' }) as HTMLImageElement;
+    this.pieces = new PieceLayer(story.image);
+    this.picture = h('img', { class: 'picture-probe', src: story.image, alt: '' }) as HTMLImageElement;
     this.picture.addEventListener('load', () => this.fit());
-    this.board.append(this.links, this.picture);
+    this.board.classList.add(`reveal-${opts.reveal}`);
+    this.board.append(this.pieces.el, this.links, this.picture);
     this.bindPointer();
 
     this.traceEl = h('div', { class: 'trace', role: 'status', 'aria-live': 'polite' }, h('span', { class: 'trace-hint' }, t('level.hint')));
@@ -262,46 +281,102 @@ export class LevelView {
       this.render();
       return;
     }
+    // A word found plays out in three beats: its letters fly up to cross it off the list, its tiles
+    // turn into the picture one by one (page flip or ink, in the order it was traced), then they snap
+    // together into one piece.
     const { word } = result;
+    const calm = reducedMotion();
+    const settle = calm ? 0 : (word.path.length - 1) * STAGGER_MS + REVEAL_MS;
+    if (!calm) this.flyLetters(word);
     this.render();
-    word.path.forEach((c, i) => {
-      this.tiles[c].style.setProperty('--delay', `${i * 45}ms`);
-      replay(this.tiles[c], 'reveal');
-    });
+    if (!calm) {
+      word.path.forEach((c, i) => {
+        this.tiles[c].style.setProperty('--delay', `${i * STAGGER_MS}ms`);
+        replay(this.tiles[c], 'reveal');
+      });
+    }
+    this.pieces.add(word.index, word.path, settle);
     this.showTrace(word.text, 'is-found');
-    replay(this.chips[word.index], 'pop');
-    this.opts.sfx.found();
-    if (result.solved) window.setTimeout(() => this.celebrate(), 650);
+    this.opts.sfx.piece(word.path.length, STAGGER_MS);
+    navigator.vibrate?.(12);
+    if (result.solved) window.setTimeout(() => this.celebrate(), settle + 350);
+  }
+
+  /** The found word's letters lift off the board and fly into its chip, which then crosses itself off. */
+  private flyLetters(word: Word): void {
+    const chip = this.chips[word.index];
+    const to = chip.getBoundingClientRect();
+    const tx = to.left + to.width / 2;
+    const ty = to.top + to.height / 2;
+    this.flying.add(word.index);
+    const anims = word.path.map((c, i) => {
+      const from = this.tiles[c].getBoundingClientRect();
+      const x = from.left + from.width / 2;
+      const y = from.top + from.height / 2;
+      const letter = h('span', { class: 'fly-letter', 'aria-hidden': 'true' }, word.text[i]);
+      letter.style.cssText = `left:${x}px;top:${y}px;font-size:${this.cellPx * 0.48}px`;
+      document.body.append(letter);
+      const dx = tx - x;
+      const dy = ty - y;
+      const anim = letter.animate(
+        [
+          { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+          { transform: `translate(calc(-50% + ${dx * 0.12}px), calc(-50% + ${dy * 0.12 - 22}px)) scale(1.2)`, opacity: 1, offset: 0.3 },
+          { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.4)`, opacity: 0.5 },
+        ],
+        { duration: 620, delay: i * STAGGER_MS, easing: 'cubic-bezier(0.45, 0, 0.7, 0.2)', fill: 'backwards' },
+      );
+      anim.onfinish = () => letter.remove();
+      return anim;
+    });
+    anims[anims.length - 1].finished.then(() => {
+      this.flying.delete(word.index);
+      this.render();
+      replay(chip, 'pop');
+    });
   }
 
   private restart(): void {
     if (!this.s.foundCount) return;
     this.s.reset();
-    this.board.classList.remove('is-complete', 'no-anim');
+    this.board.classList.remove('is-complete');
+    this.reading = false;
+    this.pieces.clear();
+    this.flying.clear();
     this.trace = [];
     this.traceEl.replaceChildren(h('span', { class: 'trace-hint' }, t('level.hint')));
     this.render();
     toast(t('level.restarted'));
   }
 
-  /** The last pieces settle, then the gaps close over the whole illustration. */
+  /** The last piece settles, then the gaps between pieces close over the whole illustration. */
   private celebrate(): void {
     this.opts.sfx.win();
+    navigator.vibrate?.([20, 60, 30]);
     this.revealPicture(true);
     window.setTimeout(() => this.opts.onSolved(), 2600);
   }
 
-  /** The full picture over the board, with its caption above. */
+  /** The whole picture, still showing its pieces' seams, with its caption above. */
   private revealPicture(animate: boolean): void {
     const story = this.s.puzzle.def.story;
     this.board.classList.add('is-complete');
-    this.board.classList.toggle('no-anim', !animate);
+    this.pieces.showWhole((cell) => this.s.ownerAt(cell), animate);
     this.traceEl.replaceChildren(h('span', { class: 'trace-pill picture-caption' }, h('strong', {}, story.caption), h('small', {}, story.credit)));
-    this.render();
-    if (animate) {
-      replay(this.traceEl.firstElementChild as HTMLElement, 'is-new');
-      replay(this.passageEl, 'fade-in');
+    if (!animate) {
+      this.reading = true;
+      this.render();
+      return;
     }
+    replay(this.traceEl.firstElementChild as HTMLElement, 'is-new');
+    // The scene's passage takes more room than the word list, which shrinks the board: wait until
+    // the picture has settled, so the resize never cuts its animation short.
+    window.setTimeout(() => {
+      if (!this.s.solved) return;
+      this.reading = true;
+      this.render();
+      replay(this.passageEl, 'fade-in');
+    }, 1500);
   }
 
   // ── rendering ───────────────────────────────────────────────────────────
@@ -324,11 +399,10 @@ export class LevelView {
     });
     if (this.trace.length) this.showTrace(this.trace.map((c) => p.letters[c]).join(''));
     this.board.classList.toggle('is-tracing', this.trace.length > 0);
-    p.words.forEach((w) => this.chips[w.index].classList.toggle('is-found', this.s.isFound(w.index)));
+    p.words.forEach((w) => this.chips[w.index].classList.toggle('is-found', this.s.isFound(w.index) && !this.flying.has(w.index)));
     // The words list while playing; the scene itself once the picture is complete.
-    const reading = this.board.classList.contains('is-complete');
-    this.panel.classList.toggle('is-reading', reading);
-    this.panelLabel.textContent = t(reading ? 'level.passage' : 'level.words');
+    this.panel.classList.toggle('is-reading', this.reading);
+    this.panelLabel.textContent = t(this.reading ? 'level.passage' : 'level.words');
     this.counter.textContent = tn('level.wordCount', p.words.length, { found: this.s.foundCount });
     this.nextBtn.hidden = !this.s.solved;
     this.drawTrace();
@@ -377,6 +451,15 @@ export class LevelView {
     this.links.setAttribute('height', String(hgt));
     this.links.style.setProperty('--stroke-w', `${size * 0.15}px`);
     this.slicePicture(w, hgt, size + gap);
+    // Redraw the pieces at a new size, without animation (an unchanged size keeps them, mid-animation or not).
+    if (size === this.piecesCell) {
+      this.drawTrace();
+      return;
+    }
+    this.piecesCell = size;
+    this.pieces.setLayout({ rows: p.rows, cols: p.cols, cell: size, gap });
+    for (const word of p.words) if (this.s.isFound(word.index)) this.pieces.add(word.index, word.path, 0);
+    if (this.board.classList.contains('is-complete')) this.pieces.showWhole((cell) => this.s.ownerAt(cell), false);
     this.drawTrace();
   }
 

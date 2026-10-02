@@ -54,6 +54,10 @@ export const en = {
   'help.finish': 'Find them all to see the whole picture and read the scene they tell.',
   'help.go': 'Let’s read',
 
+  'reveal.label': 'Reveal style (test)',
+  'reveal.flip': 'Page flip',
+  'reveal.ink': 'Ink',
+
   'modal.close': 'Close',
   'empty': 'No valid chapters found in src/levels.',
 } as const;

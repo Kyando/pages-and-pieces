@@ -7,6 +7,38 @@ export class Sfx {
     this.enabled = enabled;
   }
 
+  /** A word found: a paper rustle, then one soft rising note per letter as its tiles turn. */
+  piece(length: number, stagger: number): void {
+    this.rustle();
+    const scale = [659, 740, 831, 988, 1109, 1319, 1480, 1661, 1976, 2217, 2637];
+    for (let i = 0; i < length; i++) this.tone(scale[Math.min(i, scale.length - 1)], 0.16, 'sine', 0.045, 0.05 + (i * stagger) / 1000);
+  }
+
+  /** Paper: a short burst of filtered noise. */
+  private rustle(): void {
+    if (!this.enabled) return;
+    try {
+      this.ctx ??= new AudioContext();
+      const ctx = this.ctx;
+      const dur = 0.22;
+      const buffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length) ** 2;
+      const src = ctx.createBufferSource();
+      src.buffer = buffer;
+      const band = ctx.createBiquadFilter();
+      band.type = 'bandpass';
+      band.frequency.value = 2600;
+      band.Q.value = 0.7;
+      const amp = ctx.createGain();
+      amp.gain.value = 0.12;
+      src.connect(band).connect(amp).connect(ctx.destination);
+      src.start();
+    } catch {
+      // Audio unavailable; stay silent.
+    }
+  }
+
   pick(): void {
     this.tone(620, 0.07, 'triangle', 0.07, 0, 760);
   }
