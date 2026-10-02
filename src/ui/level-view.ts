@@ -73,9 +73,10 @@ export class LevelView {
       arrow(t('level.next'), ICONS.next, opts.onNext),
     );
 
-    // The passage: each blank as wide as its word, filled in when found.
+    // The passage: each blank shows one slot per letter (the word itself isn't in the page until
+    // it's found), and fills in when found.
     const passageEl = passage(story, p.words, (w) => {
-      const blank = h('span', { class: 'blank' }, w.text);
+      const blank = h('span', { class: 'blank' }, ...[...w.text].map(() => h('span', { class: 'slot' })));
       this.blanks[w.index] = blank;
       return blank;
     });
@@ -304,7 +305,13 @@ export class LevelView {
     });
     if (this.trace.length) this.showTrace(this.trace.map((c) => p.letters[c]).join(''));
     this.board.classList.toggle('is-tracing', this.trace.length > 0);
-    p.words.forEach((w) => this.blanks[w.index].classList.toggle('is-found', this.s.isFound(w.index)));
+    p.words.forEach((w) => {
+      const blank = this.blanks[w.index];
+      const found = this.s.isFound(w.index);
+      blank.classList.toggle('is-found', found);
+      [...blank.children].forEach((slot, i) => (slot.textContent = found ? w.text[i] : ''));
+      blank.setAttribute('aria-label', found ? w.text : tn('level.blank', w.text.length));
+    });
     this.counter.textContent = tn('level.words', p.words.length, { found: this.s.foundCount });
     this.nextBtn.hidden = !this.s.solved;
     this.drawTrace();

@@ -6,50 +6,50 @@
   "rows": 7,
   "cols": 7,
   "grid": [
-    "YRTDEYT",
-    "OUNALIT",
-    "CLCRAZI",
-    "DYYEBBK",
-    "IAHTPIY",
-    "LBMORNE",
-    "LAISEGL"
+    "HZIFLDA",
+    "TALOOCR",
+    "EBERAYE",
+    "YYRCILS",
+    "ELTODYI",
+    "BGNULOM",
+    "INBALRP"
   ],
   "words": [
     {
-      "text": "KITTY",
-      "path": [27, 20, 13, 6, 5]
-    },
-    {
-      "text": "LYDIA",
-      "path": [15, 22, 21, 28, 29]
-    },
-    {
       "text": "COUNTRY",
-      "path": [14, 7, 8, 9, 2, 1, 0]
+      "path": [24, 31, 38, 37, 30, 23, 22]
     },
     {
       "text": "DARCY",
-      "path": [3, 10, 17, 16, 23]
+      "path": [5, 6, 13, 12, 19]
     },
     {
       "text": "ELIZABETH",
-      "path": [4, 11, 12, 19, 18, 25, 24, 31, 30]
+      "path": [16, 9, 2, 1, 8, 15, 14, 7, 0]
+    },
+    {
+      "text": "FLOOR",
+      "path": [3, 4, 11, 10, 17]
+    },
+    {
+      "text": "LYDIA",
+      "path": [26, 33, 32, 25, 18]
     },
     {
       "text": "BINGLEY",
-      "path": [26, 33, 40, 47, 48, 41, 34]
+      "path": [35, 42, 43, 36, 29, 28, 21]
     },
     {
       "text": "PROMISE",
-      "path": [32, 39, 38, 37, 44, 45, 46]
+      "path": [48, 47, 40, 41, 34, 27, 20]
     },
     {
       "text": "BALL",
-      "path": [36, 43, 42, 35]
+      "path": [44, 45, 46, 39]
     }
   ],
   "story": {
-    "text": "Mrs. Bennet comes to Netherfield to see poor Jane, bringing her youngest girls, {KITTY} and {LYDIA}. She praises the {COUNTRY} to Mr. {DARCY}’s face, as if to put him in his place, while {ELIZABETH} wishes the floor would swallow her whole. Then bold Lydia reminds Mr. {BINGLEY} of his {PROMISE} to throw a {BALL}.",
+    "text": "Mrs. Bennet comes to Netherfield to see poor Jane, bringing her youngest girls, Kitty and Lydia. She praises the {COUNTRY} to Mr. {DARCY}’s face, as if to put him in his place, while {ELIZABETH} wishes the {FLOOR} would swallow her whole. Then bold {LYDIA} reminds Mr. {BINGLEY} of his {PROMISE} to throw a {BALL}.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Thompson-PP-Ch9.JPG/1280px-Thompson-PP-Ch9.JPG",
     "caption": "Mrs. Bennet and her two youngest girls",
     "credit": "Hugh Thomson, 1894"

@@ -2,9 +2,15 @@ import type { LevelSpec } from '../src/core/generate.ts';
 
 /**
  * The chapters, in play order. `npm run levels:generate` lays them out.
- * Passages retell each scene in plain modern English, keeping Austen's famous lines; every {WORD}
- * is a word to find, and their letters fill the grid exactly. The grid's shape follows the
- * illustration's, so the reveal crops as little of it as possible.
+ *
+ * Passages retell each scene in plain modern English, keeping Austen's famous lines. Every {WORD} is
+ * a word to find, and their letters fill the grid exactly. What to hide:
+ * - words the sentence itself points to ("ten {THOUSAND} a year", the famous quotes);
+ * - names the player has already met: a character or place appears in plain text first, in an
+ *   earlier chapter or earlier in the same passage, and only then becomes a blank (the tests check
+ *   this against the book's `names`). Finding it is remembering the story, not guessing.
+ *
+ * The grid's shape follows the illustration's, so the reveal crops as little of it as possible.
  */
 
 const PP = 'pride-and-prejudice';
@@ -20,7 +26,7 @@ export const SPECS: LevelSpec[] = [
     rows: 7,
     cols: 6,
     story: {
-      text: 'It is a truth universally acknowledged that a single man with a good {FORTUNE} must be in want of a {WIFE}. So when {NETHERFIELD} Park is finally let to a rich young gentleman, Mr. {BINGLEY}, Mrs. Bennet can think of nothing but seeing one of her five daughters {MARRIED} to him. Mr. Bennet only teases her, and she protests that he has no pity for her poor {NERVES}.',
+      text: 'It is a truth universally acknowledged that a single man with a good {FORTUNE} must be in want of a {WIFE}. So when Netherfield Park is let at last to Mr. Bingley, a rich young {GENTLEMAN}, Mrs. Bennet can think of nothing but seeing one of her five {DAUGHTERS} {MARRIED} to him. Mr. Bennet only teases her, and she protests that he has no pity for her poor {NERVES}.',
       image: commons('4/4d/Thomson-PP03.jpg'),
       caption: 'Mr. and Mrs. Bennet',
       credit: THOMSON,
@@ -34,7 +40,7 @@ export const SPECS: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'At the {ASSEMBLY} in Meryton, every head turns when Mr. {BINGLEY} arrives with his two {SISTERS} and his friend, Mr. {DARCY}: tall, handsome and {NOBLE} in bearing. Within five minutes the whole room has heard he has ten {THOUSAND} a year. Within the hour, everyone has decided he is the {PROUDEST} man in the world.',
+      text: 'At the {ASSEMBLY} in Meryton, every head turns when Mr. {BINGLEY} arrives with his two {SISTERS} and his friend, Mr. Darcy: tall, handsome and {NOBLE} in bearing. Within five minutes the whole room has heard he has ten {THOUSAND} a year. Within the hour, everyone has decided he is the {PROUDEST} man in the {WORLD}.',
       image: commons('8/85/Thomson-PP04.jpg'),
       caption: 'When the party entered',
       credit: THOMSON,
@@ -48,7 +54,7 @@ export const SPECS: LevelSpec[] = [
     rows: 7,
     cols: 7,
     story: {
-      text: 'Across the {BALL} at {MERYTON}, {BINGLEY} begs his friend to dance with {ELIZABETH}. {DARCY} barely glances at her: “She is {TOLERABLE}, but not {HANDSOME} enough to tempt me.” Elizabeth hears every word, and turns it into a story that makes all her friends laugh.',
+      text: 'Across the {BALL} at {MERYTON}, {BINGLEY} begs his friend to dance with Elizabeth Bennet. {DARCY} barely glances at her: “She is {TOLERABLE}, but not {HANDSOME} enough to tempt me.” {ELIZABETH} hears every word, and turns it into a story that makes all her friends laugh.',
       image: commons('d/d6/Thomson-PP05.jpg'),
       caption: 'She is tolerable',
       credit: THOMSON,
@@ -62,7 +68,7 @@ export const SPECS: LevelSpec[] = [
     rows: 7,
     cols: 6,
     story: {
-      text: 'An {INVITATION} arrives from Netherfield: the Bingley sisters ask {JANE} to dine. Mrs. Bennet has a {SCHEME}. Jane must go on {HORSEBACK}, because it looks like {RAIN}, and then she will simply have to stay the {NIGHT}. The plan works all too well: Jane arrives soaked, and wakes up with a terrible {COLD}.',
+      text: 'An {INVITATION} arrives from Netherfield: Caroline Bingley asks Jane, the eldest Bennet girl, to dine. Mrs. Bennet has a {SCHEME}. {JANE} must go on {HORSEBACK}, because it looks like {RAIN}, and then she will simply have to stay the {NIGHT}. The plan works all too well: Jane arrives soaked, and wakes up with a terrible {COLD}.',
       image: commons('thumb/b/b3/Thompson-PP-Ch7.JPG/1280px-Thompson-PP-Ch7.JPG'),
       caption: 'Cheerful prognostics',
       credit: THOMSON,
@@ -76,7 +82,7 @@ export const SPECS: LevelSpec[] = [
     rows: 7,
     cols: 7,
     story: {
-      text: 'Mrs. Bennet comes to Netherfield to see poor Jane, bringing her youngest girls, {KITTY} and {LYDIA}. She praises the {COUNTRY} to Mr. {DARCY}’s face, as if to put him in his place, while {ELIZABETH} wishes the floor would swallow her whole. Then bold Lydia reminds Mr. {BINGLEY} of his {PROMISE} to throw a {BALL}.',
+      text: 'Mrs. Bennet comes to Netherfield to see poor Jane, bringing her youngest girls, Kitty and Lydia. She praises the {COUNTRY} to Mr. {DARCY}’s face, as if to put him in his place, while {ELIZABETH} wishes the {FLOOR} would swallow her whole. Then bold {LYDIA} reminds Mr. {BINGLEY} of his {PROMISE} to throw a {BALL}.',
       image: commons('thumb/5/50/Thompson-PP-Ch9.JPG/1280px-Thompson-PP-Ch9.JPG'),
       caption: 'Mrs. Bennet and her two youngest girls',
       credit: THOMSON,
@@ -104,7 +110,7 @@ export const SPECS: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'Mr. {COLLINS}, the {COUSIN} who will one day inherit {LONGBOURN}, has come to stay, and cannot stop praising his patroness, Lady {CATHERINE} de Bourgh. Asked to read to the family, he refuses to touch a {NOVEL} and picks a book of {SERMONS} instead. Three pages in, {LYDIA} interrupts him to gossip about the officers.',
+      text: 'A letter announces a visitor: Mr. Collins, the {COUSIN} who will one day inherit the family home, Longbourn. He arrives full of praise for his {PATRONESS}, Lady Catherine de Bourgh. Asked to read aloud, Mr. {COLLINS} refuses to touch {NOVELS} and picks a book of {SERMONS}. Three pages in, {LYDIA} interrupts him to gossip about the {OFFICERS}.',
       image: commons('2/24/Thomson-PP08.jpg'),
       caption: 'Protested that he never read novels',
       credit: THOMSON,
@@ -118,7 +124,7 @@ export const SPECS: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'On a walk into {MERYTON}, the sisters meet a stranger full of easy {CHARM}: Mr. {WICKHAM}, about to join the {REGIMENT} with the other {OFFICERS}. Then Mr. {DARCY} rides by. The two men catch sight of each other, and one turns {WHITE}, the other {RED}. Whatever happened between them?',
+      text: 'On a walk into {MERYTON}, the sisters meet a stranger full of easy {CHARM}: Mr. Wickham, about to join the {REGIMENT} with the other {OFFICERS}. Then Mr. {DARCY} rides by. When the two men catch sight of each other, one turns {WHITE}, the other {RED}. What could have happened between Darcy and {WICKHAM}?',
       image: commons('8/82/Thomson-PP09.jpg'),
       caption: 'The officers of the ——shire',
       credit: THOMSON,

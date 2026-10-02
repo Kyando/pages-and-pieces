@@ -6,46 +6,46 @@
   "rows": 7,
   "cols": 6,
   "grid": [
-    "DLHOKC",
-    "ROCRSA",
-    "AISCEB",
-    "TNNHNO",
-    "HGIETI",
-    "EJEMAT",
-    "NAINVI"
+    "NRHTHN",
+    "IAORGI",
+    "JDLSEE",
+    "ACOABM",
+    "NENCHE",
+    "TIOKCS",
+    "ATIVNI"
   ],
   "words": [
     {
       "text": "INVITATION",
-      "path": [38, 39, 40, 41, 35, 34, 28, 29, 23, 22]
-    },
-    {
-      "text": "JANE",
-      "path": [31, 37, 36, 30]
+      "path": [41, 40, 39, 38, 37, 36, 30, 31, 32, 26]
     },
     {
       "text": "SCHEME",
-      "path": [14, 15, 21, 27, 33, 32]
+      "path": [35, 34, 28, 29, 23, 17]
+    },
+    {
+      "text": "JANE",
+      "path": [12, 18, 24, 25]
     },
     {
       "text": "HORSEBACK",
-      "path": [2, 3, 9, 10, 16, 17, 11, 5, 4]
+      "path": [2, 8, 9, 15, 16, 22, 21, 27, 33]
     },
     {
       "text": "RAIN",
-      "path": [6, 12, 13, 19]
+      "path": [1, 7, 6, 0]
     },
     {
       "text": "NIGHT",
-      "path": [20, 26, 25, 24, 18]
+      "path": [5, 11, 10, 4, 3]
     },
     {
       "text": "COLD",
-      "path": [8, 7, 1, 0]
+      "path": [19, 20, 14, 13]
     }
   ],
   "story": {
-    "text": "An {INVITATION} arrives from Netherfield: the Bingley sisters ask {JANE} to dine. Mrs. Bennet has a {SCHEME}. Jane must go on {HORSEBACK}, because it looks like {RAIN}, and then she will simply have to stay the {NIGHT}. The plan works all too well: Jane arrives soaked, and wakes up with a terrible {COLD}.",
+    "text": "An {INVITATION} arrives from Netherfield: Caroline Bingley asks Jane, the eldest Bennet girl, to dine. Mrs. Bennet has a {SCHEME}. {JANE} must go on {HORSEBACK}, because it looks like {RAIN}, and then she will simply have to stay the {NIGHT}. The plan works all too well: Jane arrives soaked, and wakes up with a terrible {COLD}.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Thompson-PP-Ch7.JPG/1280px-Thompson-PP-Ch7.JPG",
     "caption": "Cheerful prognostics",
     "credit": "Hugh Thomson, 1894"

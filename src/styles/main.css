@@ -550,24 +550,41 @@ button {
   text-wrap: pretty;
 }
 
+/* A blank shows one slot per letter, so its length is plain to see. */
 .blank {
-  display: inline-block;
-  padding: 0 4px;
-  border-bottom: 2px dashed color-mix(in srgb, var(--ink) 40%, transparent);
-  color: transparent;
+  display: inline-flex;
+  gap: 3px;
+  padding: 0 2px;
+  border-radius: 6px;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 0.82em;
   line-height: 1.35;
   letter-spacing: 0.06em;
-  transition: color 0.3s, background 0.3s, border-color 0.3s;
+  transition: background 0.3s;
+}
+
+.slot {
+  display: inline-block;
+  width: 0.75em;
+  border-bottom: 2px solid color-mix(in srgb, var(--ink) 38%, transparent);
+}
+
+/* An empty slot still needs a line box to sit on the text's baseline. */
+.slot:empty::before {
+  content: '\200b';
 }
 
 .blank.is-found {
-  border-bottom-color: transparent;
-  border-radius: 6px;
+  gap: 0;
+  padding: 0 4px;
   background: var(--trace);
   color: var(--ink);
+}
+
+.blank.is-found .slot {
+  width: auto;
+  border-bottom-color: transparent;
 }
 
 .blank.pop {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BOOKS } from '../src/core/books.ts';
+import { BOOKS, unintroducedNames } from '../src/core/books.ts';
 import { generateLevel } from '../src/core/generate.ts';
 import { findPaths, isPath } from '../src/core/grid.ts';
 import { blanksOf, buildPuzzle, matchTrace, validateLevel } from '../src/core/puzzle.ts';
@@ -46,6 +46,19 @@ describe('chapters', () => {
     for (const def of levels) expect(BOOKS[def.book]).toBeDefined();
     const chapters = levels.map((l) => l.chapter);
     expect(chapters).toEqual([...chapters].sort((a, b) => a - b));
+  });
+
+  it.each(Object.keys(BOOKS))('%s introduces every name before hiding it', (book) => {
+    const passages = SPECS.filter((s) => s.book === book).map((s) => s.story.text);
+    expect(unintroducedNames(passages, BOOKS[book].names)).toEqual([]);
+  });
+
+  it('flags a name hidden before the player has met it', () => {
+    const names = ['DARCY', 'MERYTON'];
+    expect(unintroducedNames(['At the ball in Meryton, Mr. Darcy is proud.', '{DARCY} snubs her at {MERYTON}.'], names)).toEqual([]);
+    expect(unintroducedNames(['Mr. {DARCY} snubs her.'], names)).toEqual(['DARCY is hidden in passage 1 before it is introduced']);
+    // Met earlier in the same passage counts too.
+    expect(unintroducedNames(['Mr. Darcy arrives. Later, {DARCY} leaves.'], names)).toEqual([]);
   });
 
   it('never repeat a word within a chapter', () => {

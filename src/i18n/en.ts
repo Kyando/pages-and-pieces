@@ -21,6 +21,8 @@ export const en = {
   'level.restarted': 'Board cleared.',
   'level.nextButton': 'Next chapter',
   'level.lastButton': 'All chapters',
+  'level.blank_one': 'missing word, {count} letter',
+  'level.blank_other': 'missing word, {count} letters',
   'level.words_one': '{found}/{count} word',
   'level.words_other': '{found}/{count} words',
 
