@@ -66,6 +66,7 @@ export class LevelView {
   /** The panel shows the scene's passage (only once the finished picture has settled). */
   private reading = false;
   private gapPx = 0;
+  private readonly heading: HTMLElement;
 
   constructor(opts: LevelViewOptions) {
     this.opts = opts;
@@ -77,7 +78,7 @@ export class LevelView {
     // Heading flanked by arrows, so chapters are always one tap away.
     const arrow = (label: string, glyph: string, go?: () => void) =>
       h('button', { type: 'button', class: 'icon-btn level-arrow', 'aria-label': label, title: label, disabled: !go, onclick: () => go?.() }, svg(glyph));
-    const heading = h(
+    const heading = (this.heading = h(
       'header',
       { class: 'chapter' },
       arrow(t('level.prev'), ICONS.prev, opts.onPrev),
@@ -88,7 +89,7 @@ export class LevelView {
         h('h1', {}, def.title),
       ),
       arrow(t('level.next'), ICONS.next, opts.onNext),
-    );
+    ));
 
     // While playing, a compact list of the words to find (alphabetical, so it doesn't spoil the
     // story's order). Once the chapter is complete, the scene itself: the passage with every word in place.
@@ -108,7 +109,18 @@ export class LevelView {
     this.panel = h(
       'section',
       { class: 'story-panel' },
-      h('header', { class: 'story-head' }, this.panelLabel, this.counter),
+      h(
+        'header',
+        { class: 'story-head' },
+        this.panelLabel,
+        h(
+          'span',
+          { class: 'story-head-end' },
+          this.counter,
+          // On phones "Start over" lives here, so the board gets the row it would take.
+          h('button', { type: 'button', class: 'head-restart', 'aria-label': t('level.restart'), title: t('level.restart'), onclick: () => this.restart() }, svg(ICONS.restart)),
+        ),
+      ),
       this.wordList,
       this.passageEl,
     );
@@ -135,7 +147,8 @@ export class LevelView {
     this.bindPointer();
 
     this.traceEl = h('div', { class: 'trace', role: 'status', 'aria-live': 'polite' }, h('span', { class: 'trace-hint' }, t('level.hint')));
-    // The bubble sits right above the board, where the eye already is while tracing.
+    // The bubble sits right above the board, where the eye already is while tracing (on phones it
+    // floats over the chapter title instead, so the board can take the whole width).
     this.boardWrap = h('div', { class: 'board-wrap' }, this.traceEl, this.board);
     const restartBtn = h(
       'button',
@@ -353,6 +366,8 @@ export class LevelView {
     if (!this.s.foundCount) return;
     this.s.reset();
     this.board.classList.remove('is-complete');
+    this.el.classList.remove('is-complete');
+    this.fit();
     this.reading = false;
     this.pieces.clear();
     this.flying.clear();
@@ -378,7 +393,9 @@ export class LevelView {
     this.traceEl.replaceChildren(h('span', { class: 'trace-pill picture-caption' }, h('strong', {}, story.caption), h('small', {}, story.credit)));
     if (!animate) {
       this.reading = true;
+      this.el.classList.add('is-complete');
       this.render();
+      this.fit();
       return;
     }
     replay(this.traceEl.firstElementChild as HTMLElement, 'is-new');
@@ -387,7 +404,10 @@ export class LevelView {
     window.setTimeout(() => {
       if (!this.s.solved) return;
       this.reading = true;
+      // The caption settles above the board, beside the scene.
+      this.el.classList.add('is-complete');
       this.render();
+      this.fit();
       replay(this.passageEl, 'fade-in');
     }, 1500);
   }
@@ -398,7 +418,12 @@ export class LevelView {
   private showTrace(text: string, state = ''): void {
     const pill = h('span', { class: `trace-pill ${state}` }, text);
     this.traceEl.replaceChildren(pill);
-    if (state) replay(pill, 'is-new');
+    if (!state) return;
+    replay(pill, 'is-new');
+    // A result clears after a moment (on phones it covers the chapter title).
+    window.setTimeout(() => {
+      if (pill.isConnected && !this.trace.length) this.traceEl.replaceChildren(h('span', { class: 'trace-hint' }, t('level.hint')));
+    }, 1400);
   }
 
   private render(): void {
@@ -448,8 +473,13 @@ export class LevelView {
     const p = this.s.puzzle;
     const wrap = this.boardWrap.getBoundingClientRect();
     const width = wrap.width;
-    const height = wrap.height - this.traceEl.offsetHeight - 6;
-    const gap = width < 480 ? 5 : 7;
+    const floating = getComputedStyle(this.traceEl).position === 'absolute';
+    if (floating) {
+      this.traceEl.style.setProperty('--head-top', `${this.heading.offsetTop}px`);
+      this.traceEl.style.setProperty('--head-h', `${this.heading.offsetHeight}px`);
+    }
+    const height = wrap.height - (floating ? 0 : this.traceEl.offsetHeight + 6);
+    const gap = width < 480 ? 4 : 7;
     const byWidth = (width - gap * (p.cols - 1)) / p.cols;
     const byHeight = (height - gap * (p.rows - 1)) / p.rows;
     const size = Math.max(34, Math.min(92, Math.floor(Math.min(byWidth, byHeight))));

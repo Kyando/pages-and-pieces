@@ -44,78 +44,6 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --paper: #1d1a25;
-    --paper-edge: #14121a;
-    --panel: #2c2836;
-    --panel-2: #25212e;
-    --ink: #f1e5cf;
-    --ink-soft: #a99985;
-    --stroke: #0d0b12;
-    --faint: rgb(241 229 207 / 0.18);
-    --accent: #f08a5d;
-    --accent-ink: #1d1a25;
-    --select: #b8892a;
-    --hover: #3a3345;
-    --ok: #74b86b;
-    --danger: #ec6a55;
-    --backdrop: rgb(5 4 8 / 0.6);
-    --grain-opacity: 0.25;
-    --tint-0: #5b3c2f;
-    --tint-1: #33503a;
-    --tint-2: #2f4561;
-    --tint-3: #5a3451;
-    --tint-4: #5b4c22;
-    --tint-5: #46395f;
-    --tint-6: #2b5351;
-    --tint-7: #5a4430;
-    --p0-a: #b0653d; --p0-b: #5f4031; --p0-line: #f2a777;
-    --p1-a: #548f48; --p1-b: #34503a; --p1-line: #a2d68f;
-    --p2-a: #45719f; --p2-b: #2f4561; --p2-line: #95bdf0;
-    --p3-a: #a35482; --p3-b: #5a3451; --p3-line: #f0a2c8;
-    --p4-a: #a3842a; --p4-b: #5b4c22; --p4-line: #f2d064;
-    --p5-a: #7259ad; --p5-b: #46395f; --p5-line: #bfaaf2;
-    --sticker-edge: #f1e5cf; --bevel: 0.14; --shadow-filter: brightness(0) invert(1); --trace: #4b4236; --trace-ring: #7d6c52; --pencil: #e2d2b4; --extra: #5d5668; --extra-line: #d6c9b3;
-    color-scheme: dark;
-  }
-}
-
-:root[data-theme='dark'] {
-  --paper: #1d1a25;
-  --paper-edge: #14121a;
-  --panel: #2c2836;
-  --panel-2: #25212e;
-  --ink: #f1e5cf;
-  --ink-soft: #a99985;
-  --stroke: #0d0b12;
-  --faint: rgb(241 229 207 / 0.18);
-  --accent: #f08a5d;
-  --accent-ink: #1d1a25;
-  --select: #b8892a;
-  --hover: #3a3345;
-  --ok: #74b86b;
-  --danger: #ec6a55;
-  --backdrop: rgb(5 4 8 / 0.6);
-  --grain-opacity: 0.25;
-  --tint-0: #5b3c2f;
-  --tint-1: #33503a;
-  --tint-2: #2f4561;
-  --tint-3: #5a3451;
-  --tint-4: #5b4c22;
-  --tint-5: #46395f;
-  --tint-6: #2b5351;
-  --tint-7: #5a4430;
-  --p0-a: #b0653d; --p0-b: #5f4031; --p0-line: #f2a777;
-  --p1-a: #548f48; --p1-b: #34503a; --p1-line: #a2d68f;
-  --p2-a: #45719f; --p2-b: #2f4561; --p2-line: #95bdf0;
-  --p3-a: #a35482; --p3-b: #5a3451; --p3-line: #f0a2c8;
-  --p4-a: #a3842a; --p4-b: #5b4c22; --p4-line: #f2d064;
-  --p5-a: #7259ad; --p5-b: #46395f; --p5-line: #bfaaf2;
-  --sticker-edge: #f1e5cf; --bevel: 0.14; --shadow-filter: brightness(0) invert(1); --trace: #4b4236; --trace-ring: #7d6c52; --pencil: #e2d2b4; --extra: #5d5668; --extra-line: #d6c9b3;
-  color-scheme: dark;
-}
-
 /* ── Base ───────────────────────────────────────────────────────────────── */
 
 *,
@@ -533,6 +461,31 @@ button {
   color: var(--ink-soft);
 }
 
+.story-head-end {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.head-restart {
+  display: none;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin: -6px -8px -6px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.head-restart svg {
+  width: 17px;
+  height: 17px;
+}
+
 /* ── Story chapters ───────────────────────────────────────────────────────
    While playing, the panel lists the words to find. Each found word uncovers its slice of the
    chapter's illustration, like a Tetris piece of the engraving; at the end the full picture closes
@@ -755,6 +708,38 @@ button {
 
   .trace {
     height: 36px;
+  }
+
+  /* While playing, the board takes every bit of height it can, so it can fill the width: the traced
+     word floats over the chapter title (where --head-* put it) and "Start over" moves to the word list. */
+  .stage {
+    position: relative;
+  }
+
+  .stage:not(.is-complete) .trace {
+    position: absolute;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    top: var(--head-top, 0px);
+    height: var(--head-h, 44px);
+    pointer-events: none;
+  }
+
+  .stage:not(.is-complete):has(.trace-pill) .chapter {
+    visibility: hidden;
+  }
+
+  .stage:not(.is-complete) .trace-hint {
+    display: none;
+  }
+
+  .stage:not(.is-complete) .head-restart {
+    display: grid;
+  }
+
+  .stage:not(.is-complete) .tools {
+    display: none;
   }
 
   .trace-pill {

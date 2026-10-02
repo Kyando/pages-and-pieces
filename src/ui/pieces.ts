@@ -11,8 +11,8 @@ const el = <K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, 
 
 /**
  * The picture while the chapter is unfinished, as a pencil sketch: the engraving's dark lines
- * become strokes in the theme's pencil colour (the paper drops out), wobbled a little as if a hand
- * drew them and broken up by grain. It sits in the page in both themes, and comes into focus as the
+ * become strokes in pencil (the paper drops out), wobbled a little as if a hand
+ * drew them and broken up by grain. It sits quietly in the page, and comes into focus as the
  * real picture only when the chapter is complete. The colour comes from CSS (`.piece-pencil`).
  */
 function sketchFilter(id: string): SVGFilterElement {

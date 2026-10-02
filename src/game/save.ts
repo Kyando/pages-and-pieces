@@ -8,12 +8,10 @@ export interface LevelProgress {
   misses: number;
 }
 
-export type ThemeChoice = 'system' | 'light' | 'dark';
-
 export interface SaveData {
   version: 1;
   levels: Record<string, LevelProgress>;
-  settings: { theme: ThemeChoice; sound: boolean; seenHelp: boolean; lastLevel: string | null };
+  settings: { sound: boolean; seenHelp: boolean; lastLevel: string | null };
 }
 
 const KEY = 'pages-and-pieces:v1';
@@ -21,7 +19,7 @@ const KEY = 'pages-and-pieces:v1';
 const defaults = (): SaveData => ({
   version: 1,
   levels: {},
-  settings: { theme: 'system', sound: true, seenHelp: false, lastLevel: null },
+  settings: { sound: true, seenHelp: false, lastLevel: null },
 });
 
 export const emptyProgress = (): LevelProgress => ({ found: [], done: false, misses: 0 });

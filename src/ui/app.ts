@@ -1,5 +1,5 @@
 import { BOOKS } from '../core/books.ts';
-import { emptyProgress, loadSave, writeSave, type LevelProgress, type ThemeChoice } from '../game/save.ts';
+import { emptyProgress, loadSave, writeSave, type LevelProgress } from '../game/save.ts';
 import { Session } from '../game/session.ts';
 import { detectLocale, setLocale, t, tn, type MessageKey } from '../i18n/index.ts';
 import { CATALOG } from '../levels/catalog.ts';
@@ -9,8 +9,6 @@ import { LevelView } from './level-view.ts';
 import { openModal, toast } from './overlay.ts';
 import { Sfx } from './sfx.ts';
 import { passage } from './story.ts';
-
-const THEME_LABEL: Record<ThemeChoice, MessageKey> = { system: 'theme.system', light: 'theme.light', dark: 'theme.dark' };
 
 const iconButton = (label: string, glyph: string, onClick: () => void) =>
   h('button', { type: 'button', class: 'icon-btn', 'aria-label': label, title: label, onclick: onClick }, svg(glyph));
@@ -29,7 +27,6 @@ export class App {
   constructor(root: HTMLElement) {
     setLocale(detectLocale());
     document.title = t('game.name');
-    this.applyTheme();
     this.soundBtn = iconButton(t('top.sound'), ICONS.soundOn, () => this.toggleSound());
     this.updateSoundIcon();
 
@@ -43,7 +40,6 @@ export class App {
         { class: 'topbar-side end' },
         iconButton(t('top.help'), ICONS.help, () => this.openHelp()),
         this.soundBtn,
-        iconButton(t('top.theme'), ICONS.theme, () => this.cycleTheme()),
       ),
     );
     this.main = h('div', { class: 'main' });
@@ -206,21 +202,6 @@ export class App {
   }
 
   // ── settings ────────────────────────────────────────────────────────────
-
-  private applyTheme(): void {
-    const theme = this.save.settings.theme;
-    if (theme === 'system') delete document.documentElement.dataset.theme;
-    else document.documentElement.dataset.theme = theme;
-  }
-
-  private cycleTheme(): void {
-    const order: ThemeChoice[] = ['system', 'light', 'dark'];
-    const next = order[(order.indexOf(this.save.settings.theme) + 1) % order.length];
-    this.save.settings.theme = next;
-    this.applyTheme();
-    this.persist();
-    toast(t(THEME_LABEL[next]));
-  }
 
   private toggleSound(): void {
     this.save.settings.sound = !this.save.settings.sound;

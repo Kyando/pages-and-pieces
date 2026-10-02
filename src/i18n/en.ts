@@ -5,11 +5,7 @@ export const en = {
   'top.chapters': 'Chapters',
   'top.help': 'How to play',
   'top.sound': 'Sound',
-  'top.theme': 'Theme',
 
-  'theme.system': 'System theme',
-  'theme.light': 'Light theme',
-  'theme.dark': 'Dark theme',
 
   'level.prev': 'Previous chapter',
   'level.next': 'Next chapter',
