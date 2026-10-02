@@ -1,0 +1,54 @@
+{
+  "id": "pp-14-sermons",
+  "book": "pride-and-prejudice",
+  "chapter": 14,
+  "title": "Mr. Collins Reads Aloud",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "NOVAIL",
+    "COELDY",
+    "NUCOIN",
+    "ISSLLS",
+    "MRENRL",
+    "ONSCUO",
+    "EREAON",
+    "NIHTBG"
+  ],
+  "words": [
+    {
+      "text": "COLLINS",
+      "path": [14, 15, 21, 22, 16, 17, 23]
+    },
+    {
+      "text": "COUSIN",
+      "path": [6, 7, 13, 19, 18, 12]
+    },
+    {
+      "text": "LONGBOURN",
+      "path": [29, 35, 41, 47, 46, 40, 34, 28, 27]
+    },
+    {
+      "text": "CATHERINE",
+      "path": [33, 39, 45, 44, 38, 37, 43, 42, 36]
+    },
+    {
+      "text": "NOVEL",
+      "path": [0, 1, 2, 8, 9]
+    },
+    {
+      "text": "SERMONS",
+      "path": [20, 26, 25, 24, 30, 31, 32]
+    },
+    {
+      "text": "LYDIA",
+      "path": [5, 11, 10, 4, 3]
+    }
+  ],
+  "story": {
+    "text": "Mr. {COLLINS}, the {COUSIN} who will one day inherit {LONGBOURN}, has come to stay, and cannot stop praising his patroness, Lady {CATHERINE} de Bourgh. Asked to read to the family, he refuses to touch a {NOVEL} and picks a book of {SERMONS} instead. Three pages in, {LYDIA} interrupts him to gossip about the officers.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/24/Thomson-PP08.jpg",
+    "caption": "Protested that he never read novels",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "pp-03-tolerable",
+  "book": "pride-and-prejudice",
+  "chapter": 3,
+  "title": "She Is Tolerable",
+  "rows": 7,
+  "cols": 7,
+  "grid": [
+    "BLMYTDA",
+    "ALEROCR",
+    "HANENYE",
+    "EMDLABL",
+    "YOSIREL",
+    "ELGZABO",
+    "BINHTET"
+  ],
+  "words": [
+    {
+      "text": "BALL",
+      "path": [0, 7, 8, 1]
+    },
+    {
+      "text": "MERYTON",
+      "path": [2, 9, 10, 3, 4, 11, 18]
+    },
+    {
+      "text": "BINGLEY",
+      "path": [42, 43, 44, 37, 36, 35, 28]
+    },
+    {
+      "text": "ELIZABETH",
+      "path": [17, 24, 31, 38, 39, 40, 47, 46, 45]
+    },
+    {
+      "text": "DARCY",
+      "path": [5, 6, 13, 12, 19]
+    },
+    {
+      "text": "TOLERABLE",
+      "path": [48, 41, 34, 33, 32, 25, 26, 27, 20]
+    },
+    {
+      "text": "HANDSOME",
+      "path": [14, 15, 16, 23, 30, 29, 22, 21]
+    }
+  ],
+  "story": {
+    "text": "Across the {BALL} at {MERYTON}, {BINGLEY} begs his friend to dance with {ELIZABETH}. {DARCY} barely glances at her: “She is {TOLERABLE}, but not {HANDSOME} enough to tempt me.” Elizabeth hears every word, and turns it into a story that makes all her friends laugh.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Thomson-PP05.jpg",
+    "caption": "She is tolerable",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

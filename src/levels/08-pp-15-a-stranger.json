@@ -1,0 +1,58 @@
+{
+  "id": "pp-15-a-stranger",
+  "book": "pride-and-prejudice",
+  "chapter": 15,
+  "title": "A Stranger in Town",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "RESDCY",
+    "ODRART",
+    "FCEWHN",
+    "FIETIE",
+    "MERREM",
+    "MAYTGI",
+    "KHNOCH",
+    "CIWMRA"
+  ],
+  "words": [
+    {
+      "text": "MERYTON",
+      "path": [24, 25, 26, 32, 33, 39, 38]
+    },
+    {
+      "text": "CHARM",
+      "path": [40, 41, 47, 46, 45]
+    },
+    {
+      "text": "WICKHAM",
+      "path": [44, 43, 42, 36, 37, 31, 30]
+    },
+    {
+      "text": "REGIMENT",
+      "path": [27, 28, 34, 35, 29, 23, 17, 11]
+    },
+    {
+      "text": "OFFICERS",
+      "path": [6, 12, 18, 19, 13, 14, 8, 2]
+    },
+    {
+      "text": "DARCY",
+      "path": [3, 9, 10, 4, 5]
+    },
+    {
+      "text": "WHITE",
+      "path": [15, 16, 22, 21, 20]
+    },
+    {
+      "text": "RED",
+      "path": [0, 1, 7]
+    }
+  ],
+  "story": {
+    "text": "On a walk into {MERYTON}, the sisters meet a stranger full of easy {CHARM}: Mr. {WICKHAM}, about to join the {REGIMENT} with the other {OFFICERS}. Then Mr. {DARCY} rides by. The two men catch sight of each other, and one turns {WHITE}, the other {RED}. Whatever happened between them?",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/82/Thomson-PP09.jpg",
+    "caption": "The officers of the ——shire",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "between-the-lines",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A word puzzle that retells classic books, one illustrated chapter at a time.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "levels:generate": "node scripts/generate-levels.ts",
+    "deploy": "node scripts/deploy-pages.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  }
+}

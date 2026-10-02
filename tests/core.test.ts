@@ -1,0 +1,115 @@
+import { describe, expect, it } from 'vitest';
+import { BOOKS } from '../src/core/books.ts';
+import { generateLevel } from '../src/core/generate.ts';
+import { findPaths, isPath } from '../src/core/grid.ts';
+import { blanksOf, buildPuzzle, matchTrace, validateLevel } from '../src/core/puzzle.ts';
+import type { LevelDef } from '../src/core/types.ts';
+import { Session } from '../src/game/session.ts';
+import { emptyProgress } from '../src/game/save.ts';
+import { en } from '../src/i18n/en.ts';
+import { SPECS } from '../scripts/level-specs.ts';
+
+const files = import.meta.glob<LevelDef>('../src/levels/*.json', { eager: true, import: 'default' });
+const levels = Object.keys(files).sort().map((k) => files[k]);
+
+describe('grid', () => {
+  it('only accepts orthogonal, non-repeating paths', () => {
+    expect(isPath([0, 1, 5, 4], 4, 4)).toBe(true);
+    expect(isPath([0, 5], 4, 4)).toBe(false); // diagonal
+    expect(isPath([3, 4], 4, 4)).toBe(false); // wraps a row
+    expect(isPath([0, 1, 0], 4, 4)).toBe(false);
+  });
+
+  it('finds every bent path spelling a word', () => {
+    expect(findPaths('CATX', 2, 2, 'CAT')).toEqual([]);
+    expect(findPaths('CAXT', 2, 2, 'CAT')).toEqual([[0, 1, 3]]);
+  });
+});
+
+describe('chapters', () => {
+  it('ship one file per spec, in order', () => {
+    expect(levels.map((l) => l.id)).toEqual(SPECS.map((s) => s.id));
+  });
+
+  it.each(levels.map((l) => [l.id, l] as const))('%s is valid', (_, def) => {
+    expect(validateLevel(def)).toEqual([]);
+  });
+
+  it.each(levels.map((l) => [l.id, l] as const))('%s matches its spec', (_, def) => {
+    const spec = SPECS.find((s) => s.id === def.id)!;
+    expect([def.rows, def.cols, def.book, def.chapter]).toEqual([spec.rows, spec.cols, spec.book, spec.chapter]);
+    expect(def.story).toEqual(spec.story);
+    expect(def.words.map((w) => w.text)).toEqual(blanksOf(spec.story.text));
+  });
+
+  it('come from known books, in reading order', () => {
+    for (const def of levels) expect(BOOKS[def.book]).toBeDefined();
+    const chapters = levels.map((l) => l.chapter);
+    expect(chapters).toEqual([...chapters].sort((a, b) => a - b));
+  });
+
+  it('never repeat a word within a chapter', () => {
+    for (const def of levels) expect(new Set(def.words.map((w) => w.text)).size).toBe(def.words.length);
+  });
+
+  it('rejects a passage whose blanks miss a word', () => {
+    const def = structuredClone(levels[0]);
+    def.story.text = def.story.text.replace(/\{[A-Z]+\}/, 'something');
+    expect(validateLevel(def)).toContain('story blanks do not match the level words');
+  });
+
+  it('rejects a letter cell that belongs to no word', () => {
+    const def = generateLevel({ ...SPECS[0], id: 'holes', rows: 2, cols: 4, holes: [4], story: { ...SPECS[0].story, text: '{LAZY} {FOX}' } }, 3)!;
+    expect(validateLevel(def)).toEqual([]);
+    expect(def.grid[1][0]).toBe('.');
+    def.grid[1] = 'Q' + def.grid[1].slice(1);
+    expect(validateLevel(def)).toContain('every letter must belong to exactly one word');
+  });
+});
+
+describe('generator', () => {
+  it('lays out a valid chapter deterministically', () => {
+    const a = generateLevel(SPECS[0], 42, 20);
+    const b = generateLevel(SPECS[0], 42, 20);
+    expect(a).not.toBeNull();
+    expect(validateLevel(a!)).toEqual([]);
+    expect(a).toEqual(b);
+  });
+
+  it('refuses words that do not fill the grid', () => {
+    expect(() => generateLevel({ ...SPECS[0], rows: 2, cols: 2 }, 1)).toThrow(/letters for 4 cells/);
+  });
+});
+
+describe('session', () => {
+  const puzzle = buildPuzzle(levels[0]);
+  const word = puzzle.words[0];
+
+  it('finds a word traced either way, once', () => {
+    const s = new Session(puzzle, emptyProgress(), () => {});
+    expect(matchTrace(puzzle, [...word.path].reverse())).toBe(0);
+    expect(s.submit([...word.path].reverse())).toMatchObject({ kind: 'found', word: { text: word.text } });
+    expect(s.submit(word.path)).toEqual({ kind: 'miss' });
+    expect(s.progress.misses).toBe(1);
+    expect(word.path.every((c) => s.ownerAt(c) === 0)).toBe(true);
+  });
+
+  it('is solved once every word is found, and restores from saved progress', () => {
+    const progress = emptyProgress();
+    const s = new Session(puzzle, progress, () => {});
+    for (const w of puzzle.words) s.submit(w.path);
+    expect(s.solved).toBe(true);
+    expect(progress.done).toBe(true);
+    expect(new Session(puzzle, progress, () => {}).foundCount).toBe(puzzle.words.length);
+    s.reset();
+    expect(s.foundCount).toBe(0);
+    expect(progress.done).toBe(true);
+  });
+});
+
+describe('i18n', () => {
+  it('has a one and other form for every counted message', () => {
+    const keys = Object.keys(en);
+    for (const k of keys.filter((k) => k.endsWith('_one'))) expect(keys).toContain(k.replace(/_one$/, '_other'));
+  });
+});

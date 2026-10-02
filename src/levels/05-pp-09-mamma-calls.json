@@ -1,0 +1,57 @@
+{
+  "id": "pp-09-mamma-calls",
+  "book": "pride-and-prejudice",
+  "chapter": 9,
+  "title": "Mamma Comes to Call",
+  "rows": 7,
+  "cols": 7,
+  "grid": [
+    "YRTDEYT",
+    "OUNALIT",
+    "CLCRAZI",
+    "DYYEBBK",
+    "IAHTPIY",
+    "LBMORNE",
+    "LAISEGL"
+  ],
+  "words": [
+    {
+      "text": "KITTY",
+      "path": [27, 20, 13, 6, 5]
+    },
+    {
+      "text": "LYDIA",
+      "path": [15, 22, 21, 28, 29]
+    },
+    {
+      "text": "COUNTRY",
+      "path": [14, 7, 8, 9, 2, 1, 0]
+    },
+    {
+      "text": "DARCY",
+      "path": [3, 10, 17, 16, 23]
+    },
+    {
+      "text": "ELIZABETH",
+      "path": [4, 11, 12, 19, 18, 25, 24, 31, 30]
+    },
+    {
+      "text": "BINGLEY",
+      "path": [26, 33, 40, 47, 48, 41, 34]
+    },
+    {
+      "text": "PROMISE",
+      "path": [32, 39, 38, 37, 44, 45, 46]
+    },
+    {
+      "text": "BALL",
+      "path": [36, 43, 42, 35]
+    }
+  ],
+  "story": {
+    "text": "Mrs. Bennet comes to Netherfield to see poor Jane, bringing her youngest girls, {KITTY} and {LYDIA}. She praises the {COUNTRY} to Mr. {DARCY}’s face, as if to put him in his place, while {ELIZABETH} wishes the floor would swallow her whole. Then bold Lydia reminds Mr. {BINGLEY} of his {PROMISE} to throw a {BALL}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Thompson-PP-Ch9.JPG/1280px-Thompson-PP-Ch9.JPG",
+    "caption": "Mrs. Bennet and her two youngest girls",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

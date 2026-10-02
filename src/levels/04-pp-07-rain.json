@@ -1,0 +1,53 @@
+{
+  "id": "pp-07-rain",
+  "book": "pride-and-prejudice",
+  "chapter": 7,
+  "title": "A Ride in the Rain",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "DLHOKC",
+    "ROCRSA",
+    "AISCEB",
+    "TNNHNO",
+    "HGIETI",
+    "EJEMAT",
+    "NAINVI"
+  ],
+  "words": [
+    {
+      "text": "INVITATION",
+      "path": [38, 39, 40, 41, 35, 34, 28, 29, 23, 22]
+    },
+    {
+      "text": "JANE",
+      "path": [31, 37, 36, 30]
+    },
+    {
+      "text": "SCHEME",
+      "path": [14, 15, 21, 27, 33, 32]
+    },
+    {
+      "text": "HORSEBACK",
+      "path": [2, 3, 9, 10, 16, 17, 11, 5, 4]
+    },
+    {
+      "text": "RAIN",
+      "path": [6, 12, 13, 19]
+    },
+    {
+      "text": "NIGHT",
+      "path": [20, 26, 25, 24, 18]
+    },
+    {
+      "text": "COLD",
+      "path": [8, 7, 1, 0]
+    }
+  ],
+  "story": {
+    "text": "An {INVITATION} arrives from Netherfield: the Bingley sisters ask {JANE} to dine. Mrs. Bennet has a {SCHEME}. Jane must go on {HORSEBACK}, because it looks like {RAIN}, and then she will simply have to stay the {NIGHT}. The plan works all too well: Jane arrives soaked, and wakes up with a terrible {COLD}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Thompson-PP-Ch7.JPG/1280px-Thompson-PP-Ch7.JPG",
+    "caption": "Cheerful prognostics",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

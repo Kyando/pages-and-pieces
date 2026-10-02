@@ -1,0 +1,61 @@
+{
+  "id": "pp-11-by-the-fire",
+  "book": "pride-and-prejudice",
+  "chapter": 11,
+  "title": "By the Fire",
+  "rows": 7,
+  "cols": 8,
+  "grid": [
+    "NOITNFRO",
+    "DBIAELDO",
+    "AGNTTAER",
+    "RLEYETFI",
+    "CYEANTEE",
+    "LINJGYRV",
+    "ORACNINE"
+  ],
+  "words": [
+    {
+      "text": "JANE",
+      "path": [43, 35, 36, 28]
+    },
+    {
+      "text": "BINGLEY",
+      "path": [9, 10, 18, 17, 25, 26, 27]
+    },
+    {
+      "text": "FIRE",
+      "path": [30, 31, 23, 22]
+    },
+    {
+      "text": "DOOR",
+      "path": [14, 15, 7, 6]
+    },
+    {
+      "text": "EVENING",
+      "path": [39, 47, 55, 54, 53, 52, 44]
+    },
+    {
+      "text": "CAROLINE",
+      "path": [51, 50, 49, 48, 40, 41, 42, 34]
+    },
+    {
+      "text": "FLATTERY",
+      "path": [5, 13, 21, 29, 37, 38, 46, 45]
+    },
+    {
+      "text": "DARCY",
+      "path": [8, 16, 24, 32, 33]
+    },
+    {
+      "text": "ATTENTION",
+      "path": [11, 19, 20, 12, 4, 3, 2, 1, 0]
+    }
+  ],
+  "story": {
+    "text": "When {JANE} is well enough to come downstairs, Mr. {BINGLEY} has eyes for no one else. He piles up the {FIRE}, moves her away from the {DOOR} so she won’t feel a chill, and sits beside her all {EVENING}. Across the room, {CAROLINE} Bingley tries every bit of {FLATTERY} she knows to win Mr. {DARCY}’s {ATTENTION}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Thomson-PP07.jpg",
+    "caption": "Piling up the fire",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

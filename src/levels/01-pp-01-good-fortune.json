@@ -1,0 +1,49 @@
+{
+  "id": "pp-01-good-fortune",
+  "book": "pride-and-prejudice",
+  "chapter": 1,
+  "title": "A Single Man of Good Fortune",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "DEEFBI",
+    "RIWISN",
+    "RAMVEG",
+    "NNEREL",
+    "ETLDYF",
+    "EHETRO",
+    "RFIUNE"
+  ],
+  "words": [
+    {
+      "text": "FORTUNE",
+      "path": [29, 35, 34, 33, 39, 40, 41]
+    },
+    {
+      "text": "WIFE",
+      "path": [8, 9, 3, 2]
+    },
+    {
+      "text": "NETHERFIELD",
+      "path": [18, 24, 25, 31, 30, 36, 37, 38, 32, 26, 27]
+    },
+    {
+      "text": "BINGLEY",
+      "path": [4, 5, 11, 17, 23, 22, 28]
+    },
+    {
+      "text": "MARRIED",
+      "path": [14, 13, 12, 6, 7, 1, 0]
+    },
+    {
+      "text": "NERVES",
+      "path": [19, 20, 21, 15, 16, 10]
+    }
+  ],
+  "story": {
+    "text": "It is a truth universally acknowledged that a single man with a good {FORTUNE} must be in want of a {WIFE}. So when {NETHERFIELD} Park is finally let to a rich young gentleman, Mr. {BINGLEY}, Mrs. Bennet can think of nothing but seeing one of her five daughters {MARRIED} to him. Mr. Bennet only teases her, and she protests that he has no pity for her poor {NERVES}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Thomson-PP03.jpg",
+    "caption": "Mr. and Mrs. Bennet",
+    "credit": "Hugh Thomson, 1894"
+  }
+}
