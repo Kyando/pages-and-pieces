@@ -1,4 +1,4 @@
-# Between the Lines
+# Pages & Pieces
 
 A word puzzle that retells classic books, one illustrated chapter at a time.
 

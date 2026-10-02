@@ -1,6 +1,6 @@
 /** English interface text. Other languages copy these keys; `Messages` keeps them complete. */
 export const en = {
-  'game.name': 'Between the Lines',
+  'game.name': 'Pages & Pieces',
 
   'top.chapters': 'Chapters',
   'top.help': 'How to play',

@@ -16,7 +16,7 @@ export interface SaveData {
   settings: { theme: ThemeChoice; sound: boolean; seenHelp: boolean; lastLevel: string | null };
 }
 
-const KEY = 'between-the-lines:v1';
+const KEY = 'pages-and-pieces:v1';
 
 const defaults = (): SaveData => ({
   version: 1,
