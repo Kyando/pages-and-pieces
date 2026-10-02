@@ -98,6 +98,8 @@ button {
 }
 
 .main {
+  position: relative;
+  overflow: clip;
   flex: 1;
   min-height: 0;
   display: flex;
@@ -583,7 +585,7 @@ button {
 
 /* The finished picture comes into focus over the sketched pieces; ink seams keep the pieces visible. */
 .pieces.is-whole .pieces-whole {
-  animation: whole-in 1.6s ease both;
+  animation: whole-in 1s ease both;
 }
 
 .pieces.no-anim .pieces-whole {
@@ -1363,5 +1365,80 @@ button {
   .sheet.is-top .sheet-paper,
   .sheet.is-inking .page-word {
     animation: none;
+  }
+}
+
+/* ── Arrivals and page turns ──────────────────────────────────────────────
+   A chapter arrives in a quick sequence (heading, word chips, then the tiles dealt in a wave from a
+   corner); moving through the book turns the page; a finished chapter folds its word list away
+   before the drawing lifts off. */
+
+/* The page being turned lies over the other one, swinging on its spine (the left edge). */
+.stage.is-turning {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--paper);
+  transform-origin: left center;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+.stage.is-entering .eyebrow {
+  animation: rise-in 0.45s ease-out backwards;
+}
+
+.stage.is-entering .chapter h1 {
+  animation: title-in 0.6s ease-out 0.1s backwards;
+}
+
+.stage.is-entering .story-panel {
+  animation: rise-in 0.45s ease-out 0.15s backwards;
+}
+
+.stage.is-entering .word-chip {
+  animation: chip-in 0.4s cubic-bezier(0.3, 1.6, 0.5, 1) calc(320ms + var(--i, 0) * 45ms) backwards;
+}
+
+.stage.is-entering .board .tile {
+  animation: deal 0.45s cubic-bezier(0.25, 1.35, 0.45, 1) calc(300ms + var(--d, 0ms)) backwards;
+}
+
+.stage.is-entering .pieces {
+  animation: rise-in 0.6s ease-out 0.3s backwards;
+}
+
+/* The word list and the title fold away before the drawing lifts off. */
+.stage.is-leaving .story-panel,
+.stage.is-leaving .chapter h1,
+.stage.is-leaving .trace,
+.stage.is-leaving .tools {
+  animation: fold-out 0.3s ease-in forwards;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+@keyframes title-in {
+  from { opacity: 0; filter: blur(4px); transform: translateY(4px); }
+}
+
+@keyframes chip-in {
+  from { opacity: 0; transform: scale(0.6); }
+}
+
+@keyframes deal {
+  from { opacity: 0; transform: translate(-14px, -22px) rotate(-9deg) scale(0.72); }
+}
+
+@keyframes fold-out {
+  to { opacity: 0; transform: translateY(-10px) scale(0.98); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage.is-entering *,
+  .stage.is-leaving * {
+    animation: none !important;
   }
 }

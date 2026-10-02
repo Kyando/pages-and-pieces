@@ -40,7 +40,7 @@ const DEPTH = [
 ];
 const SWIPE = 40;
 /** The desk's typefaces, which the browser only fetches once something uses them. */
-const FONTS = ['19px "EB Garamond"', 'italic 15px "IM Fell English"', '25px "IM Fell English"', '800 14px Fraunces'];
+export const FONTS = ['19px "EB Garamond"', 'italic 15px "IM Fell English"', '25px "IM Fell English"', '800 14px Fraunces'];
 
 /**
  * The reward for a finished chapter: a small pile of loose sheets on the desk. On top, the drawing
@@ -265,7 +265,7 @@ export class Desk {
     this.layout();
     if (reducedMotion()) return { land: 0, pages: 0 };
     this.arriving = true;
-    window.setTimeout(() => (this.arriving = false), 1800);
+    window.setTimeout(() => (this.arriving = false), 1400);
     const pic = this.image.getBoundingClientRect();
     if (from && pic.width) {
       const dx = from.left + from.width / 2 - (pic.left + pic.width / 2);
@@ -278,20 +278,20 @@ export class Desk {
           { transform: `translate(${dx * 0.35}px, ${dy * 0.35 - 18}px) scale(${1 + (scale - 1) * 0.35 + 0.05}) rotate(-4deg)`, offset: 0.55 },
           { transform: rest },
         ],
-        { duration: 1100, easing: 'cubic-bezier(0.45, 0, 0.2, 1)' },
+        { duration: 950, easing: 'cubic-bezier(0.45, 0, 0.2, 1)' },
       );
     }
     this.order.slice(1).forEach((page, i) => {
       const rest = getComputedStyle(page).transform;
       page.animate([{ transform: `translate(0, 40%) rotate(${i % 2 ? 6 : -6}deg)`, opacity: 0 }, { opacity: 1, offset: 0.3 }, { transform: rest, opacity: 1 }], {
         duration: 800,
-        delay: 900 + i * 160,
+        delay: 650 + i * 140,
         easing: 'cubic-bezier(0.2, 0.8, 0.25, 1)',
         fill: 'backwards',
       });
     });
-    this.foot.animate([{ transform: 'translateY(18px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 600, delay: 1700, easing: 'ease-out', fill: 'backwards' });
-    return { land: 1000, pages: 900 };
+    this.foot.animate([{ transform: 'translateY(18px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 550, delay: 1200, easing: 'ease-out', fill: 'backwards' });
+    return { land: 880, pages: 650 };
   }
 }
 

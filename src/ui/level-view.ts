@@ -20,6 +20,8 @@ export interface LevelViewOptions {
   onNext?: () => void;
   /** The next chapter's title, for the finished chapter's desk. */
   nextTitle?: string;
+  /** Deal the chapter in: heading, word chips and tiles arrive one after another. */
+  intro?: boolean;
   /** Where the button leads after the last chapter. */
   onChapters(): void;
 }
@@ -163,6 +165,16 @@ export class LevelView {
     this.resizeObserver.observe(this.boardWrap);
     this.render();
     if (this.s.solved) this.finish(false);
+    else if (opts.intro && !reducedMotion()) this.dealIn();
+  }
+
+  /** The chapter arrives: heading, then the word chips, then the tiles dealt in a wave from a corner. */
+  private dealIn(): void {
+    const p = this.s.puzzle;
+    this.tiles.forEach((tile, cell) => tile.style.setProperty('--d', `${(rowOf(cell, p.cols) + colOf(cell, p.cols)) * 34}ms`));
+    [...this.wordList.children].forEach((chip, i) => (chip as HTMLElement).style.setProperty('--i', String(i)));
+    this.el.classList.add('is-entering');
+    window.setTimeout(() => this.el.classList.remove('is-entering'), 1700);
   }
 
   destroy(): void {
@@ -289,7 +301,8 @@ export class LevelView {
     this.opts.sfx.piece(word.path.length, STAGGER_MS);
     navigator.vibrate?.(12);
     const settle = calm ? 0 : Math.max((word.path.length - 1) * STAGGER_MS + FLIGHT_MS, inkDuration(word.path.length));
-    if (result.solved) window.setTimeout(() => this.celebrate(), settle + 250);
+    // The finish begins while the last piece's outline is still being drawn.
+    if (result.solved) window.setTimeout(() => this.celebrate(), Math.max(0, settle - 150));
   }
 
   /**
@@ -364,7 +377,7 @@ export class LevelView {
     this.desk?.el.remove();
     this.desk = null;
     this.board.classList.remove('is-complete');
-    this.el.classList.remove('is-complete');
+    this.el.classList.remove('is-complete', 'is-leaving');
     this.fit();
     this.pieces.clear();
     this.flying.clear();
@@ -384,21 +397,27 @@ export class LevelView {
     this.finish(true);
   }
 
+  /**
+   * The picture comes into focus while the desk is prepared out of sight (its typefaces and picture
+   * loaded); then the word list and title fold away and the drawing lifts off onto it.
+   */
   private finish(animate: boolean): void {
     this.board.classList.add('is-complete');
     this.pieces.showWhole((cell) => this.s.ownerAt(cell), animate);
+    const desk = this.makeDesk();
     if (!animate) {
-      void this.openDesk(false);
+      this.el.classList.add('is-complete');
+      this.el.append(desk.el);
       return;
     }
     window.setTimeout(() => {
-      if (this.s.solved && !this.desk) void this.openDesk(true);
-    }, 1900);
+      if (this.desk === desk) this.el.classList.add('is-leaving');
+    }, 850);
+    window.setTimeout(() => void this.openDesk(desk), 1150);
   }
 
-  private async openDesk(animate: boolean): Promise<void> {
+  private makeDesk(): Desk {
     const def = this.s.puzzle.def;
-    const from = animate ? this.board.getBoundingClientRect() : null;
     this.desk = new Desk({
       def,
       words: this.s.puzzle.words,
@@ -415,14 +434,14 @@ export class LevelView {
         );
       },
     });
-    const desk = this.desk;
-    if (!animate) {
-      this.el.classList.add('is-complete');
-      this.el.append(desk.el);
-      return;
-    }
+    return this.desk;
+  }
+
+  private async openDesk(desk: Desk): Promise<void> {
     await desk.ready();
     if (this.desk !== desk) return;
+    const from = this.board.getBoundingClientRect();
+    this.el.classList.remove('is-leaving');
     this.el.classList.add('is-complete');
     this.el.append(desk.el);
     const at = desk.arrive(from);

@@ -16,6 +16,43 @@ export function flip(el: HTMLElement, first: DOMRect, duration = 340): void {
   );
 }
 
+/**
+ * Turns a page, like a book's: forward, the old page lifts from its spine (the left edge) and
+ * swings away over the new one; back, the new page swings in over the old. The old page is removed.
+ */
+export function turnPage(container: HTMLElement, from: HTMLElement, to: HTMLElement, forward: boolean): void {
+  container.getAnimations({ subtree: true }).forEach((a) => {
+    if ((a.effect as KeyframeEffect | null)?.target?.classList.contains('is-turning')) a.finish();
+  });
+  if (reducedMotion()) {
+    from.remove();
+    container.append(to);
+    to.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160 });
+    return;
+  }
+  const turning = forward ? from : to;
+  // The turning page lies over the other one (see .is-turning).
+  container.append(to);
+  turning.classList.add('is-turning');
+  const open = 'perspective(2600px) rotateY(0deg)';
+  const away = 'perspective(2600px) rotateY(-100deg)';
+  const anim = turning.animate(
+    [
+      { transform: forward ? open : away, boxShadow: forward ? '0 0 0 rgb(0 0 0 / 0)' : '-30px 0 40px rgb(60 40 20 / 0)' },
+      { boxShadow: '-24px 0 40px rgb(60 40 20 / 0.22)', offset: 0.5 },
+      { transform: forward ? away : open, boxShadow: forward ? '-30px 0 40px rgb(60 40 20 / 0)' : '0 0 0 rgb(0 0 0 / 0)' },
+    ],
+    { duration: 620, easing: forward ? 'cubic-bezier(0.45, 0, 0.6, 1)' : 'cubic-bezier(0.3, 0, 0.3, 1)' },
+  );
+  // The page underneath brightens as the one above leaves it.
+  const under = forward ? to : from;
+  under.animate([{ filter: forward ? 'brightness(0.94)' : 'none' }, { filter: forward ? 'none' : 'brightness(0.94)' }], { duration: 620 });
+  anim.finished.finally(() => {
+    turning.classList.remove('is-turning');
+    from.remove();
+  });
+}
+
 /** Restarts a CSS animation class. */
 export function replay(el: Element, className: string): void {
   el.classList.remove(className);

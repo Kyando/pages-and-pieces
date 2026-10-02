@@ -5,6 +5,8 @@ import { detectLocale, setLocale, t, type MessageKey } from '../i18n/index.ts';
 import { CATALOG } from '../levels/catalog.ts';
 import { h, svg } from './dom.ts';
 import { ICONS } from './icons.ts';
+import { FONTS } from './desk.ts';
+import { turnPage } from './fx.ts';
 import { LevelView } from './level-view.ts';
 import { openModal } from './overlay.ts';
 import { Sfx } from './sfx.ts';
@@ -40,6 +42,8 @@ export class App {
     );
     this.main = h('div', { class: 'main' });
     root.append(header, this.main);
+    // The finished-chapter desk's typefaces, fetched early so it never waits for them.
+    FONTS.forEach((f) => void document.fonts?.load(f).catch(() => undefined));
 
     if (!CATALOG.length) {
       this.main.append(h('p', { class: 'empty' }, t('empty')));
@@ -60,8 +64,11 @@ export class App {
     writeSave(this.save);
   }
 
+  /** Opens a chapter; moving through the book turns the page, forward or back. */
   private openLevel(index: number): void {
-    this.view?.destroy();
+    const old = this.view;
+    old?.destroy();
+    const forward = index >= this.index;
     this.index = index;
     const entry = CATALOG[index];
     const progress: LevelProgress = (this.save.levels[entry.def.id] ??= emptyProgress());
@@ -73,8 +80,10 @@ export class App {
       onNext: index < CATALOG.length - 1 ? () => this.openLevel(index + 1) : undefined,
       nextTitle: CATALOG[index + 1]?.def.title,
       onChapters: () => this.openChapters(),
+      intro: true,
     });
-    this.main.replaceChildren(this.view.el);
+    if (old) turnPage(this.main, old.el, this.view.el, forward);
+    else this.main.replaceChildren(this.view.el);
     // The next chapter's picture, so it's ready when the player gets there.
     const next = CATALOG[index + 1];
     if (next) new Image().src = next.def.story.image;
