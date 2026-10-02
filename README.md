@@ -2,7 +2,7 @@
 
 A word puzzle that retells classic books, one illustrated chapter at a time.
 
-Each chapter is a short passage from the book with some words missing. Those words are hidden in the grid, and every letter belongs to exactly one of them. Words never go diagonal or cross, but they can bend into L, Z or square shapes, like Tetris pieces. Each word you find uncovers its piece of the chapter's original illustration; find them all and the whole picture closes over the board.
+Each chapter is a scene from the book. Its key words are listed above the grid, and every letter in the grid belongs to exactly one of them. Words never go diagonal or cross, but they can bend into L, Z or square shapes, like Tetris pieces. Each word you find uncovers its piece of the chapter's original illustration. Find them all and the whole picture closes over the board, while the word list turns into the scene's passage with every word in place.
 
 The first book is **Pride and Prejudice** (Jane Austen, 1813), with Hugh Thomson's 1894 illustrations. The passages retell each scene in plain modern English and keep Austen's best-known lines.
 

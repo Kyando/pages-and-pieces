@@ -27,8 +27,9 @@ const RADII = ['13px 10px 14px 11px', '10px 14px 11px 13px', '14px 11px 10px 12p
 const HIT = 0.78;
 
 /**
- * One chapter: the passage with its blanks on top, the letters below. Each word found uncovers its
- * slice of the chapter's illustration; the full picture closes over the board at the end.
+ * One chapter: the words to find on top, the letters below. Each word found uncovers its slice of
+ * the chapter's illustration; at the end the full picture closes over the board and the panel turns
+ * into the scene's passage, every found word in place.
  */
 export class LevelView {
   readonly el: HTMLElement;
@@ -42,8 +43,12 @@ export class LevelView {
   private readonly traceEl: HTMLElement;
   private readonly counter = h('span', { class: 'counter' });
   private readonly nextBtn: HTMLButtonElement;
-  /** Passage blanks by word index. */
-  private readonly blanks: HTMLElement[] = [];
+  private readonly panel: HTMLElement;
+  private readonly panelLabel: HTMLElement;
+  private readonly wordList: HTMLElement;
+  private readonly passageEl: HTMLElement;
+  /** Word chips by word index. */
+  private readonly chips: HTMLElement[] = [];
   private readonly resizeObserver: ResizeObserver;
   private trace: number[] = [];
   private gesture: { moved: boolean; onEnd: boolean } | null = null;
@@ -73,19 +78,29 @@ export class LevelView {
       arrow(t('level.next'), ICONS.next, opts.onNext),
     );
 
-    // The passage: each blank shows one slot per letter (the word itself isn't in the page until
-    // it's found), and fills in when found.
-    const passageEl = passage(story, p.words, (w) => {
-      const blank = h('span', { class: 'blank' }, ...[...w.text].map(() => h('span', { class: 'slot' })));
-      this.blanks[w.index] = blank;
-      return blank;
-    });
-    const panel = h(
-      'section',
-      { class: 'story-panel', 'aria-label': t('level.passage') },
-      h('header', { class: 'story-head' }, h('span', {}, t('level.passage')), this.counter),
-      passageEl,
+    // While playing, a compact list of the words to find (alphabetical, so it doesn't spoil the
+    // story's order). Once the chapter is complete, the scene itself: the passage with every word in place.
+    this.wordList = h(
+      'ul',
+      { class: 'word-list', 'aria-label': t('level.words') },
+      ...[...p.words]
+        .sort((a, b) => a.text.localeCompare(b.text))
+        .map((w) => {
+          const chip = h('li', { class: 'word-chip' }, w.text);
+          this.chips[w.index] = chip;
+          return chip;
+        }),
     );
+    this.passageEl = passage(story, p.words, (w) => h('span', { class: 'story-word' }, w.text));
+    this.panelLabel = h('span', {});
+    this.panel = h(
+      'section',
+      { class: 'story-panel' },
+      h('header', { class: 'story-head' }, this.panelLabel, this.counter),
+      this.wordList,
+      this.passageEl,
+    );
+    const panel = this.panel;
 
     // Board: tiles underneath, the trace line in an SVG layer, letters on top, and the full picture
     // waiting above everything for the end.
@@ -254,7 +269,7 @@ export class LevelView {
       replay(this.tiles[c], 'reveal');
     });
     this.showTrace(word.text, 'is-found');
-    replay(this.blanks[word.index], 'pop');
+    replay(this.chips[word.index], 'pop');
     this.opts.sfx.found();
     if (result.solved) window.setTimeout(() => this.celebrate(), 650);
   }
@@ -282,7 +297,11 @@ export class LevelView {
     this.board.classList.add('is-complete');
     this.board.classList.toggle('no-anim', !animate);
     this.traceEl.replaceChildren(h('span', { class: 'trace-pill picture-caption' }, h('strong', {}, story.caption), h('small', {}, story.credit)));
-    if (animate) replay(this.traceEl.firstElementChild as HTMLElement, 'is-new');
+    this.render();
+    if (animate) {
+      replay(this.traceEl.firstElementChild as HTMLElement, 'is-new');
+      replay(this.passageEl, 'fade-in');
+    }
   }
 
   // ── rendering ───────────────────────────────────────────────────────────
@@ -305,14 +324,12 @@ export class LevelView {
     });
     if (this.trace.length) this.showTrace(this.trace.map((c) => p.letters[c]).join(''));
     this.board.classList.toggle('is-tracing', this.trace.length > 0);
-    p.words.forEach((w) => {
-      const blank = this.blanks[w.index];
-      const found = this.s.isFound(w.index);
-      blank.classList.toggle('is-found', found);
-      [...blank.children].forEach((slot, i) => (slot.textContent = found ? w.text[i] : ''));
-      blank.setAttribute('aria-label', found ? w.text : tn('level.blank', w.text.length));
-    });
-    this.counter.textContent = tn('level.words', p.words.length, { found: this.s.foundCount });
+    p.words.forEach((w) => this.chips[w.index].classList.toggle('is-found', this.s.isFound(w.index)));
+    // The words list while playing; the scene itself once the picture is complete.
+    const reading = this.board.classList.contains('is-complete');
+    this.panel.classList.toggle('is-reading', reading);
+    this.panelLabel.textContent = t(reading ? 'level.passage' : 'level.words');
+    this.counter.textContent = tn('level.wordCount', p.words.length, { found: this.s.foundCount });
     this.nextBtn.hidden = !this.s.solved;
     this.drawTrace();
   }

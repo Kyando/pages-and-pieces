@@ -399,7 +399,8 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* If the board ever outgrows its space, it spills downward rather than over the panel above. */
+  justify-content: safe center;
   gap: 6px;
 }
 
@@ -538,57 +539,78 @@ button {
 }
 
 /* ── Story chapters ───────────────────────────────────────────────────────
-   The words to find are blanks in a passage of the book. Each found word uncovers its slice of the
-   chapter's illustration, like a Tetris piece of the engraving; the full picture closes over the
-   board at the end. */
+   While playing, the panel lists the words to find. Each found word uncovers its slice of the
+   chapter's illustration, like a Tetris piece of the engraving; at the end the full picture closes
+   over the board and the panel turns into the scene's passage, every word in place. */
+
+.word-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.word-chip {
+  padding: 3px 10px;
+  border: 2px solid var(--faint);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.word-chip.is-found {
+  border-color: var(--stroke);
+  background: var(--trace);
+  color: var(--ink);
+  box-shadow: 0 2px 0 var(--stroke);
+  text-decoration: line-through 2px color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+.word-chip.pop {
+  animation: pop 0.42s cubic-bezier(0.3, 1.7, 0.5, 1);
+}
 
 .passage {
+  display: none;
   margin: 0;
   padding: 10px 14px 12px;
   font-size: 15.5px;
-  line-height: 1.75;
+  line-height: 1.7;
   text-wrap: pretty;
 }
 
-/* A blank shows one slot per letter, so its length is plain to see. */
-.blank {
-  display: inline-flex;
-  gap: 3px;
-  padding: 0 2px;
+.story-panel.is-reading .word-list {
+  display: none;
+}
+
+.story-panel.is-reading .passage {
+  display: block;
+}
+
+.story-word {
+  padding: 0 4px;
   border-radius: 6px;
+  background: var(--trace);
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 0.82em;
-  line-height: 1.35;
   letter-spacing: 0.06em;
-  transition: background 0.3s;
 }
 
-.slot {
-  display: inline-block;
-  width: 0.75em;
-  border-bottom: 2px solid color-mix(in srgb, var(--ink) 38%, transparent);
+.passage.fade-in {
+  animation: fade-in 0.9s ease-out;
 }
 
-/* An empty slot still needs a line box to sit on the text's baseline. */
-.slot:empty::before {
-  content: '\200b';
-}
-
-.blank.is-found {
-  gap: 0;
-  padding: 0 4px;
-  background: var(--trace);
-  color: var(--ink);
-}
-
-.blank.is-found .slot {
-  width: auto;
-  border-bottom-color: transparent;
-}
-
-.blank.pop {
-  animation: pop 0.42s cubic-bezier(0.3, 1.7, 0.5, 1);
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
 }
 
 .board .tile {
@@ -680,23 +702,39 @@ button {
     font-size: clamp(20px, 5.6vw, 28px);
   }
 
+  .word-list {
+    gap: 5px;
+    padding: 8px 8px 10px;
+  }
+
+  .word-chip {
+    padding: 2px 8px;
+    font-size: 12px;
+  }
+
+  /* The finished scene scrolls inside the panel, so the picture below keeps its room. */
+  .story-panel.is-reading {
+    max-height: 34vh;
+    overflow-y: auto;
+  }
+
   .passage {
     padding: 8px 12px 10px;
     font-size: 14px;
-    line-height: 1.65;
+    line-height: 1.6;
   }
 
   .picture-caption {
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 8px;
     padding: 2px 14px;
-    border-radius: 14px;
+    font-size: 14px;
   }
 
   /* A small board sits in the middle of the free space; a big one fills it down to the thumbs anyway. */
   .board-wrap {
-    justify-content: center;
+    justify-content: safe center;
   }
 
   .trace {
