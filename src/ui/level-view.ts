@@ -484,7 +484,7 @@ export class LevelView {
       nextTitle: this.opts.nextTitle,
       onNext: () => (this.opts.onNext ?? this.opts.onChapters)(),
       onRestart: () => this.restart(),
-      onTurn: () => this.opts.sfx.paper(),
+      onTurn: () => this.opts.sfx.sheet(),
       onShare: () => {
         const text = t('desk.shareText', { game: t('game.name'), book: BOOKS[def.book].title, chapter: def.chapter, title: def.title });
         navigator.clipboard?.writeText(text).then(
@@ -505,12 +505,11 @@ export class LevelView {
     this.el.append(desk.el);
     const at = desk.arrive(from);
     const sfx = this.opts.sfx;
-    sfx.paper();
     window.setTimeout(() => {
       sfx.land();
       navigator.vibrate?.(14);
     }, at.land);
-    window.setTimeout(() => sfx.paper(), at.pages);
+    window.setTimeout(() => sfx.sheet(), at.pages);
   }
 
   // ── rendering ───────────────────────────────────────────────────────────

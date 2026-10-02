@@ -1246,9 +1246,6 @@ button {
   vertical-align: 0.08em;
 }
 
-.sheet.is-inking .page-word {
-  animation: word-in 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) calc(200ms + var(--i) * 170ms) backwards;
-}
 
 .page-sign {
   margin: 18px 0 0;
@@ -1354,16 +1351,11 @@ button {
   }
 }
 
-@keyframes word-in {
-  from { transform: scale(0.5); opacity: 0; }
-  to { transform: none; opacity: 1; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .desk::before,
   .sheet.is-top .sheet-float,
-  .sheet.is-top .sheet-paper,
-  .sheet.is-inking .page-word {
+  .sheet.is-top .sheet-paper {
     animation: none;
   }
 }

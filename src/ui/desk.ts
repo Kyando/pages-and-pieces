@@ -62,7 +62,6 @@ export class Desk {
   private readonly resizeObserver: ResizeObserver;
   private size = '';
   private busy = false;
-  private arriving = false;
   private readonly fonts: Promise<unknown>;
 
   constructor(opts: DeskOptions) {
@@ -198,12 +197,6 @@ export class Desk {
       s.style.setProperty('--y', `${y}px`);
       s.classList.toggle('is-top', depth === 0);
     });
-    // A page's found words ink in the first time it comes to the top.
-    const top = this.order[0];
-    if (top !== this.drawing && !top.dataset.read) {
-      top.dataset.read = '1';
-      if (!this.arriving && !reducedMotion()) top.classList.add('is-inking');
-    }
   }
 
   /** The top sheet slides off to one side and tucks under the pile; or the bottom one comes back up. */
@@ -264,8 +257,6 @@ export class Desk {
   arrive(from: DOMRect | null): { land: number; pages: number } {
     this.layout();
     if (reducedMotion()) return { land: 0, pages: 0 };
-    this.arriving = true;
-    window.setTimeout(() => (this.arriving = false), 1400);
     const pic = this.image.getBoundingClientRect();
     if (from && pic.width) {
       const dx = from.left + from.width / 2 - (pic.left + pic.width / 2);
@@ -302,12 +293,11 @@ export class Desk {
  */
 function tokens(text: string, words: Word[], names: string[]): HTMLElement[] {
   const out: HTMLElement[] = [];
-  let found = 0;
   text.split(/\{([A-Z]+)\}/).forEach((part, k) => {
     if (k % 2 === 1) {
       const known = words.some((w) => w.text === part);
       const plain = names.includes(part) ? part.charAt(0) + part.slice(1).toLowerCase() : part.toLowerCase();
-      out.push(h('span', {}, known ? h('span', { class: 'page-word', style: `--i: ${found++}` }, part) : plain));
+      out.push(h('span', {}, known ? h('span', { class: 'page-word' }, part) : plain));
       return;
     }
     for (const [, lead, word] of part.matchAll(/(\s*)(\S*\s*)/g)) {

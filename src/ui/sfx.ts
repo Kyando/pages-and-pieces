@@ -14,15 +14,17 @@ export class Sfx {
     for (let i = 0; i < length; i++) this.tone(scale[Math.min(i, scale.length - 1)], 0.16, 'sine', 0.045, 0.05 + (i * stagger) / 1000);
   }
 
-  /** A sheet of paper sliding over the desk. */
-  paper(): void {
-    this.rustle(0.4, 1500, 0.09);
+  /** A sheet moved in the pile: two quick, soft notes and a breath of air. */
+  sheet(): void {
+    this.tone(880, 0.07, 'triangle', 0.035);
+    this.tone(1175, 0.09, 'triangle', 0.03, 0.06);
+    this.rustle(0.1, 6000, 0.015);
   }
 
-  /** A sheet settling on the desk: a soft, low thump. */
+  /** The drawing settling on the desk: a warm, low pair of notes. */
   land(): void {
-    this.tone(150, 0.18, 'sine', 0.16, 0, 70);
-    this.rustle(0.08, 900, 0.06);
+    this.tone(392, 0.26, 'sine', 0.07);
+    this.tone(587, 0.26, 'sine', 0.04, 0.05);
   }
 
   /** The word chips popping up one by one, each a little higher. */
