@@ -1,7 +1,17 @@
 import { colOf, rowOf } from '../core/grid.ts';
+import { pieceOutline } from './shape.ts';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 let uid = 0;
+
+/** The ink's timing (ms): letters melt one after another, the ink spreads, then the pen outlines the piece. */
+export const INK_STAGGER_MS = 65;
+const INK_MELT_MS = 620;
+const INK_SPREAD_MS = 760;
+const INK_PEN_MS = 480;
+const inkPenDelay = (letters: number) => (letters - 1) * INK_STAGGER_MS + 420;
+/** How long a word's ink takes to settle completely. */
+export const inkDuration = (letters: number) => inkPenDelay(letters) + INK_PEN_MS;
 
 const el = <K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number> = {}): SVGElementTagNameMap[K] => {
   const node = document.createElementNS(SVG_NS, tag);
@@ -61,21 +71,21 @@ export class PieceLayer {
   /** Drawn pieces, by word index. */
   private readonly drawn = new Map<number, SVGGElement>();
   private layout: Layout | null = null;
+  /** Roughens the ink blots' edges, scaled to the cells (see setLayout). */
+  private readonly ragged: SVGFilterElement;
+  private readonly raggedNoise: SVGFETurbulenceElement;
+  private readonly raggedShift: SVGFEDisplacementMapElement;
 
   constructor(image: string) {
     this.href = image;
     this.preload(image);
     this.el = el('svg', { class: 'pieces', 'aria-hidden': 'true' });
+    this.ragged = el('filter', { id: `${this.id}-ragged`, x: '-40%', y: '-40%', width: '180%', height: '180%' });
+    this.raggedNoise = el('feTurbulence', { type: 'fractalNoise', baseFrequency: 0.05, numOctaves: 3, seed: 11, result: 'noise' });
+    this.raggedShift = el('feDisplacementMap', { in: 'SourceGraphic', in2: 'noise', scale: 20, xChannelSelector: 'R', yChannelSelector: 'G' });
+    this.ragged.append(this.raggedNoise, this.raggedShift);
     this.defs = el('defs');
-    // The outline: the piece's shape grown by a little, minus the shape itself, filled with ink.
-    const filter = el('filter', { id: `${this.id}-outline`, x: '-10%', y: '-10%', width: '120%', height: '120%' });
-    filter.append(
-      el('feMorphology', { in: 'SourceAlpha', operator: 'dilate', radius: 2, result: 'grown' }),
-      el('feComposite', { in: 'grown', in2: 'SourceAlpha', operator: 'out', result: 'ring' }),
-      el('feFlood', { class: 'piece-ink', result: 'ink' }),
-      el('feComposite', { in: 'ink', in2: 'ring', operator: 'in' }),
-    );
-    this.defs.append(filter, sketchFilter(`${this.id}-sketch`));
+    this.defs.append(sketchFilter(`${this.id}-sketch`), this.ragged);
     this.piecesG = el('g');
     this.wholeG = el('g', { class: 'pieces-whole' });
     this.el.append(this.defs, this.piecesG, this.wholeG);
@@ -115,6 +125,8 @@ export class PieceLayer {
     this.el.setAttribute('viewBox', `0 0 ${w} ${h}`);
     this.el.setAttribute('width', String(w));
     this.el.setAttribute('height', String(h));
+    this.raggedNoise.setAttribute('baseFrequency', String(+(3.2 / cell).toFixed(4)));
+    this.raggedShift.setAttribute('scale', String(Math.round(cell * 0.42)));
     this.clear();
   }
 
@@ -122,7 +134,7 @@ export class PieceLayer {
   clear(): void {
     this.drawn.forEach((g) => g.remove());
     this.drawn.clear();
-    this.defs.querySelectorAll('clipPath').forEach((c) => c.remove());
+    this.defs.querySelectorAll('clipPath, mask, filter[id*="-bleed-"]').forEach((c) => c.remove());
     this.wholeG.replaceChildren();
     this.el.classList.remove('is-whole');
   }
@@ -131,43 +143,116 @@ export class PieceLayer {
     return this.drawn.has(index);
   }
 
-  /** Draws word `index` as one piece: its cells join across the gaps between them. */
-  add(index: number, path: number[]): void {
+  /**
+   * Draws word `index` as one piece: its cells joined across the gaps between them, on paper.
+   * With `letters`, the word arrives as ink: each letter, left behind by its tile, melts into the
+   * paper, and the ink spreads out from where it fell, drawing the sketch as it goes; last, a pen
+   * goes once round the piece's outline.
+   */
+  add(index: number, path: number[], letters?: string[]): void {
     if (!this.layout || this.drawn.has(index)) return;
     const { cols, cell, gap } = this.layout;
-    const step = cell + gap;
-    const r = Math.min(5, cell * 0.1);
-    const mine = new Set(path);
-    const rects: SVGRectElement[] = [];
-    const rect = (x: number, y: number, w: number, h: number, rx = 0) => rects.push(el('rect', { x, y, width: w, height: h, rx }));
-    for (const c of path) {
-      const x = colOf(c, cols) * step;
-      const y = rowOf(c, cols) * step;
-      rect(x, y, cell, cell, r);
-      const right = colOf(c, cols) < cols - 1 && mine.has(c + 1);
-      const below = mine.has(c + cols);
-      // Bridges over the gaps to same-word neighbours, overlapping the rounded corners so the joins are flat.
-      if (right) rect(x + cell - r, y, gap + 2 * r, cell);
-      if (below) rect(x, y + cell - r, cell, gap + 2 * r);
-      if (right && below && mine.has(c + cols + 1)) rect(x + cell - r, y + cell - r, gap + 2 * r, gap + 2 * r);
-    }
+    const d = pieceOutline(path, cols, cell, gap, cell * 0.16);
     const clipId = `${this.id}-clip-${index}`;
     const clip = el('clipPath', { id: clipId });
-    clip.append(...rects.map((n) => n.cloneNode() as SVGRectElement));
+    clip.append(el('path', { d }));
     this.defs.append(clip);
 
     const g = el('g', { class: 'piece' });
+    const paper = el('path', { class: 'piece-paper', d });
     // The picture inside a group: the group clips (crisp edges), the image itself takes the sketch filter.
     const pic = el('g', { 'clip-path': `url(#${clipId})` });
-    pic.append(el('image', { class: 'piece-pic', href: this.href, filter: `url(#${this.id}-sketch)`, x: 0, y: 0, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice' }));
-    const outline = el('g', { class: 'piece-outline', filter: `url(#${this.id}-outline)` });
-    outline.append(...rects);
-    // Paper under the sketch, in the panel's colour.
-    const paper = el('g', { class: 'piece-paper' });
-    paper.append(...rects.map((n) => n.cloneNode() as SVGRectElement));
-    g.append(outline, paper, pic);
+    const image = el('image', { class: 'piece-pic', href: this.href, filter: `url(#${this.id}-sketch)`, x: 0, y: 0, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice' });
+    pic.append(image);
+    const line = el('path', { class: 'piece-line', d });
+    g.append(paper, pic, line);
     this.piecesG.append(g);
     this.drawn.set(index, g);
+    if (letters) this.inkIn(g, image, line, path, letters);
+  }
+
+  /** The ink arriving (see add). Leaves the piece exactly as a plain add() draws it. */
+  private inkIn(g: SVGGElement, image: SVGImageElement, line: SVGPathElement, path: number[], letters: string[]): void {
+    const { cols, cell, gap } = this.layout!;
+    const step = cell + gap;
+    const n = path.length;
+    const center = (c: number) => [colOf(c, cols) * step + cell / 2, rowOf(c, cols) * step + cell / 2];
+    const temp: Element[] = [];
+    const spot = (i: number) => i * INK_STAGGER_MS;
+
+    // The ink's reach: a blot per letter, growing from where it fell, with ragged edges.
+    const maskId = `${this.id}-ink-${++uid}`;
+    const mask = el('mask', { id: maskId, maskUnits: 'userSpaceOnUse', x: -cell, y: -cell, width: '200%', height: '200%' });
+    const blots = el('g', { filter: `url(#${this.id}-ragged)` });
+    mask.append(blots);
+    this.defs.append(mask);
+    temp.push(mask);
+    path.forEach((c, i) => {
+      const [x, y] = center(c);
+      const blot = el('circle', { class: 'ink-blot', cx: x, cy: y, r: cell * 0.98, fill: '#fff' });
+      blots.append(blot);
+      blot.animate(
+        [
+          { transform: 'scale(0)', offset: 0 },
+          { transform: 'scale(0.42)', offset: 0.18 },
+          { transform: 'scale(1)', offset: 1 },
+        ],
+        { duration: INK_SPREAD_MS, delay: spot(i) + 140, easing: 'cubic-bezier(0.2, 0.7, 0.3, 1)', fill: 'both' },
+      );
+    });
+    image.setAttribute('mask', `url(#${maskId})`);
+
+    // The letters themselves, left on the paper by their tiles: each softens and bleeds into a drop.
+    const ink = el('g', { class: 'piece-letters' });
+    g.insertBefore(ink, line);
+    temp.push(ink);
+    path.forEach((c, i) => {
+      const [x, y] = center(c);
+      const bleedId = `${this.id}-bleed-${++uid}`;
+      const bleed = el('filter', { id: bleedId, x: '-50%', y: '-50%', width: '200%', height: '200%' });
+      const grow = el('feMorphology', { operator: 'dilate', radius: 0 });
+      const blur = el('feGaussianBlur', { stdDeviation: 0 });
+      const animate = (node: Element, attributeName: string, to: number) => {
+        const a = el('animate', { attributeName, from: 0, to, dur: `${INK_MELT_MS}ms`, begin: 'indefinite', fill: 'freeze' });
+        node.append(a);
+        return a;
+      };
+      const starts = [animate(grow, 'radius', cell * 0.05), animate(blur, 'stdDeviation', cell * 0.09)];
+      bleed.append(grow, blur);
+      this.defs.append(bleed);
+      temp.push(bleed);
+      const letter = el('text', { class: 'piece-letter', x, y, 'font-size': cell * 0.48, filter: `url(#${bleedId})` });
+      letter.textContent = letters[i];
+      ink.append(letter);
+      starts.forEach((a) => a.beginElementAt((spot(i) + 60) / 1000));
+      letter.animate(
+        [
+          { opacity: 1, transform: 'translateY(0) scale(1)' },
+          { opacity: 0.9, transform: `translateY(${cell * 0.03}px) scale(1.06)`, offset: 0.35 },
+          { opacity: 0, transform: `translateY(${cell * 0.1}px) scale(1.25)` },
+        ],
+        { duration: INK_MELT_MS, delay: spot(i) + 60, easing: 'ease-in', fill: 'both' },
+      );
+    });
+
+    // The pen goes round the piece once the ink is down.
+    const length = line.getTotalLength();
+    line.style.strokeDasharray = `${length}`;
+    const pen = line.animate([{ strokeDashoffset: length }, { strokeDashoffset: 0 }], {
+      duration: INK_PEN_MS,
+      delay: inkPenDelay(n),
+      easing: 'cubic-bezier(0.45, 0, 0.3, 1)',
+      fill: 'both',
+    });
+
+    // Once the pen is done, the piece is left exactly as a plain add() draws it.
+    const settle = () => {
+      image.removeAttribute('mask');
+      line.style.strokeDasharray = '';
+      pen.cancel();
+      temp.forEach((node) => node.remove());
+    };
+    pen.finished.then(settle, () => undefined);
   }
 
   /** The finished picture: whole, with thin seams where different words meet. */

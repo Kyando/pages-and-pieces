@@ -373,13 +373,11 @@ button {
   transition: transform 0.15s;
 }
 
-/* The word being traced is sketched in pencil on kraft paper: neutral, so it never hints at a pair's colour. */
+/* The word being traced: its tiles give way to one joined kraft-paper shape underneath (.trace-shape). */
 .tile.is-trace {
-  background: var(--trace);
-  box-shadow:
-    inset 0 0 0 3px var(--trace),
-    inset 0 0 0 5px var(--trace-ring),
-    0 6px 0 var(--stroke);
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .tile.is-end .tile-letter {
@@ -403,39 +401,29 @@ button {
   animation: celebrate 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) var(--delay, 0ms) backwards;
 }
 
+/* The piece in the making, under the tiles (and over the picture's pieces). */
 .links {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 1;
+  z-index: -1;
   overflow: visible;
   pointer-events: none;
 }
 
-.link polyline {
-  fill: none;
-  stroke: var(--tone-line);
-  stroke-width: var(--stroke-w, 10px);
-  stroke-linecap: round;
+.trace-shape {
+  fill: var(--trace);
+  stroke: var(--stroke);
+  stroke-width: 3px;
   stroke-linejoin: round;
-  opacity: 0.5;
 }
 
-.link circle {
-  fill: var(--tone-line);
-  opacity: 0.5;
-}
-
-.link--trace polyline {
-  stroke: var(--pencil);
-  stroke-width: calc(var(--stroke-w, 10px) * 0.75);
-  stroke-dasharray: 0.1px calc(var(--stroke-w, 10px) * 1.25);
-  opacity: 0.85;
-}
-
-.link--trace circle {
-  fill: var(--pencil);
-  opacity: 0.85;
+.trace-shadow {
+  fill: var(--stroke);
+  stroke: var(--stroke);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  transform: translateY(5px);
 }
 
 /* ── Story panel ────────────────────────────────────────────────────────── */
@@ -502,6 +490,7 @@ button {
 }
 
 .word-chip {
+  position: relative;
   padding: 3px 10px;
   border: 2px solid var(--faint);
   border-radius: 999px;
@@ -518,7 +507,26 @@ button {
   background: var(--trace);
   color: var(--ink);
   box-shadow: 0 2px 0 var(--stroke);
-  text-decoration: line-through 2px color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+/* Crossed off by the pen, left to right, as the word's last tile lands. */
+.word-chip::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--ink) 60%, transparent);
+  transform: scaleX(0) rotate(-2deg);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.5, 0, 0.3, 1);
+}
+
+.word-chip.is-found::after {
+  transform: scaleX(1) rotate(-2deg);
 }
 
 .word-chip.pop {
@@ -576,9 +584,30 @@ button {
   pointer-events: none;
 }
 
-.piece-ink {
-  flood-color: var(--stroke);
+/* Each piece's border, drawn by the pen as the ink settles. */
+.piece-line {
+  fill: none;
+  stroke: var(--stroke);
+  stroke-width: 2.5px;
+  stroke-linejoin: round;
 }
+
+/* A found word's letters, left on the paper by their tiles, melting into ink. */
+.piece-letter {
+  fill: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-anchor: middle;
+  dominant-baseline: central;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.ink-blot {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
 
 /* While the chapter is unfinished the picture is a pencil sketch on the panel's paper (see
    sketchFilter), so it sits in the page in either theme. */

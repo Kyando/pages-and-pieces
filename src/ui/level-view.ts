@@ -7,7 +7,8 @@ import { h, svg } from './dom.ts';
 import { replay } from './fx.ts';
 import { ICONS } from './icons.ts';
 import { toast } from './overlay.ts';
-import { PieceLayer } from './pieces.ts';
+import { INK_STAGGER_MS, inkDuration, PieceLayer } from './pieces.ts';
+import { pieceOutline } from './shape.ts';
 import type { Sfx } from './sfx.ts';
 import { passage } from './story.ts';
 
@@ -27,7 +28,7 @@ const RADII = ['13px 10px 14px 11px', '10px 14px 11px 13px', '14px 11px 10px 12p
 /** Share of a cell, around its centre, that a dragging finger must reach: keeps diagonal slides from skipping. */
 const HIT = 0.78;
 /** A found word's tiles leave one after another, this far apart (ms), each flight taking FLIGHT_MS. */
-const STAGGER_MS = 65;
+const STAGGER_MS = INK_STAGGER_MS;
 const FLIGHT_MS = 760;
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -286,16 +287,17 @@ export class LevelView {
       return;
     }
     // A found word's tiles lift off the board one after another and fly to its chip in the word
-    // list, each along its own curve, uncovering the word's piece of the picture underneath.
+    // list, each along its own curve. Their letters stay behind as ink, which melts into the paper
+    // underneath and spreads out into the word's piece of the picture.
     const { word } = result;
     const calm = reducedMotion();
     if (!calm) this.flyTiles(word);
     this.render();
-    this.pieces.add(word.index, word.path);
+    this.pieces.add(word.index, word.path, calm ? undefined : word.path.map((c) => this.s.puzzle.letters[c]));
     this.showTrace(word.text, 'is-found');
     this.opts.sfx.piece(word.path.length, STAGGER_MS);
     navigator.vibrate?.(12);
-    const settle = calm ? 0 : (word.path.length - 1) * STAGGER_MS + FLIGHT_MS;
+    const settle = calm ? 0 : Math.max((word.path.length - 1) * STAGGER_MS + FLIGHT_MS, inkDuration(word.path.length));
     if (result.solved) window.setTimeout(() => this.celebrate(), settle + 250);
   }
 
@@ -316,6 +318,8 @@ export class LevelView {
       const from = tile.getBoundingClientRect();
       const copy = tile.cloneNode(true) as HTMLElement;
       copy.className = 'tile fly-tile';
+      // Only the paper flies: the letter stays on the board, as ink.
+      copy.querySelector('.tile-letter')?.remove();
       copy.setAttribute('aria-hidden', 'true');
       copy.style.left = `${from.left}px`;
       copy.style.top = `${from.top}px`;
@@ -447,25 +451,24 @@ export class LevelView {
   }
 
   /** A pencil line along the live trace; found words show their picture instead. */
+  /**
+   * The word being traced is a piece in the making: its tiles join into one kraft-paper shape (the
+   * same shape its piece of the picture will take), drawn under the letters.
+   */
   private drawTrace(): void {
     const p = this.s.puzzle;
     if (!this.trace.length) {
       this.links.replaceChildren();
       return;
     }
-    const step = this.cellPx + this.gapPx;
-    const point = (cell: number) => `${colOf(cell, p.cols) * step + this.cellPx / 2},${rowOf(cell, p.cols) * step + this.cellPx / 2}`;
-    const g = document.createElementNS(SVG_NS, 'g');
-    g.setAttribute('class', 'link link--trace');
-    const poly = document.createElementNS(SVG_NS, 'polyline');
-    poly.setAttribute('points', this.trace.map(point).join(' '));
-    const [x, y] = point(this.trace[0]).split(',');
-    const dot = document.createElementNS(SVG_NS, 'circle');
-    dot.setAttribute('cx', x);
-    dot.setAttribute('cy', y);
-    dot.setAttribute('r', String(this.cellPx * 0.11));
-    g.append(poly, dot);
-    this.links.replaceChildren(g);
+    const d = pieceOutline(this.trace, p.cols, this.cellPx, this.gapPx, this.cellPx * 0.2);
+    const shape = (cls: string) => {
+      const path = document.createElementNS(SVG_NS, 'path');
+      path.setAttribute('class', cls);
+      path.setAttribute('d', d);
+      return path;
+    };
+    this.links.replaceChildren(shape('trace-shadow'), shape('trace-shape'));
   }
 
   /** Sizes cells to the space available. */
@@ -492,7 +495,6 @@ export class LevelView {
     this.links.setAttribute('viewBox', `0 0 ${w} ${hgt}`);
     this.links.setAttribute('width', String(w));
     this.links.setAttribute('height', String(hgt));
-    this.links.style.setProperty('--stroke-w', `${size * 0.15}px`);
     // Redraw the pieces at a new size (an unchanged size keeps them, mid-animation or not).
     if (size !== this.piecesCell) {
       this.piecesCell = size;

@@ -8,6 +8,7 @@ import { Session } from '../src/game/session.ts';
 import { emptyProgress } from '../src/game/save.ts';
 import { en } from '../src/i18n/en.ts';
 import { SPECS } from '../scripts/level-specs.ts';
+import { pieceOutline } from '../src/ui/shape.ts';
 
 const files = import.meta.glob<LevelDef>('../src/levels/*.json', { eager: true, import: 'default' });
 const levels = Object.keys(files).sort().map((k) => files[k]);
@@ -124,5 +125,34 @@ describe('i18n', () => {
   it('has a one and other form for every counted message', () => {
     const keys = Object.keys(en);
     for (const k of keys.filter((k) => k.endsWith('_one'))) expect(keys).toContain(k.replace(/_one$/, '_other'));
+  });
+});
+
+describe('piece outline', () => {
+  const corners = (d: string) => (d.match(/Q/g) ?? []).length;
+  const loops = (d: string) => (d.match(/Z/g) ?? []).length;
+
+  it('joins neighbouring cells across the gap', () => {
+    // A single cell, a row of three (one shape) and an L.
+    expect(corners(pieceOutline([0], 4, 10, 2, 0))).toBe(4);
+    const row = pieceOutline([0, 1, 2], 4, 10, 2, 0);
+    expect([corners(row), loops(row)]).toEqual([4, 1]);
+    expect(row).toContain('34,0');
+    expect(corners(pieceOutline([0, 1, 5], 4, 10, 2, 0))).toBe(6);
+  });
+
+  it('puts inner corners at the gap, not across it', () => {
+    // An L: cells 0, 1 (row 0) and 4 (row 1, col 0) on a 4-wide board; the inner corner is at (10, 10).
+    expect(pieceOutline([0, 1, 4], 4, 10, 2, 0)).toContain('10,10');
+  });
+
+  it('does not wrap across the board edge', () => {
+    // Cell 3 (end of row 0) and 4 (start of row 1) are not neighbours.
+    expect(loops(pieceOutline([3, 4], 4, 10, 2, 0))).toBe(2);
+  });
+
+  it('keeps a hole as its own loop', () => {
+    const ring = [0, 1, 2, 6, 10, 9, 8, 4]; // around cell 5
+    expect(loops(pieceOutline(ring, 4, 10, 2, 0))).toBe(2);
   });
 });
