@@ -10,20 +10,27 @@ const el = <K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, 
 };
 
 /**
- * The picture while the chapter is unfinished: a little blurred, warmed to sepia and with its
- * contrast eased (`slope`, `intercept` per channel), so the hard black-on-white engraving sits
- * quietly in the page. It comes into focus only when the chapter is complete.
- * CSS picks the light or dark variant (`.piece-pic`).
+ * The picture while the chapter is unfinished, as a pencil sketch: the engraving's dark lines
+ * become strokes in the theme's pencil colour (the paper drops out), wobbled a little as if a hand
+ * drew them and broken up by grain. It sits in the page in both themes, and comes into focus as the
+ * real picture only when the chapter is complete. The colour comes from CSS (`.piece-pencil`).
  */
-function softFilter(id: string, slope: number, intercept: number): SVGFilterElement {
+function sketchFilter(id: string): SVGFilterElement {
   const filter = el('filter', { id, x: 0, y: 0, width: '100%', height: '100%', 'color-interpolation-filters': 'sRGB' });
-  const transfer = el('feComponentTransfer');
-  for (const ch of ['feFuncR', 'feFuncG', 'feFuncB'] as const) transfer.append(el(ch, { type: 'linear', slope, intercept }));
+  const lines = el('feComponentTransfer', { in: 'dark', result: 'lines' });
+  // Drops the paper's tone and firms up the strokes.
+  lines.append(el('feFuncA', { type: 'linear', slope: 1.7, intercept: -0.3 }));
   filter.append(
-    el('feGaussianBlur', { stdDeviation: 0.9, edgeMode: 'duplicate' }),
-    // Sepia.
-    el('feColorMatrix', { type: 'matrix', values: '0.393 0.769 0.189 0 0  0.349 0.686 0.168 0 0  0.272 0.534 0.131 0 0  0 0 0 1 0' }),
-    transfer,
+    // Alpha = how dark the picture is there.
+    el('feColorMatrix', { in: 'SourceGraphic', type: 'matrix', values: '0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -0.2126 -0.7152 -0.0722 0 1', result: 'dark' }),
+    lines,
+    el('feTurbulence', { type: 'fractalNoise', baseFrequency: 0.03, numOctaves: 2, seed: 3, result: 'wobble' }),
+    el('feDisplacementMap', { in: 'lines', in2: 'wobble', scale: 3, xChannelSelector: 'R', yChannelSelector: 'G', result: 'drawn' }),
+    el('feTurbulence', { type: 'fractalNoise', baseFrequency: 0.85, numOctaves: 1, seed: 7, result: 'noise' }),
+    el('feColorMatrix', { in: 'noise', type: 'matrix', values: '0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.1 0 0 0 0.3', result: 'grain' }),
+    el('feComposite', { in: 'drawn', in2: 'grain', operator: 'arithmetic', k1: 1, k2: 0, k3: 0, k4: 0, result: 'strokes' }),
+    el('feFlood', { class: 'piece-pencil', result: 'pencil' }),
+    el('feComposite', { in: 'pencil', in2: 'strokes', operator: 'in' }),
   );
   return filter;
 }
@@ -38,12 +45,15 @@ interface Layout {
 /**
  * The picture, as pieces, under the letter tiles: each found word is one joined shape of the
  * chapter's illustration with an ink outline, separated from its neighbours by the board's gaps, so
- * the board fills up like a puzzle being assembled. While playing the picture is soft; once every
+ * the board fills up like a puzzle being assembled. While playing the picture is a pencil sketch; once every
  * word is found it comes into focus, whole, with ink seams still showing the pieces it was made of.
  */
 export class PieceLayer {
   readonly el: SVGSVGElement;
-  private readonly image: string;
+  /** The picture's address; a local copy once it has downloaded, so pieces show it at once. */
+  private href: string;
+  private blobUrl: string | null = null;
+  private destroyed = false;
   private readonly id = `pieces-${++uid}`;
   private readonly defs: SVGDefsElement;
   private readonly piecesG: SVGGElement;
@@ -53,7 +63,8 @@ export class PieceLayer {
   private layout: Layout | null = null;
 
   constructor(image: string) {
-    this.image = image;
+    this.href = image;
+    this.preload(image);
     this.el = el('svg', { class: 'pieces', 'aria-hidden': 'true' });
     this.defs = el('defs');
     // The outline: the piece's shape grown by a little, minus the shape itself, filled with ink.
@@ -64,10 +75,35 @@ export class PieceLayer {
       el('feFlood', { class: 'piece-ink', result: 'ink' }),
       el('feComposite', { in: 'ink', in2: 'ring', operator: 'in' }),
     );
-    this.defs.append(filter, softFilter('pp-soft', 0.9, 0.06), softFilter('pp-soft-dark', 0.62, 0.02));
+    this.defs.append(filter, sketchFilter(`${this.id}-sketch`));
     this.piecesG = el('g');
     this.wholeG = el('g', { class: 'pieces-whole' });
     this.el.append(this.defs, this.piecesG, this.wholeG);
+  }
+
+  /**
+   * Downloads the picture as the chapter opens, not when the first word is found. Keeps a local
+   * copy when the host allows it (Wikimedia does); otherwise the browser cache still has it.
+   */
+  private preload(image: string): void {
+    const img = new Image();
+    img.src = image;
+    img.decode?.().catch(() => undefined);
+    fetch(image)
+      .then((r) => (r.ok ? r.blob() : Promise.reject(new Error(String(r.status)))))
+      .then((blob) => {
+        if (this.destroyed) return;
+        this.blobUrl = URL.createObjectURL(blob);
+        this.href = this.blobUrl;
+        this.el.querySelectorAll('image').forEach((n) => n.setAttribute('href', this.href));
+      })
+      .catch(() => undefined);
+  }
+
+  /** Frees the local copy of the picture. */
+  destroy(): void {
+    this.destroyed = true;
+    if (this.blobUrl) URL.revokeObjectURL(this.blobUrl);
   }
 
   /** Sizes the layer to the board. Clears it: the caller redraws what's found, without animation. */
@@ -121,12 +157,15 @@ export class PieceLayer {
     this.defs.append(clip);
 
     const g = el('g', { class: 'piece' });
-    // The picture inside a group: the group clips (crisp edges), the image itself takes the soft filter.
+    // The picture inside a group: the group clips (crisp edges), the image itself takes the sketch filter.
     const pic = el('g', { 'clip-path': `url(#${clipId})` });
-    pic.append(el('image', { class: 'piece-pic', href: this.image, x: 0, y: 0, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice' }));
+    pic.append(el('image', { class: 'piece-pic', href: this.href, filter: `url(#${this.id}-sketch)`, x: 0, y: 0, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice' }));
     const outline = el('g', { class: 'piece-outline', filter: `url(#${this.id}-outline)` });
     outline.append(...rects);
-    g.append(outline, pic);
+    // Paper under the sketch, in the panel's colour.
+    const paper = el('g', { class: 'piece-paper' });
+    paper.append(...rects.map((n) => n.cloneNode() as SVGRectElement));
+    g.append(outline, paper, pic);
     this.piecesG.append(g);
     this.drawn.set(index, g);
   }
@@ -145,7 +184,7 @@ export class PieceLayer {
       if (rowOf(c, cols) < rows - 1 && owner(c) !== owner(c + cols)) d += `M${x - half},${y + cell + half}H${x + cell + half}`;
     }
     this.wholeG.replaceChildren(
-      el('image', { href: this.image, x: 0, y: 0, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice' }),
+      el('image', { href: this.href, x: 0, y: 0, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice' }),
       el('path', { class: 'pieces-seams', d }),
       el('rect', { class: 'pieces-frame', x: 0, y: 0, width: '100%', height: '100%', rx: 6 }),
     );

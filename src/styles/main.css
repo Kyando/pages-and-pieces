@@ -627,23 +627,17 @@ button {
   flood-color: var(--stroke);
 }
 
-/* While the chapter is unfinished the picture stays soft: a little blurred, sepia, gentle contrast
-   (darker in the dark theme), so it sits quietly in the page. */
-.piece-pic {
-  filter: url(#pp-soft);
+/* While the chapter is unfinished the picture is a pencil sketch on the panel's paper (see
+   sketchFilter), so it sits in the page in either theme. */
+.piece-pencil {
+  flood-color: var(--pencil);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .piece-pic {
-    filter: url(#pp-soft-dark);
-  }
+.piece-paper {
+  fill: var(--panel);
 }
 
-:root[data-theme='dark'] .piece-pic {
-  filter: url(#pp-soft-dark);
-}
-
-/* The finished picture comes into focus over the soft pieces; ink seams keep the pieces visible. */
+/* The finished picture comes into focus over the sketched pieces; ink seams keep the pieces visible. */
 .pieces.is-whole .pieces-whole {
   animation: whole-in 1.6s ease both;
 }

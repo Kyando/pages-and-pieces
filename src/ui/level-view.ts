@@ -163,6 +163,7 @@ export class LevelView {
 
   destroy(): void {
     this.resizeObserver.disconnect();
+    this.pieces.destroy();
   }
 
   // ── tracing ─────────────────────────────────────────────────────────────

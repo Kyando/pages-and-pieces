@@ -83,6 +83,9 @@ export class App {
       onChapters: () => this.openChapters(),
     });
     this.main.replaceChildren(this.view.el);
+    // The next chapter's picture, so it's ready when the player gets there.
+    const next = CATALOG[index + 1];
+    if (next) new Image().src = next.def.story.image;
     this.save.settings.lastLevel = entry.def.id;
     this.persist();
   }
