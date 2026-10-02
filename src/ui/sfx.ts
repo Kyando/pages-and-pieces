@@ -25,11 +25,28 @@ export class Sfx {
     this.rustle(0.08, 900, 0.06);
   }
 
+  /** The word chips popping up one by one, each a little higher. */
+  pops(count: number, start: number, step: number): void {
+    const scale = [523, 587, 659, 784, 880, 988, 1047, 1175, 1319, 1568];
+    for (let i = 0; i < count; i++) this.tone(scale[Math.min(i, scale.length - 1)], 0.09, 'triangle', 0.05, start + i * step);
+  }
+
+  /** Cards dealt onto the board: a flick as each leaves, a soft tap as it lands, climbing as the grid fills. */
+  deal(count: number, start: number, step: number, flight: number): void {
+    for (let i = 0; i < count; i++) {
+      const at = start + i * step;
+      this.rustle(0.05, 4200, 0.035, at);
+      this.tone(240 * 2 ** ((i / Math.max(1, count - 1)) * 1.5), 0.05, 'triangle', 0.045, at + flight * 0.86);
+    }
+  }
+
   /** Paper: a short burst of filtered noise. */
-  private rustle(dur = 0.22, freq = 2600, gain = 0.12): void {
+  private rustle(dur = 0.22, freq = 2600, gain = 0.12, delay = 0): void {
     if (!this.enabled) return;
     try {
       this.ctx ??= new AudioContext();
+      // Created before the first touch, it starts suspended: wake it now that there's been one.
+      if (this.ctx.state === 'suspended') void this.ctx.resume();
       const ctx = this.ctx;
       const buffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
       const data = buffer.getChannelData(0);
@@ -43,7 +60,7 @@ export class Sfx {
       const amp = ctx.createGain();
       amp.gain.value = gain;
       src.connect(band).connect(amp).connect(ctx.destination);
-      src.start();
+      src.start(ctx.currentTime + delay);
     } catch {
       // Audio unavailable; stay silent.
     }
@@ -77,6 +94,8 @@ export class Sfx {
     if (!this.enabled) return;
     try {
       this.ctx ??= new AudioContext();
+      // Created before the first touch, it starts suspended: wake it now that there's been one.
+      if (this.ctx.state === 'suspended') void this.ctx.resume();
       const ctx = this.ctx;
       const t = ctx.currentTime + delay;
       const osc = ctx.createOscillator();
