@@ -14,13 +14,23 @@ export class Sfx {
     for (let i = 0; i < length; i++) this.tone(scale[Math.min(i, scale.length - 1)], 0.16, 'sine', 0.045, 0.05 + (i * stagger) / 1000);
   }
 
+  /** A sheet of paper sliding over the desk. */
+  paper(): void {
+    this.rustle(0.4, 1500, 0.09);
+  }
+
+  /** The seal pressed into wax: a soft, low thump. */
+  seal(): void {
+    this.tone(150, 0.18, 'sine', 0.16, 0, 70);
+    this.rustle(0.08, 900, 0.06);
+  }
+
   /** Paper: a short burst of filtered noise. */
-  private rustle(): void {
+  private rustle(dur = 0.22, freq = 2600, gain = 0.12): void {
     if (!this.enabled) return;
     try {
       this.ctx ??= new AudioContext();
       const ctx = this.ctx;
-      const dur = 0.22;
       const buffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
       const data = buffer.getChannelData(0);
       for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length) ** 2;
@@ -28,10 +38,10 @@ export class Sfx {
       src.buffer = buffer;
       const band = ctx.createBiquadFilter();
       band.type = 'bandpass';
-      band.frequency.value = 2600;
+      band.frequency.value = freq;
       band.Q.value = 0.7;
       const amp = ctx.createGain();
-      amp.gain.value = 0.12;
+      amp.gain.value = gain;
       src.connect(band).connect(amp).connect(ctx.destination);
       src.start();
     } catch {

@@ -475,9 +475,8 @@ button {
 }
 
 /* ── Story chapters ───────────────────────────────────────────────────────
-   While playing, the panel lists the words to find. Each found word uncovers its slice of the
-   chapter's illustration, like a Tetris piece of the engraving; at the end the full picture closes
-   over the board and the panel turns into the scene's passage, every word in place. */
+   While playing, the panel lists the words to find. Each found word turns to ink and draws its
+   piece of the chapter's illustration; at the end the picture moves to the desk (see The desk). */
 
 .word-list {
   list-style: none;
@@ -533,42 +532,6 @@ button {
   animation: pop 0.42s cubic-bezier(0.3, 1.7, 0.5, 1);
 }
 
-.passage {
-  display: none;
-  margin: 0;
-  padding: 10px 14px 12px;
-  font-size: 15.5px;
-  line-height: 1.7;
-  text-wrap: pretty;
-}
-
-.story-panel.is-reading .word-list {
-  display: none;
-}
-
-.story-panel.is-reading .passage {
-  display: block;
-}
-
-.story-word {
-  padding: 0 4px;
-  border-radius: 6px;
-  background: var(--trace);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.82em;
-  letter-spacing: 0.06em;
-}
-
-.passage.fade-in {
-  animation: fade-in 0.9s ease-out;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: none; }
-}
-
 /* A found word's tiles fly off (see .fly-tile), leaving their cells empty over the picture's piece. */
 .board .tile.is-found {
   visibility: hidden;
@@ -607,7 +570,6 @@ button {
   transform-box: fill-box;
   transform-origin: center;
 }
-
 
 /* While the chapter is unfinished the picture is a pencil sketch on the panel's paper (see
    sketchFilter), so it sits in the page in either theme. */
@@ -658,31 +620,6 @@ button {
   will-change: transform, opacity;
 }
 
-.picture-caption {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  background: var(--panel) !important;
-  font-size: 16px;
-  letter-spacing: 0.02em;
-}
-
-.picture-caption small {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0;
-  color: var(--ink-soft);
-}
-
-.win-picture {
-  display: block;
-  width: min(100%, 320px);
-  margin: 0 auto 12px;
-  border: 3px solid var(--stroke);
-  border-radius: 8px;
-}
-
 /* ── Phones: the story up top, the board down in thumb reach ── */
 
 @media (max-width: 859px), (max-aspect-ratio: 5/4) {
@@ -708,26 +645,6 @@ button {
   .word-chip {
     padding: 2px 8px;
     font-size: 12px;
-  }
-
-  /* The finished scene scrolls inside the panel, so the picture below keeps its room. */
-  .story-panel.is-reading {
-    max-height: 34vh;
-    overflow-y: auto;
-  }
-
-  .passage {
-    padding: 8px 12px 10px;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .picture-caption {
-    flex-wrap: wrap;
-    justify-content: center;
-    column-gap: 8px;
-    padding: 2px 14px;
-    font-size: 14px;
   }
 
   /* A small board sits in the middle of the free space; a big one fills it down to the thumbs anyway. */
@@ -810,10 +727,6 @@ button {
 
 .btn[hidden] {
   display: none;
-}
-
-.next-btn {
-  animation: bounce-in 0.5s cubic-bezier(0.3, 1.7, 0.5, 1) both;
 }
 
 .btn {
@@ -1061,48 +974,6 @@ button {
   letter-spacing: 2px;
 }
 
-/* Win */
-.win {
-  text-align: center;
-}
-
-.win-art {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  font-size: 34px;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 4px;
-  border-radius: 12px;
-  background: var(--panel-2);
-}
-
-.stat strong {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 800;
-}
-
-.stat span {
-  font-size: 12px;
-  color: var(--ink-soft);
-}
-
-.modal--win .modal-actions {
-  justify-content: center;
-}
-
 .particle {
   position: fixed;
   z-index: 250;
@@ -1186,13 +1057,335 @@ button {
     transition-duration: 1ms !important;
   }
 }
-.win .passage {
-  padding: 0;
-  text-align: left;
+
+
+/* ── The desk ─────────────────────────────────────────────────────────────
+   A finished chapter: the picture the player pieced together lies on the desk as a print, the
+   chapter's scene as an old letter under it, sealed in wax. Nothing is quite straight, and a draft
+   from the window stirs the papers now and then. */
+
+.stage.is-complete .play {
+  display: none;
 }
 
-.win-credit {
-  margin-top: 8px;
+.desk {
+  --letter-ink: #3a2717;
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 14px 6px 0;
+}
+
+/* The letter carries the title now; the heading keeps only the book line and the arrows. */
+.stage.is-complete .chapter h1 {
+  display: none;
+}
+
+/* Warm light from a window, drifting slowly across the desk. */
+.desk::before {
+  content: '';
+  position: fixed;
+  inset: -20% -40%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent 38%, rgb(255 236 190 / 0.38) 46%, rgb(255 236 190 / 0.14) 52%, transparent 60%);
+  animation: window-light 24s ease-in-out infinite alternate;
+}
+
+.desk-items {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.desk-photo,
+.desk-letter {
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+  transform: rotate(var(--tilt));
+}
+
+/* The print. */
+.desk-photo {
+  --tilt: -3deg;
+  z-index: 3;
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 82%;
+  margin-left: 5%;
+}
+
+.desk-photo .desk-sway {
+  position: relative;
+  padding: 9px 9px 34px;
+  background: #fbf5e7;
+  box-shadow:
+    0 1px 1px rgb(60 40 20 / 0.12),
+    0 12px 26px rgb(60 40 20 / 0.28);
+  transform-origin: 30% 10%;
+  animation: breeze-photo 13s ease-in-out infinite;
+}
+
+.desk-photo img {
+  display: block;
+  max-width: 100%;
+  max-height: 46vh;
+  filter: sepia(0.12) contrast(1.03);
+}
+
+.desk-photo figcaption {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 7px;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--letter-ink);
+  padding-right: 34px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The wax seal, pressed where the print overlaps the letter. */
+.desk-seal {
+  position: absolute;
+  right: -16px;
+  bottom: -26px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 47% 53% 50% 48% / 52% 46% 54% 48%;
+  background:
+    radial-gradient(circle at 36% 30%, rgb(255 255 255 / 0.28), transparent 32%),
+    radial-gradient(circle at 50% 55%, #a3262b 0 52%, #7d161c 70%, #6a1117);
+  box-shadow:
+    0 3px 6px rgb(60 10 10 / 0.35),
+    inset 0 -3px 5px rgb(0 0 0 / 0.25);
+}
+
+.desk-seal span {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgb(60 5 8 / 0.45);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.18);
+  font-family: 'IM Fell English', Georgia, serif;
+  font-size: 15px;
+  color: #5a0d12;
+  text-shadow: 0 1px 0 rgb(255 255 255 / 0.25);
+}
+
+/* The letter: laid paper, foxed with age, folded in three. */
+.desk-letter {
+  --tilt: 1.8deg;
+  z-index: 2;
+  align-self: flex-end;
+  width: 90%;
+  margin-top: -34px;
+}
+
+.letter-paper {
+  padding: 46px 22px 22px;
+  background:
+    linear-gradient(180deg, transparent 33.1%, rgb(110 80 40 / 0.07) 33.3%, rgb(255 255 255 / 0.25) 33.6%, transparent 34%, transparent 66.4%, rgb(110 80 40 / 0.07) 66.6%, rgb(255 255 255 / 0.25) 66.9%, transparent 67.3%),
+    radial-gradient(circle at 88% 14%, rgb(150 100 40 / 0.13), transparent 22%),
+    radial-gradient(circle at 12% 86%, rgb(150 100 40 / 0.1), transparent 28%),
+    radial-gradient(ellipse at 50% 50%, transparent 55%, rgb(140 100 50 / 0.16)),
+    repeating-linear-gradient(0deg, rgb(120 90 50 / 0.035) 0 1px, transparent 1px 6px),
+    #f2e4c4;
+  border-radius: 2px 3px 2px 4px;
+  box-shadow:
+    0 1px 1px rgb(60 40 20 / 0.12),
+    0 10px 22px rgb(60 40 20 / 0.22);
+  color: var(--letter-ink);
+  font-family: 'IM Fell English', Georgia, serif;
+  transform-origin: 50% 0;
+  animation: breeze-letter 9s ease-in-out 2s infinite;
+}
+
+.letter-chapter {
+  margin: 0;
+  font-style: italic;
+  font-size: 14px;
+  opacity: 0.75;
+}
+
+.letter-title {
+  margin: 4px 0 12px;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 1.15;
+}
+
+.letter-body {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
+/* The words the player found, in fresher, darker ink. */
+.letter-word {
+  font-style: italic;
+  color: #1f120a;
+  text-shadow: 0 0 0.6px rgb(31 18 10 / 0.6);
+}
+
+.desk.is-arriving .letter-word {
+  animation: ink-in 0.7s ease-out calc(1500ms + var(--i) * 180ms) backwards;
+}
+
+.letter-sign {
+  margin: 16px 0 0;
+  text-align: right;
+  font-style: italic;
+  font-size: 15px;
+}
+
+.letter-sign span {
+  display: block;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* Tapping a paper brings it to the front. */
+.desk.letter-front .desk-letter {
+  z-index: 4;
+}
+
+/* The way on: a silk ribbon bookmark, always peeking at the bottom edge of the desk. */
+.desk-ribbon {
+  position: sticky;
+  bottom: -6px;
+  z-index: 5;
+  align-self: flex-end;
+  margin: 8px 7% 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 150px;
+  padding: 8px 22px 18px;
+  border: 0;
+  background: linear-gradient(90deg, #7d161c, #a3262b 50%, #7d161c);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
+  color: #fbecd7;
+  font-family: 'IM Fell English', Georgia, serif;
+  cursor: pointer;
+  transform: rotate(2deg);
+  transition: transform 0.2s;
+}
+
+.desk-ribbon:hover,
+.desk-ribbon:focus-visible {
+  transform: rotate(2deg) translateY(-2px);
+}
+
+.ribbon-label {
+  font-size: 16px;
+}
+
+.ribbon-title {
+  font-style: italic;
   font-size: 12px;
+  opacity: 0.85;
+}
+
+.desk-links {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 18px;
+}
+
+.desk-link {
+  border: 0;
+  background: none;
+  padding: 4px;
   color: var(--ink-soft);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline dotted 1.5px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+@media (min-width: 860px) and (min-aspect-ratio: 5/4) {
+  .desk-items {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+  }
+
+  .desk-photo {
+    align-self: center;
+    max-width: 48%;
+    margin-left: 0;
+  }
+
+  .desk-photo img {
+    max-height: 64vh;
+  }
+
+  .desk-letter {
+    align-self: center;
+    width: 44%;
+    max-width: 460px;
+    margin: 40px 0 0 -40px;
+  }
+
+  .letter-paper {
+    padding-left: 56px;
+  }
+}
+
+@keyframes window-light {
+  from { transform: translateX(-12%); }
+  to { transform: translateX(12%); }
+}
+
+/* Mostly still; now and then a draft lifts the paper a little. */
+@keyframes breeze-photo {
+  0%, 52%, 100% { transform: none; }
+  60% { transform: rotate(0.9deg) translate(1px, -2px); }
+  68% { transform: rotate(-0.3deg); }
+  74% { transform: rotate(0.4deg) translate(1px, -1px); }
+  84% { transform: none; }
+}
+
+@keyframes breeze-letter {
+  0%, 45%, 100% { transform: none; }
+  55% { transform: perspective(700px) rotateX(-7deg) rotate(-0.6deg); }
+  63% { transform: perspective(700px) rotateX(-1deg); }
+  69% { transform: perspective(700px) rotateX(-4deg) rotate(0.3deg); }
+  80% { transform: none; }
+}
+
+@keyframes ink-in {
+  from { opacity: 0; filter: blur(3px); }
+  to { opacity: 1; filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desk::before,
+  .desk-sway,
+  .desk.is-arriving .letter-word {
+    animation: none;
+  }
 }

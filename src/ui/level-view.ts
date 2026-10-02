@@ -3,6 +3,7 @@ import { adjacent, colOf, rowOf } from '../core/grid.ts';
 import { HOLE_LETTER, matchTrace, type Word } from '../core/puzzle.ts';
 import type { Session } from '../game/session.ts';
 import { t, tn } from '../i18n/index.ts';
+import { Desk } from './desk.ts';
 import { h, svg } from './dom.ts';
 import { replay } from './fx.ts';
 import { ICONS } from './icons.ts';
@@ -10,15 +11,15 @@ import { toast } from './overlay.ts';
 import { INK_STAGGER_MS, inkDuration, PieceLayer } from './pieces.ts';
 import { pieceOutline } from './shape.ts';
 import type { Sfx } from './sfx.ts';
-import { passage } from './story.ts';
 
 export interface LevelViewOptions {
   session: Session;
   sfx: Sfx;
-  onSolved(): void;
   /** Absent on the first / last chapter. */
   onPrev?: () => void;
   onNext?: () => void;
+  /** The next chapter's title, for the finished chapter's desk. */
+  nextTitle?: string;
   /** Where the button leads after the last chapter. */
   onChapters(): void;
 }
@@ -51,11 +52,10 @@ export class LevelView {
   private readonly tiles: HTMLElement[] = [];
   private readonly traceEl: HTMLElement;
   private readonly counter = h('span', { class: 'counter' });
-  private readonly nextBtn: HTMLButtonElement;
+  /** The finished chapter, laid out on the desk. */
+  private desk: Desk | null = null;
   private readonly panel: HTMLElement;
-  private readonly panelLabel: HTMLElement;
   private readonly wordList: HTMLElement;
-  private readonly passageEl: HTMLElement;
   /** Word chips by word index. */
   private readonly chips: HTMLElement[] = [];
   private readonly resizeObserver: ResizeObserver;
@@ -64,8 +64,6 @@ export class LevelView {
   private cellPx = 0;
   /** Cell size the pieces were last drawn at. */
   private piecesCell = 0;
-  /** The panel shows the scene's passage (only once the finished picture has settled). */
-  private reading = false;
   private gapPx = 0;
   private readonly heading: HTMLElement;
 
@@ -93,7 +91,7 @@ export class LevelView {
     ));
 
     // While playing, a compact list of the words to find (alphabetical, so it doesn't spoil the
-    // story's order). Once the chapter is complete, the scene itself: the passage with every word in place.
+    // story's order). The scene itself waits for the end, on the desk.
     this.wordList = h(
       'ul',
       { class: 'word-list', 'aria-label': t('level.words') },
@@ -105,15 +103,13 @@ export class LevelView {
           return chip;
         }),
     );
-    this.passageEl = passage(story, p.words, (w) => h('span', { class: 'story-word' }, w.text));
-    this.panelLabel = h('span', {});
     this.panel = h(
       'section',
       { class: 'story-panel' },
       h(
         'header',
         { class: 'story-head' },
-        this.panelLabel,
+        h('span', {}, t('level.words')),
         h(
           'span',
           { class: 'story-head-end' },
@@ -123,7 +119,6 @@ export class LevelView {
         ),
       ),
       this.wordList,
-      this.passageEl,
     );
     const panel = this.panel;
 
@@ -157,22 +152,17 @@ export class LevelView {
       svg(ICONS.restart),
       h('span', { class: 'btn-label' }, t('level.restart')),
     );
-    // Shown once the chapter is complete: closing the win popup never leaves the player stuck.
-    this.nextBtn = opts.onNext
-      ? h('button', { type: 'button', class: 'btn btn--primary next-btn', onclick: () => opts.onNext!() }, h('span', {}, t('level.nextButton')), svg(ICONS.arrow))
-      : h('button', { type: 'button', class: 'btn btn--primary next-btn', onclick: () => opts.onChapters() }, svg(ICONS.book), h('span', {}, t('level.lastButton')));
-
     this.el = h(
       'main',
       { class: 'stage' },
       heading,
-      h('div', { class: 'play' }, panel, h('div', { class: 'board-area' }, this.boardWrap, h('nav', { class: 'tools' }, restartBtn, this.nextBtn))),
+      h('div', { class: 'play' }, panel, h('div', { class: 'board-area' }, this.boardWrap, h('nav', { class: 'tools' }, restartBtn))),
     );
 
     this.resizeObserver = new ResizeObserver(() => this.fit());
     this.resizeObserver.observe(this.boardWrap);
     this.render();
-    if (this.s.solved) this.revealPicture(false);
+    if (this.s.solved) this.finish(false);
   }
 
   destroy(): void {
@@ -369,10 +359,11 @@ export class LevelView {
   private restart(): void {
     if (!this.s.foundCount) return;
     this.s.reset();
+    this.desk?.el.remove();
+    this.desk = null;
     this.board.classList.remove('is-complete');
     this.el.classList.remove('is-complete');
     this.fit();
-    this.reading = false;
     this.pieces.clear();
     this.flying.clear();
     this.trace = [];
@@ -381,39 +372,64 @@ export class LevelView {
     toast(t('level.restarted'));
   }
 
-  /** The last piece settles, then the gaps between pieces close over the whole illustration. */
+  /**
+   * The last piece settles and the whole picture comes into focus on the board; then it lifts off
+   * onto the desk, where the chapter's scene waits as a letter.
+   */
   private celebrate(): void {
     this.opts.sfx.win();
     navigator.vibrate?.([20, 60, 30]);
-    this.revealPicture(true);
-    window.setTimeout(() => this.opts.onSolved(), 2600);
+    this.finish(true);
   }
 
-  /** The whole picture, still showing its pieces' seams, with its caption above. */
-  private revealPicture(animate: boolean): void {
-    const story = this.s.puzzle.def.story;
+  private finish(animate: boolean): void {
     this.board.classList.add('is-complete');
     this.pieces.showWhole((cell) => this.s.ownerAt(cell), animate);
-    this.traceEl.replaceChildren(h('span', { class: 'trace-pill picture-caption' }, h('strong', {}, story.caption), h('small', {}, story.credit)));
     if (!animate) {
-      this.reading = true;
-      this.el.classList.add('is-complete');
-      this.render();
-      this.fit();
+      void this.openDesk(false);
       return;
     }
-    replay(this.traceEl.firstElementChild as HTMLElement, 'is-new');
-    // The scene's passage takes more room than the word list, which shrinks the board: wait until
-    // the picture has settled, so the resize never cuts its animation short.
     window.setTimeout(() => {
-      if (!this.s.solved) return;
-      this.reading = true;
-      // The caption settles above the board, beside the scene.
+      if (this.s.solved && !this.desk) void this.openDesk(true);
+    }, 1900);
+  }
+
+  private async openDesk(animate: boolean): Promise<void> {
+    const def = this.s.puzzle.def;
+    const from = animate ? this.board.getBoundingClientRect() : null;
+    this.desk = new Desk({
+      def,
+      words: this.s.puzzle.words,
+      image: this.pieces.picture,
+      nextTitle: this.opts.nextTitle,
+      onNext: () => (this.opts.onNext ?? this.opts.onChapters)(),
+      onRestart: () => this.restart(),
+      onShare: () => {
+        const text = t('desk.shareText', { game: t('game.name'), book: BOOKS[def.book].title, chapter: def.chapter, title: def.title });
+        navigator.clipboard?.writeText(text).then(
+          () => toast(t('desk.copied')),
+          () => toast(t('desk.copyFailed')),
+        );
+      },
+    });
+    const desk = this.desk;
+    if (!animate) {
       this.el.classList.add('is-complete');
-      this.render();
-      this.fit();
-      replay(this.passageEl, 'fade-in');
-    }, 1500);
+      this.el.append(desk.el);
+      return;
+    }
+    await desk.ready();
+    if (this.desk !== desk) return;
+    this.el.classList.add('is-complete');
+    this.el.append(desk.el);
+    const at = desk.arrive(from);
+    const sfx = this.opts.sfx;
+    sfx.paper();
+    window.setTimeout(() => sfx.paper(), at.letter);
+    window.setTimeout(() => {
+      sfx.seal();
+      navigator.vibrate?.(18);
+    }, at.seal);
   }
 
   // ── rendering ───────────────────────────────────────────────────────────
@@ -442,15 +458,10 @@ export class LevelView {
     if (this.trace.length) this.showTrace(this.trace.map((c) => p.letters[c]).join(''));
     this.board.classList.toggle('is-tracing', this.trace.length > 0);
     p.words.forEach((w) => this.chips[w.index].classList.toggle('is-found', this.s.isFound(w.index) && !this.flying.has(w.index)));
-    // The words list while playing; the scene itself once the picture is complete.
-    this.panel.classList.toggle('is-reading', this.reading);
-    this.panelLabel.textContent = t(this.reading ? 'level.passage' : 'level.words');
     this.counter.textContent = tn('level.wordCount', p.words.length, { found: this.s.foundCount });
-    this.nextBtn.hidden = !this.s.solved;
     this.drawTrace();
   }
 
-  /** A pencil line along the live trace; found words show their picture instead. */
   /**
    * The word being traced is a piece in the making: its tiles join into one kraft-paper shape (the
    * same shape its piece of the picture will take), drawn under the letters.

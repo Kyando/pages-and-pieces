@@ -110,6 +110,11 @@ export class PieceLayer {
       .catch(() => undefined);
   }
 
+  /** The picture's address: the local copy once it has downloaded. */
+  get picture(): string {
+    return this.href;
+  }
+
   /** Frees the local copy of the picture. */
   destroy(): void {
     this.destroyed = true;

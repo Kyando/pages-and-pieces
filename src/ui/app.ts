@@ -1,20 +1,16 @@
 import { BOOKS } from '../core/books.ts';
 import { emptyProgress, loadSave, writeSave, type LevelProgress } from '../game/save.ts';
 import { Session } from '../game/session.ts';
-import { detectLocale, setLocale, t, tn, type MessageKey } from '../i18n/index.ts';
+import { detectLocale, setLocale, t, type MessageKey } from '../i18n/index.ts';
 import { CATALOG } from '../levels/catalog.ts';
 import { h, svg } from './dom.ts';
 import { ICONS } from './icons.ts';
 import { LevelView } from './level-view.ts';
-import { openModal, toast } from './overlay.ts';
+import { openModal } from './overlay.ts';
 import { Sfx } from './sfx.ts';
-import { passage } from './story.ts';
 
 const iconButton = (label: string, glyph: string, onClick: () => void) =>
   h('button', { type: 'button', class: 'icon-btn', 'aria-label': label, title: label, onclick: onClick }, svg(glyph));
-
-/** "ELIZABETH" → "Elizabeth", for the finished passage. */
-const asWritten = (word: string) => word.charAt(0) + word.slice(1).toLowerCase();
 
 export class App {
   private readonly save = loadSave();
@@ -73,9 +69,9 @@ export class App {
     this.view = new LevelView({
       session,
       sfx: this.sfx,
-      onSolved: () => this.showWin(session),
       onPrev: index > 0 ? () => this.openLevel(index - 1) : undefined,
       onNext: index < CATALOG.length - 1 ? () => this.openLevel(index + 1) : undefined,
+      nextTitle: CATALOG[index + 1]?.def.title,
       onChapters: () => this.openChapters(),
     });
     this.main.replaceChildren(this.view.el);
@@ -162,42 +158,6 @@ export class App {
         ),
       ),
       actions: [h('button', { type: 'button', class: 'btn btn--primary', onclick: (e: Event) => (e.target as HTMLElement).closest('dialog')?.close() }, t('help.go'))],
-    });
-  }
-
-  private showWin(session: Session): void {
-    const { def, words } = session.puzzle;
-    const misses = session.progress.misses;
-    const hasNext = this.index < CATALOG.length - 1;
-    const book = BOOKS[def.book];
-    const stat = (value: number, label: string) => h('div', { class: 'stat' }, h('strong', {}, String(value)), h('span', {}, label));
-
-    const share = () => {
-      const verdict = misses === 0 ? t('win.flawless') : tn('win.missCount', misses);
-      const text = t('win.shareText', { game: t('game.name'), book: book.title, chapter: def.chapter, verdict });
-      navigator.clipboard?.writeText(text).then(
-        () => toast(t('win.copied')),
-        () => toast(t('win.copyFailed')),
-      );
-    };
-
-    const modal = openModal({
-      title: t('win.title'),
-      className: 'modal--win',
-      body: h(
-        'div',
-        { class: 'win' },
-        h('img', { class: 'win-picture', src: def.story.image, alt: def.story.caption }),
-        passage(def.story, words, (w) => h('strong', {}, asWritten(w.text))),
-        h('p', { class: 'win-credit' }, `“${def.story.caption}”, ${def.story.credit}`),
-        h('div', { class: 'stats' }, stat(words.length, tn('win.words', words.length)), stat(misses, tn('win.misses', misses))),
-      ),
-      actions: [
-        h('button', { type: 'button', class: 'btn', onclick: share }, svg(ICONS.share), h('span', {}, t('win.share'))),
-        hasNext
-          ? h('button', { type: 'button', class: 'btn btn--primary', onclick: () => { modal.close(); this.openLevel(this.index + 1); } }, h('span', {}, t('win.next')), svg(ICONS.arrow))
-          : h('button', { type: 'button', class: 'btn btn--primary', onclick: () => { modal.close(); this.openChapters(); } }, h('span', {}, t('win.chapters'))),
-      ],
     });
   }
 
