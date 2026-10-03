@@ -21,7 +21,9 @@ npm run dev
 
 ## Paper edition
 
-`print.html` lays chapters out as A4 pages to print and play with a pencil: the scene with a letter box per missing word, the words to find and the grid on the front; overleaf, the chapter's illustration and the whole scene. Printed double-sided, turning the page reveals the picture. It opens with how to play and ends with the answers and a page of playtest questions. `?levels=1-4` picks the chapters (the first four by default). A ready-made PDF of the first four is in `docs/print/`.
+`print.html` lays chapters out as A4 pages to print and play with a pencil: the scene with a letter box per missing word and the grid on the front; overleaf, the chapter's illustration and the whole scene. Printed double-sided, turning the page reveals the picture. It opens with how to play and ends with the answers and a page of playtest questions.
+
+How much help each page gives is set in its toolbar (and kept in the URL): the word list above the grid, upside down at the foot or only at the back (`list=above|foot|back`); one word per scene already written in and shaded on the grid (`given=1`); every word's first letter (`firsts=1`); start dots on the grid (`dots=1`). `levels=1-4` picks the chapters. Two versions of the first four chapters are in `docs/print/`: A with the word list, B with story clues (list upside down, one word given, first letters).
 
 ## Chapters
 
