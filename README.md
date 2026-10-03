@@ -1,4 +1,4 @@
-# Pages & Pieces
+# Twice Told Tales
 
 A word puzzle that retells classic books, one illustrated chapter at a time.
 

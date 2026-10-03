@@ -1,6 +1,6 @@
 /** English interface text. Other languages copy these keys; `Messages` keeps them complete. */
 export const en = {
-  'game.name': 'Pages & Pieces',
+  'game.name': 'Twice Told Tales',
 
   'top.library': 'All chapters',
   'top.help': 'How to play',
