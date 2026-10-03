@@ -1,0 +1,59 @@
+{
+  "id": "pp-58-taught-to-hope",
+  "book": "pride-and-prejudice",
+  "chapter": 58,
+  "title": "Taught to Hope",
+  "rows": 7,
+  "cols": 7,
+  "grid": [
+    "YEMOBIN",
+    "LSIRPLG",
+    "KNCAYEN",
+    "RADTMIE",
+    "FLEHESK",
+    "HBEPRTA",
+    "UMHOINE"
+  ],
+  "words": [
+    {
+      "text": "CATHERINE",
+      "path": [16, 17, 24, 31, 32, 39, 46, 47, 48]
+    },
+    {
+      "text": "PROMISE",
+      "path": [11, 10, 3, 2, 9, 8, 1]
+    },
+    {
+      "text": "HOPE",
+      "path": [44, 45, 38, 37]
+    },
+    {
+      "text": "FRANKLY",
+      "path": [28, 21, 22, 15, 14, 7, 0]
+    },
+    {
+      "text": "BINGLEY",
+      "path": [4, 5, 6, 13, 12, 19, 18]
+    },
+    {
+      "text": "MISTAKEN",
+      "path": [25, 26, 33, 40, 41, 34, 27, 20]
+    },
+    {
+      "text": "HUMBLED",
+      "path": [35, 42, 43, 36, 29, 30, 23]
+    }
+  ],
+  "story": {
+    "text": "On that long walk, Darcy tells his side. Lady {CATHERINE} went straight to him in London with Elizabeth’s refusal to {PROMISE}. “It taught me to {HOPE},” he says: had she been decided against him, she would have said so {FRANKLY}. He has told {BINGLEY} he was {MISTAKEN} about Jane. And the proud man of Hunsford owns his fault: “By you, I was properly {HUMBLED}.”",
+    "image": "art/thomson-1894/ch58-i_477_a.jpg",
+    "caption": "The efforts of his aunt",
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

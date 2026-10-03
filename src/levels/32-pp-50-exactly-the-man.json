@@ -1,0 +1,54 @@
+{
+  "id": "pp-50-exactly-the-man",
+  "book": "pride-and-prejudice",
+  "chapter": 50,
+  "title": "Exactly the Man",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "SHBRREP",
+    "MASOEHO",
+    "EIPTHSE",
+    "SSDMOAG",
+    "OENPCIR",
+    "GHERCAR"
+  ],
+  "words": [
+    {
+      "text": "GOSSIPS",
+      "path": [35, 28, 21, 22, 15, 16, 9]
+    },
+    {
+      "text": "CARRIAGES",
+      "path": [39, 40, 41, 34, 33, 26, 27, 20, 19]
+    },
+    {
+      "text": "SHAME",
+      "path": [0, 1, 8, 7, 14]
+    },
+    {
+      "text": "BROTHER",
+      "path": [2, 3, 10, 17, 18, 11, 4]
+    },
+    {
+      "text": "HOPE",
+      "path": [12, 13, 6, 5]
+    },
+    {
+      "text": "COMPREHEND",
+      "path": [32, 25, 24, 31, 38, 37, 36, 29, 30, 23]
+    }
+  ],
+  "story": {
+    "text": "Meryton’s spiteful old {GOSSIPS} are disappointed: Lydia is to be married after all, not ruined. Mrs. Bennet is already choosing {CARRIAGES} and houses for her. Elizabeth only feels {SHAME}. Darcy could never wish to be {BROTHER} to Wickham now, and just as every {HOPE} is gone, she begins to {COMPREHEND} that he was exactly the man who would most suit her.",
+    "image": "art/thomson-1894/ch50-i_406_a.jpg",
+    "caption": "The spiteful old ladies",
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0,
+      1,
+      0.895
+    ]
+  }
+}

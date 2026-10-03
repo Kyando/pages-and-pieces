@@ -6,7 +6,7 @@ Each chapter is a scene from the book. Its key words are listed above the grid, 
 
 The game opens on the library: the book's chapters as prints on a table, volume by volume. Finished chapters show their illustration, the next one waits as a blank sheet, and the rest stay face down until the story reaches them.
 
-The first book is **Pride and Prejudice** (Jane Austen, 1813): 38 chapters covering the whole story, with Hugh Thomson's 1894 illustrations and, where he left a scene undrawn, C. E. Brock's from 1895. The passages retell each scene in plain modern English and keep Austen's best-known lines.
+The first book is **Pride and Prejudice** (Jane Austen, 1813): 42 chapters covering the whole story, with Hugh Thomson's 1894 illustrations and, where he left a scene undrawn, C. E. Brock's from 1895. The passages retell each scene in plain modern English and keep Austen's best-known lines.
 
 ## Playing
 

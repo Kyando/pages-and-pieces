@@ -1,0 +1,47 @@
+{
+  "id": "pp-61-ever-after",
+  "book": "pride-and-prejudice",
+  "chapter": 61,
+  "title": "Ever After",
+  "rows": 5,
+  "cols": 8,
+  "grid": [
+    "SKMISULK",
+    "OOSSYGNI",
+    "BYEPENSP",
+    "LESEGOME",
+    "REBMNIDN"
+  ],
+  "words": [
+    {
+      "text": "MISSES",
+      "path": [2, 3, 11, 10, 18, 26]
+    },
+    {
+      "text": "PEMBERLEY",
+      "path": [19, 27, 35, 34, 33, 32, 24, 25, 17]
+    },
+    {
+      "text": "BOOKS",
+      "path": [16, 8, 9, 1, 0]
+    },
+    {
+      "text": "MONEY",
+      "path": [30, 29, 21, 20, 12]
+    },
+    {
+      "text": "SPENDING",
+      "path": [22, 23, 31, 39, 38, 37, 36, 28]
+    },
+    {
+      "text": "SULKING",
+      "path": [4, 5, 6, 7, 15, 14, 13]
+    }
+  ],
+  "story": {
+    "text": "Mrs. Bennet is happy at last, with two daughters so well married. Mr. Bennet {MISSES} Lizzy, and loves to turn up at {PEMBERLEY} when least expected. Kitty, kept away from Lydia, grows far less silly. Mary stays at home with her {BOOKS}. Lydia writes only to ask for {MONEY}, for the Wickhams never stop {SPENDING}. Even Lady Catherine, after long {SULKING}, comes to visit.",
+    "image": "art/thomson-1894/ch61-i_501_a.jpg",
+    "caption": "Seeing them off",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

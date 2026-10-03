@@ -22,6 +22,8 @@ Each level retells one scene in about 60 words and hides 6–9 words. One level 
 
 Built (2026-10-02): **38 levels**, the whole story. Every core scene is in, some merged (Bingley leaving London folds into Charlotte's engagement; the letter is two levels; the second proposal and telling Jane are one), plus the full-tier scenes for chapters 9, 20 and 31. Scenes without a Thomson drawing on Commons use C. E. Brock's 1895 plates.
 
+Updated (2026-10-03): **42 levels**. Four turning points added so the story holds together for a first-time reader: the sisters keep Wickham's secret (ch. 40), Elizabeth sees Darcy is exactly the man for her (ch. 50), Darcy's side of the second proposal (ch. 58: Lady Catherine taught him to hope, he set Bingley right) and what became of everyone (ch. 61). Chapter 45's "one of the handsomest women of my acquaintance" joins the Miss Darcy passage in plain text. Thomson's drawings now come from the complete Gutenberg edition, served from public/art.
+
 ## Scene list
 
 **C** = core, **F** = full tier. Illustration = the caption of the Thomson drawing nearest to the scene. ✓ = level already built.
