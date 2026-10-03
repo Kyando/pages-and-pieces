@@ -10,10 +10,12 @@
     "preview": "vite preview",
     "test": "vitest run",
     "levels:generate": "node scripts/generate-levels.ts",
-    "deploy": "node scripts/deploy-pages.ts"
+    "deploy": "node scripts/deploy-pages.ts",
+    "art:fetch": "node scripts/fetch-art.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.0",
+    "sharp": "^0.35.5",
     "typescript": "^7.0.2",
     "vite": "^8.3.0",
     "vitest": "^5.0.1"

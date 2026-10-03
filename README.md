@@ -40,4 +40,4 @@ Book content (passages, and the words in the grid) is per language too. A transl
 
 ## Rights
 
-Only public-domain texts and illustrations: Austen's text, Thomson's 1894 drawings (he died in 1920) and Brock's 1895 drawings (he died in 1938). For now the images load from Wikimedia Commons, and the page scans are trimmed in the browser. Before release they should ship with the game, as cleaned-up crops.
+Only public-domain texts and illustrations: Austen's text, Thomson's 1894 drawings (he died in 1920) and Brock's 1895 drawings (he died in 1938). The game serves its own copies from `public/art/`: all of Thomson's edition from Project Gutenberg (ebook #1342: every plate, chapter heading and illustrated initial), plus the Thomson and Brock scans on Wikimedia Commons. `npm run art:fetch` downloads them again, and `public/art/catalog.json` records each picture's chapter, caption and source. Page scans are trimmed in the browser with each level's `crop`.

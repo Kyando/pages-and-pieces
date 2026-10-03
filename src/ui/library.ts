@@ -29,7 +29,7 @@ function cover(def: LevelDef): Promise<string> {
   if (!crop) return Promise.resolve(thumb);
   let made = covers.get(image);
   if (!made) {
-    made = loadPicture(thumb, crop)
+    made = loadPicture(thumb, crop, 330)
       .then((blob) => URL.createObjectURL(blob))
       .catch(() => thumb);
     covers.set(image, made);
