@@ -1,6 +1,6 @@
 import { colOf, rowOf } from '../core/grid.ts';
 import { pieceOutline } from './shape.ts';
-import { loadPicture, type Crop } from './picture.ts';
+import { loadPicture, sketchPicture, type Crop } from './picture.ts';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 let uid = 0;
@@ -25,6 +25,8 @@ const el = <K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, 
  * become strokes in pencil (the paper drops out), wobbled a little as if a hand
  * drew them and broken up by grain. It sits quietly in the page, and comes into focus as the
  * real picture only when the chapter is complete. The colour comes from CSS (`.piece-pencil`).
+ * Only a fallback: normally the sketch is drawn once as an image (see sketchPicture), since a live
+ * filter makes Safari stutter.
  */
 function sketchFilter(id: string): SVGFilterElement {
   const filter = el('filter', { id, x: 0, y: 0, width: '100%', height: '100%', 'color-interpolation-filters': 'sRGB' });
@@ -46,6 +48,42 @@ function sketchFilter(id: string): SVGFilterElement {
   return filter;
 }
 
+/** The pencil's colour, from the theme (--pencil). */
+function pencilColour(): [number, number, number] {
+  const probe = document.createElement('span');
+  probe.style.color = 'var(--pencil, #5b4a3c)';
+  document.body.append(probe);
+  const m = getComputedStyle(probe).color.match(/\d+(\.\d+)?/g)?.map(Number) ?? [91, 74, 60];
+  probe.remove();
+  return [m[0], m[1], m[2]];
+}
+
+/**
+ * An ink blot's outline: a ragged ring of bumps around (x, y), drawn as one smooth path. Its
+ * roughness is in the shape itself, so growing it costs nothing to draw.
+ */
+function blotPath(x: number, y: number, r: number): string {
+  const n = 13;
+  const pts = Array.from({ length: n }, (_, i) => {
+    const a = (i / n) * Math.PI * 2 + Math.random() * 0.25;
+    const reach = r * (0.78 + Math.random() * 0.34);
+    return [x + Math.cos(a) * reach, y + Math.sin(a) * reach];
+  });
+  const mid = (i: number) => {
+    const [ax, ay] = pts[i % n];
+    const [bx, by] = pts[(i + 1) % n];
+    return [(ax + bx) / 2, (ay + by) / 2];
+  };
+  const f = (v: number) => v.toFixed(1);
+  let d = `M${f(mid(0)[0])},${f(mid(0)[1])}`;
+  for (let i = 1; i <= n; i++) {
+    const [cx, cy] = pts[i % n];
+    const [mx, my] = mid(i);
+    d += `Q${f(cx)},${f(cy)} ${f(mx)},${f(my)}`;
+  }
+  return d + 'Z';
+}
+
 interface Layout {
   rows: number;
   cols: number;
@@ -65,6 +103,8 @@ export class PieceLayer {
   private href: string;
   private readonly source: string;
   private blobUrl: string | null = null;
+  /** The pencil sketch, drawn once from the picture; until then (or if it can't be) a live filter stands in. */
+  private sketch: string | null = null;
   private destroyed = false;
   private readonly id = `pieces-${++uid}`;
   private readonly defs: SVGDefsElement;
@@ -73,10 +113,6 @@ export class PieceLayer {
   /** Drawn pieces, by word index. */
   private readonly drawn = new Map<number, SVGGElement>();
   private layout: Layout | null = null;
-  /** Roughens the ink blots' edges, scaled to the cells (see setLayout). */
-  private readonly ragged: SVGFilterElement;
-  private readonly raggedNoise: SVGFETurbulenceElement;
-  private readonly raggedShift: SVGFEDisplacementMapElement;
 
   /** `crop` trims a scanned page down to its drawing; such a picture only shows once it's trimmed. */
   constructor(image: string, crop?: Crop) {
@@ -84,12 +120,8 @@ export class PieceLayer {
     this.href = crop ? '' : image;
     this.preload(image, crop);
     this.el = el('svg', { class: 'pieces', 'aria-hidden': 'true' });
-    this.ragged = el('filter', { id: `${this.id}-ragged`, x: '-40%', y: '-40%', width: '180%', height: '180%' });
-    this.raggedNoise = el('feTurbulence', { type: 'fractalNoise', baseFrequency: 0.05, numOctaves: 3, seed: 11, result: 'noise' });
-    this.raggedShift = el('feDisplacementMap', { in: 'SourceGraphic', in2: 'noise', scale: 20, xChannelSelector: 'R', yChannelSelector: 'G' });
-    this.ragged.append(this.raggedNoise, this.raggedShift);
     this.defs = el('defs');
-    this.defs.append(sketchFilter(`${this.id}-sketch`), this.ragged);
+    this.defs.append(sketchFilter(`${this.id}-sketch`));
     this.piecesG = el('g');
     this.wholeG = el('g', { class: 'pieces-whole' });
     this.el.append(this.defs, this.piecesG, this.wholeG);
@@ -105,13 +137,30 @@ export class PieceLayer {
         if (this.destroyed) return;
         this.blobUrl = URL.createObjectURL(blob);
         this.show(this.blobUrl);
+        return sketchPicture(blob, pencilColour()).then((drawn) => {
+          if (this.destroyed) return;
+          this.sketch = URL.createObjectURL(drawn);
+          this.el.querySelectorAll('image.piece-pic').forEach((n) => this.sketchOn(n as SVGImageElement));
+        });
       })
       .catch(() => this.show(image));
   }
 
   private show(href: string): void {
     this.href = href;
-    this.el.querySelectorAll('image').forEach((n) => n.setAttribute('href', href));
+    this.el.querySelectorAll('image:not(.is-sketch)').forEach((n) => n.setAttribute('href', href));
+  }
+
+  /** Shows a piece's picture as the drawn sketch, or the live filter while there's none. */
+  private sketchOn(image: SVGImageElement): void {
+    if (this.sketch) {
+      image.setAttribute('href', this.sketch);
+      image.removeAttribute('filter');
+      image.classList.add('is-sketch');
+    } else {
+      image.setAttribute('href', this.href);
+      image.setAttribute('filter', `url(#${this.id}-sketch)`);
+    }
   }
 
   /** The picture's address: the local copy once it has downloaded. */
@@ -123,6 +172,7 @@ export class PieceLayer {
   destroy(): void {
     this.destroyed = true;
     if (this.blobUrl) URL.revokeObjectURL(this.blobUrl);
+    if (this.sketch) URL.revokeObjectURL(this.sketch);
   }
 
   /** Sizes the layer to the board. Clears it: the caller redraws what's found, without animation. */
@@ -134,8 +184,6 @@ export class PieceLayer {
     this.el.setAttribute('viewBox', `0 0 ${w} ${h}`);
     this.el.setAttribute('width', String(w));
     this.el.setAttribute('height', String(h));
-    this.raggedNoise.setAttribute('baseFrequency', String(+(3.2 / cell).toFixed(4)));
-    this.raggedShift.setAttribute('scale', String(Math.round(cell * 0.42)));
     this.clear();
   }
 
@@ -143,7 +191,7 @@ export class PieceLayer {
   clear(): void {
     this.drawn.forEach((g) => g.remove());
     this.drawn.clear();
-    this.defs.querySelectorAll('clipPath, mask, filter[id*="-bleed-"]').forEach((c) => c.remove());
+    this.defs.querySelectorAll('clipPath, mask').forEach((c) => c.remove());
     this.wholeG.replaceChildren();
     this.el.classList.remove('is-whole');
   }
@@ -171,7 +219,8 @@ export class PieceLayer {
     const paper = el('path', { class: 'piece-paper', d });
     // The picture inside a group: the group clips (crisp edges), the image itself takes the sketch filter.
     const pic = el('g', { 'clip-path': `url(#${clipId})` });
-    const image = el('image', { class: 'piece-pic', href: this.href, filter: `url(#${this.id}-sketch)`, x: 0, y: 0, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice' });
+    const image = el('image', { class: 'piece-pic', x: 0, y: 0, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice' });
+    this.sketchOn(image);
     pic.append(image);
     const line = el('path', { class: 'piece-line', d });
     g.append(paper, pic, line);
@@ -192,13 +241,13 @@ export class PieceLayer {
     // The ink's reach: a blot per letter, growing from where it fell, with ragged edges.
     const maskId = `${this.id}-ink-${++uid}`;
     const mask = el('mask', { id: maskId, maskUnits: 'userSpaceOnUse', x: -cell, y: -cell, width: '200%', height: '200%' });
-    const blots = el('g', { filter: `url(#${this.id}-ragged)` });
+    const blots = el('g');
     mask.append(blots);
     this.defs.append(mask);
     temp.push(mask);
     path.forEach((c, i) => {
       const [x, y] = center(c);
-      const blot = el('circle', { class: 'ink-blot', cx: x, cy: y, r: cell * 0.98, fill: '#fff' });
+      const blot = el('path', { class: 'ink-blot', d: blotPath(x, y, cell * 0.98), fill: '#fff' });
       blots.append(blot);
       blot.animate(
         [
@@ -211,34 +260,20 @@ export class PieceLayer {
     });
     image.setAttribute('mask', `url(#${maskId})`);
 
-    // The letters themselves, left on the paper by their tiles: each softens and bleeds into a drop.
+    // The letters themselves, left on the paper by their tiles: each thickens as it soaks in, and fades.
     const ink = el('g', { class: 'piece-letters' });
     g.insertBefore(ink, line);
     temp.push(ink);
     path.forEach((c, i) => {
       const [x, y] = center(c);
-      const bleedId = `${this.id}-bleed-${++uid}`;
-      const bleed = el('filter', { id: bleedId, x: '-50%', y: '-50%', width: '200%', height: '200%' });
-      const grow = el('feMorphology', { operator: 'dilate', radius: 0 });
-      const blur = el('feGaussianBlur', { stdDeviation: 0 });
-      const animate = (node: Element, attributeName: string, to: number) => {
-        const a = el('animate', { attributeName, from: 0, to, dur: `${INK_MELT_MS}ms`, begin: 'indefinite', fill: 'freeze' });
-        node.append(a);
-        return a;
-      };
-      const starts = [animate(grow, 'radius', cell * 0.05), animate(blur, 'stdDeviation', cell * 0.09)];
-      bleed.append(grow, blur);
-      this.defs.append(bleed);
-      temp.push(bleed);
-      const letter = el('text', { class: 'piece-letter', x, y, 'font-size': cell * 0.48, filter: `url(#${bleedId})` });
+      const letter = el('text', { class: 'piece-letter', x, y, 'font-size': cell * 0.48 });
       letter.textContent = letters[i];
       ink.append(letter);
-      starts.forEach((a) => a.beginElementAt((spot(i) + 60) / 1000));
       letter.animate(
         [
-          { opacity: 1, transform: 'translateY(0) scale(1)' },
-          { opacity: 0.9, transform: `translateY(${cell * 0.03}px) scale(1.06)`, offset: 0.35 },
-          { opacity: 0, transform: `translateY(${cell * 0.1}px) scale(1.25)` },
+          { opacity: 1, transform: 'translateY(0) scale(1)', strokeWidth: '0px' },
+          { opacity: 0.9, transform: `translateY(${cell * 0.03}px) scale(1.06)`, strokeWidth: `${cell * 0.05}px`, offset: 0.35 },
+          { opacity: 0, transform: `translateY(${cell * 0.1}px) scale(1.25)`, strokeWidth: `${cell * 0.1}px` },
         ],
         { duration: INK_MELT_MS, delay: spot(i) + 60, easing: 'ease-in', fill: 'both' },
       );

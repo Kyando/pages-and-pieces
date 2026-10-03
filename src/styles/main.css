@@ -566,6 +566,8 @@ button {
   dominant-baseline: central;
   transform-box: fill-box;
   transform-origin: center;
+  stroke: var(--ink);
+  stroke-linejoin: round;
 }
 
 .ink-blot {
