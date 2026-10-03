@@ -10,7 +10,7 @@ export type ChapterState = 'done' | 'open' | 'locked';
 
 export interface LibraryOptions {
   chapters: { def: LevelDef; state: ChapterState }[];
-  /** The chapter to pick up: the one in progress, or the first not yet read. */
+  /** The chapter to pick up: the first not yet finished. */
   current: number;
   onOpen(index: number): void;
   /** Wipes the player's progress; offered only once they have some. */

@@ -23,6 +23,11 @@ export class App {
   private view: LevelView | Library | null = null;
   /** The chapter open, or -1 in the library. */
   private index = -1;
+  /**
+   * Chapters started since leaving the library, so the arrows can step away (to look back at the
+   * story) and return to the board as it was. Never saved: forgotten back in the library.
+   */
+  private readonly playing = new Map<string, LevelProgress>();
 
   constructor(root: HTMLElement) {
     setLocale(detectLocale());
@@ -66,21 +71,18 @@ export class App {
   }
 
   /**
-   * Chapters open in order: the first, any already started or finished, and the one after a
-   * finished chapter. Names are only hidden once the story has introduced them, so it reads in order.
+   * Chapters open in order: the first, any finished, and the one after a finished chapter. Names
+   * are only hidden once the story has introduced them, so it reads in order.
    */
   private stateOf(index: number): ChapterState {
-    const progress = this.save.levels[CATALOG[index].def.id];
-    if (progress?.done) return 'done';
+    if (this.save.levels[CATALOG[index].def.id]?.done) return 'done';
     const prev = CATALOG[index - 1];
-    if (!prev || progress?.found.length || this.save.levels[prev.def.id]?.done) return 'open';
+    if (!prev || this.save.levels[prev.def.id]?.done) return 'open';
     return 'locked';
   }
 
-  /** Where to pick up: the last chapter played if it isn't finished, else the first open one; -1 once the book is done. */
+  /** Where to pick up: the first chapter not yet finished; -1 once the book is done. */
   private currentChapter(): number {
-    const last = CATALOG.findIndex((l) => l.def.id === this.save.settings.lastLevel);
-    if (last >= 0 && this.stateOf(last) === 'open') return last;
     return CATALOG.findIndex((_, i) => this.stateOf(i) === 'open');
   }
 
@@ -97,12 +99,13 @@ export class App {
   private openLibrary(): void {
     if (this.view instanceof Library) return;
     this.index = -1;
+    this.playing.clear();
     this.libraryBtn.classList.add('is-here');
     const library = new Library({
       chapters: CATALOG.map((entry, i) => ({ def: entry.def, state: this.stateOf(i) })),
       current: this.currentChapter(),
       onOpen: (i) => this.openLevel(i),
-      onErase: Object.values(this.save.levels).some((p) => p.found.length || p.done) ? () => this.confirmErase() : undefined,
+      onErase: Object.keys(this.save.levels).length ? () => this.confirmErase() : undefined,
     });
     this.show(library, false);
     library.reveal();
@@ -115,8 +118,20 @@ export class App {
     this.libraryBtn.classList.remove('is-here');
     this.index = index;
     const entry = CATALOG[index];
-    const progress: LevelProgress = (this.save.levels[entry.def.id] ??= emptyProgress());
-    const session = new Session(entry.puzzle, progress, () => this.persist());
+    const id = entry.def.id;
+    // A chapter opens new, or finished; or as it was left, if the arrows only stepped away from it.
+    let progress = this.playing.get(id);
+    if (!progress) {
+      progress = this.save.levels[id]?.done
+        ? { found: entry.puzzle.words.map((w) => w.text), done: true, misses: 0 }
+        : emptyProgress();
+      this.playing.set(id, progress);
+    }
+    const session = new Session(entry.puzzle, progress, () => {
+      if (!progress.done || this.save.levels[id]) return;
+      this.save.levels[id] = { done: true };
+      this.persist();
+    });
     const hasNext = index < CATALOG.length - 1;
     const view = new LevelView({
       session,
@@ -132,8 +147,6 @@ export class App {
     // The next chapter's picture, so it's ready when the player gets there.
     const next = CATALOG[index + 1];
     if (next) new Image().src = next.def.story.image;
-    this.save.settings.lastLevel = entry.def.id;
-    this.persist();
   }
 
   // ── modals ──────────────────────────────────────────────────────────────
@@ -173,7 +186,6 @@ export class App {
         h('button', { type: 'button', class: 'btn btn--danger', onclick: () => {
           modal.close();
           this.save.levels = {};
-          this.save.settings.lastLevel = null;
           this.persist();
           const library = this.view;
           this.view = null;
