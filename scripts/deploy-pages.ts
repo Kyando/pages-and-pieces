@@ -16,7 +16,7 @@ const sha = read('git rev-parse --short HEAD');
 
 run('npm run build');
 
-const dir = mkdtempSync(join(tmpdir(), 'pages-and-pieces-pages-'));
+const dir = mkdtempSync(join(tmpdir(), 'twice-told-tales-pages-'));
 try {
   cpSync(join(root, 'dist'), dir, { recursive: true });
   writeFileSync(join(dir, '.nojekyll'), '');

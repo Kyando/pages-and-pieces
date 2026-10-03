@@ -16,7 +16,7 @@ import sharp from 'sharp';
 
 const root = join(import.meta.dirname, '..');
 const out = join(root, 'public', 'art');
-const UA = { 'User-Agent': 'pages-and-pieces/0.1 (https://github.com/Kyando/pages-and-pieces; public-domain illustrations)' };
+const UA = { 'User-Agent': 'twice-told-tales/0.1 (https://github.com/Kyando/twice-told-tales; public-domain illustrations)' };
 /** Longest side kept: sharp on a phone's screen, light enough to ship. */
 const MAX = 1600;
 
