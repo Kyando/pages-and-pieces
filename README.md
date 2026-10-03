@@ -19,6 +19,10 @@ npm run dev
 - `npm run build`: production build in `dist/`
 - `npm run deploy`: build and publish `dist/` to the `gh-pages` branch
 
+## Paper edition
+
+`print.html` lays chapters out as A4 pages to print and play with a pencil: the scene with a letter box per missing word, the words to find and the grid on the front; overleaf, the chapter's illustration and the whole scene. Printed double-sided, turning the page reveals the picture. It opens with how to play and ends with the answers and a page of playtest questions. `?levels=1-4` picks the chapters (the first four by default). A ready-made PDF of the first four is in `docs/print/`.
+
 ## Chapters
 
 Chapters are described in `scripts/level-specs.ts`: book, chapter number, title, grid size and the passage. Each `{WORD}` in the passage is a word to find, and their letters must add up to rows × cols exactly. The generator lays them out:
