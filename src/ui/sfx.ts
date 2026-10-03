@@ -27,23 +27,29 @@ export class Sfx {
     this.tone(587, 0.26, 'sine', 0.04, 0.05);
   }
 
-  /** The word chips popping up one by one, each a little higher. */
+  /** The word chips popping up: a soft, low arpeggio within one octave. */
   pops(count: number, start: number, step: number): void {
-    const scale = [523, 587, 659, 784, 880, 988, 1047, 1175, 1319, 1568];
-    for (let i = 0; i < count; i++) this.tone(scale[Math.min(i, scale.length - 1)], 0.09, 'triangle', 0.05, start + i * step);
+    const notes = [392, 440, 494, 587, 659, 784];
+    for (let i = 0; i < count; i++) this.tone(notes[Math.min(i, notes.length - 1)], 0.14, 'sine', 0.035, start + i * step);
   }
 
-  /** Cards dealt onto the board: a flick as each leaves, a soft tap as it lands, climbing as the grid fills. */
-  deal(count: number, start: number, step: number, flight: number): void {
-    for (let i = 0; i < count; i++) {
-      const at = start + i * step;
-      this.rustle(0.05, 4200, 0.035, at);
-      this.tone(240 * 2 ** ((i / Math.max(1, count - 1)) * 1.5), 0.05, 'triangle', 0.045, at + flight * 0.86);
-    }
+  /**
+   * Cards dealt onto the board: the deck's edge riffling as the deal begins, then each card landing
+   * on cloth, a muffled tap, each one a little different. No pitch climbs: the rhythm is the sound.
+   */
+  deal(start: number, lands: number[]): void {
+    this.rustle(0.35, 3200, 0.02, start, 'bandpass');
+    for (const at of lands) this.rustle(0.03, 900 + Math.random() * 900, 0.05 + Math.random() * 0.03, at, 'lowpass');
+  }
+
+  /** The grid settled and ready: a warm, low pair of notes. */
+  settle(delay: number): void {
+    this.tone(392, 0.32, 'sine', 0.05, delay);
+    this.tone(587, 0.32, 'sine', 0.03, delay + 0.06);
   }
 
   /** Paper: a short burst of filtered noise. */
-  private rustle(dur = 0.22, freq = 2600, gain = 0.12, delay = 0): void {
+  private rustle(dur = 0.22, freq = 2600, gain = 0.12, delay = 0, filter: BiquadFilterType = 'bandpass'): void {
     if (!this.enabled) return;
     try {
       this.ctx ??= new AudioContext();
@@ -56,7 +62,7 @@ export class Sfx {
       const src = ctx.createBufferSource();
       src.buffer = buffer;
       const band = ctx.createBiquadFilter();
-      band.type = 'bandpass';
+      band.type = filter;
       band.frequency.value = freq;
       band.Q.value = 0.7;
       const amp = ctx.createGain();

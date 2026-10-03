@@ -39,12 +39,18 @@ const RADII = ['13px 10px 14px 11px', '10px 14px 11px 13px', '14px 11px 10px 12p
 const SAMPLE = 0.2;
 /** A found word's tiles leave one after another, this far apart (ms), each flight taking FLIGHT_MS. */
 const STAGGER_MS = INK_STAGGER_MS;
-/** The chapter's arrival (ms): the word chips pop up this far apart after the title and panel, then
- * the tiles are dealt CARD_STEP apart, each flying for CARD_FLIGHT. */
+/**
+ * The chapter's arrival (ms): the word chips pop up CHIP_STEP apart after the title and panel. The
+ * tiles are dealt in a diagonal wave from the top-left corner, one diagonal every DIAG_STEP, each card
+ * a little early or late (up to CARD_JITTER) and flying for CARD_FLIGHT; then the grid hops once, a
+ * wave crossing it HOP_STEP per diagonal.
+ */
 const CHIP_START = 560;
-const CHIP_STEP = 110;
-const CARD_STEP = 38;
-const CARD_FLIGHT = 540;
+const CHIP_STEP = 85;
+const DIAG_STEP = 70;
+const CARD_JITTER = 35;
+const CARD_FLIGHT = 420;
+const HOP_STEP = 32;
 const FLIGHT_MS = 760;
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -188,8 +194,9 @@ export class LevelView {
   /**
    * The chapter arrives from the top down: the title, then the word panel with its words popping up
    * one by one, then the letter tiles dealt like cards. Each flies up from the bottom edge of the
-   * screen, a little turned, and lands in its cell, top row first, so a card never crosses one
-   * already down; the sound climbs as the grid fills.
+   * screen, a little turned, and lands in its cell. They come in a diagonal wave from the top-left,
+   * rows and columns together, so a card never crosses one already down; once all are down the
+   * grid gives one hop, like a crowd's wave, and settles.
    */
   private dealIn(): void {
     this.fit();
@@ -210,12 +217,22 @@ export class LevelView {
     );
     if (audible) sfx.pops(chips.length, CHIP_START / 1000, CHIP_STEP / 1000);
 
-    const start = CHIP_START + chips.length * CHIP_STEP + 220;
-    const cards = this.tiles.filter((tile, cell) => !tile.classList.contains('is-hole') && this.s.ownerAt(cell) < 0);
+    // The deal starts while the last word chips are still popping up.
+    const start = CHIP_START + Math.max(2, chips.length - 2) * CHIP_STEP;
+    const cols = this.s.puzzle.cols;
+    const diagonal = (cell: number) => rowOf(cell, cols) + colOf(cell, cols);
+    const cards = this.tiles
+      .map((tile, cell) => ({ tile, cell }))
+      .filter(({ tile, cell }) => !tile.classList.contains('is-hole') && this.s.ownerAt(cell) < 0);
     const viewW = window.innerWidth;
     const viewH = window.innerHeight;
-    cards.forEach((tile, i) => {
+    const lands: number[] = [];
+    let last = start;
+    cards.forEach(({ tile, cell }) => {
       const r = tile.getBoundingClientRect();
+      const delay = start + diagonal(cell) * DIAG_STEP + Math.random() * CARD_JITTER;
+      lands.push((delay + CARD_FLIGHT * 0.86) / 1000);
+      last = Math.max(last, delay + CARD_FLIGHT);
       const side = Math.random() < 0.5 ? -1 : 1;
       // From the bottom edge, around the middle of the screen, turned as if just flicked off a deck.
       const dx = viewW / 2 + (Math.random() - 0.5) * 90 - (r.left + r.width / 2);
@@ -230,12 +247,29 @@ export class LevelView {
           { transform: 'translate(0, -5px) rotate(0deg) scale(1.04)', offset: 0.86 },
           { transform: 'none' },
         ],
-        { duration: CARD_FLIGHT, delay: start + i * CARD_STEP, easing: 'cubic-bezier(0.25, 0.7, 0.35, 1)', fill: 'backwards' },
+        { duration: CARD_FLIGHT, delay, easing: 'cubic-bezier(0.25, 0.7, 0.35, 1)', fill: 'backwards' },
       );
     });
-    if (audible) sfx.deal(cards.length, start / 1000, CARD_STEP / 1000, CARD_FLIGHT / 1000);
+
+    // All down: one hop runs across the grid, the same way the cards came.
+    const hop = last + 60;
+    cards.forEach(({ tile, cell }) =>
+      tile.animate(
+        [
+          { transform: 'none' },
+          { transform: 'translateY(-7px) scale(1.06)', offset: 0.4 },
+          { transform: 'translateY(1px) scale(0.99)', offset: 0.75 },
+          { transform: 'none' },
+        ],
+        { duration: 380, delay: hop + diagonal(cell) * HOP_STEP, easing: 'ease-out' },
+      ),
+    );
+    if (audible) {
+      sfx.deal(start / 1000, lands);
+      sfx.settle(hop / 1000);
+    }
     this.el.classList.remove('is-dealing');
-    window.setTimeout(() => this.el.classList.remove('is-entering'), start + cards.length * CARD_STEP + CARD_FLIGHT);
+    window.setTimeout(() => this.el.classList.remove('is-entering'), last);
   }
 
   destroy(): void {
