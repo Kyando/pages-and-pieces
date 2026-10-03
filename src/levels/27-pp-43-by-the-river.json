@@ -48,6 +48,12 @@
     "text": "Walking the grounds, they turn a corner and there is Darcy himself, home a day {EARLY}. Elizabeth {BLUSHES} deeply, but he is {POLITE}, even {GENTLE}. He invites Mr. Gardiner to {FISH} in the {RIVER}, and asks if he may {INTRODUCE} his sister. Can this be the same proud man?",
     "image": "https://upload.wikimedia.org/wikipedia/commons/0/02/Thomson-PP18.jpg",
     "caption": "Engaged by the river",
-    "credit": "Hugh Thomson, 1894"
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0,
+      1,
+      0.865
+    ]
   }
 }

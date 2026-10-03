@@ -11,7 +11,8 @@ import type { LevelSpec } from '../src/core/generate.ts';
  *   this against the book's `names`). Finding it is remembering the story, not guessing.
  *
  * The grid's shape follows the illustration's, so the reveal crops as little of it as possible.
- * Brock's plates are scans of whole pages: `crop` trims them to the drawing, above the printed caption.
+ * The plates are scans of whole pages: `crop` trims them to the drawing, above the caption (Brock's
+ * printed, Thomson's hand-lettered) and the copyright line.
  */
 
 const PP = 'pride-and-prejudice';
@@ -33,6 +34,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('4/4d/Thomson-PP03.jpg'),
       caption: 'Mr. and Mrs. Bennet',
       credit: THOMSON,
+      crop: [0, 0.08, 1, 0.785],
     },
   },
   {
@@ -47,6 +49,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('8/85/Thomson-PP04.jpg'),
       caption: 'When the party entered',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.905],
     },
   },
   {
@@ -61,6 +64,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('d/d6/Thomson-PP05.jpg'),
       caption: 'She is tolerable',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.895],
     },
   },
   {
@@ -90,6 +94,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('thumb/b/b3/Thompson-PP-Ch7.JPG/1280px-Thompson-PP-Ch7.JPG'),
       caption: 'Cheerful prognostics',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.875],
     },
   },
   {
@@ -119,6 +124,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('thumb/5/50/Thompson-PP-Ch9.JPG/1280px-Thompson-PP-Ch9.JPG'),
       caption: 'Mrs. Bennet and her two youngest girls',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.86],
     },
   },
   {
@@ -133,6 +139,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('0/0f/Thomson-PP07.jpg'),
       caption: 'Piling up the fire',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.865],
     },
   },
   {
@@ -147,6 +154,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('2/24/Thomson-PP08.jpg'),
       caption: 'Protested that he never read novels',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.895],
     },
   },
   {
@@ -161,6 +169,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('8/82/Thomson-PP09.jpg'),
       caption: 'The officers of the ——shire',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.87],
     },
   },
   {
@@ -190,6 +199,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('3/34/Thomson-PP10.jpg'),
       caption: 'Such very superior dancing is not often seen',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.835],
     },
   },
   {
@@ -204,6 +214,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('b/b0/Thomson-PP11.jpg'),
       caption: 'To assure you in the most animated language',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.84],
     },
   },
   {
@@ -233,6 +244,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('7/7c/Thomson-PP12.jpg'),
       caption: 'So much love and eloquence',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.905],
     },
   },
   {
@@ -262,6 +274,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('thumb/c/c5/Thomson-PP-Ch27.JPG/1280px-Thomson-PP-Ch27.JPG'),
       caption: 'On the stairs',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.935],
     },
   },
   {
@@ -276,6 +289,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('7/7e/Thomson-PP13.jpg'),
       caption: 'In conversation with the ladies',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.86],
     },
   },
   {
@@ -305,6 +319,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('thumb/0/03/Thomson-PP-Ch33.JPG/1280px-Thomson-PP-Ch33.JPG'),
       caption: 'On looking up',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.92],
     },
   },
   {
@@ -334,6 +349,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('c/c1/Thomson-PP15.jpg'),
       caption: 'The proposal at Hunsford',
       credit: THOMSON,
+      crop: [0, 0.13, 1, 0.935],
     },
   },
   {
@@ -377,6 +393,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('9/9c/Thomson-PP17.jpg'),
       caption: 'Tenderly flirting',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.865],
     },
   },
   {
@@ -406,6 +423,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('0/02/Thomson-PP18.jpg'),
       caption: 'Engaged by the river',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.865],
     },
   },
   {
@@ -420,6 +438,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('thumb/f/ff/Thompson-PP-Ch44.JPG/1280px-Thompson-PP-Ch44.JPG'),
       caption: 'To make herself agreeable to all',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.905],
     },
   },
   {
@@ -434,6 +453,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('b/b4/Thomson-PP19.jpg'),
       caption: 'I have not an instant to lose',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.88],
     },
   },
   {
@@ -463,6 +483,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('thumb/9/9c/Thomson-PP-Ch51.JPG/1280px-Thomson-PP-Ch51.JPG'),
       caption: 'With an affectionate smile',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.885],
     },
   },
   {
@@ -492,6 +513,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('f/f4/Thomson-PP20.jpg'),
       caption: 'Mr. Darcy with him',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.86],
     },
   },
   {
@@ -521,6 +543,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('6/6e/Thomson-PP22.jpg'),
       caption: 'Lady Catherine at Longbourn',
       credit: THOMSON,
+      crop: [0, 0.05, 1, 0.94],
     },
   },
   {
@@ -550,6 +573,7 @@ export const SPECS: LevelSpec[] = [
       image: commons('thumb/9/96/Thomson-PP-Ch59.JPG/1280px-Thomson-PP-Ch59.JPG'),
       caption: 'Unable to utter a syllable',
       credit: THOMSON,
+      crop: [0, 0, 1, 0.875],
     },
   },
   {

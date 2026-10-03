@@ -52,6 +52,12 @@
     "text": "Bingley has left Netherfield for the winter, and Jane tries to hide her sadness. Then comes startling {NEWS}: {CHARLOTTE} has {ACCEPTED} Mr. Collins. At twenty-seven, with no {FORTUNE}, she asks only for a comfortable {HOME}. Elizabeth is {SHOCKED} that her dearest {FRIEND} would marry without {LOVE}.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Thomson-PP12.jpg",
     "caption": "So much love and eloquence",
-    "credit": "Hugh Thomson, 1894"
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0,
+      1,
+      0.905
+    ]
   }
 }

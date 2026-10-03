@@ -48,6 +48,12 @@
     "text": "The morning after the ball, Mr. Collins asks for a private word with Elizabeth. He lists his {REASONS} for marrying: it is right for a {CLERGYMAN}, it will add to his {HAPPINESS}, and Lady Catherine {WISHES} it. Only then does he speak of {LOVE}. Elizabeth {REFUSES} him, but he takes it for {MODESTY}.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Thomson-PP11.jpg",
     "caption": "To assure you in the most animated language",
-    "credit": "Hugh Thomson, 1894"
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0,
+      1,
+      0.84
+    ]
   }
 }

@@ -56,6 +56,12 @@
     "text": "The very next day, Darcy brings {GEORGIANA} to the {INN} at Lambton. Elizabeth expected a proud girl, and finds her only {SHY}. Bingley comes too, and asks {WISTFULLY} after Jane. Darcy works {HARD} to be {AGREEABLE} to Mr. and Mrs. {GARDINER}, and that night Elizabeth lies awake, {TRYING} to understand her own {HEART}.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Thompson-PP-Ch44.JPG/1280px-Thompson-PP-Ch44.JPG",
     "caption": "To make herself agreeable to all",
-    "credit": "Hugh Thomson, 1894"
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0,
+      1,
+      0.905
+    ]
   }
 }

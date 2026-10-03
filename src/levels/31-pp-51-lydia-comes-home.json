@@ -48,6 +48,12 @@
     "text": "Lydia comes home a married woman, flashing her {RING} without a trace of {SHAME}, and {WICKHAM} is as {DELIGHTED} with himself as ever. Then Lydia lets slip a {SECRET}: Mr. Darcy was at her {WEDDING}! Elizabeth writes to her {AUNT} at once to find out why.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Thomson-PP-Ch51.JPG/1280px-Thomson-PP-Ch51.JPG",
     "caption": "With an affectionate smile",
-    "credit": "Hugh Thomson, 1894"
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0,
+      1,
+      0.885
+    ]
   }
 }

@@ -52,6 +52,12 @@
     "text": "Mrs. Bennet comes to Netherfield to see poor Jane, bringing her youngest girls, Kitty and Lydia. She praises the {COUNTRY} to Mr. {DARCY}’s face, as if to put him in his place, while {ELIZABETH} wishes the {FLOOR} would swallow her whole. Then bold {LYDIA} reminds Mr. {BINGLEY} of his {PROMISE} to throw a {BALL}.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Thompson-PP-Ch9.JPG/1280px-Thompson-PP-Ch9.JPG",
     "caption": "Mrs. Bennet and her two youngest girls",
-    "credit": "Hugh Thomson, 1894"
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0,
+      1,
+      0.86
+    ]
   }
 }

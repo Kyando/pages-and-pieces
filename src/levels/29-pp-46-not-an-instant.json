@@ -48,6 +48,12 @@
     "text": "Two letters from Jane arrive at once: {LYDIA} has {ELOPED} with {WICKHAM}, and no one knows if he means to marry her. Elizabeth runs to find her {UNCLE} and meets Darcy in the doorway. “I have not an {INSTANT} to lose!” She tells him all, sure that such a {DISGRACE} ends any {HOPE} between them.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Thomson-PP19.jpg",
     "caption": "I have not an instant to lose",
-    "credit": "Hugh Thomson, 1894"
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
   }
 }

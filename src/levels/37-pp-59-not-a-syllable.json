@@ -52,6 +52,12 @@
     "text": "Mr. Bennet is alarmed: “{LIZZY}, I know you could be neither happy nor respectable unless you truly {ESTEEMED} your husband.” She tells him all that Darcy has done, and he is won over. Mrs. Bennet, hearing the news, sits quite {STILL}, unable to utter a {SYLLABLE}. Then: “How {RICH} you will be! What pin-money, what {JEWELS}! Ten {THOUSAND} a year! A {HOUSE} in town!”",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Thomson-PP-Ch59.JPG/1280px-Thomson-PP-Ch59.JPG",
     "caption": "Unable to utter a syllable",
-    "credit": "Hugh Thomson, 1894"
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0,
+      1,
+      0.875
+    ]
   }
 }

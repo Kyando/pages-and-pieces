@@ -52,6 +52,12 @@
     "text": "One morning Lady {CATHERINE} sweeps into Longbourn and orders Elizabeth into the {GARDEN}. She has heard a shocking {RUMOUR}: that Elizabeth means to marry her {NEPHEW}. Will she {PROMISE} never to accept him? Elizabeth will not: “I am only {RESOLVED} to act in that manner which will constitute my {HAPPINESS}.” Her Ladyship leaves very {ANGRY} indeed.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Thomson-PP22.jpg",
     "caption": "Lady Catherine at Longbourn",
-    "credit": "Hugh Thomson, 1894"
+    "credit": "Hugh Thomson, 1894",
+    "crop": [
+      0,
+      0.05,
+      1,
+      0.94
+    ]
   }
 }
