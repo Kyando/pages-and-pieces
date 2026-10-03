@@ -1,0 +1,62 @@
+{
+  "id": "pp-18-netherfield-ball",
+  "book": "pride-and-prejudice",
+  "chapter": 18,
+  "title": "The Netherfield Ball",
+  "rows": 8,
+  "cols": 7,
+  "grid": [
+    "TRMAHKW",
+    "PADAYCI",
+    "ESTRCDA",
+    "LAENICN",
+    "LADGSND",
+    "SBARKEI",
+    "ILESAES",
+    "ECNEDLP"
+  ],
+  "words": [
+    {
+      "text": "BALL",
+      "path": [36, 29, 28, 21]
+    },
+    {
+      "text": "DARCY",
+      "path": [9, 10, 17, 18, 11]
+    },
+    {
+      "text": "DANCING",
+      "path": [19, 20, 27, 26, 25, 24, 31]
+    },
+    {
+      "text": "TEASE",
+      "path": [16, 23, 22, 15, 14]
+    },
+    {
+      "text": "WICKHAM",
+      "path": [6, 13, 12, 5, 4, 3, 2]
+    },
+    {
+      "text": "DARKENS",
+      "path": [30, 37, 38, 39, 40, 33, 32]
+    },
+    {
+      "text": "PART",
+      "path": [7, 8, 1, 0]
+    },
+    {
+      "text": "SILENCE",
+      "path": [35, 42, 43, 44, 51, 50, 49]
+    },
+    {
+      "text": "DISPLEASED",
+      "path": [34, 41, 48, 55, 54, 47, 46, 45, 52, 53]
+    }
+  ],
+  "story": {
+    "text": "At last, the {BALL} at Netherfield. Elizabeth finds herself dancing with Mr. {DARCY}, and Sir William Lucas stops them to praise their “very superior {DANCING}.” She tries to {TEASE} her partner into talking, then mentions {WICKHAM}. Darcy’s face {DARKENS}, and they {PART} in {SILENCE}, both {DISPLEASED}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/34/Thomson-PP10.jpg",
+    "caption": "Such very superior dancing is not often seen",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

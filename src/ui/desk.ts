@@ -20,7 +20,7 @@ export interface DeskOptions {
 }
 
 const ROMAN: [number, string][] = [[50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
-const roman = (n: number) =>
+export const roman = (n: number): string =>
   ROMAN.reduce((out, [value, glyph]) => {
     while (n >= value) {
       out += glyph;

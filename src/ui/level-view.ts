@@ -19,15 +19,21 @@ export interface LevelViewOptions {
   /** Absent on the first / last chapter. */
   onPrev?: () => void;
   onNext?: () => void;
+  /** The next chapter isn't reached until this one is finished: its arrow waits until then. */
+  nextLocked?: boolean;
   /** The next chapter's title, for the finished chapter's desk. */
   nextTitle?: string;
   /** Deal the chapter in: heading, word chips and tiles arrive one after another. */
   intro?: boolean;
-  /** Where the button leads after the last chapter. */
+  /** Back to the library: the button after the last chapter. */
   onChapters(): void;
 }
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
+
+/** A heading arrow to the previous or next chapter; disabled without somewhere to go. */
+const arrow = (label: string, glyph: string, go?: () => void) =>
+  h('button', { type: 'button', class: 'icon-btn level-arrow', 'aria-label': label, title: label, disabled: !go, onclick: () => go?.() }, svg(glyph));
 const RADII = ['13px 10px 14px 11px', '10px 14px 11px 13px', '14px 11px 10px 12px', '11px 13px 12px 10px'];
 /** Longest stretch (in cells) between two finger positions read on their own, so fast swipes and cut corners step through every cell. */
 const SAMPLE = 0.2;
@@ -76,6 +82,7 @@ export class LevelView {
   private piecesCell = 0;
   private gapPx = 0;
   private readonly heading: HTMLElement;
+  private nextArrow!: HTMLButtonElement;
 
   constructor(opts: LevelViewOptions) {
     this.opts = opts;
@@ -85,8 +92,6 @@ export class LevelView {
     const story = def.story;
 
     // Heading flanked by arrows, so chapters are always one tap away.
-    const arrow = (label: string, glyph: string, go?: () => void) =>
-      h('button', { type: 'button', class: 'icon-btn level-arrow', 'aria-label': label, title: label, disabled: !go, onclick: () => go?.() }, svg(glyph));
     const heading = (this.heading = h(
       'header',
       { class: 'chapter' },
@@ -97,7 +102,7 @@ export class LevelView {
         h('p', { class: 'eyebrow' }, h('span', {}, t('level.eyebrow', { book: BOOKS[def.book].title, chapter: def.chapter }))),
         h('h1', {}, def.title),
       ),
-      arrow(t('level.next'), ICONS.next, opts.onNext),
+      (this.nextArrow = opts.nextLocked ? arrow(t('level.nextLocked'), ICONS.next) : arrow(t('level.next'), ICONS.next, opts.onNext)),
     ));
 
     // While playing, a compact list of the words to find (alphabetical, so it doesn't spoil the
@@ -148,7 +153,7 @@ export class LevelView {
     this.links = document.createElementNS(SVG_NS, 'svg');
     this.links.classList.add('links');
     this.links.setAttribute('aria-hidden', 'true');
-    this.pieces = new PieceLayer(story.image);
+    this.pieces = new PieceLayer(story.image, story.crop);
     this.board.append(this.pieces.el, this.links);
     this.bindPointer();
 
@@ -474,6 +479,13 @@ export class LevelView {
    */
   private finish(animate: boolean): void {
     this.board.classList.add('is-complete');
+    // Finishing reaches the next chapter.
+    const next = this.opts.onNext;
+    if (next && this.nextArrow.disabled) {
+      const open = arrow(t('level.next'), ICONS.next, next);
+      this.nextArrow.replaceWith(open);
+      this.nextArrow = open;
+    }
     this.pieces.showWhole((cell) => this.s.ownerAt(cell), animate);
     const desk = this.makeDesk();
     if (!animate) {

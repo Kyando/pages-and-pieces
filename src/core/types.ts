@@ -13,6 +13,8 @@ export interface StoryDef {
   /** What the picture shows: its original caption. */
   caption: string;
   credit: string;
+  /** The drawing within the image, as [left, top, right, bottom] fractions: trims a scanned page's margins and printed caption. */
+  crop?: [number, number, number, number];
 }
 
 export interface LevelDef {

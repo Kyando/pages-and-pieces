@@ -1,0 +1,60 @@
+{
+  "id": "pp-16-wickhams-story",
+  "book": "pride-and-prejudice",
+  "chapter": 16,
+  "title": "Wickham’s Story",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "MSRETL",
+    "AECGNI",
+    "HKREIV",
+    "PCIHTA",
+    "RJWYCF",
+    "EEALRA",
+    "JICOUD",
+    "UDEDSY"
+  ],
+  "words": [
+    {
+      "text": "WICKHAM",
+      "path": [26, 20, 19, 13, 12, 6, 0]
+    },
+    {
+      "text": "SECRET",
+      "path": [1, 7, 8, 2, 3, 4]
+    },
+    {
+      "text": "FATHER",
+      "path": [29, 23, 22, 21, 15, 14]
+    },
+    {
+      "text": "LIVING",
+      "path": [5, 11, 17, 16, 10, 9]
+    },
+    {
+      "text": "DARCY",
+      "path": [41, 35, 34, 28, 27]
+    },
+    {
+      "text": "JEALOUSY",
+      "path": [25, 31, 32, 33, 39, 40, 46, 47]
+    },
+    {
+      "text": "PREJUDICED",
+      "path": [18, 24, 30, 36, 42, 43, 37, 38, 44, 45]
+    }
+  ],
+  "story": {
+    "text": "When the officers join the ladies at her aunt’s card party, Mr. {WICKHAM} takes the seat beside Elizabeth. He confides a sad {SECRET}: Darcy’s late {FATHER} meant him to have a {LIVING} in the church, but {DARCY} gave it away out of {JEALOUSY}. Elizabeth, already {PREJUDICED}, believes every word.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/P%26P16-Arriv%C3%A9e_de_Wickham_%28BrockNB%29.JPG",
+    "caption": "The gentlemen did approach",
+    "credit": "C. E. Brock, 1895",
+    "crop": [
+      0.038,
+      0.05,
+      0.95,
+      0.876
+    ]
+  }
+}

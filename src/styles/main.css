@@ -885,97 +885,6 @@ button {
   margin-top: 6px;
 }
 
-/* Chapters */
-.chapters {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.chapter-card {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 52px 1fr;
-  grid-template-rows: auto auto;
-  column-gap: 12px;
-  align-items: center;
-  padding: 8px 14px 8px 8px;
-  text-align: left;
-  border: 2.5px solid var(--stroke);
-  border-radius: 14px;
-  background: var(--panel-2);
-  box-shadow: 0 3px 0 var(--stroke);
-  cursor: pointer;
-  transition: transform 0.12s;
-}
-
-.chapter-card:hover {
-  transform: translateY(-2px);
-}
-
-.chapter-card.is-current {
-  background: var(--hover);
-}
-
-/* A finished chapter shows its picture; the others a numbered blank page. */
-.chapter-thumb {
-  grid-row: span 2;
-  width: 52px;
-  height: 52px;
-  border: 2px solid var(--stroke);
-  border-radius: 8px;
-  object-fit: cover;
-  background: #f3ead8;
-}
-
-.chapter-thumb.is-locked {
-  display: grid;
-  place-items: center;
-  background: var(--panel);
-  font-family: var(--font-display);
-  font-weight: 800;
-  color: var(--ink-soft);
-}
-
-.books {
-  display: grid;
-  gap: 18px;
-}
-
-.book-title {
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 10px;
-  font-family: var(--font-display);
-  font-size: 20px;
-}
-
-.book-title small {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ink-soft);
-}
-
-.chapter-title {
-  font-weight: 900;
-}
-
-.chapter-meta {
-  grid-column: 2;
-  font-size: 12px;
-  color: var(--ink-soft);
-}
-
-.chapter-icons {
-  grid-column: 3;
-  grid-row: 1 / span 2;
-  font-size: 20px;
-  letter-spacing: 2px;
-}
-
 .particle {
   position: fixed;
   z-index: 250;
@@ -986,6 +895,261 @@ button {
 .empty {
   margin: auto;
   color: var(--ink-soft);
+}
+
+/* ── Library (main menu) ────────────────────────────────────────────────── */
+
+.library {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--paper);
+}
+
+.library-inner {
+  max-width: 760px;
+  margin-inline: auto;
+  padding: 22px 16px max(36px, env(safe-area-inset-bottom));
+}
+
+.library-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 26px;
+  text-align: center;
+}
+
+.library-head .eyebrow {
+  margin: 0;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-variant: small-caps;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+.library-title {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(30px, 8.5vw, 44px);
+  line-height: 1.05;
+}
+
+.library-continue {
+  width: min(100%, 360px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px 10px 20px;
+  text-align: left;
+}
+
+.library-continue svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+}
+
+.library-continue-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.library-continue-text small {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.library-end {
+  margin: 0;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink-soft);
+}
+
+.volume + .volume {
+  margin-top: 34px;
+}
+
+/* A volume's heading, between two printer's rules. */
+.volume-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+.volume-title::before,
+.volume-title::after {
+  content: '';
+  flex: 1;
+  align-self: center;
+  border-top: 1px solid rgb(90 65 40 / 0.3);
+}
+
+.volume-title small {
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--ink-soft);
+}
+
+.shelf {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 22px 14px;
+}
+
+/* A chapter: a small print lying on the table, a little askew. */
+.print {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transform: rotate(var(--tilt));
+  transition: transform 0.2s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.print:not(:disabled):hover,
+.print:focus-visible {
+  transform: rotate(0deg) translateY(-3px);
+}
+
+.print:focus-visible {
+  outline: none;
+}
+
+.print-pic {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  /* Every print the same size, whatever the picture's shape. */
+  overflow: hidden;
+  padding: 6px;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 60%, rgb(140 100 50 / 0.12)),
+    #f8f0de;
+  border-radius: 2px 3px 2px 3px;
+  box-shadow:
+    0 1px 2px rgb(60 40 20 / 0.18),
+    0 5px 12px rgb(60 40 20 / 0.12);
+}
+
+.print:focus-visible .print-pic {
+  box-shadow: 0 0 0 3px var(--select), 0 5px 12px rgb(60 40 20 / 0.12);
+}
+
+.print-pic img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid rgb(90 65 40 / 0.22);
+  mix-blend-mode: multiply;
+  filter: sepia(0.2) contrast(1.06);
+}
+
+/* A chapter not yet pieced together: a blank plate with its number. */
+.print-numeral {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  border: 1px dashed rgb(90 65 40 / 0.35);
+  font-family: 'IM Fell English', Georgia, serif;
+  font-size: 26px;
+  color: var(--ink-soft);
+}
+
+.print-number {
+  margin-top: 9px;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-variant: small-caps;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+.print-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.15;
+}
+
+/* The chapter to read next sits a little apart, marked like the word being traced. */
+.print.is-current {
+  transform: rotate(0deg) translateY(-2px);
+}
+
+.print.is-current .print-pic {
+  box-shadow:
+    0 0 0 3px var(--trace),
+    0 0 0 5px var(--trace-ring),
+    0 8px 16px rgb(60 40 20 / 0.18);
+}
+
+.print.is-current .print-numeral {
+  border-style: solid;
+  color: var(--ink);
+}
+
+/* Not reached yet: face down, unnamed. */
+.print.is-locked {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.print.is-locked .print-pic {
+  box-shadow: 0 1px 2px rgb(60 40 20 / 0.14);
+}
+
+.print.is-locked .print-numeral {
+  border-color: transparent;
+  opacity: 0.6;
+}
+
+/* In the library, the library button has nowhere to go. */
+.icon-btn.is-here {
+  visibility: hidden;
 }
 
 /* ── Motion ─────────────────────────────────────────────────────────────── */
@@ -1366,7 +1530,7 @@ button {
    before the drawing lifts off. */
 
 /* The page being turned lies over the other one, swinging on its spine (the left edge). */
-.stage.is-turning {
+.main > .is-turning {
   position: absolute;
   inset: 0;
   z-index: 2;

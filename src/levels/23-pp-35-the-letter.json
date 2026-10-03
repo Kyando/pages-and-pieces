@@ -1,0 +1,56 @@
+{
+  "id": "pp-35-the-letter",
+  "book": "pride-and-prejudice",
+  "chapter": 35,
+  "title": "A Letter in the Grove",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "YRUOHF",
+    "TRPNOO",
+    "EIOEVR",
+    "LERPIG",
+    "STTTNE",
+    "EPEFER",
+    "RARFII",
+    "ATEDDN"
+  ],
+  "words": [
+    {
+      "text": "LETTER",
+      "path": [18, 19, 25, 26, 32, 38]
+    },
+    {
+      "text": "HONOUR",
+      "path": [4, 10, 9, 3, 2, 1]
+    },
+    {
+      "text": "SEPARATED",
+      "path": [24, 30, 31, 37, 36, 42, 43, 44, 45]
+    },
+    {
+      "text": "INDIFFERENT",
+      "path": [41, 47, 46, 40, 39, 33, 34, 35, 29, 28, 27]
+    },
+    {
+      "text": "PROPRIETY",
+      "path": [21, 20, 14, 8, 7, 13, 12, 6, 0]
+    },
+    {
+      "text": "FORGIVE",
+      "path": [5, 11, 17, 23, 22, 16, 15]
+    }
+  ],
+  "story": {
+    "text": "The next morning, Darcy finds her in the grove and hands her a {LETTER}: “Will you do me the {HONOUR} of reading that?” In it he explains himself. He {SEPARATED} Bingley from Jane because she seemed {INDIFFERENT}, and her family showed so little {PROPRIETY}. He does not ask her to {FORGIVE} him.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Illustration_by_C_E_Brock_for_Pride_and_Prejudice_-_Will_you_do_me_the_honour_of_reading_that_letter.jpg",
+    "caption": "Will you do me the honour of reading that letter?",
+    "credit": "C. E. Brock, 1895",
+    "crop": [
+      0.08,
+      0.053,
+      0.954,
+      0.877
+    ]
+  }
+}

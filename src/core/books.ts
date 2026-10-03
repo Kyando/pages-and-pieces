@@ -8,6 +8,8 @@ export interface Book {
    * after the player has met it in plain text (see `unintroducedNames`).
    */
   names: string[];
+  /** The book's parts, by the chapter each begins with. */
+  volumes?: { from: number; name: string; title: string }[];
 }
 
 export const BOOKS: Record<string, Book> = {
@@ -20,6 +22,11 @@ export const BOOKS: Record<string, Book> = {
       'BINGLEY', 'CAROLINE', 'HURST', 'DARCY', 'GEORGIANA', 'WICKHAM', 'DENNY',
       'COLLINS', 'CATHERINE', 'CHARLOTTE', 'LUCAS', 'GARDINER', 'FITZWILLIAM',
       'LONGBOURN', 'NETHERFIELD', 'MERYTON', 'ROSINGS', 'PEMBERLEY', 'HUNSFORD', 'LONDON', 'BRIGHTON',
+    ],
+    volumes: [
+      { from: 1, name: 'Volume I', title: 'First Impressions' },
+      { from: 24, name: 'Volume II', title: 'The Truth Comes Out' },
+      { from: 43, name: 'Volume III', title: 'Second Impressions' },
     ],
   },
 };

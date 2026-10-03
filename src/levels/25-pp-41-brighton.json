@@ -1,0 +1,48 @@
+{
+  "id": "pp-41-brighton",
+  "book": "pride-and-prejudice",
+  "chapter": 41,
+  "title": "Off to Brighton",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "ULIATES",
+    "NYDMSNT",
+    "IFORBRI",
+    "SOGNTHG",
+    "RFFIONF",
+    "ECITRIL"
+  ],
+  "words": [
+    {
+      "text": "LYDIA",
+      "path": [1, 8, 9, 2, 3]
+    },
+    {
+      "text": "TENTS",
+      "path": [4, 5, 12, 13, 6]
+    },
+    {
+      "text": "UNIFORMS",
+      "path": [0, 7, 14, 15, 16, 17, 10, 11]
+    },
+    {
+      "text": "FLIRTING",
+      "path": [34, 41, 40, 39, 38, 31, 24, 23]
+    },
+    {
+      "text": "OFFICERS",
+      "path": [22, 29, 30, 37, 36, 35, 28, 21]
+    },
+    {
+      "text": "BRIGHTON",
+      "path": [18, 19, 20, 27, 26, 25, 32, 33]
+    }
+  ],
+  "story": {
+    "text": "The regiment is leaving Meryton for Brighton, and {LYDIA} is invited along by the colonel’s young wife. She dreams of {TENTS}, scarlet {UNIFORMS} and tenderly {FLIRTING} with six {OFFICERS} at once. Elizabeth begs her father to keep her home, but Mr. Bennet lets her go: in {BRIGHTON}, he says, she will be too poor to tempt anyone.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Thomson-PP17.jpg",
+    "caption": "Tenderly flirting",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

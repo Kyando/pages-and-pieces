@@ -1,4 +1,3 @@
-import { BOOKS } from '../core/books.ts';
 import { emptyProgress, loadSave, writeSave, type LevelProgress } from '../game/save.ts';
 import { Session } from '../game/session.ts';
 import { detectLocale, setLocale, t, type MessageKey } from '../i18n/index.ts';
@@ -8,6 +7,7 @@ import { ICONS } from './icons.ts';
 import { FONTS } from './desk.ts';
 import { turnPage } from './fx.ts';
 import { LevelView } from './level-view.ts';
+import { Library, type ChapterState } from './library.ts';
 import { openModal } from './overlay.ts';
 import { Sfx } from './sfx.ts';
 
@@ -19,19 +19,22 @@ export class App {
   private readonly sfx = new Sfx(this.save.settings.sound);
   private readonly main: HTMLElement;
   private readonly soundBtn: HTMLButtonElement;
-  private view: LevelView | null = null;
-  private index = 0;
+  private readonly libraryBtn: HTMLButtonElement;
+  private view: LevelView | Library | null = null;
+  /** The chapter open, or -1 in the library. */
+  private index = -1;
 
   constructor(root: HTMLElement) {
     setLocale(detectLocale());
     document.title = t('game.name');
     this.soundBtn = iconButton(t('top.sound'), ICONS.soundOn, () => this.toggleSound());
     this.updateSoundIcon();
+    this.libraryBtn = iconButton(t('top.library'), ICONS.book, () => this.openLibrary());
 
     const header = h(
       'header',
       { class: 'topbar' },
-      h('div', { class: 'topbar-side' }, iconButton(t('top.chapters'), ICONS.book, () => this.openChapters())),
+      h('div', { class: 'topbar-side' }, this.libraryBtn),
       h('div', { class: 'brand' }, h('span', { class: 'brand-mark', 'aria-hidden': 'true' }, '✦'), t('game.name')),
       h(
         'div',
@@ -49,9 +52,7 @@ export class App {
       this.main.append(h('p', { class: 'empty' }, t('empty')));
       return;
     }
-    const last = CATALOG.findIndex((l) => l.def.id === this.save.settings.lastLevel);
-    const firstOpen = CATALOG.findIndex((l) => !this.save.levels[l.def.id]?.done);
-    this.openLevel(last >= 0 ? last : Math.max(0, firstOpen));
+    this.openLibrary();
 
     if (!this.save.settings.seenHelp) {
       this.save.settings.seenHelp = true;
@@ -64,26 +65,69 @@ export class App {
     writeSave(this.save);
   }
 
-  /** Opens a chapter; moving through the book turns the page, forward or back. */
-  private openLevel(index: number): void {
+  /**
+   * Chapters open in order: the first, any already started or finished, and the one after a
+   * finished chapter. Names are only hidden once the story has introduced them, so it reads in order.
+   */
+  private stateOf(index: number): ChapterState {
+    const progress = this.save.levels[CATALOG[index].def.id];
+    if (progress?.done) return 'done';
+    const prev = CATALOG[index - 1];
+    if (!prev || progress?.found.length || this.save.levels[prev.def.id]?.done) return 'open';
+    return 'locked';
+  }
+
+  /** Where to pick up: the last chapter played if it isn't finished, else the first open one; -1 once the book is done. */
+  private currentChapter(): number {
+    const last = CATALOG.findIndex((l) => l.def.id === this.save.settings.lastLevel);
+    if (last >= 0 && this.stateOf(last) === 'open') return last;
+    return CATALOG.findIndex((_, i) => this.stateOf(i) === 'open');
+  }
+
+  /** Swaps the screen: going deeper into the book turns the page forward, coming back turns it back. */
+  private show(view: LevelView | Library, forward: boolean): void {
     const old = this.view;
     old?.destroy();
+    this.view = view;
+    if (old) turnPage(this.main, old.el, view.el, forward);
+    else this.main.replaceChildren(view.el);
+  }
+
+  /** The main menu: every chapter of the book, finished ones showing their picture. */
+  private openLibrary(): void {
+    if (this.view instanceof Library) return;
+    this.index = -1;
+    this.libraryBtn.classList.add('is-here');
+    const library = new Library({
+      chapters: CATALOG.map((entry, i) => ({ def: entry.def, state: this.stateOf(i) })),
+      current: this.currentChapter(),
+      onOpen: (i) => this.openLevel(i),
+    });
+    this.show(library, false);
+    library.reveal();
+  }
+
+  /** Opens a chapter; moving through the book turns the page, forward or back. */
+  private openLevel(index: number): void {
+    if (this.stateOf(index) === 'locked') return;
     const forward = index >= this.index;
+    this.libraryBtn.classList.remove('is-here');
     this.index = index;
     const entry = CATALOG[index];
     const progress: LevelProgress = (this.save.levels[entry.def.id] ??= emptyProgress());
     const session = new Session(entry.puzzle, progress, () => this.persist());
-    this.view = new LevelView({
+    const hasNext = index < CATALOG.length - 1;
+    const view = new LevelView({
       session,
       sfx: this.sfx,
       onPrev: index > 0 ? () => this.openLevel(index - 1) : undefined,
-      onNext: index < CATALOG.length - 1 ? () => this.openLevel(index + 1) : undefined,
+      onNext: hasNext ? () => this.openLevel(index + 1) : undefined,
+      nextLocked: hasNext && this.stateOf(index + 1) === 'locked',
       nextTitle: CATALOG[index + 1]?.def.title,
-      onChapters: () => this.openChapters(),
+      onChapters: () => this.openLibrary(),
       intro: true,
     });
-    if (old) turnPage(this.main, old.el, this.view.el, forward);
-    else this.main.replaceChildren(this.view.el);
+    this.show(view, forward);
     // The next chapter's picture, so it's ready when the player gets there.
     const next = CATALOG[index + 1];
     if (next) new Image().src = next.def.story.image;
@@ -92,58 +136,6 @@ export class App {
   }
 
   // ── modals ──────────────────────────────────────────────────────────────
-
-  /** Every chapter, grouped by book. */
-  private openChapters(): void {
-    const books = [...new Set(CATALOG.map((e) => e.def.book))];
-    const modal = openModal({
-      title: t('chapters.title'),
-      className: 'modal--chapters',
-      body: h(
-        'div',
-        { class: 'books' },
-        ...books.map((bookId) => {
-          const book = BOOKS[bookId];
-          return h(
-            'section',
-            { class: 'book' },
-            h('h3', { class: 'book-title' }, book.title, h('small', {}, t('chapters.by', { author: book.author, year: book.year }))),
-            h(
-              'ol',
-              { class: 'chapters' },
-              ...CATALOG.map((entry, i) => ({ entry, i }))
-                .filter(({ entry }) => entry.def.book === bookId)
-                .map(({ entry, i }) => {
-                  const done = this.save.levels[entry.def.id]?.done;
-                  const classes = ['chapter-card', i === this.index && 'is-current', done && 'is-done'];
-                  return h(
-                    'li',
-                    {},
-                    h(
-                      'button',
-                      {
-                        type: 'button',
-                        class: classes.filter(Boolean).join(' '),
-                        onclick: () => {
-                          modal.close();
-                          this.openLevel(i);
-                        },
-                      },
-                      // A finished chapter shows its picture; the others stay closed books.
-                      done
-                        ? h('img', { class: 'chapter-thumb', src: entry.def.story.image, alt: '' })
-                        : h('span', { class: 'chapter-thumb is-locked', 'aria-hidden': 'true' }, String(i + 1)),
-                      h('span', { class: 'chapter-title' }, entry.def.title),
-                      h('span', { class: 'chapter-meta' }, t('chapters.meta', { chapter: entry.def.chapter, rows: entry.def.rows, cols: entry.def.cols })),
-                    ),
-                  );
-                }),
-            ),
-          );
-        }),
-      ),
-    });
-  }
 
   private openHelp(): void {
     const withStrong = (key: MessageKey, strongKey: MessageKey) => {

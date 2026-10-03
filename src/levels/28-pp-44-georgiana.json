@@ -1,0 +1,61 @@
+{
+  "id": "pp-44-georgiana",
+  "book": "pride-and-prejudice",
+  "chapter": 44,
+  "title": "Miss Darcy",
+  "rows": 7,
+  "cols": 8,
+  "grid": [
+    "REDRAAGR",
+    "GNIHGNNE",
+    "NRTEYHIE",
+    "IYGARSEA",
+    "ROEHTWLB",
+    "GNAAYIST",
+    "IADRLLUF"
+  ],
+  "words": [
+    {
+      "text": "GEORGIANA",
+      "path": [26, 34, 33, 32, 40, 48, 49, 41, 42]
+    },
+    {
+      "text": "INN",
+      "path": [22, 14, 13]
+    },
+    {
+      "text": "SHY",
+      "path": [29, 21, 20]
+    },
+    {
+      "text": "WISTFULLY",
+      "path": [37, 45, 46, 47, 55, 54, 53, 52, 44]
+    },
+    {
+      "text": "HARD",
+      "path": [35, 43, 51, 50]
+    },
+    {
+      "text": "AGREEABLE",
+      "path": [5, 6, 7, 15, 23, 31, 39, 38, 30]
+    },
+    {
+      "text": "GARDINER",
+      "path": [12, 4, 3, 2, 10, 9, 1, 0]
+    },
+    {
+      "text": "TRYING",
+      "path": [18, 17, 25, 24, 16, 8]
+    },
+    {
+      "text": "HEART",
+      "path": [11, 19, 27, 28, 36]
+    }
+  ],
+  "story": {
+    "text": "The very next day, Darcy brings {GEORGIANA} to the {INN} at Lambton. Elizabeth expected a proud girl, and finds her only {SHY}. Bingley comes too, and asks {WISTFULLY} after Jane. Darcy works {HARD} to be {AGREEABLE} to Mr. and Mrs. {GARDINER}, and that night Elizabeth lies awake, {TRYING} to understand her own {HEART}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Thompson-PP-Ch44.JPG/1280px-Thompson-PP-Ch44.JPG",
+    "caption": "To make herself agreeable to all",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

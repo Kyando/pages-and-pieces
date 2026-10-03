@@ -1,0 +1,53 @@
+{
+  "id": "pp-27-on-the-stairs",
+  "book": "pride-and-prejudice",
+  "chapter": 27,
+  "title": "On the Stairs",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "NCALSR",
+    "ODNLEI",
+    "SLORDA",
+    "NISEST",
+    "COUTUG",
+    "SOHNRO",
+    "EPDEEN"
+  ],
+  "words": [
+    {
+      "text": "LONDON",
+      "path": [13, 14, 8, 7, 6, 0]
+    },
+    {
+      "text": "COUSINS",
+      "path": [24, 25, 26, 20, 19, 18, 12]
+    },
+    {
+      "text": "STAIRS",
+      "path": [22, 23, 17, 11, 5, 4]
+    },
+    {
+      "text": "CALLED",
+      "path": [1, 2, 3, 9, 10, 16]
+    },
+    {
+      "text": "RETURNED",
+      "path": [15, 21, 27, 28, 34, 33, 39, 38]
+    },
+    {
+      "text": "HOPES",
+      "path": [32, 31, 37, 36, 30]
+    },
+    {
+      "text": "GONE",
+      "path": [29, 35, 41, 40]
+    }
+  ],
+  "story": {
+    "text": "On her way to visit Charlotte in Kent, Elizabeth stops at the Gardiners’ house in {LONDON}, where a troop of little {COUSINS} waits on the {STAIRS}. Jane has news: she {CALLED} on Caroline, who {RETURNED} the visit weeks later, cold and brief. Jane’s {HOPES} of Bingley are {GONE}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Thomson-PP-Ch27.JPG/1280px-Thomson-PP-Ch27.JPG",
+    "caption": "On the stairs",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

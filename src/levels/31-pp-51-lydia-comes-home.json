@@ -1,0 +1,53 @@
+{
+  "id": "pp-51-lydia-comes-home",
+  "book": "pride-and-prejudice",
+  "chapter": 51,
+  "title": "Lydia Comes Home",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "RIDETA",
+    "GNSLNU",
+    "RCEIGH",
+    "ETMAET",
+    "ICKHDG",
+    "WEMDIN",
+    "SHADEW"
+  ],
+  "words": [
+    {
+      "text": "RING",
+      "path": [0, 1, 7, 6]
+    },
+    {
+      "text": "SHAME",
+      "path": [36, 37, 38, 32, 31]
+    },
+    {
+      "text": "WICKHAM",
+      "path": [30, 24, 25, 26, 27, 21, 20]
+    },
+    {
+      "text": "DELIGHTED",
+      "path": [2, 3, 9, 15, 16, 17, 23, 22, 28]
+    },
+    {
+      "text": "SECRET",
+      "path": [8, 14, 13, 12, 18, 19]
+    },
+    {
+      "text": "WEDDING",
+      "path": [41, 40, 39, 33, 34, 35, 29]
+    },
+    {
+      "text": "AUNT",
+      "path": [5, 11, 10, 4]
+    }
+  ],
+  "story": {
+    "text": "Lydia comes home a married woman, flashing her {RING} without a trace of {SHAME}, and {WICKHAM} is as {DELIGHTED} with himself as ever. Then Lydia lets slip a {SECRET}: Mr. Darcy was at her {WEDDING}! Elizabeth writes to her {AUNT} at once to find out why.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Thomson-PP-Ch51.JPG/1280px-Thomson-PP-Ch51.JPG",
+    "caption": "With an affectionate smile",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

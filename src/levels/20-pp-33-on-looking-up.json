@@ -1,0 +1,49 @@
+{
+  "id": "pp-33-on-looking-up",
+  "book": "pride-and-prejudice",
+  "chapter": 33,
+  "title": "A Walk in the Grove",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "SEDMAI",
+    "AVSETL",
+    "BIRAIL",
+    "GNIZWE",
+    "LPMTOV",
+    "ERFIRG",
+    "YUDENT"
+  ],
+  "words": [
+    {
+      "text": "GROVE",
+      "path": [35, 34, 28, 29, 23]
+    },
+    {
+      "text": "FITZWILLIAM",
+      "path": [32, 33, 27, 21, 22, 16, 17, 11, 5, 4, 3]
+    },
+    {
+      "text": "SAVED",
+      "path": [0, 6, 7, 1, 2]
+    },
+    {
+      "text": "IMPRUDENT",
+      "path": [20, 26, 25, 31, 37, 38, 39, 40, 41]
+    },
+    {
+      "text": "BINGLEY",
+      "path": [12, 13, 19, 18, 24, 30, 36]
+    },
+    {
+      "text": "TEARS",
+      "path": [10, 9, 15, 14, 8]
+    }
+  ],
+  "story": {
+    "text": "Walking in the {GROVE} at Rosings, Elizabeth meets Colonel {FITZWILLIAM}. Chatting, he lets slip that Darcy recently {SAVED} a friend from a most {IMPRUDENT} marriage. Elizabeth knows at once that he means {BINGLEY} and Jane. Back at the parsonage, she gives way to {TEARS}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Thomson-PP-Ch33.JPG/1280px-Thomson-PP-Ch33.JPG",
+    "caption": "On looking up",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

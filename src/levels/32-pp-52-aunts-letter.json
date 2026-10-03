@@ -1,0 +1,60 @@
+{
+  "id": "pp-52-aunts-letter",
+  "book": "pride-and-prejudice",
+  "chapter": 52,
+  "title": "Mrs. Gardiner’s Letter",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "RETHBL",
+    "EISUME",
+    "GSDEQD",
+    "ASTBUI",
+    "IRRNTE",
+    "LMAOMM",
+    "EQUIIO",
+    "RRASSC"
+  ],
+  "words": [
+    {
+      "text": "DEBTS",
+      "path": [14, 15, 21, 20, 19]
+    },
+    {
+      "text": "COMMISSION",
+      "path": [47, 41, 35, 34, 40, 46, 45, 39, 33, 27]
+    },
+    {
+      "text": "MARRIAGE",
+      "path": [31, 32, 26, 25, 24, 18, 12, 6]
+    },
+    {
+      "text": "QUIET",
+      "path": [16, 22, 23, 29, 28]
+    },
+    {
+      "text": "HUMBLED",
+      "path": [3, 9, 10, 4, 5, 11, 17]
+    },
+    {
+      "text": "SISTER",
+      "path": [13, 7, 8, 2, 1, 0]
+    },
+    {
+      "text": "QUARREL",
+      "path": [37, 38, 44, 43, 42, 36, 30]
+    }
+  ],
+  "story": {
+    "text": "Mrs. Gardiner’s reply is astonishing. Darcy found the couple, paid Wickham’s {DEBTS}, bought his {COMMISSION} and arranged the {MARRIAGE}, then begged them to keep it {QUIET}. Elizabeth is {HUMBLED}. When Wickham tries his old charm on her, she simply holds out her hand: “Come, we are brother and {SISTER} now. Do not let us {QUARREL} about the past.”",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/df/Illustration_by_C_E_Brock_for_Pride_and_Prejudice_-_She_held_out_her_hand.jpg",
+    "caption": "She held out her hand",
+    "credit": "C. E. Brock, 1895",
+    "crop": [
+      0.058,
+      0.056,
+      0.878,
+      0.869
+    ]
+  }
+}

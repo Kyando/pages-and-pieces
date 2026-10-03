@@ -20,7 +20,7 @@ Each level retells one scene in about 60 words and hides 6–9 words. One level 
 
 **Baseline: the 37 core levels, plus the full-tier scenes we like best, for about 40 levels.** That's one level for every ~1.5 chapters, and a satisfying pack for a single purchase.
 
-The first 8 levels are already done. Two of them (chapter 9, and the 3rd ball scene) are full-tier extras.
+Built (2026-10-02): **38 levels**, the whole story. Every core scene is in, some merged (Bingley leaving London folds into Charlotte's engagement; the letter is two levels; the second proposal and telling Jane are one), plus the full-tier scenes for chapters 9, 20 and 31. Scenes without a Thomson drawing on Commons use C. E. Brock's 1895 plates.
 
 ## Scene list
 

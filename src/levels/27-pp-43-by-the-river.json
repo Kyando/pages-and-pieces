@@ -1,0 +1,53 @@
+{
+  "id": "pp-43-by-the-river",
+  "book": "pride-and-prejudice",
+  "chapter": 43,
+  "title": "By the River",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "ECUDET",
+    "BINOLI",
+    "LUTROG",
+    "SSEAPE",
+    "EHLRRN",
+    "HFYVET",
+    "SIRIEL"
+  ],
+  "words": [
+    {
+      "text": "EARLY",
+      "path": [20, 21, 27, 26, 32]
+    },
+    {
+      "text": "BLUSHES",
+      "path": [6, 12, 13, 19, 25, 24, 18]
+    },
+    {
+      "text": "POLITE",
+      "path": [22, 16, 10, 11, 5, 4]
+    },
+    {
+      "text": "GENTLE",
+      "path": [17, 23, 29, 35, 41, 40]
+    },
+    {
+      "text": "FISH",
+      "path": [31, 37, 36, 30]
+    },
+    {
+      "text": "RIVER",
+      "path": [38, 39, 33, 34, 28]
+    },
+    {
+      "text": "INTRODUCE",
+      "path": [7, 8, 14, 15, 9, 3, 2, 1, 0]
+    }
+  ],
+  "story": {
+    "text": "Walking the grounds, they turn a corner and there is Darcy himself, home a day {EARLY}. Elizabeth {BLUSHES} deeply, but he is {POLITE}, even {GENTLE}. He invites Mr. Gardiner to {FISH} in the {RIVER}, and asks if he may {INTRODUCE} his sister. Can this be the same proud man?",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/02/Thomson-PP18.jpg",
+    "caption": "Engaged by the river",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

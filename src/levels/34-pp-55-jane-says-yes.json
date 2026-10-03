@@ -1,0 +1,60 @@
+{
+  "id": "pp-55-jane-says-yes",
+  "book": "pride-and-prejudice",
+  "chapter": 55,
+  "title": "Jane Says Yes",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "SUORTO",
+    "DDEEGG",
+    "LRENEE",
+    "WOCXET",
+    "HDESEH",
+    "ASTORW",
+    "PEOPNI",
+    "PIRPKS"
+  ],
+  "words": [
+    {
+      "text": "WINKS",
+      "path": [35, 41, 40, 46, 47]
+    },
+    {
+      "text": "TOGETHER",
+      "path": [4, 5, 11, 17, 23, 29, 28, 34]
+    },
+    {
+      "text": "PROPOSED",
+      "path": [45, 44, 38, 39, 33, 27, 26, 25]
+    },
+    {
+      "text": "HAPPIEST",
+      "path": [24, 30, 36, 42, 43, 37, 31, 32]
+    },
+    {
+      "text": "WORLD",
+      "path": [18, 19, 13, 12, 6]
+    },
+    {
+      "text": "GENEROUS",
+      "path": [10, 16, 15, 9, 3, 2, 1, 0]
+    },
+    {
+      "text": "EXCEED",
+      "path": [22, 21, 20, 14, 8, 7]
+    }
+  ],
+  "story": {
+    "text": "Bingley calls again and again. Mrs. Bennet keeps finding excuses to leave him alone with Jane, and {WINKS} at her other daughters to follow. At last Elizabeth walks in to find them standing {TOGETHER} by the fire. Bingley has {PROPOSED}! Jane is the {HAPPIEST} creature in the {WORLD}, and Mr. Bennet says they are so {GENEROUS} that they will always {EXCEED} their income.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Illustration_by_C_E_Brock_for_Pride_and_Prejudice_-_She_perceived_her_sister_and_Bingley_standing_together.jpg",
+    "caption": "She perceived her sister and Bingley standing together",
+    "credit": "C. E. Brock, 1895",
+    "crop": [
+      0.096,
+      0.12,
+      0.972,
+      0.785
+    ]
+  }
+}

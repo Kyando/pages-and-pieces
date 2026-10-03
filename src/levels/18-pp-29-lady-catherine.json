@@ -1,0 +1,48 @@
+{
+  "id": "pp-29-lady-catherine",
+  "book": "pride-and-prejudice",
+  "chapter": 29,
+  "title": "Dinner at Rosings",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "ENEHTAC",
+    "SIRGARN",
+    "EROSTDE",
+    "DAPSIRI",
+    "NNIENOP",
+    "OIPATRS"
+  ],
+  "words": [
+    {
+      "text": "GARDEN",
+      "path": [10, 11, 12, 19, 20, 13]
+    },
+    {
+      "text": "PATRONESS",
+      "path": [37, 38, 39, 40, 33, 32, 31, 24, 17]
+    },
+    {
+      "text": "CATHERINE",
+      "path": [6, 5, 4, 3, 2, 9, 8, 1, 0]
+    },
+    {
+      "text": "OPINION",
+      "path": [16, 23, 30, 29, 36, 35, 28]
+    },
+    {
+      "text": "DARES",
+      "path": [21, 22, 15, 14, 7]
+    },
+    {
+      "text": "SPIRIT",
+      "path": [41, 34, 27, 26, 25, 18]
+    }
+  ],
+  "story": {
+    "text": "Charlotte seems content in her parsonage at Hunsford, keeping Mr. Collins busy in his {GARDEN}. Soon they are all summoned to Rosings to dine with his {PATRONESS}, Lady {CATHERINE} de Bourgh, who gives her {OPINION} on everything. She is astonished that Elizabeth, not yet twenty-one, {DARES} to answer back with such {SPIRIT}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Thomson-PP13.jpg",
+    "caption": "In conversation with the ladies",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

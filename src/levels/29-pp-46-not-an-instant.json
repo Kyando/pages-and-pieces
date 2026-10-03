@@ -1,0 +1,53 @@
+{
+  "id": "pp-46-not-an-instant",
+  "book": "pride-and-prejudice",
+  "chapter": 46,
+  "title": "Not an Instant to Lose",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "MELHOD",
+    "ANCEPI",
+    "HUWLYS",
+    "KCIIDG",
+    "TNIAAR",
+    "NSEECD",
+    "ATLOPE"
+  ],
+  "words": [
+    {
+      "text": "LYDIA",
+      "path": [15, 16, 22, 21, 27]
+    },
+    {
+      "text": "ELOPED",
+      "path": [32, 38, 39, 40, 41, 35]
+    },
+    {
+      "text": "WICKHAM",
+      "path": [14, 20, 19, 18, 12, 6, 0]
+    },
+    {
+      "text": "UNCLE",
+      "path": [13, 7, 8, 2, 1]
+    },
+    {
+      "text": "INSTANT",
+      "path": [26, 25, 31, 37, 36, 30, 24]
+    },
+    {
+      "text": "DISGRACE",
+      "path": [5, 11, 17, 23, 29, 28, 34, 33]
+    },
+    {
+      "text": "HOPE",
+      "path": [3, 4, 10, 9]
+    }
+  ],
+  "story": {
+    "text": "Two letters from Jane arrive at once: {LYDIA} has {ELOPED} with {WICKHAM}, and no one knows if he means to marry her. Elizabeth runs to find her {UNCLE} and meets Darcy in the doorway. “I have not an {INSTANT} to lose!” She tells him all, sure that such a {DISGRACE} ends any {HOPE} between them.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Thomson-PP19.jpg",
+    "caption": "I have not an instant to lose",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

@@ -2,12 +2,13 @@
 export const en = {
   'game.name': 'Pages & Pieces',
 
-  'top.chapters': 'Chapters',
+  'top.library': 'All chapters',
   'top.help': 'How to play',
   'top.sound': 'Sound',
 
   'level.prev': 'Previous chapter',
   'level.next': 'Next chapter',
+  'level.nextLocked': 'Finish this chapter to read on',
   'level.eyebrow': '{book} · Chapter {chapter}',
   'level.words': 'Find these words',
   'level.board': 'Letters',
@@ -30,9 +31,13 @@ export const en = {
   'desk.copied': 'Copied!',
   'desk.copyFailed': 'Could not copy',
 
-  'chapters.title': 'Chapters',
-  'chapters.meta': 'Chapter {chapter} · {rows}×{cols}',
-  'chapters.by': 'by {author}, {year}',
+  'library.label': 'The book’s chapters',
+  'library.by': '{author} · {year}',
+  'library.begin': 'Begin the story',
+  'library.continue': 'Continue reading',
+  'library.finished': 'The End. Every chapter is yours to revisit.',
+  'library.chapter': 'Chapter {n}',
+  'library.locked': '{chapter}, not yet reached',
 
   'help.title': 'How to play',
   'help.intro': 'Each chapter is a scene from a classic book. Its words are hidden in the grid, and {strong} belongs to one of them.',

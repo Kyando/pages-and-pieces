@@ -1,5 +1,6 @@
 import { colOf, rowOf } from '../core/grid.ts';
 import { pieceOutline } from './shape.ts';
+import { loadPicture, type Crop } from './picture.ts';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 let uid = 0;
@@ -62,6 +63,7 @@ export class PieceLayer {
   readonly el: SVGSVGElement;
   /** The picture's address; a local copy once it has downloaded, so pieces show it at once. */
   private href: string;
+  private readonly source: string;
   private blobUrl: string | null = null;
   private destroyed = false;
   private readonly id = `pieces-${++uid}`;
@@ -76,9 +78,11 @@ export class PieceLayer {
   private readonly raggedNoise: SVGFETurbulenceElement;
   private readonly raggedShift: SVGFEDisplacementMapElement;
 
-  constructor(image: string) {
-    this.href = image;
-    this.preload(image);
+  /** `crop` trims a scanned page down to its drawing; such a picture only shows once it's trimmed. */
+  constructor(image: string, crop?: Crop) {
+    this.source = image;
+    this.href = crop ? '' : image;
+    this.preload(image, crop);
     this.el = el('svg', { class: 'pieces', 'aria-hidden': 'true' });
     this.ragged = el('filter', { id: `${this.id}-ragged`, x: '-40%', y: '-40%', width: '180%', height: '180%' });
     this.raggedNoise = el('feTurbulence', { type: 'fractalNoise', baseFrequency: 0.05, numOctaves: 3, seed: 11, result: 'noise' });
@@ -93,26 +97,26 @@ export class PieceLayer {
 
   /**
    * Downloads the picture as the chapter opens, not when the first word is found. Keeps a local
-   * copy when the host allows it (Wikimedia does); otherwise the browser cache still has it.
+   * copy when the host allows it (Wikimedia does); otherwise the browser cache still has it, untrimmed.
    */
-  private preload(image: string): void {
-    const img = new Image();
-    img.src = image;
-    img.decode?.().catch(() => undefined);
-    fetch(image)
-      .then((r) => (r.ok ? r.blob() : Promise.reject(new Error(String(r.status)))))
+  private preload(image: string, crop?: Crop): void {
+    loadPicture(image, crop)
       .then((blob) => {
         if (this.destroyed) return;
         this.blobUrl = URL.createObjectURL(blob);
-        this.href = this.blobUrl;
-        this.el.querySelectorAll('image').forEach((n) => n.setAttribute('href', this.href));
+        this.show(this.blobUrl);
       })
-      .catch(() => undefined);
+      .catch(() => this.show(image));
+  }
+
+  private show(href: string): void {
+    this.href = href;
+    this.el.querySelectorAll('image').forEach((n) => n.setAttribute('href', href));
   }
 
   /** The picture's address: the local copy once it has downloaded. */
   get picture(): string {
-    return this.href;
+    return this.href || this.source;
   }
 
   /** Frees the local copy of the picture. */

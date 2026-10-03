@@ -1,0 +1,56 @@
+{
+  "id": "pp-60-be-sincere",
+  "book": "pride-and-prejudice",
+  "chapter": 60,
+  "title": "Be Sincere",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "EGRALU",
+    "RECTEF",
+    "YENLAH",
+    "RLISUG",
+    "EGNIEC",
+    "BPDDEN",
+    "MEEWNI",
+    "IMPERT"
+  ],
+  "words": [
+    {
+      "text": "SINCERE",
+      "path": [21, 20, 14, 8, 7, 6, 0]
+    },
+    {
+      "text": "IMPERTINENCE",
+      "path": [42, 43, 44, 45, 46, 47, 41, 40, 34, 35, 29, 28]
+    },
+    {
+      "text": "WEDDING",
+      "path": [39, 38, 32, 33, 27, 26, 25]
+    },
+    {
+      "text": "PEMBERLEY",
+      "path": [31, 37, 36, 30, 24, 18, 19, 13, 12]
+    },
+    {
+      "text": "LAUGH",
+      "path": [15, 16, 22, 23, 17]
+    },
+    {
+      "text": "GRATEFUL",
+      "path": [1, 2, 3, 9, 10, 11, 5, 4]
+    }
+  ],
+  "story": {
+    "text": "“Now, be {SINCERE}: did you admire me for my {IMPERTINENCE}?” Elizabeth teases, and Darcy owns that he did. Soon there is a double {WEDDING}. Jane and Bingley settle near {PEMBERLEY}, where Georgiana learns to {LAUGH}, and Darcy and Elizabeth stay forever {GRATEFUL} to the Gardiners, who brought them together.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Illustration_by_C_E_Brock_for_Pride_and_Prejudice_-_Now%2C_be_sincere%3B_did_you_admire_me_for_my_impertinence.jpg",
+    "caption": "Now, be sincere; did you admire me for my impertinence?",
+    "credit": "C. E. Brock, 1895",
+    "crop": [
+      0.072,
+      0.04,
+      0.938,
+      0.841
+    ]
+  }
+}

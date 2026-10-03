@@ -1,0 +1,60 @@
+{
+  "id": "pp-31-at-the-piano",
+  "book": "pride-and-prejudice",
+  "chapter": 31,
+  "title": "At the Piano",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "EDINET",
+    "BESIGH",
+    "PNORSG",
+    "IASFDN",
+    "ARTNAI",
+    "NNICOS",
+    "GGTART",
+    "ERSLEN"
+  ],
+  "words": [
+    {
+      "text": "ROSINGS",
+      "path": [40, 34, 35, 29, 23, 17, 16]
+    },
+    {
+      "text": "PIANO",
+      "path": [12, 18, 19, 13, 14]
+    },
+    {
+      "text": "BESIDE",
+      "path": [6, 7, 8, 2, 1, 0]
+    },
+    {
+      "text": "FRIGHTEN",
+      "path": [21, 15, 9, 10, 11, 5, 4, 3]
+    },
+    {
+      "text": "DANCING",
+      "path": [22, 28, 27, 33, 32, 31, 37]
+    },
+    {
+      "text": "TALENT",
+      "path": [38, 39, 45, 46, 47, 41]
+    },
+    {
+      "text": "STRANGERS",
+      "path": [20, 26, 25, 24, 30, 36, 42, 43, 44]
+    }
+  ],
+  "story": {
+    "text": "Mr. Darcy and his cousin, Colonel Fitzwilliam, come to {ROSINGS} for Easter. One evening Elizabeth plays the {PIANO}, and Darcy moves to stand {BESIDE} her. “You mean to {FRIGHTEN} me,” she laughs, and tells the Colonel how Darcy avoided {DANCING} at the ball. Darcy admits he lacks the {TALENT} of talking easily to {STRANGERS}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Illustration_by_C_E_Brock_for_Pride_and_Prejudice_-_You_mean_to_frighten_me%2C_Mr._Darcy.jpg",
+    "caption": "You mean to frighten me, Mr. Darcy",
+    "credit": "C. E. Brock, 1895",
+    "crop": [
+      0.086,
+      0.073,
+      0.934,
+      0.864
+    ]
+  }
+}

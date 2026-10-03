@@ -1,0 +1,64 @@
+{
+  "id": "pp-06-fine-eyes",
+  "book": "pride-and-prejudice",
+  "chapter": 6,
+  "title": "A Pair of Fine Eyes",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "ENDNRF",
+    "SIFEIT",
+    "EREPFN",
+    "SUNAEE",
+    "EFTRES",
+    "RGNILE",
+    "ESDEPR",
+    "CNAYES"
+  ],
+  "words": [
+    {
+      "text": "PRESENT",
+      "path": [40, 41, 35, 29, 23, 17, 11]
+    },
+    {
+      "text": "PARTNER",
+      "path": [15, 21, 27, 26, 20, 14, 13]
+    },
+    {
+      "text": "DANCE",
+      "path": [38, 44, 43, 42, 36]
+    },
+    {
+      "text": "REFUSES",
+      "path": [30, 24, 25, 19, 18, 12, 6]
+    },
+    {
+      "text": "FINE",
+      "path": [8, 7, 1, 0]
+    },
+    {
+      "text": "EYES",
+      "path": [39, 45, 46, 47]
+    },
+    {
+      "text": "FRIEND",
+      "path": [5, 4, 10, 9, 3, 2]
+    },
+    {
+      "text": "FEELINGS",
+      "path": [16, 22, 28, 34, 33, 32, 31, 37]
+    }
+  ],
+  "story": {
+    "text": "At Lucas Lodge, Sir William Lucas tries to {PRESENT} Elizabeth to Mr. Darcy as a {PARTNER} for the next {DANCE}, but she {REFUSES} with a smile. Darcy is left thinking about her pair of {FINE} {EYES}. Meanwhile Charlotte Lucas, Elizabeth’s closest {FRIEND}, warns that Jane hides her {FEELINGS} so well that Mr. Bingley may never know she cares.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Illustration_by_C_E_Brock_for_Pride_and_Prejudice_-_Mr._Darcy%2C_you_must_allow_me_to_present_this_young_lady_to_you_as_a_very_desirable_partner.jpg",
+    "caption": "Mr. Darcy, you must allow me to present this young lady to you",
+    "credit": "C. E. Brock, 1895",
+    "crop": [
+      0.044,
+      0.068,
+      0.95,
+      0.8
+    ]
+  }
+}

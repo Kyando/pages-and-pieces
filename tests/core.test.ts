@@ -195,3 +195,23 @@ describe('steering a drag', () => {
     expect(drag(0, [[1, 0.55], [2, 0.55]])).toEqual([0, 1, 2]);
   });
 });
+
+describe('pictures', () => {
+  it('asks Wikimedia for a standard thumbnail width, from originals and thumbnails alike', async () => {
+    const { commonsThumb } = await import('../src/ui/picture.ts');
+    expect(commonsThumb('https://upload.wikimedia.org/wikipedia/commons/4/4d/Thomson-PP03.jpg', 330)).toBe(
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Thomson-PP03.jpg/330px-Thomson-PP03.jpg',
+    );
+    expect(commonsThumb('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Thomson-PP-Ch27.JPG/1280px-Thomson-PP-Ch27.JPG', 330)).toBe(
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Thomson-PP-Ch27.JPG/330px-Thomson-PP-Ch27.JPG',
+    );
+  });
+  it('crops stay inside the picture', () => {
+    for (const def of levels) {
+      const crop = def.story.crop;
+      if (!crop) continue;
+      const [l, t, r, b] = crop;
+      expect(0 <= l && l < r && r <= 1 && 0 <= t && t < b && b <= 1, def.id).toBe(true);
+    }
+  });
+});

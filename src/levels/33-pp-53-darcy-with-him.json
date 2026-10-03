@@ -1,0 +1,57 @@
+{
+  "id": "pp-53-darcy-with-him",
+  "book": "pride-and-prejudice",
+  "chapter": 53,
+  "title": "Mr. Darcy with Him",
+  "rows": 7,
+  "cols": 7,
+  "grid": [
+    "DYADEGN",
+    "ICRRNAI",
+    "NRDUNLW",
+    "NEETESE",
+    "GUBHERF",
+    "NRTNEDI",
+    "INSILLE"
+  ],
+  "words": [
+    {
+      "text": "NETHERFIELD",
+      "path": [18, 25, 24, 31, 32, 33, 34, 41, 48, 47, 40]
+    },
+    {
+      "text": "DINNER",
+      "path": [0, 7, 14, 21, 22, 15]
+    },
+    {
+      "text": "LANE",
+      "path": [19, 12, 11, 4]
+    },
+    {
+      "text": "DARCY",
+      "path": [3, 2, 9, 8, 1]
+    },
+    {
+      "text": "SILENT",
+      "path": [44, 45, 46, 39, 38, 37]
+    },
+    {
+      "text": "SEWING",
+      "path": [26, 27, 20, 13, 6, 5]
+    },
+    {
+      "text": "BURNING",
+      "path": [30, 29, 36, 43, 42, 35, 28]
+    },
+    {
+      "text": "RUDE",
+      "path": [10, 17, 16, 23]
+    }
+  ],
+  "story": {
+    "text": "{NETHERFIELD} is opened again: Bingley is coming back! Mrs. Bennet plans the finest {DINNER}, and Jane swears she feels nothing. When Bingley rides up the {LANE}, Kitty cries out that someone is with him: “Mr. {DARCY}, I vow!” Elizabeth sits {SILENT} over her {SEWING}, cheeks {BURNING}, while her mother is {RUDE} to the man who saved Lydia.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Thomson-PP20.jpg",
+    "caption": "Mr. Darcy with him",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

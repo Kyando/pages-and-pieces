@@ -1,0 +1,60 @@
+{
+  "id": "pp-58-half-the-night",
+  "book": "pride-and-prejudice",
+  "chapter": 58,
+  "title": "Half the Night",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "FESECC",
+    "BETPSA",
+    "ELINGL",
+    "LAPRVO",
+    "IELIED",
+    "DVEYLL",
+    "EGNDUA",
+    "CHAARG"
+  ],
+  "words": [
+    {
+      "text": "FEELINGS",
+      "path": [0, 1, 7, 13, 14, 15, 16, 10]
+    },
+    {
+      "text": "APRIL",
+      "path": [19, 20, 21, 27, 26]
+    },
+    {
+      "text": "CHANGED",
+      "path": [42, 43, 44, 38, 37, 36, 30]
+    },
+    {
+      "text": "ACCEPTS",
+      "path": [11, 5, 4, 3, 9, 8, 2]
+    },
+    {
+      "text": "BELIEVE",
+      "path": [6, 12, 18, 24, 25, 31, 32]
+    },
+    {
+      "text": "LOVED",
+      "path": [17, 23, 22, 28, 29]
+    },
+    {
+      "text": "GRADUALLY",
+      "path": [47, 46, 45, 39, 40, 41, 35, 34, 33]
+    }
+  ],
+  "story": {
+    "text": "Walking out together, Elizabeth thanks Darcy for all he did for Lydia. He answers: “If your {FEELINGS} are still what they were last {APRIL}, tell me so at once.” Hers have {CHANGED}, and she {ACCEPTS} him. That night she tells Jane, who can hardly {BELIEVE} it. “How long have you {LOVED} him?” “It has been coming on so {GRADUALLY}, I hardly know when it began.”",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Illustration_by_C_E_Brock_for_Pride_and_Prejudice_-_All_was_acknowledged%2C_and_half_the_night_spent_in_conversation.jpg",
+    "caption": "All was acknowledged, and half the night spent in conversation",
+    "credit": "C. E. Brock, 1895",
+    "crop": [
+      0.034,
+      0.037,
+      0.89,
+      0.856
+    ]
+  }
+}

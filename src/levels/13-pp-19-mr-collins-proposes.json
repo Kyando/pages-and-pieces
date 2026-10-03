@@ -1,0 +1,53 @@
+{
+  "id": "pp-19-mr-collins-proposes",
+  "book": "pride-and-prejudice",
+  "chapter": 19,
+  "title": "Mr. Collins Proposes",
+  "rows": 7,
+  "cols": 7,
+  "grid": [
+    "SNOSELO",
+    "SASMHEV",
+    "EEROSIS",
+    "SERDEWS",
+    "UFYTSNE",
+    "CRGANIP",
+    "LEYMHAP"
+  ],
+  "words": [
+    {
+      "text": "REASONS",
+      "path": [16, 15, 8, 9, 2, 1, 0]
+    },
+    {
+      "text": "CLERGYMAN",
+      "path": [35, 42, 43, 36, 37, 44, 45, 38, 39]
+    },
+    {
+      "text": "HAPPINESS",
+      "path": [46, 47, 48, 41, 40, 33, 34, 27, 20]
+    },
+    {
+      "text": "WISHES",
+      "path": [26, 19, 18, 11, 4, 3]
+    },
+    {
+      "text": "LOVE",
+      "path": [5, 6, 13, 12]
+    },
+    {
+      "text": "REFUSES",
+      "path": [23, 22, 29, 28, 21, 14, 7]
+    },
+    {
+      "text": "MODESTY",
+      "path": [10, 17, 24, 25, 32, 31, 30]
+    }
+  ],
+  "story": {
+    "text": "The morning after the ball, Mr. Collins asks for a private word with Elizabeth. He lists his {REASONS} for marrying: it is right for a {CLERGYMAN}, it will add to his {HAPPINESS}, and Lady Catherine {WISHES} it. Only then does he speak of {LOVE}. Elizabeth {REFUSES} him, but he takes it for {MODESTY}.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Thomson-PP11.jpg",
+    "caption": "To assure you in the most animated language",
+    "credit": "Hugh Thomson, 1894"
+  }
+}

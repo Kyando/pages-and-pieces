@@ -1,0 +1,53 @@
+{
+  "id": "pp-34-the-last-man",
+  "book": "pride-and-prejudice",
+  "chapter": 34,
+  "title": "The Last Man in the World",
+  "rows": 7,
+  "cols": 7,
+  "grid": [
+    "WAMYRSE",
+    "IHHARAL",
+    "CKPPEMF",
+    "ENINCSI",
+    "SSTAGHD",
+    "ONIRORL",
+    "CCERAOW"
+  ],
+  "words": [
+    {
+      "text": "HAPPINESS",
+      "path": [9, 10, 17, 16, 23, 22, 21, 28, 29]
+    },
+    {
+      "text": "WICKHAM",
+      "path": [0, 7, 14, 15, 8, 1, 2]
+    },
+    {
+      "text": "ARROGANCE",
+      "path": [46, 45, 38, 39, 32, 31, 24, 25, 18]
+    },
+    {
+      "text": "CONCEIT",
+      "path": [42, 35, 36, 43, 44, 37, 30]
+    },
+    {
+      "text": "SELFISH",
+      "path": [5, 6, 13, 20, 27, 26, 33]
+    },
+    {
+      "text": "WORLD",
+      "path": [48, 47, 40, 41, 34]
+    },
+    {
+      "text": "MARRY",
+      "path": [19, 12, 11, 4, 3]
+    }
+  ],
+  "story": {
+    "text": "Elizabeth turns him down. How could she accept the man who ruined her sister’s {HAPPINESS} and treated Mr. {WICKHAM} so cruelly? From the start, his {ARROGANCE}, his {CONCEIT} and his {SELFISH} disdain told her he was “the last man in the {WORLD} whom I could ever be prevailed on to {MARRY}.”",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Thomson-PP15.jpg",
+    "caption": "The proposal at Hunsford",
+    "credit": "Hugh Thomson, 1894"
+  }
+}
