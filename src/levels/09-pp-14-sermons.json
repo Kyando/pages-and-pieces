@@ -47,14 +47,14 @@
   ],
   "story": {
     "text": "A letter announces a visitor: Mr. Collins, the {COUSIN} who will one day inherit the family home, Longbourn. He arrives full of praise for his {PATRONESS}, Lady Catherine de Bourgh. Asked to read aloud, Mr. {COLLINS} refuses to touch {NOVELS} and picks a book of {SERMONS}. Three pages in, {LYDIA} interrupts him to gossip about the {OFFICERS}.",
-    "image": "art/thomson-1894/commons/thomson-pp08.jpg",
+    "image": "art/thomson-1894/ch14-i_116.jpg",
     "caption": "Protested that he never read novels",
     "credit": "Hugh Thomson, 1894",
     "crop": [
       0,
       0,
       1,
-      0.895
+      0.9
     ]
   }
 }

@@ -50,14 +50,14 @@
   ],
   "story": {
     "text": "{NETHERFIELD} is opened again: Bingley is coming back! Mrs. Bennet plans the finest {DINNER}, and Jane swears she feels nothing. When Bingley rides up the {LANE}, Kitty cries out that someone is with him: “Mr. {DARCY}, I vow!” Elizabeth sits {SILENT} over her {SEWING}, cheeks {BURNING}, while her mother is {RUDE} to the man who saved Lydia.",
-    "image": "art/thomson-1894/commons/thomson-pp20.jpg",
+    "image": "art/thomson-1894/ch53-i_433_a.jpg",
     "caption": "Mr. Darcy with him",
     "credit": "Hugh Thomson, 1894",
     "crop": [
       0,
       0,
       1,
-      0.86
+      0.9
     ]
   }
 }

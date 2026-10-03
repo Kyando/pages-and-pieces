@@ -47,14 +47,14 @@
   ],
   "story": {
     "text": "At the {ASSEMBLY} in Meryton, every head turns when Mr. {BINGLEY} arrives with his two {SISTERS} and his friend, Mr. Darcy: tall, handsome and {NOBLE} in bearing. Within five minutes the whole room has heard he has ten {THOUSAND} a year. Within the hour, everyone has decided he is the {PROUDEST} man in the {WORLD}.",
-    "image": "art/thomson-1894/commons/thomson-pp04.jpg",
+    "image": "art/thomson-1894/ch03-i_041.jpg",
     "caption": "When the party entered",
     "credit": "Hugh Thomson, 1894",
     "crop": [
       0,
       0,
       1,
-      0.905
+      0.92
     ]
   }
 }

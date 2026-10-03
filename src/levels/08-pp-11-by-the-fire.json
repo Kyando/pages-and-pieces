@@ -54,14 +54,14 @@
   ],
   "story": {
     "text": "When {JANE} is well enough to come downstairs, Mr. {BINGLEY} has eyes for no one else. He piles up the {FIRE}, moves her away from the {DOOR} so she won’t feel a chill, and sits beside her all {EVENING}. Across the room, {CAROLINE} Bingley tries every bit of {FLATTERY} she knows to win Mr. {DARCY}’s {ATTENTION}.",
-    "image": "art/thomson-1894/commons/thomson-pp07.jpg",
+    "image": "art/thomson-1894/ch11-i_098_a.jpg",
     "caption": "Piling up the fire",
     "credit": "Hugh Thomson, 1894",
     "crop": [
       0,
       0,
       1,
-      0.865
+      0.85
     ]
   }
 }

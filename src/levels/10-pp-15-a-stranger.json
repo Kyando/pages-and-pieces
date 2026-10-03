@@ -51,14 +51,14 @@
   ],
   "story": {
     "text": "On a walk into {MERYTON}, the sisters meet a stranger full of easy {CHARM}: Mr. Wickham, about to join the {REGIMENT} with the other {OFFICERS}. Then Mr. {DARCY} rides by. When the two men catch sight of each other, one turns {WHITE}, the other {RED}. What could have happened between Darcy and {WICKHAM}?",
-    "image": "art/thomson-1894/commons/thomson-pp09.jpg",
+    "image": "art/thomson-1894/ch16-i_126.jpg",
     "caption": "The officers of the ——shire",
     "credit": "Hugh Thomson, 1894",
     "crop": [
       0,
       0,
       1,
-      0.87
+      0.905
     ]
   }
 }

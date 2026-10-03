@@ -46,14 +46,14 @@
   ],
   "story": {
     "text": "Across the {BALL} at {MERYTON}, {BINGLEY} begs his friend to dance with Elizabeth Bennet. {DARCY} barely glances at her: “She is {TOLERABLE}, but not {HANDSOME} enough to tempt me.” {ELIZABETH} hears every word, and turns it into a story that makes all her friends laugh.",
-    "image": "art/thomson-1894/commons/thomson-pp05.jpg",
+    "image": "art/thomson-1894/ch03-i_044.jpg",
     "caption": "She is tolerable",
     "credit": "Hugh Thomson, 1894",
     "crop": [
       0,
       0,
       1,
-      0.895
+      0.925
     ]
   }
 }

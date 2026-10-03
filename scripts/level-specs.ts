@@ -11,8 +11,9 @@ import type { LevelSpec } from '../src/core/generate.ts';
  *   this against the book's `names`). Finding it is remembering the story, not guessing.
  *
  * The grid's shape follows the illustration's, so the reveal crops as little of it as possible.
- * The plates are scans of whole pages: `crop` trims them to the drawing, above the caption (Brock's
- * printed, Thomson's hand-lettered) and the copyright line.
+ * Thomson's drawings come from the complete Gutenberg edition, Brock's from Commons scans of whole
+ * pages: `crop` trims a picture to the drawing, above its caption (Thomson's hand-lettered, Brock's
+ * printed) and the copyright line.
  */
 
 const PP = 'pride-and-prejudice';
@@ -31,10 +32,10 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'It is a truth universally acknowledged that a single man with a good {FORTUNE} must be in want of a {WIFE}. So when Netherfield Park is let at last to Mr. Bingley, a rich young {GENTLEMAN}, Mrs. Bennet can think of nothing but seeing one of her five {DAUGHTERS} {MARRIED} to him. Mr. Bennet only teases her, and she protests that he has no pity for her poor {NERVES}.',
-      image: art('thomson-1894/commons/thomson-pp03.jpg'),
+      image: art('thomson-1894/ch01-i_034.jpg'),
       caption: 'Mr. and Mrs. Bennet',
       credit: THOMSON,
-      crop: [0, 0.08, 1, 0.785],
+      crop: [0, 0, 1, 0.93],
     },
   },
   {
@@ -46,10 +47,10 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'At the {ASSEMBLY} in Meryton, every head turns when Mr. {BINGLEY} arrives with his two {SISTERS} and his friend, Mr. Darcy: tall, handsome and {NOBLE} in bearing. Within five minutes the whole room has heard he has ten {THOUSAND} a year. Within the hour, everyone has decided he is the {PROUDEST} man in the {WORLD}.',
-      image: art('thomson-1894/commons/thomson-pp04.jpg'),
+      image: art('thomson-1894/ch03-i_041.jpg'),
       caption: 'When the party entered',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.905],
+      crop: [0, 0, 1, 0.92],
     },
   },
   {
@@ -61,10 +62,10 @@ export const SPECS: LevelSpec[] = [
     cols: 7,
     story: {
       text: 'Across the {BALL} at {MERYTON}, {BINGLEY} begs his friend to dance with Elizabeth Bennet. {DARCY} barely glances at her: “She is {TOLERABLE}, but not {HANDSOME} enough to tempt me.” {ELIZABETH} hears every word, and turns it into a story that makes all her friends laugh.',
-      image: art('thomson-1894/commons/thomson-pp05.jpg'),
+      image: art('thomson-1894/ch03-i_044.jpg'),
       caption: 'She is tolerable',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.895],
+      crop: [0, 0, 1, 0.925],
     },
   },
   {
@@ -91,10 +92,10 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'An {INVITATION} arrives from Netherfield: Caroline Bingley asks Jane, the eldest Bennet girl, to dine. Mrs. Bennet has a {SCHEME}. {JANE} must go on {HORSEBACK}, because it looks like {RAIN}, and then she will simply have to stay the {NIGHT}. The plan works all too well: Jane arrives soaked, and wakes up with a terrible {COLD}.',
-      image: art('thomson-1894/commons/thompson-pp-ch7.jpg'),
+      image: art('thomson-1894/ch07-i_069.jpg'),
       caption: 'Cheerful prognostics',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.875],
+      crop: [0, 0, 1, 0.925],
     },
   },
   {
@@ -121,10 +122,10 @@ export const SPECS: LevelSpec[] = [
     cols: 7,
     story: {
       text: 'Mrs. Bennet comes to Netherfield to see poor Jane, bringing her youngest girls, Kitty and Lydia. She praises the {COUNTRY} to Mr. {DARCY}’s face, as if to put him in his place, while {ELIZABETH} wishes the {FLOOR} would swallow her whole. Then bold {LYDIA} reminds Mr. {BINGLEY} of his {PROMISE} to throw a {BALL}.',
-      image: art('thomson-1894/commons/thompson-pp-ch9.jpg'),
+      image: art('thomson-1894/ch09-i_082_a.jpg'),
       caption: 'Mrs. Bennet and her two youngest girls',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.86],
+      crop: [0, 0, 1, 0.865],
     },
   },
   {
@@ -136,10 +137,10 @@ export const SPECS: LevelSpec[] = [
     cols: 8,
     story: {
       text: 'When {JANE} is well enough to come downstairs, Mr. {BINGLEY} has eyes for no one else. He piles up the {FIRE}, moves her away from the {DOOR} so she won’t feel a chill, and sits beside her all {EVENING}. Across the room, {CAROLINE} Bingley tries every bit of {FLATTERY} she knows to win Mr. {DARCY}’s {ATTENTION}.',
-      image: art('thomson-1894/commons/thomson-pp07.jpg'),
+      image: art('thomson-1894/ch11-i_098_a.jpg'),
       caption: 'Piling up the fire',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.865],
+      crop: [0, 0, 1, 0.85],
     },
   },
   {
@@ -151,10 +152,10 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'A letter announces a visitor: Mr. Collins, the {COUSIN} who will one day inherit the family home, Longbourn. He arrives full of praise for his {PATRONESS}, Lady Catherine de Bourgh. Asked to read aloud, Mr. {COLLINS} refuses to touch {NOVELS} and picks a book of {SERMONS}. Three pages in, {LYDIA} interrupts him to gossip about the {OFFICERS}.',
-      image: art('thomson-1894/commons/thomson-pp08.jpg'),
+      image: art('thomson-1894/ch14-i_116.jpg'),
       caption: 'Protested that he never read novels',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.895],
+      crop: [0, 0, 1, 0.9],
     },
   },
   {
@@ -166,10 +167,10 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'On a walk into {MERYTON}, the sisters meet a stranger full of easy {CHARM}: Mr. Wickham, about to join the {REGIMENT} with the other {OFFICERS}. Then Mr. {DARCY} rides by. When the two men catch sight of each other, one turns {WHITE}, the other {RED}. What could have happened between Darcy and {WICKHAM}?',
-      image: art('thomson-1894/commons/thomson-pp09.jpg'),
+      image: art('thomson-1894/ch16-i_126.jpg'),
       caption: 'The officers of the ——shire',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.87],
+      crop: [0, 0, 1, 0.905],
     },
   },
   {
@@ -196,10 +197,10 @@ export const SPECS: LevelSpec[] = [
     cols: 7,
     story: {
       text: 'At last, the {BALL} at Netherfield. Elizabeth finds herself dancing with Mr. {DARCY}, and Sir William Lucas stops them to praise their “very superior {DANCING}.” She tries to {TEASE} her partner into talking, then mentions {WICKHAM}. Darcy’s face {DARKENS}, and they {PART} in {SILENCE}, both {DISPLEASED}.',
-      image: art('thomson-1894/commons/thomson-pp10.jpg'),
+      image: art('thomson-1894/ch18-i_147.jpg'),
       caption: 'Such very superior dancing is not often seen',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.835],
+      crop: [0, 0, 1, 0.89],
     },
   },
   {
@@ -211,10 +212,10 @@ export const SPECS: LevelSpec[] = [
     cols: 7,
     story: {
       text: 'The morning after the ball, Mr. Collins asks for a private word with Elizabeth. He lists his {REASONS} for marrying: it is right for a {CLERGYMAN}, it will add to his {HAPPINESS}, and Lady Catherine {WISHES} it. Only then does he speak of {LOVE}. Elizabeth {REFUSES} him, but he takes it for {MODESTY}.',
-      image: art('thomson-1894/commons/thomson-pp11.jpg'),
+      image: art('thomson-1894/ch19-i_161_a.jpg'),
       caption: 'To assure you in the most animated language',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.84],
+      crop: [0, 0, 1, 0.92],
     },
   },
   {
@@ -241,10 +242,10 @@ export const SPECS: LevelSpec[] = [
     cols: 7,
     story: {
       text: 'Bingley has left Netherfield for the winter, and Jane tries to hide her sadness. Then comes startling {NEWS}: {CHARLOTTE} has {ACCEPTED} Mr. Collins. At twenty-seven, with no {FORTUNE}, she asks only for a comfortable {HOME}. Elizabeth is {SHOCKED} that her dearest {FRIEND} would marry without {LOVE}.',
-      image: art('thomson-1894/commons/thomson-pp12.jpg'),
+      image: art('thomson-1894/ch22-i_185.jpg'),
       caption: 'So much love and eloquence',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.905],
+      crop: [0, 0.18, 1, 0.915],
     },
   },
   {
@@ -271,10 +272,10 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'On her way to visit Charlotte in Kent, Elizabeth stops at the Gardiners’ house in {LONDON}, where a troop of little {COUSINS} waits on the {STAIRS}. Jane has news: she {CALLED} on Caroline, who {RETURNED} the visit weeks later, cold and brief. Jane’s {HOPES} of Bingley are {GONE}.',
-      image: art('thomson-1894/commons/thomson-pp-ch27.jpg'),
+      image: art('thomson-1894/ch27-i_218_a.jpg'),
       caption: 'On the stairs',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.935],
+      crop: [0, 0, 1, 0.945],
     },
   },
   {
@@ -286,10 +287,10 @@ export const SPECS: LevelSpec[] = [
     cols: 7,
     story: {
       text: 'Charlotte seems content in her parsonage at Hunsford, keeping Mr. Collins busy in his {GARDEN}. Soon they are all summoned to Rosings to dine with his {PATRONESS}, Lady {CATHERINE} de Bourgh, who gives her {OPINION} on everything. She is astonished that Elizabeth, not yet twenty-one, {DARES} to answer back with such {SPIRIT}.',
-      image: art('thomson-1894/commons/thomson-pp13.jpg'),
+      image: art('thomson-1894/ch28-i_227.jpg'),
       caption: 'In conversation with the ladies',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.86],
+      crop: [0, 0, 1, 0.89],
     },
   },
   {
@@ -316,10 +317,10 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'Walking in the {GROVE} at Rosings, Elizabeth meets Colonel {FITZWILLIAM}. Chatting, he lets slip that Darcy recently {SAVED} a friend from a most {IMPRUDENT} marriage. Elizabeth knows at once that he means {BINGLEY} and Jane. Back at the parsonage, she gives way to {TEARS}.',
-      image: art('thomson-1894/commons/thomson-pp-ch33.jpg'),
+      image: art('thomson-1894/ch33-i_257_a.jpg'),
       caption: 'On looking up',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.92],
+      crop: [0, 0, 1, 0.91],
     },
   },
   {
@@ -346,10 +347,9 @@ export const SPECS: LevelSpec[] = [
     cols: 7,
     story: {
       text: 'Elizabeth turns him down. How could she accept the man who ruined her sister’s {HAPPINESS} and treated Mr. {WICKHAM} so cruelly? From the start, his {ARROGANCE}, his {CONCEIT} and his {SELFISH} disdain told her he was “the last man in the {WORLD} whom I could ever be prevailed on to {MARRY}.”',
-      image: art('thomson-1894/commons/thomson-pp15.jpg'),
+      image: art('thomson-1894/ch34-i_264_a.jpg'),
       caption: 'The proposal at Hunsford',
       credit: THOMSON,
-      crop: [0, 0.13, 1, 0.935],
     },
   },
   {
@@ -376,7 +376,7 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'The letter goes on. Wickham squandered the money old Mr. Darcy left him, then tried to {ELOPE} with Darcy’s fifteen-year-old sister, Georgiana, for her {FORTUNE}. Elizabeth reads it again and again, {WEIGHING} every line, and sees she has been {BLINDED} by {PREJUDICE}. “Till this {MOMENT} I never knew {MYSELF}.”',
-      image: art('thomson-1894/commons/thomson-pp-ch36.jpg'),
+      image: art('thomson-1894/ch36-i_282_a.jpg'),
       caption: 'Any wish of doing him justice',
       credit: THOMSON,
     },
@@ -390,10 +390,10 @@ export const SPECS: LevelSpec[] = [
     cols: 7,
     story: {
       text: 'The regiment is leaving Meryton for Brighton, and {LYDIA} is invited along by the colonel’s young wife. She dreams of {TENTS}, scarlet {UNIFORMS} and tenderly {FLIRTING} with six {OFFICERS} at once. Elizabeth begs her father to keep her home, but Mr. Bennet lets her go: in {BRIGHTON}, he says, she will be too poor to tempt anyone.',
-      image: art('thomson-1894/commons/thomson-pp17.jpg'),
+      image: art('thomson-1894/ch41-i_319.jpg'),
       caption: 'Tenderly flirting',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.865],
+      crop: [0, 0, 1, 0.87],
     },
   },
   {
@@ -420,10 +420,10 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'Walking the grounds, they turn a corner and there is Darcy himself, home a day {EARLY}. Elizabeth {BLUSHES} deeply, but he is {POLITE}, even {GENTLE}. He invites Mr. Gardiner to {FISH} in the {RIVER}, and asks if he may {INTRODUCE} his sister. Can this be the same proud man?',
-      image: art('thomson-1894/commons/thomson-pp18.jpg'),
+      image: art('thomson-1894/ch45-i_356_a.jpg'),
       caption: 'Engaged by the river',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.865],
+      crop: [0, 0, 1, 0.945],
     },
   },
   {
@@ -435,7 +435,7 @@ export const SPECS: LevelSpec[] = [
     cols: 8,
     story: {
       text: 'The very next day, Darcy brings {GEORGIANA} to the {INN} at Lambton. Elizabeth expected a proud girl, and finds her only {SHY}. Bingley comes too, and asks {WISTFULLY} after Jane. Darcy works {HARD} to be {AGREEABLE} to Mr. and Mrs. {GARDINER}, and that night Elizabeth lies awake, {TRYING} to understand her own {HEART}.',
-      image: art('thomson-1894/commons/thompson-pp-ch44.jpg'),
+      image: art('thomson-1894/ch44-i_350.jpg'),
       caption: 'To make herself agreeable to all',
       credit: THOMSON,
       crop: [0, 0, 1, 0.905],
@@ -450,10 +450,10 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'Two letters from Jane arrive at once: {LYDIA} has {ELOPED} with {WICKHAM}, and no one knows if he means to marry her. Elizabeth runs to find her {UNCLE} and meets Darcy in the doorway. “I have not an {INSTANT} to lose!” She tells him all, sure that such a {DISGRACE} ends any {HOPE} between them.',
-      image: art('thomson-1894/commons/thomson-pp19.jpg'),
+      image: art('thomson-1894/ch46-i_368.jpg'),
       caption: 'I have not an instant to lose',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.88],
+      crop: [0, 0, 1, 0.95],
     },
   },
   {
@@ -480,10 +480,10 @@ export const SPECS: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'Lydia comes home a married woman, flashing her {RING} without a trace of {SHAME}, and {WICKHAM} is as {DELIGHTED} with himself as ever. Then Lydia lets slip a {SECRET}: Mr. Darcy was at her {WEDDING}! Elizabeth writes to her {AUNT} at once to find out why.',
-      image: art('thomson-1894/commons/thomson-pp-ch51.jpg'),
+      image: art('thomson-1894/ch51-i_414_a.jpg'),
       caption: 'With an affectionate smile',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.885],
+      crop: [0, 0, 1, 0.915],
     },
   },
   {
@@ -510,10 +510,10 @@ export const SPECS: LevelSpec[] = [
     cols: 7,
     story: {
       text: '{NETHERFIELD} is opened again: Bingley is coming back! Mrs. Bennet plans the finest {DINNER}, and Jane swears she feels nothing. When Bingley rides up the {LANE}, Kitty cries out that someone is with him: “Mr. {DARCY}, I vow!” Elizabeth sits {SILENT} over her {SEWING}, cheeks {BURNING}, while her mother is {RUDE} to the man who saved Lydia.',
-      image: art('thomson-1894/commons/thomson-pp20.jpg'),
+      image: art('thomson-1894/ch53-i_433_a.jpg'),
       caption: 'Mr. Darcy with him',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.86],
+      crop: [0, 0, 1, 0.9],
     },
   },
   {
@@ -540,10 +540,9 @@ export const SPECS: LevelSpec[] = [
     cols: 8,
     story: {
       text: 'One morning Lady {CATHERINE} sweeps into Longbourn and orders Elizabeth into the {GARDEN}. She has heard a shocking {RUMOUR}: that Elizabeth means to marry her {NEPHEW}. Will she {PROMISE} never to accept him? Elizabeth will not: “I am only {RESOLVED} to act in that manner which will constitute my {HAPPINESS}.” Her Ladyship leaves very {ANGRY} indeed.',
-      image: art('thomson-1894/commons/thomson-pp22.jpg'),
+      image: art('thomson-1894/ch56-i_460_a.jpg'),
       caption: 'Lady Catherine at Longbourn',
       credit: THOMSON,
-      crop: [0, 0.05, 1, 0.94],
     },
   },
   {
@@ -570,10 +569,10 @@ export const SPECS: LevelSpec[] = [
     cols: 7,
     story: {
       text: 'Mr. Bennet is alarmed: “{LIZZY}, I know you could be neither happy nor respectable unless you truly {ESTEEMED} your husband.” She tells him all that Darcy has done, and he is won over. Mrs. Bennet, hearing the news, sits quite {STILL}, unable to utter a {SYLLABLE}. Then: “How {RICH} you will be! What pin-money, what {JEWELS}! Ten {THOUSAND} a year! A {HOUSE} in town!”',
-      image: art('thomson-1894/commons/thomson-pp-ch59.jpg'),
+      image: art('thomson-1894/ch59-i_486_a.jpg'),
       caption: 'Unable to utter a syllable',
       credit: THOMSON,
-      crop: [0, 0, 1, 0.875],
+      crop: [0, 0, 1, 0.895],
     },
   },
   {
