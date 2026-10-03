@@ -199,6 +199,12 @@ export class LevelView {
    * grid gives one hop, like a crowd's wave, and settles.
    */
   private dealIn(): void {
+    // Going back, this page swings in rotated: tiles measured now would land in the wrong places.
+    const turning = this.el.classList.contains('is-turning') ? this.el.getAnimations() : [];
+    if (turning.length) {
+      void Promise.allSettled(turning.map((a) => a.finished)).then(() => this.dealIn());
+      return;
+    }
     this.fit();
     const sfx = this.opts.sfx;
     // No sound before the player has touched the page (browsers would hold it back anyway).
@@ -623,7 +629,8 @@ export class LevelView {
   /** Sizes cells to the space available. */
   private fit(): void {
     const p = this.s.puzzle;
-    const wrap = this.boardWrap.getBoundingClientRect();
+    // Layout sizes, not the on-screen box: while the page is turning in, it is rotated and looks narrower.
+    const wrap = { width: this.boardWrap.offsetWidth, height: this.boardWrap.offsetHeight };
     const width = wrap.width;
     const floating = getComputedStyle(this.traceEl).position === 'absolute';
     if (floating) {
