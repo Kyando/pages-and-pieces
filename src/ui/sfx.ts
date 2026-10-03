@@ -2,6 +2,7 @@
 export class Sfx {
   enabled: boolean;
   private ctx: AudioContext | null = null;
+  private master: AudioNode | null = null;
 
   constructor(enabled: boolean) {
     this.enabled = enabled;
@@ -38,10 +39,16 @@ export class Sfx {
     this.tone(587, 0.26, 'sine', 0.04, 0.05);
   }
 
-  /** The word chips popping up: a soft, low arpeggio within one octave. */
+  /**
+   * The word chips popping up: a low arpeggio within one octave, each note a quick bloop that
+   * springs up into its pitch, short enough to stay apart from the next.
+   */
   pops(count: number, start: number, step: number): void {
     const notes = [392, 440, 494, 587, 659, 784];
-    for (let i = 0; i < count; i++) this.tone(notes[Math.min(i, notes.length - 1)], 0.14, 'sine', 0.035, start + i * step);
+    for (let i = 0; i < count; i++) {
+      const f = notes[Math.min(i, notes.length - 1)];
+      this.tone(f * 0.75, 0.09, 'sine', 0.07, start + i * step, f, 0.04);
+    }
   }
 
   /**
@@ -49,14 +56,39 @@ export class Sfx {
    * on cloth, a muffled tap, each one a little different. No pitch climbs: the rhythm is the sound.
    */
   deal(start: number, lands: number[]): void {
-    this.rustle(0.35, 3200, 0.02, start, 'bandpass');
-    for (const at of lands) this.rustle(0.03, 900 + Math.random() * 900, 0.05 + Math.random() * 0.03, at, 'lowpass');
+    this.rustle(0.35, 3200, 0.03, start, 'bandpass');
+    // Cards landing within a few hundredths of a second sound as one tap, a little fuller for each:
+    // a tap per card would blur into a hiss.
+    const groups: number[][] = [];
+    for (const at of [...lands].sort((a, b) => a - b)) {
+      const g = groups.at(-1);
+      if (g && at - g[0] < 0.045) g.push(at);
+      else groups.push([at]);
+    }
+    for (const g of groups) this.rustle(0.035, 900 + Math.random() * 700, Math.min(0.1, 0.06 + g.length * 0.01), g[0], 'lowpass');
   }
 
   /** The grid settled and ready: a warm, low pair of notes. */
   settle(delay: number): void {
-    this.tone(392, 0.32, 'sine', 0.05, delay);
-    this.tone(587, 0.32, 'sine', 0.03, delay + 0.06);
+    this.tone(392, 0.32, 'sine', 0.06, delay);
+    this.tone(587, 0.32, 'sine', 0.04, delay + 0.06);
+  }
+
+  /** Everything plays through one gentle compressor and a boost, so the soft sounds carry on a phone speaker. */
+  private out(ctx: AudioContext): AudioNode {
+    if (!this.master) {
+      const squeeze = ctx.createDynamicsCompressor();
+      squeeze.threshold.value = -18;
+      squeeze.knee.value = 12;
+      squeeze.ratio.value = 4;
+      squeeze.attack.value = 0.003;
+      squeeze.release.value = 0.2;
+      const boost = ctx.createGain();
+      boost.gain.value = 2.2;
+      boost.connect(squeeze).connect(ctx.destination);
+      this.master = boost;
+    }
+    return this.master;
   }
 
   /** Paper: a short burst of filtered noise. */
@@ -78,7 +110,7 @@ export class Sfx {
       band.Q.value = 0.7;
       const amp = ctx.createGain();
       amp.gain.value = gain;
-      src.connect(band).connect(amp).connect(ctx.destination);
+      src.connect(band).connect(amp).connect(this.out(ctx));
       src.start(ctx.currentTime + Math.max(0, delay));
     } catch {
       // Audio unavailable; stay silent.
@@ -109,7 +141,7 @@ export class Sfx {
     [523, 659, 784, 1047, 1319].forEach((f, i) => this.tone(f, 0.22, 'triangle', 0.08, i * 0.085));
   }
 
-  private tone(freq: number, dur: number, type: OscillatorType, gain: number, delay = 0, slideTo?: number): void {
+  private tone(freq: number, dur: number, type: OscillatorType, gain: number, delay = 0, slideTo?: number, slideFor = dur): void {
     if (!this.enabled) return;
     try {
       this.ctx ??= new AudioContext();
@@ -121,11 +153,11 @@ export class Sfx {
       const amp = ctx.createGain();
       osc.type = type;
       osc.frequency.setValueAtTime(freq, t);
-      if (slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo, t + dur);
+      if (slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo, t + slideFor);
       amp.gain.setValueAtTime(0.0001, t);
       amp.gain.exponentialRampToValueAtTime(gain, t + 0.01);
       amp.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-      osc.connect(amp).connect(ctx.destination);
+      osc.connect(amp).connect(this.out(ctx));
       osc.start(t);
       osc.stop(t + dur + 0.02);
     } catch {

@@ -224,8 +224,8 @@ export class LevelView {
       )),
     );
 
-    // The deal starts while the last word chips are still popping up.
-    const start = CHIP_START + Math.max(2, chips.length - 2) * CHIP_STEP;
+    // The deal starts as the last word chip pops up, so their sounds don't pile up.
+    const start = CHIP_START + Math.max(2, chips.length) * CHIP_STEP;
     const cols = this.s.puzzle.cols;
     const diagonal = (cell: number) => rowOf(cell, cols) + colOf(cell, cols);
     const cards = this.tiles
@@ -280,7 +280,7 @@ export class LevelView {
         const now = Number(document.timeline.currentTime ?? 0);
         const skew = (now - Number(first.startTime ?? now)) / 1000 + sfx.latency;
         const at = (ms: number) => ms / 1000 - skew;
-        sfx.pops(chips.length, at(CHIP_START + 40), CHIP_STEP / 1000);
+        sfx.pops(chips.length, at(CHIP_START + 25), CHIP_STEP / 1000);
         sfx.deal(at(start), lands.map((s) => s - skew));
         sfx.settle(at(hop));
       }).catch(() => undefined);
