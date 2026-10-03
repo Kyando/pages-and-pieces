@@ -6,47 +6,47 @@
   "rows": 8,
   "cols": 6,
   "grid": [
-    "FESECC",
-    "BETPSA",
-    "ELINGL",
-    "LAPRVO",
-    "IELIED",
-    "DVEYLL",
-    "EGNDUA",
-    "CHAARG"
+    "FSGAIL",
+    "EINPRY",
+    "ELADLL",
+    "EHRUAH",
+    "POGDEU",
+    "MIANGM",
+    "TSHCDB",
+    "AKENEL"
   ],
   "words": [
     {
       "text": "FEELINGS",
-      "path": [0, 1, 7, 13, 14, 15, 16, 10]
+      "path": [0, 6, 12, 13, 7, 8, 2, 1]
     },
     {
       "text": "APRIL",
-      "path": [19, 20, 21, 27, 26]
+      "path": [3, 9, 10, 4, 5]
     },
     {
       "text": "CHANGED",
-      "path": [42, 43, 44, 38, 37, 36, 30]
+      "path": [39, 38, 32, 33, 34, 28, 27]
     },
     {
-      "text": "ACCEPTS",
-      "path": [11, 5, 4, 3, 9, 8, 2]
+      "text": "HOPE",
+      "path": [19, 25, 24, 18]
     },
     {
-      "text": "BELIEVE",
-      "path": [6, 12, 18, 24, 25, 31, 32]
+      "text": "MISTAKEN",
+      "path": [30, 31, 37, 36, 42, 43, 44, 45]
     },
     {
-      "text": "LOVED",
-      "path": [17, 23, 22, 28, 29]
+      "text": "HUMBLED",
+      "path": [23, 29, 35, 41, 47, 46, 40]
     },
     {
       "text": "GRADUALLY",
-      "path": [47, 46, 45, 39, 40, 41, 35, 34, 33]
+      "path": [26, 20, 14, 15, 21, 22, 16, 17, 11]
     }
   ],
   "story": {
-    "text": "Walking out together, Elizabeth thanks Darcy for all he did for Lydia. He answers: “If your {FEELINGS} are still what they were last {APRIL}, tell me so at once.” Hers have {CHANGED}, and she {ACCEPTS} him. That night she tells Jane, who can hardly {BELIEVE} it. “How long have you {LOVED} him?” “It has been coming on so {GRADUALLY}, I hardly know when it began.”",
+    "text": "Walking out together, Elizabeth thanks Darcy for all he did for Lydia. He answers: “If your {FEELINGS} are still what they were last {APRIL}, tell me so at once.” Hers have {CHANGED}, and she accepts him. As they walk on, he tells his side: Lady Catherine’s visit “taught me to {HOPE},” and he has told Bingley he was {MISTAKEN} about Jane. “By you, I was properly {HUMBLED}.” That night Elizabeth tells Jane, who can hardly believe it. “How long have you loved him?” “It has been coming on so {GRADUALLY}, I hardly know when it began.”",
     "image": "art/brock-1895/all-was-acknowledged-and-half-the-night-spent-in-conversation.jpg",
     "caption": "All was acknowledged, and half the night spent in conversation",
     "credit": "C. E. Brock, 1895",

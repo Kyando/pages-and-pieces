@@ -582,26 +582,11 @@ export const SPECS: LevelSpec[] = [
     rows: 8,
     cols: 6,
     story: {
-      text: 'Walking out together, Elizabeth thanks Darcy for all he did for Lydia. He answers: “If your {FEELINGS} are still what they were last {APRIL}, tell me so at once.” Hers have {CHANGED}, and she {ACCEPTS} him. That night she tells Jane, who can hardly {BELIEVE} it. “How long have you {LOVED} him?” “It has been coming on so {GRADUALLY}, I hardly know when it began.”',
+      text: 'Walking out together, Elizabeth thanks Darcy for all he did for Lydia. He answers: “If your {FEELINGS} are still what they were last {APRIL}, tell me so at once.” Hers have {CHANGED}, and she accepts him. As they walk on, he tells his side: Lady Catherine’s visit “taught me to {HOPE},” and he has told Bingley he was {MISTAKEN} about Jane. “By you, I was properly {HUMBLED}.” That night Elizabeth tells Jane, who can hardly believe it. “How long have you loved him?” “It has been coming on so {GRADUALLY}, I hardly know when it began.”',
       image: art('brock-1895/all-was-acknowledged-and-half-the-night-spent-in-conversation.jpg'),
       caption: 'All was acknowledged, and half the night spent in conversation',
       credit: BROCK,
       crop: [0.034, 0.037, 0.89, 0.856],
-    },
-  },
-  {
-    id: 'pp-58-taught-to-hope',
-    book: PP,
-    chapter: 58,
-    title: 'Taught to Hope',
-    rows: 7,
-    cols: 7,
-    story: {
-      text: 'On that long walk, Darcy tells his side. Lady {CATHERINE} went straight to him in London with Elizabeth’s refusal to {PROMISE}. “It taught me to {HOPE},” he says: had she been decided against him, she would have said so {FRANKLY}. He has told {BINGLEY} he was {MISTAKEN} about Jane. And the proud man of Hunsford owns his fault: “By you, I was properly {HUMBLED}.”',
-      image: art('thomson-1894/ch58-i_477_a.jpg'),
-      caption: 'The efforts of his aunt',
-      credit: THOMSON,
-      crop: [0, 0, 1, 0.88],
     },
   },
   {
