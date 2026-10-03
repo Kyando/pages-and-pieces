@@ -211,7 +211,9 @@ export class LevelView {
     const audible = navigator.userActivation?.hasBeenActive ?? true;
 
     const chips = [...this.wordList.children] as HTMLElement[];
+    const anims: Animation[] = [];
     chips.forEach((chip, i) =>
+      anims.push(
       chip.animate(
         [
           { transform: 'scale(0.3)', opacity: 0 },
@@ -219,9 +221,8 @@ export class LevelView {
           { transform: 'none', opacity: 1 },
         ],
         { duration: 380, delay: CHIP_START + i * CHIP_STEP, easing: 'cubic-bezier(0.3, 1.3, 0.5, 1)', fill: 'backwards' },
-      ),
+      )),
     );
-    if (audible) sfx.pops(chips.length, CHIP_START / 1000, CHIP_STEP / 1000);
 
     // The deal starts while the last word chips are still popping up.
     const start = CHIP_START + Math.max(2, chips.length - 2) * CHIP_STEP;
@@ -237,7 +238,8 @@ export class LevelView {
     cards.forEach(({ tile, cell }) => {
       const r = tile.getBoundingClientRect();
       const delay = start + diagonal(cell) * DIAG_STEP + Math.random() * CARD_JITTER;
-      lands.push((delay + CARD_FLIGHT * 0.86) / 1000);
+      // The tap sounds as the card touches down, at the very end of its flight.
+      lands.push((delay + CARD_FLIGHT) / 1000);
       last = Math.max(last, delay + CARD_FLIGHT);
       const side = Math.random() < 0.5 ? -1 : 1;
       // From the bottom edge, around the middle of the screen, turned as if just flicked off a deck.
@@ -246,15 +248,15 @@ export class LevelView {
       const spin = side * (12 + Math.random() * 22);
       // Some cards stay a touch askew where they land.
       if (Math.random() < 0.45) tile.style.rotate = `${(Math.random() - 0.5) * 4}deg`;
-      tile.animate(
+      // Eased per stretch, so each keyframe's offset is also its moment: it glides in, hovers, and drops.
+      anims.push(tile.animate(
         [
-          { transform: `translate(${dx}px, ${dy}px) rotate(${spin}deg) scale(1.08)` },
-          { transform: `translate(${dx * 0.3}px, ${dy * 0.28}px) rotate(${spin * 0.35}deg) scale(1.1)`, offset: 0.55 },
-          { transform: 'translate(0, -5px) rotate(0deg) scale(1.04)', offset: 0.86 },
+          { transform: `translate(${dx}px, ${dy}px) rotate(${spin}deg) scale(1.08)`, easing: 'cubic-bezier(0.2, 0.65, 0.35, 1)' },
+          { transform: 'translate(0, -6px) rotate(0deg) scale(1.06)', offset: 0.8, easing: 'cubic-bezier(0.5, 0, 0.9, 0.6)' },
           { transform: 'none' },
         ],
-        { duration: CARD_FLIGHT, delay, easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)', fill: 'backwards' },
-      );
+        { duration: CARD_FLIGHT, delay, fill: 'backwards' },
+      ));
     });
 
     // All down: one hop runs across the grid, the same way the cards came.
@@ -270,9 +272,18 @@ export class LevelView {
         { duration: 560, delay: hop + diagonal(cell) * HOP_STEP, easing: 'ease-in-out' },
       ),
     );
-    if (audible) {
-      sfx.deal(start / 1000, lands);
-      sfx.settle(hop / 1000);
+    // Sounds are timed from when the animations really start (a busy first frame can hold them back)
+    // and played early by the speaker's own delay, so each lands with its card.
+    const first = anims[0];
+    if (audible && first) {
+      void first.ready.then(() => {
+        const now = Number(document.timeline.currentTime ?? 0);
+        const skew = (now - Number(first.startTime ?? now)) / 1000 + sfx.latency;
+        const at = (ms: number) => ms / 1000 - skew;
+        sfx.pops(chips.length, at(CHIP_START + 40), CHIP_STEP / 1000);
+        sfx.deal(at(start), lands.map((s) => s - skew));
+        sfx.settle(at(hop));
+      }).catch(() => undefined);
     }
     this.el.classList.remove('is-dealing');
     window.setTimeout(() => this.el.classList.remove('is-entering'), last);

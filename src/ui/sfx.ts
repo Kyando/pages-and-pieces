@@ -7,6 +7,17 @@ export class Sfx {
     this.enabled = enabled;
   }
 
+  /** Seconds between scheduling a sound and hearing it: the output's buffering. */
+  get latency(): number {
+    try {
+      if (this.enabled) this.ctx ??= new AudioContext();
+    } catch {
+      // Audio unavailable.
+    }
+    const ctx = this.ctx as (AudioContext & { outputLatency?: number }) | null;
+    return ctx ? (ctx.baseLatency || 0) + (ctx.outputLatency || 0) : 0;
+  }
+
   /** A word found: a paper rustle, then one soft rising note per letter as its tiles turn. */
   piece(length: number, stagger: number): void {
     this.rustle();
@@ -68,7 +79,7 @@ export class Sfx {
       const amp = ctx.createGain();
       amp.gain.value = gain;
       src.connect(band).connect(amp).connect(ctx.destination);
-      src.start(ctx.currentTime + delay);
+      src.start(ctx.currentTime + Math.max(0, delay));
     } catch {
       // Audio unavailable; stay silent.
     }
@@ -105,7 +116,7 @@ export class Sfx {
       // Created before the first touch, it starts suspended: wake it now that there's been one.
       if (this.ctx.state === 'suspended') void this.ctx.resume();
       const ctx = this.ctx;
-      const t = ctx.currentTime + delay;
+      const t = ctx.currentTime + Math.max(0, delay);
       const osc = ctx.createOscillator();
       const amp = ctx.createGain();
       osc.type = type;
