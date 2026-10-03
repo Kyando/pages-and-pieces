@@ -13,6 +13,8 @@ export interface LibraryOptions {
   /** The chapter to pick up: the one in progress, or the first not yet read. */
   current: number;
   onOpen(index: number): void;
+  /** Wipes the player's progress; offered only once they have some. */
+  onErase?: () => void;
 }
 
 /** Each print lies a little askew, like pictures dropped on a table. */
@@ -78,7 +80,7 @@ export class Library {
       );
     });
 
-    this.el = h('section', { class: 'library', 'aria-label': t('library.label') }, h('div', { class: 'library-inner' }, head, ...shelves.filter((s) => s !== null)));
+    this.el = h('section', { class: 'library', 'aria-label': t('library.label') }, h('div', { class: 'library-inner' }, head, ...shelves.filter((s) => s !== null), opts.onErase ? h('footer', { class: 'library-foot' }, h('button', { type: 'button', class: 'btn btn--tool library-erase', onclick: () => opts.onErase?.() }, t('library.erase'))) : ''));
   }
 
   private print(def: LevelDef, state: ChapterState, i: number, isCurrent: boolean, opts: LibraryOptions): HTMLElement {

@@ -102,6 +102,7 @@ export class App {
       chapters: CATALOG.map((entry, i) => ({ def: entry.def, state: this.stateOf(i) })),
       current: this.currentChapter(),
       onOpen: (i) => this.openLevel(i),
+      onErase: Object.values(this.save.levels).some((p) => p.found.length || p.done) ? () => this.confirmErase() : undefined,
     });
     this.show(library, false);
     library.reveal();
@@ -159,6 +160,28 @@ export class App {
         ),
       ),
       actions: [h('button', { type: 'button', class: 'btn btn--primary', onclick: (e: Event) => (e.target as HTMLElement).closest('dialog')?.close() }, t('help.go'))],
+    });
+  }
+
+  /** Asks before wiping every chapter's progress; sound and the seen help stay as they are. */
+  private confirmErase(): void {
+    const modal = openModal({
+      title: t('erase.title'),
+      body: h('p', { class: 'erase-text' }, t('erase.body')),
+      actions: [
+        h('button', { type: 'button', class: 'btn', onclick: () => modal.close() }, t('erase.cancel')),
+        h('button', { type: 'button', class: 'btn btn--danger', onclick: () => {
+          modal.close();
+          this.save.levels = {};
+          this.save.settings.lastLevel = null;
+          this.persist();
+          const library = this.view;
+          this.view = null;
+          library?.destroy();
+          this.main.replaceChildren();
+          this.openLibrary();
+        } }, t('erase.confirm')),
+      ],
     });
   }
 

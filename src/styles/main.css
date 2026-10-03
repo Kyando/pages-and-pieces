@@ -771,6 +771,11 @@ button {
   animation: ready 1.6s ease-in-out infinite;
 }
 
+.btn--danger {
+  background: var(--danger);
+  color: var(--accent-ink);
+}
+
 .btn--tool {
   height: 38px;
   padding: 0 12px;
@@ -983,6 +988,17 @@ button {
   font-style: italic;
   font-size: 18px;
   color: var(--ink-soft);
+}
+
+.library-foot {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.erase-text {
+  margin: 0;
+  line-height: 1.45;
 }
 
 .volume + .volume {

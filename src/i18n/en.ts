@@ -38,6 +38,12 @@ export const en = {
   'library.finished': 'The End. Every chapter is yours to revisit.',
   'library.chapter': 'Chapter {n}',
   'library.locked': '{chapter}, not yet reached',
+  'library.erase': 'Erase my progress',
+
+  'erase.title': 'Start the book again?',
+  'erase.body': 'Every chapter you have read will be forgotten, and its picture face down again. This cannot be undone.',
+  'erase.cancel': 'Keep my progress',
+  'erase.confirm': 'Erase it all',
 
   'help.title': 'How to play',
   'help.intro': 'Each chapter is a scene from a classic book. Its words are hidden in the grid, and {strong} belongs to one of them.',
