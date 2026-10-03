@@ -1,6 +1,7 @@
 import { BOOKS } from '../core/books.ts';
 import { adjacent, colOf, rowOf } from '../core/grid.ts';
 import { HOLE_LETTER, matchTrace, type Word } from '../core/puzzle.ts';
+import { steer } from '../core/steer.ts';
 import type { Session } from '../game/session.ts';
 import { t, tn } from '../i18n/index.ts';
 import { Desk } from './desk.ts';
@@ -28,8 +29,8 @@ export interface LevelViewOptions {
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const RADII = ['13px 10px 14px 11px', '10px 14px 11px 13px', '14px 11px 10px 12px', '11px 13px 12px 10px'];
-/** Share of a cell, around its centre, that a dragging finger must reach: keeps diagonal slides from skipping. */
-const HIT = 0.78;
+/** Longest stretch (in cells) between two finger positions read on their own, so fast swipes and cut corners step through every cell. */
+const SAMPLE = 0.2;
 /** A found word's tiles leave one after another, this far apart (ms), each flight taking FLIGHT_MS. */
 const STAGGER_MS = INK_STAGGER_MS;
 /** The chapter's arrival (ms): the word chips pop up this far apart after the title and panel, then
@@ -68,7 +69,8 @@ export class LevelView {
   private readonly chips: HTMLElement[] = [];
   private readonly resizeObserver: ResizeObserver;
   private trace: number[] = [];
-  private gesture: { moved: boolean; onEnd: boolean } | null = null;
+  /** The drag in progress: the last finger position (in cells, see toCells) and the last step taken. */
+  private gesture: { moved: boolean; onEnd: boolean; u: number; v: number; dir: number } | null = null;
   private cellPx = 0;
   /** Cell size the pieces were last drawn at. */
   private piecesCell = 0;
@@ -239,26 +241,25 @@ export class LevelView {
 
   // ── tracing ─────────────────────────────────────────────────────────────
 
-  /** Cell under a point. `strict` only counts the middle of the cell, so a drag can't cut corners. */
-  private cellAt(x: number, y: number, strict: boolean): number {
-    const p = this.s.puzzle;
-    // Measured from the tiles' layout (unaffected by their pop animations), so it holds even
-    // before the resize observer catches up.
+  /**
+   * A point on the board in cells, so that the centre of the tile at (row, col) is (col, row).
+   * Measured from the tiles' layout (unaffected by their animations), so it holds even before the
+   * resize observer catches up.
+   */
+  private toCells(x: number, y: number): { u: number; v: number } {
     const rect = this.board.getBoundingClientRect();
     const size = this.tiles[0].offsetWidth;
     const step = this.tiles[1].offsetLeft - this.tiles[0].offsetLeft;
-    const lx = x - rect.left;
-    const ly = y - rect.top;
-    const c = Math.floor(lx / step);
-    const r = Math.floor(ly / step);
-    if (r < 0 || c < 0 || r >= p.rows || c >= p.cols) return -1;
-    if (strict) {
-      const margin = (size * (1 - HIT)) / 2;
-      const ix = lx - c * step;
-      const iy = ly - r * step;
-      if (ix < margin || iy < margin || ix > size - margin || iy > size - margin) return -1;
-    }
-    return r * p.cols + c;
+    return { u: (x - rect.left - size / 2) / step, v: (y - rect.top - size / 2) / step };
+  }
+
+  /** The cell under a point, gaps included; -1 off the board. */
+  private cellAt(x: number, y: number): number {
+    const p = this.s.puzzle;
+    const { u, v } = this.toCells(x, y);
+    const c = Math.round(u);
+    const r = Math.round(v);
+    return r < 0 || c < 0 || r >= p.rows || c >= p.cols ? -1 : r * p.cols + c;
   }
 
   private free(cell: number): boolean {
@@ -269,7 +270,7 @@ export class LevelView {
     const b = this.board;
     b.addEventListener('pointerdown', (e) => {
       if (e.button !== 0 || this.s.solved) return;
-      const cell = this.cellAt(e.clientX, e.clientY, false);
+      const cell = this.cellAt(e.clientX, e.clientY);
       if (!this.free(cell)) {
         this.setTrace([]);
         return;
@@ -292,21 +293,29 @@ export class LevelView {
       } else {
         this.setTrace([cell]);
       }
-      this.gesture = { moved: false, onEnd };
+      this.gesture = { moved: false, onEnd, ...this.toCells(e.clientX, e.clientY), dir: 0 };
     });
 
+    // The trace follows the finger's motion (see steer): every position the browser saw, with the
+    // stretches between them filled in, so nothing is skipped however fast or loose the drag.
     b.addEventListener('pointermove', (e) => {
-      if (!this.gesture) return;
-      const cell = this.cellAt(e.clientX, e.clientY, true);
-      const tr = this.trace;
-      const end = tr[tr.length - 1];
-      if (!this.free(cell) || cell === end) return;
-      if (tr.length >= 2 && cell === tr[tr.length - 2]) {
-        this.setTrace(tr.slice(0, -1));
-        this.gesture.moved = true;
-      } else if (adjacent(end, cell, this.s.puzzle.cols) && !tr.includes(cell)) {
-        this.setTrace([...tr, cell]);
-        this.gesture.moved = true;
+      const g = this.gesture;
+      if (!g) return;
+      const { rows, cols } = this.s.puzzle;
+      const free = (cell: number) => this.free(cell);
+      let state = { trace: this.trace, dir: g.dir };
+      const seen = e.getCoalescedEvents?.() ?? [];
+      for (const ev of seen.length ? seen : [e]) {
+        const { u, v } = this.toCells(ev.clientX, ev.clientY);
+        const n = Math.max(1, Math.ceil(Math.hypot(u - g.u, v - g.v) / SAMPLE));
+        for (let i = 1; i <= n; i++) state = steer(state, g.u + ((u - g.u) * i) / n, g.v + ((v - g.v) * i) / n, rows, cols, free);
+        g.u = u;
+        g.v = v;
+      }
+      g.dir = state.dir;
+      if (state.trace !== this.trace) {
+        g.moved = true;
+        this.setTrace(state.trace);
       }
     });
 
@@ -314,6 +323,9 @@ export class LevelView {
       const g = this.gesture;
       this.gesture = null;
       if (!g || cancelled) return;
+      // A drag that ran one tile past a word still counts as the word.
+      const short = this.trace.slice(0, -1);
+      if (g.moved && short.length > 1 && matchTrace(this.s.puzzle, this.trace) < 0 && matchTrace(this.s.puzzle, short) >= 0) this.trace = short;
       // A trace that is a word is taken at once; otherwise a drag (or a tap on the end) submits it.
       if (matchTrace(this.s.puzzle, this.trace) >= 0 || (g.moved && this.trace.length > 1) || g.onEnd) this.submit();
     };

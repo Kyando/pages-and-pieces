@@ -9,6 +9,7 @@ import { emptyProgress } from '../src/game/save.ts';
 import { en } from '../src/i18n/en.ts';
 import { SPECS } from '../scripts/level-specs.ts';
 import { pieceOutline } from '../src/ui/shape.ts';
+import { steer, type SteerState } from '../src/core/steer.ts';
 
 const files = import.meta.glob<LevelDef>('../src/levels/*.json', { eager: true, import: 'default' });
 const levels = Object.keys(files).sort().map((k) => files[k]);
@@ -154,5 +155,43 @@ describe('piece outline', () => {
   it('keeps a hole as its own loop', () => {
     const ring = [0, 1, 2, 6, 10, 9, 8, 4]; // around cell 5
     expect(loops(pieceOutline(ring, 4, 10, 2, 0))).toBe(2);
+  });
+});
+
+describe('steering a drag', () => {
+  // A 4×4 board; cell (row, col) is row * 4 + col and its centre is at (col, row).
+  const drag = (start: number, points: [number, number][], blocked: number[] = []): number[] => {
+    let st: SteerState = { trace: [start], dir: 0 };
+    let [pu, pv] = [start % 4, Math.floor(start / 4)];
+    for (const [u, v] of points) {
+      const n = Math.max(1, Math.ceil(Math.hypot(u - pu, v - pv) / 0.2));
+      for (let i = 1; i <= n; i++) st = steer(st, pu + ((u - pu) * i) / n, pv + ((v - pv) * i) / n, 4, 4, (c) => !blocked.includes(c));
+      [pu, pv] = [u, v];
+    }
+    return st.trace;
+  };
+
+  it('follows a loose straight drag, through the gaps', () => {
+    expect(drag(0, [[3, 0.4]])).toEqual([0, 1, 2, 3]);
+  });
+  it('fills in every cell of a fast swipe', () => {
+    expect(drag(0, [[0, 3]])).toEqual([0, 4, 8, 12]);
+  });
+  it('turns a cut corner through the cell the finger passed nearer', () => {
+    expect(drag(0, [[1.2, 0.1], [1.4, 1]])).toEqual([0, 1, 5]);
+    expect(drag(0, [[0.1, 1.2], [1, 1.4]])).toEqual([0, 4, 5]);
+  });
+  it('goes round the other side of a corner it cannot use', () => {
+    expect(drag(0, [[0.9, 0.9]], [1])).toEqual([0, 4, 5]);
+  });
+  it('steps back along the trace', () => {
+    expect(drag(0, [[3, 0], [1, 0]])).toEqual([0, 1]);
+  });
+  it('folds back onto an earlier tile it is dragged into', () => {
+    // 0 → 1 → 5 → 4, then up into 0 again.
+    expect(drag(0, [[1, 0], [1, 1], [0, 1], [0, 0]])).toEqual([0]);
+  });
+  it('does not wander into the next row on a slightly crooked drag', () => {
+    expect(drag(0, [[1, 0.55], [2, 0.55]])).toEqual([0, 1, 2]);
   });
 });
