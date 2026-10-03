@@ -39,6 +39,8 @@ const DEPTH = [
   [-13, 23],
 ];
 const SWIPE = 40;
+/** The fewest words the last page of a scene may hold. */
+const LAST_PAGE_MIN = 14;
 /** The desk's typefaces, which the browser only fetches once something uses them. */
 export const FONTS = ['19px "EB Garamond"', 'italic 15px "IM Fell English"', '25px "IM Fell English"', '800 14px Fraunces'];
 
@@ -177,12 +179,32 @@ export class Desk {
         body.append(token);
       }
     }
+    // The last page never holds just a few stray words, or the signature alone: it takes the end of
+    // the passage back to a sentence break with it.
+    const pullBack = (min: number) => {
+      const prev = pages[pages.length - 2]?.querySelector('.page-body');
+      if (!prev) return;
+      // At most half the page before, so at worst the two share the text evenly.
+      const limit = Math.floor(prev.childNodes.length / 2);
+      for (let moved = 0; moved < limit; ) {
+        const last = prev.lastChild!;
+        body.prepend(last);
+        if (overflows()) {
+          prev.append(last);
+          return;
+        }
+        moved++;
+        if (moved >= min && /[.!?”"]\s*$/.test(prev.lastChild?.textContent ?? '')) return;
+      }
+    };
+    if (pages.length > 1 && body.childNodes.length < LAST_PAGE_MIN) pullBack(LAST_PAGE_MIN - body.childNodes.length);
     const sign = h('p', { class: 'page-sign' }, book.title, h('span', {}, t('desk.by', { author: book.author, year: book.year })));
     body.append(sign);
     if (overflows()) {
       sign.remove();
       newPage(false);
       body.append(sign);
+      pullBack(LAST_PAGE_MIN);
     }
     return pages;
   }
