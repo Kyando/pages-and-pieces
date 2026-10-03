@@ -624,7 +624,52 @@ button {
   will-change: transform, opacity;
 }
 
-/* ── Phones: the story up top, the board down in thumb reach ── */
+/* ── One column on every screen: the words up top, the board below, centred ──
+   While playing, the board takes every bit of height it can: the traced word floats over the
+   chapter title (where --head-* put it) and "Start over" moves to the word list. */
+
+.stage {
+  position: relative;
+}
+
+.play {
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+/* A small board sits in the middle of the free space; a big one fills it anyway. */
+.board-wrap {
+  justify-content: safe center;
+}
+
+.stage:not(.is-complete) .trace {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  top: var(--head-top, 0px);
+  height: var(--head-h, 44px);
+  pointer-events: none;
+}
+
+.stage:not(.is-complete):has(.trace-pill) .chapter {
+  visibility: hidden;
+}
+
+.stage:not(.is-complete) .trace-hint {
+  display: none;
+}
+
+.stage:not(.is-complete) .head-restart {
+  display: grid;
+}
+
+.stage:not(.is-complete) .tools {
+  display: none;
+}
+
+/* ── Phones: tighter, so the board reaches the thumbs ── */
 
 @media (max-width: 859px), (max-aspect-ratio: 5/4) {
   .stage {
@@ -651,71 +696,12 @@ button {
     font-size: 12px;
   }
 
-  /* A small board sits in the middle of the free space; a big one fills it down to the thumbs anyway. */
-  .board-wrap {
-    justify-content: safe center;
-  }
-
   .trace {
     height: 36px;
   }
 
-  /* While playing, the board takes every bit of height it can, so it can fill the width: the traced
-     word floats over the chapter title (where --head-* put it) and "Start over" moves to the word list. */
-  .stage {
-    position: relative;
-  }
-
-  .stage:not(.is-complete) .trace {
-    position: absolute;
-    z-index: 5;
-    left: 0;
-    right: 0;
-    top: var(--head-top, 0px);
-    height: var(--head-h, 44px);
-    pointer-events: none;
-  }
-
-  .stage:not(.is-complete):has(.trace-pill) .chapter {
-    visibility: hidden;
-  }
-
-  .stage:not(.is-complete) .trace-hint {
-    display: none;
-  }
-
-  .stage:not(.is-complete) .head-restart {
-    display: grid;
-  }
-
-  .stage:not(.is-complete) .tools {
-    display: none;
-  }
-
   .trace-pill {
     font-size: 17px;
-  }
-}
-
-/* ── Wide screens: the story beside the board ── */
-
-@media (min-width: 860px) and (min-aspect-ratio: 5/4) {
-  .play {
-    flex-direction: row;
-    align-items: stretch;
-    gap: 18px;
-  }
-
-  .board-area {
-    min-width: 0;
-  }
-
-  .story-panel {
-    order: 2;
-    width: 320px;
-    max-height: 100%;
-    align-self: center;
-    overflow-y: auto;
   }
 }
 
