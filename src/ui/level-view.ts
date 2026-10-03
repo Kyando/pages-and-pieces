@@ -47,10 +47,10 @@ const STAGGER_MS = INK_STAGGER_MS;
  */
 const CHIP_START = 560;
 const CHIP_STEP = 85;
-const DIAG_STEP = 70;
-const CARD_JITTER = 35;
-const CARD_FLIGHT = 420;
-const HOP_STEP = 32;
+const DIAG_STEP = 110;
+const CARD_JITTER = 60;
+const CARD_FLIGHT = 600;
+const HOP_STEP = 60;
 const FLIGHT_MS = 760;
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -247,21 +247,21 @@ export class LevelView {
           { transform: 'translate(0, -5px) rotate(0deg) scale(1.04)', offset: 0.86 },
           { transform: 'none' },
         ],
-        { duration: CARD_FLIGHT, delay, easing: 'cubic-bezier(0.25, 0.7, 0.35, 1)', fill: 'backwards' },
+        { duration: CARD_FLIGHT, delay, easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)', fill: 'backwards' },
       );
     });
 
     // All down: one hop runs across the grid, the same way the cards came.
-    const hop = last + 60;
+    const hop = last + 120;
     cards.forEach(({ tile, cell }) =>
       tile.animate(
         [
           { transform: 'none' },
-          { transform: 'translateY(-7px) scale(1.06)', offset: 0.4 },
+          { transform: 'translateY(-6px) scale(1.05)', offset: 0.4 },
           { transform: 'translateY(1px) scale(0.99)', offset: 0.75 },
           { transform: 'none' },
         ],
-        { duration: 380, delay: hop + diagonal(cell) * HOP_STEP, easing: 'ease-out' },
+        { duration: 560, delay: hop + diagonal(cell) * HOP_STEP, easing: 'ease-in-out' },
       ),
     );
     if (audible) {
