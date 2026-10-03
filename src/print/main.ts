@@ -103,8 +103,9 @@ function passage(text: string, o: { answers?: boolean; given?: string; firsts?: 
     else if (o.answers) el.append(h('strong', { class: 'found' }, part.toLowerCase()));
     else {
       const whole = part === o.given;
-      const boxes = [...part].map((letter, j) => h('i', {}, whole || (o.firsts && j === 0) ? letter : ''));
-      el.append(h('span', { class: `blank${whole ? ' is-given' : ''}`, 'aria-label': `${part.length} letters` }, ...boxes));
+      // An empty line still holds a (non-breaking) space, so every line sits on the text's baseline.
+      const lines = [...part].map((letter, j) => h('i', {}, whole || (o.firsts && j === 0) ? letter : ' '));
+      el.append(h('span', { class: `blank${whole ? ' is-given' : ''}`, 'aria-label': `${part.length} letters` }, ...lines));
     }
   }
   return el;
@@ -314,3 +315,10 @@ function render(o: Options): void {
 }
 
 render(readOptions());
+
+// On a narrow screen the A4 sheets are scaled down to fit; printing always uses full size.
+const screenZoom = () => (innerWidth > 0 ? Math.min(1, innerWidth / 840) : 1);
+const fitScreen = (printing = false) => (root.style.zoom = String(printing ? 1 : screenZoom()));
+fitScreen();
+addEventListener('resize', () => fitScreen());
+matchMedia('print').addEventListener('change', (e) => fitScreen(e.matches));

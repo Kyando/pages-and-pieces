@@ -99,13 +99,6 @@ h2 {
   margin-top: 10mm;
 }
 
-/* On a phone the A4 sheets are scaled down to fit. */
-@media screen and (max-width: 820px) {
-  #print {
-    zoom: calc(100vw / 220mm);
-  }
-}
-
 @media print {
   body {
     background: none;
@@ -327,31 +320,28 @@ h2 {
 .scene {
   margin: 0;
   font-size: 12.5pt;
-  line-height: 1.75;
+  line-height: 2;
 }
 
-/* A blank: one box per letter, to write the word in. */
+/* A blank: one writing line per letter, on the text's own baseline and in its own type, so the
+   sentence reads straight through it. Letters already given are printed on their lines in grey. */
 .blank {
-  display: inline-flex;
-  gap: 0.4mm;
-  vertical-align: -1.2mm;
-  margin: 0 0.5mm;
+  white-space: nowrap;
 }
 
 .blank i {
-  display: grid;
-  place-items: center;
-  width: 4.6mm;
-  height: 5.6mm;
-  border: 0.25mm solid var(--soft);
-  border-radius: 0.6mm;
-  font: 600 9pt/1 var(--font-display);
+  display: inline-block;
+  width: 0.92em;
+  margin-right: 0.2em;
+  border-bottom: 0.3mm solid var(--soft);
+  line-height: 1.2;
+  text-align: center;
   font-style: normal;
   color: var(--soft);
 }
 
-.blank.is-given i {
-  background: #efeae2;
+.blank i:last-child {
+  margin-right: 0;
 }
 
 .find {
