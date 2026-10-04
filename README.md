@@ -21,9 +21,12 @@ npm run dev
 
 ## Paper edition
 
-`print.html` lays chapters out as A4 pages to print and play with a pencil: the scene with a letter box per missing word and the grid on the front; overleaf, the chapter's illustration and the whole scene. Printed double-sided, turning the page reveals the picture. It opens with how to play and ends with the answers and a page of playtest questions.
+Two printable prototypes, built from the same chapters:
 
-How much help each page gives is set in its toolbar (and kept in the URL): the word list above the grid, upside down at the foot or only at the back (`list=above|foot|back`); one word per scene already written in and shaded on the grid (`given=1`); every word's first letter (`firsts=1`); start dots on the grid (`dots=1`). `levels=1-4` picks the chapters. Two versions of the first four chapters are in `docs/print/`: A with the word list, B with story clues (list upside down, one word given, first letters).
+- : the book, 19 × 23.5 cm, shown as open spreads (each PDF page is two book pages side by side). A chapter takes two spreads. First the scene with its blanks on the left, facing its grid on the right, so you read and search without turning. Then, overleaf, the whole scene on the left, facing the illustration on the right: the right-hand page is where the eye lands after a turn, and the picture's back is text, not a grid, so it never shows through while solving. Front matter (Thomson's 1894 title page facing ours, how to play), a part opening per volume, answers and notes at the back.
+- : loose A4 sheets for a home printer. One sheet per chapter, the puzzle on the front and its reward overleaf (print double-sided).
+
+How much help a page gives is set in the toolbar (and kept in the URL): the word list shown, upside down at the foot, or only at the back (); one word per scene already written in and shaded on the grid (); every word's first letter (); start dots on the grid ().  picks the chapters. Ready-made PDFs of the first four chapters are in , each in two versions: A with the word list, B with story clues (list upside down, one word given, first letters).
 
 ## Chapters
 

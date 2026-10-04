@@ -1,0 +1,239 @@
+/* The book: 19 × 23.5 cm pages, shown as open spreads (two pages to a sheet). Builds on print.css. */
+
+@page {
+  size: 380mm 235mm;
+  margin: 0;
+}
+
+:root {
+  --paper: #fdfaf3;
+}
+
+.spread {
+  position: relative;
+  display: flex;
+  width: 380mm;
+  height: 235mm;
+  background: var(--paper);
+  box-shadow: 0 2px 14px rgba(40, 30, 20, 0.28);
+}
+
+/* The fold: the pages curve down into the spine. */
+.spread::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 calc(50% - 9mm);
+  width: 18mm;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(60, 40, 20, 0.09) 42%, rgba(60, 40, 20, 0.16) 50%, rgba(60, 40, 20, 0.09) 58%, transparent);
+}
+
+.spread:first-of-type {
+  margin-top: 10mm;
+}
+
+/* Margins: wider on the spine side, so nothing to read or write disappears into the binding. */
+.leaf {
+  position: relative;
+  width: 190mm;
+  height: 235mm;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 18mm 16mm 20mm 22mm;
+}
+
+.leaf.left {
+  padding: 18mm 22mm 20mm 16mm;
+}
+
+.folio {
+  position: absolute;
+  bottom: 10mm;
+  font: italic 10pt var(--font-old);
+  color: var(--soft);
+}
+
+.leaf.left .folio {
+  left: 16mm;
+}
+
+.leaf.right .folio {
+  right: 16mm;
+}
+
+@media print {
+  .spread {
+    box-shadow: none;
+    break-after: page;
+  }
+
+  .spread:first-of-type {
+    margin-top: 0;
+  }
+}
+
+/* ── Front matter ── */
+
+.frontispiece {
+  align-items: center;
+  justify-content: center;
+  gap: 4mm;
+}
+
+.frontispiece img {
+  max-height: 180mm;
+}
+
+.title-page {
+  align-items: center;
+  text-align: center;
+  padding-top: 30mm;
+}
+
+.title-page h1 {
+  margin-top: 4mm;
+  font-size: 34pt;
+  line-height: 1.05;
+}
+
+.title-page .peacock {
+  height: 82mm;
+  margin: 10mm 0 7mm;
+}
+
+.volume {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.volume h2 {
+  margin-top: 6mm;
+  font-size: 30pt;
+}
+
+.volume-title {
+  margin: 3mm 0 0;
+  font: italic 20pt var(--font-old);
+}
+
+.leaf.rules .steps {
+  font-size: 11.5pt;
+}
+
+.leaf.rules .example {
+  margin: 4mm 0 12mm;
+}
+
+/* ── A chapter: the scene and its grid, facing ── */
+
+/* The heading and the scene sit together mid-page; the word count keeps to the foot. */
+.scene-page .chapter-head {
+  margin: auto 0 9mm;
+}
+
+.scene-page .scene {
+  font-size: 13pt;
+  line-height: 2.15;
+}
+
+.scene-page .find {
+  margin-top: auto;
+  padding-top: 8mm;
+}
+
+.grid-page {
+  align-items: center;
+}
+
+.grid-page .grid-wrap {
+  flex: 1;
+  width: 100%;
+}
+
+.grid-page .upside {
+  margin: 4mm 0 0;
+}
+
+.grid-page .turn {
+  margin: 5mm 0 0;
+  font: 600 9.5pt var(--font-display);
+  color: var(--ink);
+}
+
+/* ── Overleaf: the whole scene, facing its illustration ── */
+
+.told-page {
+  justify-content: center;
+  text-align: center;
+}
+
+.told-page h2 {
+  margin: 2mm 0 9mm;
+  font-size: 20pt;
+}
+
+.told-page .scene {
+  font-size: 13pt;
+  line-height: 1.85;
+  text-align: left;
+}
+
+.replay {
+  margin: 12mm 0 0;
+  font: italic 10pt var(--font-old);
+  color: var(--soft);
+}
+
+.plate-page figure {
+  flex: 1;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.plate-page figcaption {
+  margin-top: 5mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1mm;
+  text-align: center;
+}
+
+.plate-page .plate {
+  max-height: 172mm;
+  min-height: 0;
+}
+
+/* ── Back matter ── */
+
+.leaf.answers .answer-list {
+  grid-template-columns: 1fr;
+  gap: 12mm;
+}
+
+.leaf.answers h2,
+.leaf.notes h2 {
+  font-size: 22pt;
+  margin-bottom: 7mm;
+}
+
+.leaf.notes .questions li {
+  margin-bottom: 4mm;
+}
+
+.leaf.notes .lines {
+  height: 20mm;
+}
+
+.colophon {
+  justify-content: flex-end;
+}
+
+.colophon .credits p {
+  margin: 2mm 0 0;
+}
