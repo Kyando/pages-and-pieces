@@ -26,6 +26,8 @@ export type ListPlace = 'above' | 'foot' | 'back';
  */
 export interface Options {
   levels: string;
+  /** The book's page size (book.html only): A5, a spread to an A4 sheet; or 19 × 23.5 cm. */
+  size: 'a5' | 'large';
   list: ListPlace;
   given: boolean;
   firsts: boolean;
@@ -37,6 +39,7 @@ export function readOptions(): Options {
   const list = q.get('list');
   return {
     levels: q.get('levels') ?? '1-4',
+    size: q.get('size') === 'large' ? 'large' : 'a5',
     list: list === 'foot' || list === 'back' ? list : 'above',
     given: q.get('given') === '1',
     firsts: q.get('firsts') === '1',
@@ -49,6 +52,7 @@ export function optionsQuery(o: Options): string {
   if (o.given) q.set('given', '1');
   if (o.firsts) q.set('firsts', '1');
   if (o.dots) q.set('dots', '1');
+  if (o.size === 'large') q.set('size', 'large');
   return `?${q}`;
 }
 
@@ -266,7 +270,7 @@ export type Format = 'a4' | 'book';
 
 const FORMATS: Record<Format, { page: string; label: string; hint: string }> = {
   a4: { page: 'print.html', label: 'A4 sheets', hint: 'A4 · double-sided, flip on the long edge' },
-  book: { page: 'book.html', label: 'Book spreads', hint: 'Each page is an open spread: two 19 × 23.5 cm book pages' },
+  book: { page: 'book.html', label: 'Book spreads', hint: 'Each sheet is an open spread of two book pages' },
 };
 
 /** Screen-only controls: the format, the help options, and print. */
@@ -290,14 +294,23 @@ export function toolbar(format: Format, o: Options, update: (o: Options) => void
     check('given', 'One word filled in'),
     check('firsts', 'First letters'),
     check('dots', 'Start dots on the grid'),
+    format === 'book'
+      ? h(
+          'select',
+          { onchange: (e: Event) => update({ ...o, size: (e.target as HTMLSelectElement).value === 'large' ? 'large' : 'a5' }) },
+          h('option', { value: 'a5', selected: o.size === 'a5' }, 'A5 pages (spread on A4)'),
+          h('option', { value: 'large', selected: o.size === 'large' }, '19 × 23.5 cm pages'),
+        )
+      : null,
     h('span', { class: 'hint' }, FORMATS[format].hint),
     h('button', { type: 'button', onclick: () => window.print() }, 'Print / Save as PDF'),
   );
 }
 
 /** On a narrow screen the sheets are scaled down to fit; printing always uses full size. */
-export function fitToScreen(root: HTMLElement, sheetPx: number): void {
-  const zoom = (printing: boolean) => (printing || innerWidth <= 0 ? 1 : Math.min(1, innerWidth / sheetPx));
+export function fitToScreen(root: HTMLElement, sheetPx: number | (() => number)): void {
+  const width = () => (typeof sheetPx === 'number' ? sheetPx : sheetPx());
+  const zoom = (printing: boolean) => (printing || innerWidth <= 0 ? 1 : Math.min(1, innerWidth / width()));
   const fit = (printing = false) => (root.style.zoom = String(zoom(printing)));
   fit();
   addEventListener('resize', () => fit());

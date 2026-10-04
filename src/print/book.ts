@@ -1,6 +1,7 @@
 /**
- * The paper edition as a bound book, 19 × 23.5 cm: each PDF page is one open spread, two book pages
- * side by side, to judge what the reader sees at once. A chapter takes two spreads:
+ * The paper edition as a bound book: each PDF page is one open spread, two book pages side by side,
+ * to judge what the reader sees at once. The pages are A5 (a spread prints on one A4 sheet,
+ * landscape), or 19 × 23.5 cm with size=large. A chapter takes two spreads:
  *   play:   [the scene, with its blanks | the grid]       solved side by side, without turning
  *   reward: [the whole scene            | the illustration]  revealed by the turn of the page
  * The picture sits on a right-hand page, where the eye lands after a turn, and its back is the next
@@ -16,6 +17,15 @@ import {
   answer, caption, chapterHead, chosen, inkImage, CREDITS, example, fitToScreen, GAME, givenWord, grid, optionsQuery, passage, plate,
   questions, readOptions, roman, rules, toolbar, upsideList, URL_TEXT, versionName, wordList, type Options,
 } from './parts.ts';
+
+/**
+ * Each size's printed sheet (one spread) and what fits a page: the grid's room ([width, height] in
+ * mm, and the largest cell), the example grid's cells, and each answer grid's room.
+ */
+const SIZES: Record<Options['size'], { sheet: string; screenPx: number; grid: [number, number, number]; example: number; answer: [number, number] }> = {
+  a5: { sheet: 'A4 landscape', screenPx: 1180, grid: [118, 140, 18], example: 11, answer: [76, 52] },
+  large: { sheet: '380mm 235mm', screenPx: 1500, grid: [150, 168, 21], example: 15, answer: [92, 70] },
+};
 
 /** A book page's content; its side and number come from where it falls in the book. */
 interface Leaf {
@@ -86,11 +96,11 @@ const LIST_WHERE = {
 
 const rulesPage = (o: Options): Leaf => leaf('rules', h('h2', {}, 'How to play'), ...rules(o, LIST_WHERE));
 
-const examplePage = (): Leaf =>
+const examplePage = (o: Options): Leaf =>
   leaf(
     'rules',
     h('h2', {}, 'For example'),
-    example(15),
+    example(SIZES[o.size].example),
     h('p', { class: 'tip' }, 'Each chapter opens across two pages: the scene on the left, its grid on the right, so you can read and search without turning. When every word is found, turn the page for the chapter’s illustration and the whole scene.'),
     h('p', { class: 'tip' }, 'Stuck? Start with the longest word, or with a letter that appears only once. The answers are at the back.'),
   );
@@ -111,8 +121,8 @@ function scenePage(entry: CatalogEntry, o: Options): Leaf {
 function gridPage(entry: CatalogEntry, o: Options): Leaf {
   const { puzzle } = entry;
   const given = o.given ? givenWord(puzzle) : null;
-  // The page's writing area is about 152 × 190 mm; the grid keeps room for the notes under it.
-  const cell = Math.min(150 / puzzle.cols, 168 / puzzle.rows, 21);
+  const [w, ht, most] = SIZES[o.size].grid;
+  const cell = Math.min(w / puzzle.cols, ht / puzzle.rows, most);
   return leaf(
     'grid-page',
     h('div', { class: 'grid-wrap' }, grid(puzzle, cell, { given: given?.path, dots: o.dots })),
@@ -138,7 +148,7 @@ function build(o: Options): HTMLElement[] {
   const entries = chosen(o.levels);
   const book = new Book();
   book.left(frontispiece(), titlePage(entries, o));
-  book.left(rulesPage(o), examplePage());
+  book.left(rulesPage(o), examplePage(o));
   let volume = '';
   for (const entry of entries) {
     const name = volumeOf(entry)?.name ?? '';
@@ -151,7 +161,7 @@ function build(o: Options): HTMLElement[] {
   // The answers, two chapters to a page.
   const answers: Leaf[] = [];
   for (let i = 0; i < entries.length; i += 2) {
-    answers.push(leaf('answers', i === 0 ? h('h2', {}, 'Answers') : null, h('div', { class: 'answer-list' }, ...entries.slice(i, i + 2).map((e) => answer(e, 92, 70)))));
+    answers.push(leaf('answers', i === 0 ? h('h2', {}, 'Answers') : null, h('div', { class: 'answer-list' }, ...entries.slice(i, i + 2).map((e) => answer(e, ...SIZES[o.size].answer)))));
   }
   book.left(...answers);
   book.left(
@@ -163,11 +173,17 @@ function build(o: Options): HTMLElement[] {
 
 const root = document.getElementById('print')!;
 document.title = `${GAME}: Book Prototype`;
+// The printed sheet: one spread, so two pages wide.
+const sheet = document.head.appendChild(document.createElement('style'));
+let current = readOptions();
 
 function render(o: Options): void {
+  current = o;
   history.replaceState(null, '', optionsQuery(o));
+  sheet.textContent = `@page { size: ${SIZES[o.size].sheet}; margin: 0; }`;
+  root.className = `size-${o.size}`;
   root.replaceChildren(toolbar('book', o, render), ...build(o));
 }
 
-render(readOptions());
-fitToScreen(root, 1500);
+render(current);
+fitToScreen(root, () => SIZES[current.size].screenPx);

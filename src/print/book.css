@@ -1,19 +1,32 @@
-/* The book: 19 × 23.5 cm pages, shown as open spreads (two pages to a sheet). Builds on print.css. */
-
-@page {
-  size: 380mm 235mm;
-  margin: 0;
-}
+/* The book, shown as open spreads (two pages to a sheet). Builds on print.css. Two sizes: A5 pages
+   (the default: a spread prints on one A4 sheet, landscape) and 19 × 23.5 cm (.size-large). The
+   sheet size itself (@page) is set from book.ts, to match. */
 
 :root {
   --paper: #fdfaf3;
+  /* A5. Margins: wider on the spine side, so nothing to read or write disappears into the binding. */
+  --leaf-w: 148.5mm;
+  --leaf-h: 210mm;
+  --m-top: 14mm;
+  --m-bottom: 16mm;
+  --m-inner: 17mm;
+  --m-outer: 12mm;
+}
+
+.size-large {
+  --leaf-w: 190mm;
+  --leaf-h: 235mm;
+  --m-top: 18mm;
+  --m-bottom: 20mm;
+  --m-inner: 22mm;
+  --m-outer: 16mm;
 }
 
 .spread {
   position: relative;
   display: flex;
-  width: 380mm;
-  height: 235mm;
+  width: calc(var(--leaf-w) * 2);
+  height: var(--leaf-h);
   background: var(--paper);
   box-shadow: 0 2px 14px rgba(40, 30, 20, 0.28);
 }
@@ -32,34 +45,33 @@
   margin-top: 10mm;
 }
 
-/* Margins: wider on the spine side, so nothing to read or write disappears into the binding. */
 .leaf {
   position: relative;
-  width: 190mm;
-  height: 235mm;
+  width: var(--leaf-w);
+  height: var(--leaf-h);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 18mm 16mm 20mm 22mm;
+  padding: var(--m-top) var(--m-outer) var(--m-bottom) var(--m-inner);
 }
 
 .leaf.left {
-  padding: 18mm 22mm 20mm 16mm;
+  padding: var(--m-top) var(--m-inner) var(--m-bottom) var(--m-outer);
 }
 
 .folio {
   position: absolute;
-  bottom: 10mm;
+  bottom: calc(var(--m-bottom) / 2);
   font: italic 10pt var(--font-old);
   color: var(--soft);
 }
 
 .leaf.left .folio {
-  left: 16mm;
+  left: var(--m-outer);
 }
 
 .leaf.right .folio {
-  right: 16mm;
+  right: var(--m-outer);
 }
 
 @media print {
@@ -237,3 +249,46 @@
 .colophon .credits p {
   margin: 2mm 0 0;
 }
+
+/* ── A5: the same book, a size smaller ── */
+
+.size-a5 .folio { font-size: 8.5pt; }
+.size-a5 .frontispiece img { max-height: 152mm; }
+.size-a5 .title-page { padding-top: 16mm; }
+.size-a5 .title-page h1 { font-size: 25pt; }
+.size-a5 .title-page .peacock { height: 58mm; margin: 7mm 0 5mm; }
+.size-a5 .cover-game { font-size: 10.5pt; }
+.size-a5 .cover-author { font-size: 13pt; }
+.size-a5 .cover-sub { font-size: 14.5pt; }
+.size-a5 .cover-note,
+.size-a5 .cover-version { font-size: 8pt; }
+.size-a5 .volume h2 { font-size: 24pt; }
+.size-a5 .volume-title { font-size: 16pt; }
+.size-a5 .leaf.rules h2,
+.size-a5 .leaf.answers h2,
+.size-a5 .leaf.notes h2 { font-size: 17pt; margin-bottom: 5mm; }
+.size-a5 .leaf.rules .steps { font-size: 9.5pt; padding-left: 5mm; }
+.size-a5 .help-note,
+.size-a5 .tip { font-size: 9pt; }
+.size-a5 .leaf.rules .example { gap: 10mm; margin: 3mm 0 8mm; }
+.size-a5 .eyebrow { font-size: 6.5pt; }
+.size-a5 .chapter-no { font-size: 10pt; }
+.size-a5 .chapter-head h2 { font-size: 17pt; }
+.size-a5 .scene-page .chapter-head { margin-bottom: 7mm; }
+.size-a5 .scene-page .scene { font-size: 11pt; line-height: 2.15; }
+.size-a5 .label { font-size: 6.5pt; }
+.size-a5 .words { font-size: 8.5pt; gap: 1.5mm 4mm; }
+.size-a5 .tick { width: 3mm; height: 3mm; }
+.size-a5 .grid-page .turn { font-size: 7.5pt; text-align: center; }
+.size-a5 .upside { font-size: 7pt; }
+.size-a5 .told-page h2 { font-size: 16pt; margin-bottom: 7mm; }
+.size-a5 .told-page .scene { font-size: 11pt; line-height: 1.8; }
+.size-a5 .replay { font-size: 8.5pt; margin-top: 9mm; }
+.size-a5 .plate-page .plate { max-height: 145mm; }
+.size-a5 .caption { font-size: 12pt; }
+.size-a5 .credit { font-size: 8pt; }
+.size-a5 .leaf.answers .answer-list { gap: 8mm; }
+.size-a5 .answer-words { font-size: 6.5pt; }
+.size-a5 .leaf.notes .questions { font-size: 10pt; }
+.size-a5 .leaf.notes .lines { height: 15mm; }
+.size-a5 .credits { font-size: 8pt; }
