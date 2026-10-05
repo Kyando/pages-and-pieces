@@ -9,7 +9,7 @@ The game opens on the shelf: the books standing side by side, each showing how f
 The shelf holds:
 
 - **Pride and Prejudice** (Jane Austen, 1813): 41 chapters covering the whole story, with Hugh Thomson's 1894 illustrations and, where he left a scene undrawn, C. E. Brock's from 1895. The passages retell each scene in plain modern English and keep Austen's best-known lines.
-- **Alice's Adventures in Wonderland** (Lewis Carroll, 1865): a first taste, five scenes from chapters I–IV, with John Tenniel's drawings.
+- **Alice's Adventures in Wonderland** (Lewis Carroll, 1865): a first taste, five scenes from chapters I–IV, with John Tenniel's drawings as he coloured them for *The Nursery "Alice"* (1890), Carroll's own telling for small children.
 - **The Three Little Pigs** (L. Leslie Brooke, 1904), for young readers (6+): the whole tale in five short scenes to read aloud, with Brooke's colour plates. Its boards are small (4 × 5 and 5 × 6), and its words run straight or bend only once, reading forwards wherever they can. The telling is a kind one: the wolf eats nobody, and runs off for good.
 
 ## Playing
@@ -56,7 +56,7 @@ Book content (passages, and the words in the grid) is per language too. A transl
 Only public-domain texts and illustrations: Austen's and Carroll's texts and the old folk tale; Thomson's 1894 drawings (he died in 1920), Brock's 1895 drawings (he died in 1938), Tenniel's 1865 drawings (he died in 1914) and Brooke's 1904 pictures (he died in 1940). The game serves its own copies from `public/art/`:
 
 - all of Thomson's edition from Project Gutenberg (ebook #1342: every plate, chapter heading and illustrated initial), plus the Thomson and Brock scans on Wikimedia Commons;
-- Tenniel's 42 drawings, from Wikimedia Commons' scans of the 1869 German edition, printed from the original woodblocks;
+- Tenniel's 42 drawings, from Wikimedia Commons' scans of the 1869 German edition, printed from the original woodblocks (black and white: kept for a printed book), and the 20 he coloured for *The Nursery "Alice"* (1890), whole-page scans on Wikimedia Commons, which the game uses;
 - all of Brooke's *Story of the Three Little Pigs* from Project Gutenberg (ebook #18155). Its plates are only about 500 pixels tall; a better scan would sharpen the desk on large screens.
 
-`npm run art:fetch` downloads them all again, and `npm run art:fetch -- tenniel brooke` only some (sources: `thomson`, `brock`, `tenniel`, `brooke`). `public/art/catalog.json` records each picture's chapter, caption and source. Page scans are trimmed in the browser with each level's `crop`.
+`npm run art:fetch` downloads them all again, and `npm run art:fetch -- tenniel brooke` only some (sources: `thomson`, `brock`, `tenniel`, `nursery`, `brooke`). `public/art/catalog.json` records each picture's chapter, caption and source. Page scans are trimmed in the browser with each level's `crop`, and a yellowed black-and-white scan is whitened too; a coloured plate is marked `colour`, so it keeps its colours.

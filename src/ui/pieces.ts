@@ -113,12 +113,17 @@ export class PieceLayer {
   /** Drawn pieces, by word index. */
   private readonly drawn = new Map<number, SVGGElement>();
   private layout: Layout | null = null;
+  /** Settles once the picture is ready to show (trimmed, when it has a crop), or has failed to load. */
+  readonly loaded: Promise<void>;
 
-  /** `crop` trims a scanned page down to its drawing; such a picture only shows once it's trimmed. */
-  constructor(image: string, crop?: Crop) {
+  /**
+   * `crop` trims a scanned page down to its drawing; such a picture only shows once it's trimmed.
+   * `colour`: a coloured plate, kept in colour (see loadPicture).
+   */
+  constructor(image: string, crop?: Crop, colour = false) {
     this.source = image;
     this.href = crop ? '' : image;
-    this.preload(image, crop);
+    this.loaded = this.preload(image, crop, colour);
     this.el = el('svg', { class: 'pieces', 'aria-hidden': 'true' });
     this.defs = el('defs');
     this.defs.append(sketchFilter(`${this.id}-sketch`));
@@ -131,19 +136,30 @@ export class PieceLayer {
    * Downloads the picture as the chapter opens, not when the first word is found. Keeps a local
    * copy when the host allows it (Wikimedia does); otherwise the browser cache still has it, untrimmed.
    */
-  private preload(image: string, crop?: Crop): void {
-    loadPicture(image, crop)
-      .then((blob) => {
-        if (this.destroyed) return;
+  private preload(image: string, crop?: Crop, colour = false): Promise<void> {
+    const picture = loadPicture(image, crop, Infinity, colour).then(
+      (blob) => {
+        if (this.destroyed) return null;
         this.blobUrl = URL.createObjectURL(blob);
         this.show(this.blobUrl);
-        return sketchPicture(blob, pencilColour()).then((drawn) => {
-          if (this.destroyed) return;
-          this.sketch = URL.createObjectURL(drawn);
-          this.el.querySelectorAll('image.piece-pic').forEach((n) => this.sketchOn(n as SVGImageElement));
-        });
-      })
-      .catch(() => this.show(image));
+        return blob;
+      },
+      () => {
+        this.show(image);
+        return null;
+      },
+    );
+    // The sketch follows; until it's drawn (or if it can't be), the live filter stands in.
+    void picture.then((blob) =>
+      blob
+        ? sketchPicture(blob, pencilColour()).then((drawn) => {
+            if (this.destroyed) return;
+            this.sketch = URL.createObjectURL(drawn);
+            this.el.querySelectorAll('image.piece-pic').forEach((n) => this.sketchOn(n as SVGImageElement));
+          }, () => undefined)
+        : undefined,
+    );
+    return picture.then(() => undefined);
   }
 
   private show(href: string): void {

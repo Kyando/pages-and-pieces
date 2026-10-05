@@ -51,8 +51,15 @@
   ],
   "story": {
     "text": "Alice is sitting on the bank beside her {SISTER}, with nothing to do, when a White {RABBIT} with pink eyes runs close by her. “Oh dear! I shall be too {LATE}!” it says, and takes a {WATCH} out of its waistcoat {POCKET}. Burning with {CURIOSITY}, Alice {FOLLOWS} it down a large rabbit-hole, never once considering how in the world she is to get out {AGAIN}.",
-    "image": "art/tenniel-1865/alice-02.jpg",
+    "image": "art/nursery-alice-1890/white-rabbit.jpg",
     "caption": "Oh dear! I shall be too late!",
-    "credit": "John Tenniel, 1865"
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0.04,
+      0.085,
+      0.98,
+      0.83
+    ],
+    "colour": true
   }
 }

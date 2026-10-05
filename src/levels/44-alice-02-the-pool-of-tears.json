@@ -53,8 +53,15 @@
   ],
   "story": {
     "text": "“{CURIOUSER} and curiouser!” Now Alice opens out like the largest telescope that ever was, until her {HEAD} strikes the ceiling. Poor Alice {CRIES}, shedding gallons of {TEARS}. Picking up the White Rabbit’s {FAN}, she {SHRINKS} again, slips, and {SPLASH}! She is up to her chin in a {POOL} of her own tears, swimming beside a {MOUSE}.",
-    "image": "art/tenniel-1865/alice-07.jpg",
-    "caption": "Up to her chin in salt water",
-    "credit": "John Tenniel, 1865"
+    "image": "art/nursery-alice-1890/a80108-44.jpg",
+    "caption": "Swimming beside a mouse",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0.03,
+      0,
+      0.973,
+      1
+    ],
+    "colour": true
   }
 }

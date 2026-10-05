@@ -51,8 +51,15 @@
   ],
   "story": {
     "text": "Down, down, down she falls, and lands on a heap of sticks and dry {LEAVES}. In a long hall she finds a tiny golden key, and behind a {CURTAIN} a little {DOOR} into the loveliest {GARDEN} you ever saw. But she is far too {LARGE} to get through. On a glass table stands a {BOTTLE}, labelled “{DRINK} ME”. Alice takes a sip, and shuts up like a {TELESCOPE}.",
-    "image": "art/tenniel-1865/alice-04.jpg",
+    "image": "art/nursery-alice-1890/066110.jpg",
     "caption": "Drink me",
-    "credit": "John Tenniel, 1865"
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0,
+      0.045,
+      1,
+      0.95
+    ],
+    "colour": true
   }
 }

@@ -24,12 +24,12 @@ const TILTS = [-1.6, 1.1, -0.5, 1.7, -1.1, 0.6, 1.3, -1.8];
 const covers = new Map<string, Promise<string>>();
 
 function cover(def: LevelDef): Promise<string> {
-  const { image, crop } = def.story;
+  const { image, crop, colour } = def.story;
   const thumb = commonsThumb(image, 330);
   if (!crop) return Promise.resolve(thumb);
   let made = covers.get(image);
   if (!made) {
-    made = loadPicture(thumb, crop, 330)
+    made = loadPicture(thumb, crop, 330, colour)
       .then((blob) => URL.createObjectURL(blob))
       .catch(() => thumb);
     covers.set(image, made);

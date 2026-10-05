@@ -186,7 +186,7 @@ export function inkImage(src: string, attrs: Record<string, string> = {}): HTMLI
 /** The chapter's illustration, trimmed to the drawing (and whitened, for a scanned page); with `ink`, without its paper. */
 export function plate(def: LevelDef, ink = false): HTMLImageElement {
   const img = h('img', { class: 'plate', alt: def.story.caption });
-  loadPicture(def.story.image, def.story.crop)
+  loadPicture(def.story.image, def.story.crop, Infinity, def.story.colour)
     .then((blob) => (ink ? inkOnly(blob) : blob))
     .then((blob) => (img.src = URL.createObjectURL(blob)))
     .catch(() => (img.src = def.story.image));

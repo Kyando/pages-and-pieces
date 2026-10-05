@@ -637,10 +637,14 @@ const PRIDE: LevelSpec[] = [
 
 /**
  * Alice: the first chapters, to try the book on the shelf. Carroll's own lines kept where they are
- * the ones people remember. Tenniel's drawings are clean scans, trimmed by the grid's shape alone.
+ * the ones people remember. The pictures are Tenniel's drawings as he coloured them for The Nursery
+ * "Alice" (1890), Carroll's own telling for small children: whole-page scans, so `crop` trims the
+ * plate number and the printed text around a drawing (to the grid's shape), and `colour` keeps them
+ * in colour.
  */
 const ALICE_BOOK = 'alice-in-wonderland';
-const TENNIEL = 'John Tenniel, 1865';
+const TENNIEL = 'John Tenniel, coloured for The Nursery “Alice”, 1890';
+const nursery = (plate: string) => art(`nursery-alice-1890/${plate}.jpg`);
 
 const ALICE: LevelSpec[] = [
   {
@@ -652,9 +656,11 @@ const ALICE: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'Alice is sitting on the bank beside her {SISTER}, with nothing to do, when a White {RABBIT} with pink eyes runs close by her. “Oh dear! I shall be too {LATE}!” it says, and takes a {WATCH} out of its waistcoat {POCKET}. Burning with {CURIOSITY}, Alice {FOLLOWS} it down a large rabbit-hole, never once considering how in the world she is to get out {AGAIN}.',
-      image: art('tenniel-1865/alice-02.jpg'),
+      image: nursery('white-rabbit'),
       caption: 'Oh dear! I shall be too late!',
       credit: TENNIEL,
+      crop: [0.04, 0.085, 0.98, 0.83],
+      colour: true,
     },
   },
   {
@@ -666,9 +672,11 @@ const ALICE: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'Down, down, down she falls, and lands on a heap of sticks and dry {LEAVES}. In a long hall she finds a tiny golden key, and behind a {CURTAIN} a little {DOOR} into the loveliest {GARDEN} you ever saw. But she is far too {LARGE} to get through. On a glass table stands a {BOTTLE}, labelled “{DRINK} ME”. Alice takes a sip, and shuts up like a {TELESCOPE}.',
-      image: art('tenniel-1865/alice-04.jpg'),
+      image: nursery('066110'),
       caption: 'Drink me',
       credit: TENNIEL,
+      crop: [0, 0.045, 1, 0.95],
+      colour: true,
     },
   },
   {
@@ -680,9 +688,11 @@ const ALICE: LevelSpec[] = [
     cols: 8,
     story: {
       text: '“{CURIOUSER} and curiouser!” Now Alice opens out like the largest telescope that ever was, until her {HEAD} strikes the ceiling. Poor Alice {CRIES}, shedding gallons of {TEARS}. Picking up the White Rabbit’s {FAN}, she {SHRINKS} again, slips, and {SPLASH}! She is up to her chin in a {POOL} of her own tears, swimming beside a {MOUSE}.',
-      image: art('tenniel-1865/alice-07.jpg'),
-      caption: 'Up to her chin in salt water',
+      image: nursery('a80108-44'),
+      caption: 'Swimming beside a mouse',
       credit: TENNIEL,
+      crop: [0.03, 0, 0.973, 1],
+      colour: true,
     },
   },
   {
@@ -694,9 +704,11 @@ const ALICE: LevelSpec[] = [
     cols: 7,
     story: {
       text: 'Everyone climbs out of the pool, dripping wet. The best thing to get them dry, says the Dodo, is a {CAUCUS} {RACE}: they all run round in a {CIRCLE}, starting and stopping whenever they like. After half an hour the {DODO} declares, “{EVERYBODY} has won, and all must have {PRIZES}!” Alice hands round her {COMFITS}, and the Dodo solemnly presents her with her own {THIMBLE}.',
-      image: art('tenniel-1865/alice-10.jpg'),
-      caption: 'We beg your acceptance of this elegant thimble',
+      image: nursery('c06543-02'),
+      caption: '“Hand it over here!” said the Dodo',
       credit: TENNIEL,
+      crop: [0.02, 0.13, 0.975, 0.823],
+      colour: true,
     },
   },
   {
@@ -704,13 +716,15 @@ const ALICE: LevelSpec[] = [
     book: ALICE_BOOK,
     chapter: 4,
     title: 'Little Bill',
-    rows: 6,
-    cols: 8,
+    rows: 9,
+    cols: 4,
     story: {
-      text: 'The White Rabbit sends Alice to his {HOUSE} to fetch his fan and {GLOVES}. There she finds another little {BOTTLE}, drinks, and grows so big that she must put one arm out of the {WINDOW} and one foot up the {CHIMNEY}. Outside, the Rabbit orders Bill the Lizard to climb down. Alice {KICKS}, and up goes {BILL} like a {SKYROCKET}!',
-      image: art('tenniel-1865/alice-11.jpg'),
-      caption: 'Alice in the White Rabbit’s house',
+      text: 'The White Rabbit sends Alice to his {HOUSE} to fetch his fan and gloves. There she drinks from another little bottle, and grows so big that she must put one arm out of the {WINDOW} and one foot up the {CHIMNEY}. Outside, the Rabbit orders Bill the Lizard to climb down. Alice {KICKS}, and up goes {BILL} like a {SKYROCKET}!',
+      image: nursery('a80108-45'),
+      caption: 'Up goes Bill like a sky-rocket',
       credit: TENNIEL,
+      crop: [0.205, 0.045, 0.875, 0.855],
+      colour: true,
     },
   },
 ];

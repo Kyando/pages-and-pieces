@@ -4,7 +4,8 @@
  *   #1342, the illustrated HTML edition): every plate and chapter heading, and his illustrated
  *   initials; and the Thomson and C. E. Brock (1895) scans on Wikimedia Commons, which the first
  *   levels were made with (their crops are measured on these files);
- * - Alice's Adventures in Wonderland: John Tenniel's 42 drawings, scans on Wikimedia Commons;
+ * - Alice's Adventures in Wonderland: John Tenniel's 42 drawings, and the 20 he coloured for The
+ *   Nursery "Alice" (1890), scans on Wikimedia Commons;
  * - The Three Little Pigs: L. Leslie Brooke's 1904 picture book, from Project Gutenberg (#18155).
  * Only public-domain files are kept. public/art/catalog.json records each file's chapter, caption
  * and source.
@@ -196,6 +197,43 @@ async function tenniel(): Promise<void> {
   }
 }
 
+// ── The Nursery "Alice", 1890 (Wikimedia Commons) ──────────────────────────────
+
+/**
+ * Twenty of Tenniel's drawings, enlarged and coloured under his eye for Carroll's own retelling for
+ * small children: the whole scans of its plates (not the cropped copies), and the British Library's
+ * White Rabbit (CC0).
+ */
+async function nurseryAlice(): Promise<void> {
+  const q = new URLSearchParams({
+    action: 'query', generator: 'categorymembers', gcmtitle: 'Category:The_Nursery_Alice_(1890)', gcmtype: 'file', gcmlimit: '100',
+    prop: 'imageinfo', iiprop: 'url|extmetadata', iiurlwidth: String(MAX), format: 'json',
+  });
+  const j = await (await fetch(`https://commons.wikimedia.org/w/api.php?${q}`, { headers: UA })).json();
+  const pages = Object.values(j.query.pages) as { title: string; imageinfo?: { url: string; thumburl?: string; extmetadata?: Record<string, { value: string }> }[] }[];
+  for (const p of pages.sort((a, b) => a.title.localeCompare(b.title))) {
+    const ii = p.imageinfo?.[0];
+    const plate = p.title.match(/The Nursery Alice \(1890\) - ([\w ]+)\.jpg$/)?.[1];
+    const rabbit = /White Rabbit \(Tenniel\) - The Nursery Alice/.test(p.title);
+    if (!ii || (!plate && !rabbit)) continue;
+    const license = strip(ii.extmetadata?.LicenseShortName);
+    if (license !== 'Public domain' && license !== 'CC0') continue;
+    const file = `nursery-alice-1890/${rabbit ? 'white-rabbit' : slug(plate!)}.jpg`;
+    await save(await download(ii.thumburl ?? ii.url), file);
+    catalog.push({
+      file,
+      artist: 'John Tenniel',
+      edition: 'The Nursery “Alice”, Macmillan, 1890',
+      chapter: null,
+      caption: '',
+      kind: 'plate',
+      source: ii.url.replace(/\?.*$/, ''),
+      license,
+    });
+    await pause(1500);
+  }
+}
+
 // ── L. Leslie Brooke, 1904 (Project Gutenberg) ─────────────────────────────────
 
 /** Every picture in The Story of the Three Little Pigs (Warne, 1904; ebook #18155), with its caption. */
@@ -245,6 +283,7 @@ const SOURCES: Record<string, { folders: string[]; fetch: () => Promise<void> }>
   },
   brock: { folders: ['brock-1895'], fetch: () => commons('Pride_and_Prejudice_(C.E._Brock)', 'brock-1895', 'C. E. Brock', 'Pride and Prejudice, Macmillan, 1895') },
   tenniel: { folders: ['tenniel-1865'], fetch: tenniel },
+  nursery: { folders: ['nursery-alice-1890'], fetch: nurseryAlice },
   brooke: { folders: ['brooke-1904'], fetch: brooke },
 };
 

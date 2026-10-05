@@ -50,8 +50,15 @@
   ],
   "story": {
     "text": "Everyone climbs out of the pool, dripping wet. The best thing to get them dry, says the Dodo, is a {CAUCUS} {RACE}: they all run round in a {CIRCLE}, starting and stopping whenever they like. After half an hour the {DODO} declares, “{EVERYBODY} has won, and all must have {PRIZES}!” Alice hands round her {COMFITS}, and the Dodo solemnly presents her with her own {THIMBLE}.",
-    "image": "art/tenniel-1865/alice-10.jpg",
-    "caption": "We beg your acceptance of this elegant thimble",
-    "credit": "John Tenniel, 1865"
+    "image": "art/nursery-alice-1890/c06543-02.jpg",
+    "caption": "“Hand it over here!” said the Dodo",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0.02,
+      0.13,
+      0.975,
+      0.823
+    ],
+    "colour": true
   }
 }

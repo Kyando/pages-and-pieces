@@ -75,6 +75,7 @@ export class LevelView {
   private readonly counter = h('span', { class: 'counter' });
   /** The finished chapter, laid out on the desk. */
   private desk: Desk | null = null;
+  private destroyed = false;
   private readonly panel: HTMLElement;
   private readonly wordList: HTMLElement;
   /** Word chips by word index. */
@@ -159,7 +160,7 @@ export class LevelView {
     this.links = document.createElementNS(SVG_NS, 'svg');
     this.links.classList.add('links');
     this.links.setAttribute('aria-hidden', 'true');
-    this.pieces = new PieceLayer(story.image, story.crop);
+    this.pieces = new PieceLayer(story.image, story.crop, story.colour);
     this.board.append(this.pieces.el, this.links);
     this.bindPointer();
 
@@ -290,6 +291,7 @@ export class LevelView {
   }
 
   destroy(): void {
+    this.destroyed = true;
     this.resizeObserver.disconnect();
     this.pieces.destroy();
     this.desk?.destroy();
@@ -538,16 +540,21 @@ export class LevelView {
       this.nextArrow = open;
     }
     this.pieces.showWhole((cell) => this.s.ownerAt(cell), animate);
-    const desk = this.makeDesk();
-    if (!animate) {
-      this.el.classList.add('is-complete');
-      this.el.append(desk.el);
-      return;
-    }
-    window.setTimeout(() => {
-      if (this.desk === desk) this.el.classList.add('is-leaving');
-    }, 850);
-    window.setTimeout(() => void this.openDesk(desk), 1150);
+    if (!animate) this.el.classList.add('is-complete');
+    // The desk shows the trimmed picture, so it waits for it: a finished chapter opens straight onto
+    // its desk, before the picture has downloaded.
+    void this.pieces.loaded.then(() => {
+      if (this.destroyed || !this.board.classList.contains('is-complete')) return;
+      const desk = this.makeDesk();
+      if (!animate) {
+        this.el.append(desk.el);
+        return;
+      }
+      window.setTimeout(() => {
+        if (this.desk === desk) this.el.classList.add('is-leaving');
+      }, 850);
+      window.setTimeout(() => void this.openDesk(desk), 1150);
+    });
   }
 
   private makeDesk(): Desk {

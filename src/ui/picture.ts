@@ -4,9 +4,10 @@ export type Crop = [number, number, number, number];
 
 /**
  * Downloads a picture as a local copy, trimmed to `crop` (fractions of the image) and, for a
- * thumbnail, scaled down to `maxWidth`. Rejects if the host won't share it.
+ * thumbnail, scaled down to `maxWidth`. A trimmed black-and-white scan is whitened too, unless
+ * `colour` says the picture is a coloured plate. Rejects if the host won't share it.
  */
-export async function loadPicture(url: string, crop?: Crop, maxWidth = Infinity): Promise<Blob> {
+export async function loadPicture(url: string, crop?: Crop, maxWidth = Infinity, colour = false): Promise<Blob> {
   const r = await fetch(url);
   if (!r.ok) throw new Error(String(r.status));
   const blob = await r.blob();
@@ -24,7 +25,7 @@ export async function loadPicture(url: string, crop?: Crop, maxWidth = Infinity)
   const ctx = canvas.getContext('2d');
   if (ctx) {
     // A scanned page's paper has yellowed: brought back to white, like the other prints.
-    if (crop) ctx.filter = 'grayscale(1) brightness(1.14) contrast(1.15)';
+    if (crop && !colour) ctx.filter = 'grayscale(1) brightness(1.14) contrast(1.15)';
     ctx.drawImage(bmp, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
   }
   bmp.close();

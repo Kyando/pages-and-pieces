@@ -3,54 +3,56 @@
   "book": "alice-in-wonderland",
   "chapter": 4,
   "title": "Little Bill",
-  "rows": 6,
-  "cols": 8,
+  "rows": 9,
+  "cols": 4,
   "grid": [
-    "SEVBIESH",
-    "TLOLLWUO",
-    "EGKSNIYE",
-    "KCYODEMN",
-    "SORWTLIH",
-    "KCIKTOBC"
+    "KISW",
+    "BCKI",
+    "ILDN",
+    "TLOW",
+    "EKCH",
+    "OCMI",
+    "RENH",
+    "YYUO",
+    "KSSE"
   ],
   "words": [
     {
       "text": "HOUSE",
-      "path": [7, 15, 14, 6, 5]
-    },
-    {
-      "text": "GLOVES",
-      "path": [17, 9, 10, 2, 1, 0]
-    },
-    {
-      "text": "BOTTLE",
-      "path": [46, 45, 44, 36, 37, 29]
+      "path": [27, 31, 30, 34, 35]
     },
     {
       "text": "WINDOW",
-      "path": [13, 21, 20, 28, 27, 35]
+      "path": [3, 7, 11, 10, 14, 15]
     },
     {
       "text": "CHIMNEY",
-      "path": [47, 39, 38, 30, 31, 23, 22]
+      "path": [18, 19, 23, 22, 26, 25, 29]
     },
     {
       "text": "KICKS",
-      "path": [43, 42, 41, 40, 32]
+      "path": [0, 1, 5, 6, 2]
     },
     {
       "text": "BILL",
-      "path": [3, 4, 12, 11]
+      "path": [4, 8, 9, 13]
     },
     {
       "text": "SKYROCKET",
-      "path": [19, 18, 26, 34, 33, 25, 24, 16, 8]
+      "path": [33, 32, 28, 24, 20, 21, 17, 16, 12]
     }
   ],
   "story": {
-    "text": "The White Rabbit sends Alice to his {HOUSE} to fetch his fan and {GLOVES}. There she finds another little {BOTTLE}, drinks, and grows so big that she must put one arm out of the {WINDOW} and one foot up the {CHIMNEY}. Outside, the Rabbit orders Bill the Lizard to climb down. Alice {KICKS}, and up goes {BILL} like a {SKYROCKET}!",
-    "image": "art/tenniel-1865/alice-11.jpg",
-    "caption": "Alice in the White Rabbit’s house",
-    "credit": "John Tenniel, 1865"
+    "text": "The White Rabbit sends Alice to his {HOUSE} to fetch his fan and gloves. There she drinks from another little bottle, and grows so big that she must put one arm out of the {WINDOW} and one foot up the {CHIMNEY}. Outside, the Rabbit orders Bill the Lizard to climb down. Alice {KICKS}, and up goes {BILL} like a {SKYROCKET}!",
+    "image": "art/nursery-alice-1890/a80108-45.jpg",
+    "caption": "Up goes Bill like a sky-rocket",
+    "credit": "John Tenniel, coloured for The Nursery “Alice”, 1890",
+    "crop": [
+      0.205,
+      0.045,
+      0.875,
+      0.855
+    ],
+    "colour": true
   }
 }

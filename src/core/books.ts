@@ -44,7 +44,7 @@ export const BOOKS: Record<string, Book> = {
     title: 'Alice’s Adventures in Wonderland',
     author: 'Lewis Carroll',
     year: 1865,
-    cover: 'art/tenniel-1865/alice-01.jpg',
+    cover: 'art/nursery-alice-1890/c06544-02.jpg',
     blurb: 'A girl follows a White Rabbit down a hole, and nothing makes sense ever after.',
     names: ['ALICE', 'DINAH', 'DODO', 'BILL', 'WONDERLAND'],
   },

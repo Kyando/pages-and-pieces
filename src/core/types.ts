@@ -15,6 +15,8 @@ export interface StoryDef {
   credit: string;
   /** The drawing within the image, as [left, top, right, bottom] fractions: trims a scanned page's margins and printed caption. */
   crop?: [number, number, number, number];
+  /** A coloured plate: trimmed by `crop` as it is, never greyed and whitened like a yellowed black-and-white scan. */
+  colour?: boolean;
 }
 
 export interface LevelDef {
