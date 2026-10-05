@@ -4,9 +4,13 @@ A word puzzle that retells classic books, one illustrated chapter at a time.
 
 Each chapter is a scene from the book. Its key words are listed above the grid, and every letter in the grid belongs to exactly one of them. Words never go diagonal or cross, but they can bend into L, Z or square shapes, like Tetris pieces. Each word you find uncovers its piece of the chapter's original illustration. Find them all and the finished drawing lifts off the board onto a desk, beside the pages of the scene with every word in place.
 
-The game opens on the library: the book's chapters as prints on a table, volume by volume. Finished chapters show their illustration, the next one waits as a blank sheet, and the rest stay face down until the story reaches them.
+The game opens on the shelf: the books standing side by side, each showing how far it has been read, with the books for young readers on a shelf of their own. A book opens on its library: its chapters as prints on a table, volume by volume. Finished chapters show their illustration, the next one waits as a blank sheet, and the rest stay face down until the story reaches them. Each book is read in its own order; finishing a chapter of one never opens another's.
 
-The first book is **Pride and Prejudice** (Jane Austen, 1813): 41 chapters covering the whole story, with Hugh Thomson's 1894 illustrations and, where he left a scene undrawn, C. E. Brock's from 1895. The passages retell each scene in plain modern English and keep Austen's best-known lines.
+The shelf holds:
+
+- **Pride and Prejudice** (Jane Austen, 1813): 41 chapters covering the whole story, with Hugh Thomson's 1894 illustrations and, where he left a scene undrawn, C. E. Brock's from 1895. The passages retell each scene in plain modern English and keep Austen's best-known lines.
+- **Alice's Adventures in Wonderland** (Lewis Carroll, 1865): a first taste, five scenes from chapters I–IV, with John Tenniel's drawings.
+- **The Three Little Pigs** (L. Leslie Brooke, 1904), for young readers (6+): the whole tale in five short scenes to read aloud, with Brooke's colour plates. Its boards are small (4 × 5 and 5 × 6), and its words run straight or bend only once, reading forwards wherever they can. The telling is a kind one: the wolf eats nobody, and runs off for good.
 
 ## Playing
 
@@ -37,9 +41,9 @@ npm run levels:generate              # all chapters
 npm run levels:generate -- 3 --seed 7   # redo only the third, with another layout
 ```
 
-It randomizes layouts and only accepts grids where each word can be traced in **exactly one place**. It keeps the bendiest valid layout. Pick a grid shape close to the illustration's, so the reveal crops as little of it as possible. Most chapters use 6×7 to 7×8; on phones, 8 columns is the practical limit. A picture that is a scan of a whole page takes a `crop` (fractions of the image) to keep only the drawing.
+It randomizes layouts and only accepts grids where each word can be traced in **exactly one place**. It keeps the bendiest valid layout; for a book marked `young`, it instead allows one bend per word at most and prefers words that read forwards and straight. Pick a grid shape close to the illustration's, so the reveal crops as little of it as possible. Most chapters use 6×7 to 7×8; on phones, 8 columns is the practical limit. A picture that is a scan of a whole page takes a `crop` (fractions of the image) to keep only the drawing.
 
-Books are listed in `src/core/books.ts`.
+Books are listed in `src/core/books.ts`, in shelf order, each with its cover picture (one no chapter reveals) and a line for the shelf. Chapter files are numbered across the whole shelf, a book at a time (`01`–`41` Pride and Prejudice, then Alice, then the Pigs), so `levels:generate -- 42` is Alice's first scene.
 
 ## Languages
 
@@ -49,4 +53,10 @@ Book content (passages, and the words in the grid) is per language too. A transl
 
 ## Rights
 
-Only public-domain texts and illustrations: Austen's text, Thomson's 1894 drawings (he died in 1920) and Brock's 1895 drawings (he died in 1938). The game serves its own copies from `public/art/`: all of Thomson's edition from Project Gutenberg (ebook #1342: every plate, chapter heading and illustrated initial), plus the Thomson and Brock scans on Wikimedia Commons. `npm run art:fetch` downloads them again, and `public/art/catalog.json` records each picture's chapter, caption and source. Page scans are trimmed in the browser with each level's `crop`.
+Only public-domain texts and illustrations: Austen's and Carroll's texts and the old folk tale; Thomson's 1894 drawings (he died in 1920), Brock's 1895 drawings (he died in 1938), Tenniel's 1865 drawings (he died in 1914) and Brooke's 1904 pictures (he died in 1940). The game serves its own copies from `public/art/`:
+
+- all of Thomson's edition from Project Gutenberg (ebook #1342: every plate, chapter heading and illustrated initial), plus the Thomson and Brock scans on Wikimedia Commons;
+- Tenniel's 42 drawings, from Wikimedia Commons' scans of the 1869 German edition, printed from the original woodblocks;
+- all of Brooke's *Story of the Three Little Pigs* from Project Gutenberg (ebook #18155). Its plates are only about 500 pixels tall; a better scan would sharpen the desk on large screens.
+
+`npm run art:fetch` downloads them all again, and `npm run art:fetch -- tenniel brooke` only some (sources: `thomson`, `brock`, `tenniel`, `brooke`). `public/art/catalog.json` records each picture's chapter, caption and source. Page scans are trimmed in the browser with each level's `crop`.

@@ -1,0 +1,48 @@
+{
+  "id": "pigs-3-a-house-of-bricks",
+  "book": "three-little-pigs",
+  "chapter": 3,
+  "title": "A House of Bricks",
+  "rows": 6,
+  "cols": 5,
+  "grid": [
+    "BFIVE",
+    "RNWTT",
+    "IEORU",
+    "CFDIR",
+    "KAKCN",
+    "SSSPI"
+  ],
+  "words": [
+    {
+      "text": "BRICKS",
+      "path": [0, 5, 10, 15, 20, 25]
+    },
+    {
+      "text": "DOWN",
+      "path": [17, 12, 7, 6]
+    },
+    {
+      "text": "TRICK",
+      "path": [8, 13, 18, 23, 22]
+    },
+    {
+      "text": "TURNIPS",
+      "path": [9, 14, 19, 24, 29, 28, 27]
+    },
+    {
+      "text": "FIVE",
+      "path": [1, 2, 3, 4]
+    },
+    {
+      "text": "SAFE",
+      "path": [26, 21, 16, 11]
+    }
+  ],
+  "story": {
+    "text": "The two little pigs ran to their brother, who had built his house with {BRICKS}. The wolf huffed and puffed, but he could not blow it {DOWN}. So he tried a {TRICK}: “Meet me at six, and we’ll dig {TURNIPS}!” But the little pig got up at {FIVE}, and was home {SAFE} before the wolf came.",
+    "image": "art/brooke-1904/pigs-plate-3.jpg",
+    "caption": "He built his house with bricks",
+    "credit": "L. Leslie Brooke, 1904"
+  }
+}

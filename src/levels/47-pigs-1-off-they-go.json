@@ -1,0 +1,43 @@
+{
+  "id": "pigs-1-off-they-go",
+  "book": "three-little-pigs",
+  "chapter": 1,
+  "title": "Off They Go",
+  "rows": 5,
+  "cols": 4,
+  "grid": [
+    "HOUP",
+    "MSSI",
+    "ATEG",
+    "NRSS",
+    "WAOW"
+  ],
+  "words": [
+    {
+      "text": "SOW",
+      "path": [14, 18, 19]
+    },
+    {
+      "text": "PIGS",
+      "path": [3, 7, 11, 15]
+    },
+    {
+      "text": "MAN",
+      "path": [4, 8, 12]
+    },
+    {
+      "text": "STRAW",
+      "path": [5, 9, 13, 17, 16]
+    },
+    {
+      "text": "HOUSE",
+      "path": [0, 1, 2, 6, 10]
+    }
+  ],
+  "story": {
+    "text": "Once upon a time there was an old {SOW} with three little {PIGS}. One day she sent them out to seek their fortune. The first little pig met a {MAN} with a bundle of {STRAW}, and built a {HOUSE} with it.",
+    "image": "art/brooke-1904/pigs-plate-1.jpg",
+    "caption": "She sent them out to seek their fortune",
+    "credit": "L. Leslie Brooke, 1904"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "id": "alice-01-drink-me",
+  "book": "alice-in-wonderland",
+  "chapter": 1,
+  "title": "Drink Me",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "SECTAI",
+    "NVURDN",
+    "EAEGRI",
+    "DEARRN",
+    "RLLOOK",
+    "AGBDTE",
+    "TTOOCL",
+    "LEEPSE"
+  ],
+  "words": [
+    {
+      "text": "LEAVES",
+      "path": [25, 19, 13, 7, 1, 0]
+    },
+    {
+      "text": "CURTAIN",
+      "path": [2, 8, 9, 3, 4, 5, 11]
+    },
+    {
+      "text": "DOOR",
+      "path": [33, 27, 28, 22]
+    },
+    {
+      "text": "GARDEN",
+      "path": [31, 30, 24, 18, 12, 6]
+    },
+    {
+      "text": "LARGE",
+      "path": [26, 20, 21, 15, 14]
+    },
+    {
+      "text": "BOTTLE",
+      "path": [32, 38, 37, 36, 42, 43]
+    },
+    {
+      "text": "DRINK",
+      "path": [10, 16, 17, 23, 29]
+    },
+    {
+      "text": "TELESCOPE",
+      "path": [34, 35, 41, 47, 46, 40, 39, 45, 44]
+    }
+  ],
+  "story": {
+    "text": "Down, down, down she falls, and lands on a heap of sticks and dry {LEAVES}. In a long hall she finds a tiny golden key, and behind a {CURTAIN} a little {DOOR} into the loveliest {GARDEN} you ever saw. But she is far too {LARGE} to get through. On a glass table stands a {BOTTLE}, labelled “{DRINK} ME”. Alice takes a sip, and shuts up like a {TELESCOPE}.",
+    "image": "art/tenniel-1865/alice-04.jpg",
+    "caption": "Drink me",
+    "credit": "John Tenniel, 1865"
+  }
+}

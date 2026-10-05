@@ -1,0 +1,43 @@
+{
+  "id": "pigs-2-huff-and-puff",
+  "book": "three-little-pigs",
+  "chapter": 2,
+  "title": "Huff and Puff",
+  "rows": 5,
+  "cols": 4,
+  "grid": [
+    "PBLW",
+    "UCOO",
+    "FHWL",
+    "FINF",
+    "HUFF"
+  ],
+  "words": [
+    {
+      "text": "WOLF",
+      "path": [3, 7, 11, 15]
+    },
+    {
+      "text": "CHIN",
+      "path": [5, 9, 13, 14]
+    },
+    {
+      "text": "HUFF",
+      "path": [16, 17, 18, 19]
+    },
+    {
+      "text": "PUFF",
+      "path": [0, 4, 8, 12]
+    },
+    {
+      "text": "BLOW",
+      "path": [1, 2, 6, 10]
+    }
+  ],
+  "story": {
+    "text": "Along came a {WOLF}. “Little pig, little pig, let me come in!” “No, no, not by the hair of my chinny chin {CHIN}!” “Then I’ll {HUFF}, and I’ll {PUFF}, and I’ll {BLOW} your house in!” And he did. The little pig ran to his brother’s house of sticks, but the wolf blew that down too.",
+    "image": "art/brooke-1904/pigs-plate-2.jpg",
+    "caption": "Then I’ll huff and I’ll puff",
+    "credit": "L. Leslie Brooke, 1904"
+  }
+}

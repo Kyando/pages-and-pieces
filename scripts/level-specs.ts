@@ -22,7 +22,7 @@ const THOMSON = 'Hugh Thomson, 1894';
 const art = (file: string) => `art/${file}`;
 const BROCK = 'C. E. Brock, 1895';
 
-export const SPECS: LevelSpec[] = [
+const PRIDE: LevelSpec[] = [
   {
     id: 'pp-01-good-fortune',
     book: PP,
@@ -634,3 +634,167 @@ export const SPECS: LevelSpec[] = [
     },
   },
 ];
+
+/**
+ * Alice: the first chapters, to try the book on the shelf. Carroll's own lines kept where they are
+ * the ones people remember. Tenniel's drawings are clean scans, trimmed by the grid's shape alone.
+ */
+const ALICE_BOOK = 'alice-in-wonderland';
+const TENNIEL = 'John Tenniel, 1865';
+
+const ALICE: LevelSpec[] = [
+  {
+    id: 'alice-01-the-white-rabbit',
+    book: ALICE_BOOK,
+    chapter: 1,
+    title: 'The White Rabbit',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'Alice is sitting on the bank beside her {SISTER}, with nothing to do, when a White {RABBIT} with pink eyes runs close by her. “Oh dear! I shall be too {LATE}!” it says, and takes a {WATCH} out of its waistcoat {POCKET}. Burning with {CURIOSITY}, Alice {FOLLOWS} it down a large rabbit-hole, never once considering how in the world she is to get out {AGAIN}.',
+      image: art('tenniel-1865/alice-02.jpg'),
+      caption: 'Oh dear! I shall be too late!',
+      credit: TENNIEL,
+    },
+  },
+  {
+    id: 'alice-01-drink-me',
+    book: ALICE_BOOK,
+    chapter: 1,
+    title: 'Drink Me',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'Down, down, down she falls, and lands on a heap of sticks and dry {LEAVES}. In a long hall she finds a tiny golden key, and behind a {CURTAIN} a little {DOOR} into the loveliest {GARDEN} you ever saw. But she is far too {LARGE} to get through. On a glass table stands a {BOTTLE}, labelled “{DRINK} ME”. Alice takes a sip, and shuts up like a {TELESCOPE}.',
+      image: art('tenniel-1865/alice-04.jpg'),
+      caption: 'Drink me',
+      credit: TENNIEL,
+    },
+  },
+  {
+    id: 'alice-02-the-pool-of-tears',
+    book: ALICE_BOOK,
+    chapter: 2,
+    title: 'The Pool of Tears',
+    rows: 6,
+    cols: 8,
+    story: {
+      text: '“{CURIOUSER} and curiouser!” Now Alice opens out like the largest telescope that ever was, until her {HEAD} strikes the ceiling. Poor Alice {CRIES}, shedding gallons of {TEARS}. Picking up the White Rabbit’s {FAN}, she {SHRINKS} again, slips, and {SPLASH}! She is up to her chin in a {POOL} of her own tears, swimming beside a {MOUSE}.',
+      image: art('tenniel-1865/alice-07.jpg'),
+      caption: 'Up to her chin in salt water',
+      credit: TENNIEL,
+    },
+  },
+  {
+    id: 'alice-03-a-caucus-race',
+    book: ALICE_BOOK,
+    chapter: 3,
+    title: 'A Caucus-Race',
+    rows: 7,
+    cols: 7,
+    story: {
+      text: 'Everyone climbs out of the pool, dripping wet. The best thing to get them dry, says the Dodo, is a {CAUCUS} {RACE}: they all run round in a {CIRCLE}, starting and stopping whenever they like. After half an hour the {DODO} declares, “{EVERYBODY} has won, and all must have {PRIZES}!” Alice hands round her {COMFITS}, and the Dodo solemnly presents her with her own {THIMBLE}.',
+      image: art('tenniel-1865/alice-10.jpg'),
+      caption: 'We beg your acceptance of this elegant thimble',
+      credit: TENNIEL,
+    },
+  },
+  {
+    id: 'alice-04-little-bill',
+    book: ALICE_BOOK,
+    chapter: 4,
+    title: 'Little Bill',
+    rows: 6,
+    cols: 8,
+    story: {
+      text: 'The White Rabbit sends Alice to his {HOUSE} to fetch his fan and {GLOVES}. There she finds another little {BOTTLE}, drinks, and grows so big that she must put one arm out of the {WINDOW} and one foot up the {CHIMNEY}. Outside, the Rabbit orders Bill the Lizard to climb down. Alice {KICKS}, and up goes {BILL} like a {SKYROCKET}!',
+      image: art('tenniel-1865/alice-11.jpg'),
+      caption: 'Alice in the White Rabbit’s house',
+      credit: TENNIEL,
+    },
+  },
+];
+
+/**
+ * The Three Little Pigs, for young readers (6+), whole: five short scenes to read aloud, on small
+ * boards. Kinder than the old telling: the wolf eats nobody, and runs off for good. Brooke's colour
+ * plates, whole.
+ */
+const PIGS_BOOK = 'three-little-pigs';
+const BROOKE = 'L. Leslie Brooke, 1904';
+
+const PIGS: LevelSpec[] = [
+  {
+    id: 'pigs-1-off-they-go',
+    book: PIGS_BOOK,
+    chapter: 1,
+    title: 'Off They Go',
+    rows: 5,
+    cols: 4,
+    story: {
+      text: 'Once upon a time there was an old {SOW} with three little {PIGS}. One day she sent them out to seek their fortune. The first little pig met a {MAN} with a bundle of {STRAW}, and built a {HOUSE} with it.',
+      image: art('brooke-1904/pigs-plate-1.jpg'),
+      caption: 'She sent them out to seek their fortune',
+      credit: BROOKE,
+    },
+  },
+  {
+    id: 'pigs-2-huff-and-puff',
+    book: PIGS_BOOK,
+    chapter: 2,
+    title: 'Huff and Puff',
+    rows: 5,
+    cols: 4,
+    story: {
+      text: 'Along came a {WOLF}. “Little pig, little pig, let me come in!” “No, no, not by the hair of my chinny chin {CHIN}!” “Then I’ll {HUFF}, and I’ll {PUFF}, and I’ll {BLOW} your house in!” And he did. The little pig ran to his brother’s house of sticks, but the wolf blew that down too.',
+      image: art('brooke-1904/pigs-plate-2.jpg'),
+      caption: 'Then I’ll huff and I’ll puff',
+      credit: BROOKE,
+    },
+  },
+  {
+    id: 'pigs-3-a-house-of-bricks',
+    book: PIGS_BOOK,
+    chapter: 3,
+    title: 'A House of Bricks',
+    rows: 6,
+    cols: 5,
+    story: {
+      text: 'The two little pigs ran to their brother, who had built his house with {BRICKS}. The wolf huffed and puffed, but he could not blow it {DOWN}. So he tried a {TRICK}: “Meet me at six, and we’ll dig {TURNIPS}!” But the little pig got up at {FIVE}, and was home {SAFE} before the wolf came.',
+      image: art('brooke-1904/pigs-plate-3.jpg'),
+      caption: 'He built his house with bricks',
+      credit: BROOKE,
+    },
+  },
+  {
+    id: 'pigs-4-the-churn',
+    book: PIGS_BOOK,
+    chapter: 4,
+    title: 'The Churn',
+    rows: 6,
+    cols: 5,
+    story: {
+      text: 'Next the wolf took the pig to pick {APPLES}. The pig {THREW} one far away, and ran home while the wolf chased it. Then they met at the {FAIR}. The pig hid in a butter {CHURN}, and it rolled down the {HILL}, right at the wolf. He was so {SCARED} that he ran all the way home!',
+      image: art('brooke-1904/pigs-plate-7.jpg'),
+      caption: 'So he got into the churn to hide',
+      credit: BROOKE,
+    },
+  },
+  {
+    id: 'pigs-5-down-the-chimney',
+    book: PIGS_BOOK,
+    chapter: 5,
+    title: 'Down the Chimney',
+    rows: 6,
+    cols: 5,
+    story: {
+      text: 'Now the wolf was very cross. He climbed on the {ROOF} to come down the {CHIMNEY}. But the little pig hung a big {POT} of {WATER} over the {FIRE}. Down came the wolf, splash, into the hot water! He ran off howling, and never came back, and the three little pigs lived {HAPPILY} ever after.',
+      image: art('brooke-1904/pigs-plate-8.jpg'),
+      caption: 'He hung on the pot full of water',
+      credit: BROOKE,
+    },
+  },
+];
+
+/** The shelf, book by book, each in reading order. */
+export const SPECS: LevelSpec[] = [...PRIDE, ...ALICE, ...PIGS];

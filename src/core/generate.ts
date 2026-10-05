@@ -1,3 +1,4 @@
+import { BOOKS } from './books.ts';
 import { neighbors, turns } from './grid.ts';
 import { blanksOf, HOLE_LETTER, validateLevel } from './puzzle.ts';
 import type { LevelDef, StoryDef, WordDef } from './types.ts';
@@ -134,6 +135,17 @@ function score(def: LevelDef): number {
   return def.words.reduce((sum, w) => sum + Math.min(turns(w.path), 3), 0) + bent * 2;
 }
 
+/** Each step goes right or down: the word reads the way a child reads. */
+const forwards = (path: number[]): boolean => path.every((c, i) => i === 0 || c > path[i - 1]);
+
+/**
+ * For young readers: words run straight or bend once (checked before scoring), and the more of them
+ * read forwards, and straight, the better.
+ */
+function youngScore(def: LevelDef): number {
+  return def.words.reduce((sum, w) => sum + (forwards(w.path) ? 3 : 0) + (turns(w.path) ? 0 : 1), 0);
+}
+
 /** Best of `attempts` random valid layouts, or null if none passed validation. */
 export function generateLevel(spec: LevelSpec, seed: number, attempts = 400): LevelDef | null {
   const { rows, cols } = spec;
@@ -142,6 +154,7 @@ export function generateLevel(spec: LevelSpec, seed: number, attempts = 400): Le
   const holes = spec.holes ?? [];
   if (total !== rows * cols - holes.length) throw new Error(`${spec.id}: words have ${total} letters for ${rows * cols - holes.length} cells`);
 
+  const young = BOOKS[spec.book]?.young ?? false;
   const rng = mulberry32(seed);
   let best: LevelDef | null = null;
   let bestScore = -Infinity;
@@ -162,8 +175,9 @@ export function generateLevel(spec: LevelSpec, seed: number, attempts = 400): Le
       words,
       story: spec.story,
     };
+    if (young && words.some((w) => turns(w.path) > 1)) continue;
     if (validateLevel(def).length) continue;
-    const s = score(def) + rng();
+    const s = (young ? youngScore(def) : score(def)) + rng();
     if (s > bestScore) {
       best = def;
       bestScore = s;

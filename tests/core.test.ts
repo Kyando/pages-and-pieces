@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { BOOKS, unintroducedNames } from '../src/core/books.ts';
 import { generateLevel } from '../src/core/generate.ts';
-import { findPaths, isPath } from '../src/core/grid.ts';
+import { findPaths, isPath, turns } from '../src/core/grid.ts';
 import { blanksOf, buildPuzzle, matchTrace, validateLevel } from '../src/core/puzzle.ts';
 import type { LevelDef } from '../src/core/types.ts';
 import { Session } from '../src/game/session.ts';
@@ -44,10 +44,21 @@ describe('chapters', () => {
     expect(def.words.map((w) => w.text)).toEqual(blanksOf(spec.story.text));
   });
 
-  it('come from known books, in reading order', () => {
+  it('come from known books, a book at a time in shelf order, each in reading order', () => {
     for (const def of levels) expect(BOOKS[def.book]).toBeDefined();
-    const chapters = levels.map((l) => l.chapter);
-    expect(chapters).toEqual([...chapters].sort((a, b) => a - b));
+    // One run per book (its chapters aren't scattered among another's), in the shelf's order.
+    const runs = levels.map((l) => l.book).filter((b, i, all) => b !== all[i - 1]);
+    expect(runs).toEqual(Object.keys(BOOKS).filter((b) => runs.includes(b)));
+    for (const book of runs) {
+      const chapters = levels.filter((l) => l.book === book).map((l) => l.chapter);
+      expect(chapters).toEqual([...chapters].sort((a, b) => a - b));
+    }
+  });
+
+  it('give young readers words that run straight or bend once', () => {
+    for (const def of levels.filter((l) => BOOKS[l.book].young)) {
+      for (const w of def.words) expect(turns(w.path), `${def.id}: ${w.text}`).toBeLessThanOrEqual(1);
+    }
   });
 
   it.each(Object.keys(BOOKS))('%s introduces every name before hiding it', (book) => {

@@ -1,0 +1,48 @@
+{
+  "id": "pigs-5-down-the-chimney",
+  "book": "three-little-pigs",
+  "chapter": 5,
+  "title": "Down the Chimney",
+  "rows": 6,
+  "cols": 5,
+  "grid": [
+    "FERET",
+    "ORPCA",
+    "OIOHW",
+    "RFTIH",
+    "YENMA",
+    "YLIPP"
+  ],
+  "words": [
+    {
+      "text": "ROOF",
+      "path": [15, 10, 5, 0]
+    },
+    {
+      "text": "CHIMNEY",
+      "path": [8, 13, 18, 23, 22, 21, 20]
+    },
+    {
+      "text": "POT",
+      "path": [7, 12, 17]
+    },
+    {
+      "text": "WATER",
+      "path": [14, 9, 4, 3, 2]
+    },
+    {
+      "text": "FIRE",
+      "path": [16, 11, 6, 1]
+    },
+    {
+      "text": "HAPPILY",
+      "path": [19, 24, 29, 28, 27, 26, 25]
+    }
+  ],
+  "story": {
+    "text": "Now the wolf was very cross. He climbed on the {ROOF} to come down the {CHIMNEY}. But the little pig hung a big {POT} of {WATER} over the {FIRE}. Down came the wolf, splash, into the hot water! He ran off howling, and never came back, and the three little pigs lived {HAPPILY} ever after.",
+    "image": "art/brooke-1904/pigs-plate-8.jpg",
+    "caption": "He hung on the pot full of water",
+    "credit": "L. Leslie Brooke, 1904"
+  }
+}

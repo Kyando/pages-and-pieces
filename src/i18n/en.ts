@@ -3,6 +3,7 @@ export const en = {
   'game.name': 'Twice Told Tales',
 
   'top.library': 'All chapters',
+  'top.shelf': 'The shelf',
   'top.help': 'How to play',
   'top.sound': 'Sound',
 
@@ -30,6 +31,17 @@ export const en = {
   'desk.shareText': '{game} · I pieced together {book}, chapter {chapter}: “{title}”',
   'desk.copied': 'Copied!',
   'desk.copyFailed': 'Could not copy',
+
+  'shelf.label': 'The books',
+  'shelf.title': 'The Shelf',
+  'shelf.intro': 'Classic stories, told again one illustrated scene at a time. Pick a book.',
+  'shelf.classics': 'Classics',
+  'shelf.young': 'For young readers',
+  'shelf.age': 'Ages 6+',
+  'shelf.new': 'Not yet opened',
+  'shelf.progress_one': '{done} of {count} chapter read',
+  'shelf.progress_other': '{done} of {count} chapters read',
+  'shelf.finished': 'Read to the end',
 
   'library.label': 'The book’s chapters',
   'library.by': '{author} · {year}',

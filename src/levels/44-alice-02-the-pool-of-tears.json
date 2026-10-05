@@ -1,0 +1,60 @@
+{
+  "id": "alice-02-the-pool-of-tears",
+  "book": "alice-in-wonderland",
+  "chapter": 2,
+  "title": "The Pool of Tears",
+  "rows": 6,
+  "cols": 8,
+  "grid": [
+    "FARESUHE",
+    "MNURIODA",
+    "OUCSCRLP",
+    "SSERTIOO",
+    "HRIAEESS",
+    "SKNHSALP"
+  ],
+  "words": [
+    {
+      "text": "CURIOUSER",
+      "path": [18, 10, 11, 12, 13, 5, 4, 3, 2]
+    },
+    {
+      "text": "HEAD",
+      "path": [6, 7, 15, 14]
+    },
+    {
+      "text": "CRIES",
+      "path": [20, 21, 29, 37, 38]
+    },
+    {
+      "text": "TEARS",
+      "path": [28, 36, 35, 27, 19]
+    },
+    {
+      "text": "FAN",
+      "path": [0, 1, 9]
+    },
+    {
+      "text": "SHRINKS",
+      "path": [24, 32, 33, 34, 42, 41, 40]
+    },
+    {
+      "text": "SPLASH",
+      "path": [39, 47, 46, 45, 44, 43]
+    },
+    {
+      "text": "POOL",
+      "path": [23, 31, 30, 22]
+    },
+    {
+      "text": "MOUSE",
+      "path": [8, 16, 17, 25, 26]
+    }
+  ],
+  "story": {
+    "text": "“{CURIOUSER} and curiouser!” Now Alice opens out like the largest telescope that ever was, until her {HEAD} strikes the ceiling. Poor Alice {CRIES}, shedding gallons of {TEARS}. Picking up the White Rabbit’s {FAN}, she {SHRINKS} again, slips, and {SPLASH}! She is up to her chin in a {POOL} of her own tears, swimming beside a {MOUSE}.",
+    "image": "art/tenniel-1865/alice-07.jpg",
+    "caption": "Up to her chin in salt water",
+    "credit": "John Tenniel, 1865"
+  }
+}

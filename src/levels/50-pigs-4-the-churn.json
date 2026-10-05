@@ -1,0 +1,48 @@
+{
+  "id": "pigs-4-the-churn",
+  "book": "three-little-pigs",
+  "chapter": 4,
+  "title": "The Churn",
+  "rows": 6,
+  "cols": 5,
+  "grid": [
+    "RSCAP",
+    "IWAHP",
+    "AERIL",
+    "FRELE",
+    "THDLS",
+    "CHURN"
+  ],
+  "words": [
+    {
+      "text": "APPLES",
+      "path": [3, 4, 9, 14, 19, 24]
+    },
+    {
+      "text": "THREW",
+      "path": [20, 21, 16, 11, 6]
+    },
+    {
+      "text": "FAIR",
+      "path": [15, 10, 5, 0]
+    },
+    {
+      "text": "CHURN",
+      "path": [25, 26, 27, 28, 29]
+    },
+    {
+      "text": "HILL",
+      "path": [8, 13, 18, 23]
+    },
+    {
+      "text": "SCARED",
+      "path": [1, 2, 7, 12, 17, 22]
+    }
+  ],
+  "story": {
+    "text": "Next the wolf took the pig to pick {APPLES}. The pig {THREW} one far away, and ran home while the wolf chased it. Then they met at the {FAIR}. The pig hid in a butter {CHURN}, and it rolled down the {HILL}, right at the wolf. He was so {SCARED} that he ran all the way home!",
+    "image": "art/brooke-1904/pigs-plate-7.jpg",
+    "caption": "So he got into the churn to hide",
+    "credit": "L. Leslie Brooke, 1904"
+  }
+}

@@ -1,12 +1,15 @@
 /**
- * Downloads the book's illustrations into public/art/, so the game serves its own pictures:
- * - Hugh Thomson's 1894 edition, complete, from Project Gutenberg (ebook #1342, the illustrated
- *   HTML edition): every plate and chapter heading, and his illustrated initials;
- * - the Thomson and C. E. Brock (1895) scans on Wikimedia Commons, which the first levels were made
- *   with (their crops are measured on these files).
+ * Downloads the books' illustrations into public/art/, so the game serves its own pictures:
+ * - Pride and Prejudice: Hugh Thomson's 1894 edition, complete, from Project Gutenberg (ebook
+ *   #1342, the illustrated HTML edition): every plate and chapter heading, and his illustrated
+ *   initials; and the Thomson and C. E. Brock (1895) scans on Wikimedia Commons, which the first
+ *   levels were made with (their crops are measured on these files);
+ * - Alice's Adventures in Wonderland: John Tenniel's 42 drawings, scans on Wikimedia Commons;
+ * - The Three Little Pigs: L. Leslie Brooke's 1904 picture book, from Project Gutenberg (#18155).
  * Only public-domain files are kept. public/art/catalog.json records each file's chapter, caption
  * and source.
- *   npm run art:fetch
+ *   npm run art:fetch              every source
+ *   npm run art:fetch -- tenniel   only some (see SOURCES)
  */
 import { execSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
@@ -158,9 +161,103 @@ async function commons(category: string, folder: string, artist: string, edition
   }
 }
 
-rmSync(out, { recursive: true, force: true });
-await gutenberg();
-await commons('Pride_and_Prejudice_(Hugh_Thomson)', 'thomson-1894/commons', 'Hugh Thomson', 'Pride and Prejudice, George Allen, 1894');
-await commons('Pride_and_Prejudice_(C.E._Brock)', 'brock-1895', 'C. E. Brock', 'Pride and Prejudice, Macmillan, 1895');
-writeFileSync(join(out, 'catalog.json'), JSON.stringify(catalog, null, 1) + '\n');
+// ── Tenniel, 1865 (Wikimedia Commons) ──────────────────────────────────────────
+
+/**
+ * John Tenniel's 42 drawings for Alice's Adventures in Wonderland, from the clean scans of the 1869
+ * German edition (Macmillan printed it from the same woodblocks), in the book's order.
+ */
+async function tenniel(): Promise<void> {
+  const titles = Array.from({ length: 42 }, (_, i) => `File:De Alice's Abenteuer im Wunderland Carroll pic ${String(i + 1).padStart(2, '0')}.jpg`);
+  for (let i = 0; i < titles.length; i += 20) {
+    const q = new URLSearchParams({
+      action: 'query', titles: titles.slice(i, i + 20).join('|'), prop: 'imageinfo', iiprop: 'url|extmetadata', iiurlwidth: String(MAX), format: 'json',
+    });
+    const j = await (await fetch(`https://commons.wikimedia.org/w/api.php?${q}`, { headers: UA })).json();
+    const pages = Object.values(j.query.pages) as { title: string; imageinfo?: { url: string; thumburl?: string; extmetadata?: Record<string, { value: string }> }[] }[];
+    for (const p of pages.sort((a, b) => a.title.localeCompare(b.title))) {
+      const ii = p.imageinfo?.[0];
+      if (!ii || strip(ii.extmetadata?.LicenseShortName) !== 'Public domain') continue;
+      const n = p.title.match(/pic (\d+)/)![1];
+      const file = `tenniel-1865/alice-${n}.jpg`;
+      await save(await download(ii.thumburl ?? ii.url), file);
+      catalog.push({
+        file,
+        artist: 'John Tenniel',
+        edition: 'Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)',
+        chapter: null,
+        caption: '',
+        kind: 'plate',
+        source: ii.url.replace(/\?.*$/, ''),
+        license: 'Public domain',
+      });
+      await pause(1500);
+    }
+  }
+}
+
+// ── L. Leslie Brooke, 1904 (Project Gutenberg) ─────────────────────────────────
+
+/** Every picture in The Story of the Three Little Pigs (Warne, 1904; ebook #18155), with its caption. */
+async function brooke(): Promise<void> {
+  const dir = mkdtempSync(join(tmpdir(), 'pigs-gutenberg-'));
+  try {
+    const zip = join(dir, 'pg18155-h.zip');
+    writeFileSync(zip, await download('https://www.gutenberg.org/cache/epub/18155/pg18155-h.zip'));
+    try {
+      execSync(`unzip -q "${zip}" -d "${dir}"`);
+    } catch {
+      execSync(`tar -xf "${zip}" -C "${dir}"`);
+    }
+    const html = readFileSync(join(dir, readdirSync(dir).find((f) => f.endsWith('.html'))!), 'utf8');
+    for (const m of html.matchAll(/<img alt="([^"]*)" src="images\/([^"]+)"/g)) {
+      const [, caption, name] = m;
+      if (/cover|inside/.test(name)) continue;
+      const file = `brooke-1904/${name.replace(/^img/, 'pigs-')}`;
+      await save(readFileSync(join(dir, 'images', name)), file);
+      catalog.push({
+        file,
+        artist: 'L. Leslie Brooke',
+        edition: 'The Story of the Three Little Pigs, Frederick Warne, 1904',
+        chapter: null,
+        caption,
+        kind: /plate/.test(name) ? 'plate' : 'heading',
+        source: `https://www.gutenberg.org/ebooks/18155 (images/${name})`,
+        license: 'Public domain',
+      });
+    }
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+/**
+ * Each source and the folders it fills. `npm run art:fetch -- tenniel` fetches only that one again,
+ * keeping the others' files and catalog entries.
+ */
+const SOURCES: Record<string, { folders: string[]; fetch: () => Promise<void> }> = {
+  thomson: {
+    folders: ['thomson-1894'],
+    fetch: async () => {
+      await gutenberg();
+      await commons('Pride_and_Prejudice_(Hugh_Thomson)', 'thomson-1894/commons', 'Hugh Thomson', 'Pride and Prejudice, George Allen, 1894');
+    },
+  },
+  brock: { folders: ['brock-1895'], fetch: () => commons('Pride_and_Prejudice_(C.E._Brock)', 'brock-1895', 'C. E. Brock', 'Pride and Prejudice, Macmillan, 1895') },
+  tenniel: { folders: ['tenniel-1865'], fetch: tenniel },
+  brooke: { folders: ['brooke-1904'], fetch: brooke },
+};
+
+const chosen = process.argv.length > 2 ? process.argv.slice(2) : Object.keys(SOURCES);
+const unknown = chosen.filter((s) => !SOURCES[s]);
+if (unknown.length) throw new Error(`unknown source ${unknown.join(', ')}: pick from ${Object.keys(SOURCES).join(', ')}`);
+const folders = chosen.flatMap((s) => SOURCES[s].folders);
+const listed = join(out, 'catalog.json');
+// The other sources' pictures stay as they are.
+if (existsSync(listed)) {
+  catalog.push(...(JSON.parse(readFileSync(listed, 'utf8')) as Entry[]).filter((e) => !folders.some((f) => e.file.startsWith(`${f}/`))));
+}
+for (const f of folders) rmSync(join(out, f), { recursive: true, force: true });
+for (const s of chosen) await SOURCES[s].fetch();
+writeFileSync(listed, JSON.stringify(catalog, null, 1) + '\n');
 console.log(`${catalog.length} pictures in public/art`);

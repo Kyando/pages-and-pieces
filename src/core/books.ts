@@ -1,8 +1,17 @@
-/** The books chapters come from. Only public-domain texts and illustrations. */
+/** The books chapters come from, in their order on the shelf. Only public-domain texts and illustrations. */
 export interface Book {
   title: string;
   author: string;
   year: number;
+  /** The book's face on the shelf: a picture from the edition that no chapter reveals. */
+  cover: string;
+  /** One line on the shelf, under the title. */
+  blurb: string;
+  /**
+   * For young readers (6+): small boards whose words run straight or bend once, read forwards where
+   * they can, and short scenes made to be read aloud.
+   */
+  young?: boolean;
   /**
    * The book's characters and places, as written in the grid. A passage may only hide one of these
    * after the player has met it in plain text (see `unintroducedNames`).
@@ -17,6 +26,8 @@ export const BOOKS: Record<string, Book> = {
     title: 'Pride and Prejudice',
     author: 'Jane Austen',
     year: 1813,
+    cover: 'art/thomson-1894/ch00-front.jpg',
+    blurb: 'Five sisters, one proud gentleman, and a first impression that is all wrong.',
     names: [
       'BENNET', 'ELIZABETH', 'LIZZY', 'JANE', 'MARY', 'KITTY', 'LYDIA',
       'BINGLEY', 'CAROLINE', 'HURST', 'DARCY', 'GEORGIANA', 'WICKHAM', 'DENNY',
@@ -28,6 +39,23 @@ export const BOOKS: Record<string, Book> = {
       { from: 24, name: 'Volume II', title: 'The Truth Comes Out' },
       { from: 43, name: 'Volume III', title: 'Second Impressions' },
     ],
+  },
+  'alice-in-wonderland': {
+    title: 'Alice’s Adventures in Wonderland',
+    author: 'Lewis Carroll',
+    year: 1865,
+    cover: 'art/tenniel-1865/alice-01.jpg',
+    blurb: 'A girl follows a White Rabbit down a hole, and nothing makes sense ever after.',
+    names: ['ALICE', 'DINAH', 'DODO', 'BILL', 'WONDERLAND'],
+  },
+  'three-little-pigs': {
+    title: 'The Three Little Pigs',
+    author: 'L. Leslie Brooke',
+    year: 1904,
+    cover: 'art/brooke-1904/pigs-title.jpg',
+    blurb: 'Straw, sticks or bricks? A story to read together.',
+    young: true,
+    names: [],
   },
 };
 

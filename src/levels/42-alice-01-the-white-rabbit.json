@@ -1,0 +1,58 @@
+{
+  "id": "alice-01-the-white-rabbit",
+  "book": "alice-in-wonderland",
+  "chapter": 1,
+  "title": "The White Rabbit",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "TECUOS",
+    "AKCRII",
+    "GNORET",
+    "AIPRTY",
+    "WCHASI",
+    "ATTBFS",
+    "LAIBOL",
+    "ETSWOL"
+  ],
+  "words": [
+    {
+      "text": "SISTER",
+      "path": [35, 29, 28, 22, 16, 15]
+    },
+    {
+      "text": "RABBIT",
+      "path": [21, 27, 33, 39, 38, 32]
+    },
+    {
+      "text": "LATE",
+      "path": [36, 37, 43, 42]
+    },
+    {
+      "text": "WATCH",
+      "path": [24, 30, 31, 25, 26]
+    },
+    {
+      "text": "POCKET",
+      "path": [20, 14, 8, 7, 1, 0]
+    },
+    {
+      "text": "CURIOSITY",
+      "path": [2, 3, 9, 10, 4, 5, 11, 17, 23]
+    },
+    {
+      "text": "FOLLOWS",
+      "path": [34, 40, 41, 47, 46, 45, 44]
+    },
+    {
+      "text": "AGAIN",
+      "path": [6, 12, 18, 19, 13]
+    }
+  ],
+  "story": {
+    "text": "Alice is sitting on the bank beside her {SISTER}, with nothing to do, when a White {RABBIT} with pink eyes runs close by her. “Oh dear! I shall be too {LATE}!” it says, and takes a {WATCH} out of its waistcoat {POCKET}. Burning with {CURIOSITY}, Alice {FOLLOWS} it down a large rabbit-hole, never once considering how in the world she is to get out {AGAIN}.",
+    "image": "art/tenniel-1865/alice-02.jpg",
+    "caption": "Oh dear! I shall be too late!",
+    "credit": "John Tenniel, 1865"
+  }
+}

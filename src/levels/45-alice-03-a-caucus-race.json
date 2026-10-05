@@ -1,0 +1,57 @@
+{
+  "id": "alice-03-a-caucus-race",
+  "book": "alice-in-wonderland",
+  "chapter": 3,
+  "title": "A Caucus-Race",
+  "rows": 7,
+  "cols": 7,
+  "grid": [
+    "YDEEECA",
+    "EOVLSUR",
+    "LBECRCU",
+    "BYRCISA",
+    "MISEZTC",
+    "DHTRIIF",
+    "ODOPCOM"
+  ],
+  "words": [
+    {
+      "text": "CAUCUS",
+      "path": [34, 27, 20, 19, 12, 11]
+    },
+    {
+      "text": "RACE",
+      "path": [13, 6, 5, 4]
+    },
+    {
+      "text": "CIRCLE",
+      "path": [24, 25, 18, 17, 10, 3]
+    },
+    {
+      "text": "DODO",
+      "path": [35, 42, 43, 44]
+    },
+    {
+      "text": "EVERYBODY",
+      "path": [2, 9, 16, 23, 22, 15, 8, 1, 0]
+    },
+    {
+      "text": "PRIZES",
+      "path": [45, 38, 39, 32, 31, 30]
+    },
+    {
+      "text": "COMFITS",
+      "path": [46, 47, 48, 41, 40, 33, 26]
+    },
+    {
+      "text": "THIMBLE",
+      "path": [37, 36, 29, 28, 21, 14, 7]
+    }
+  ],
+  "story": {
+    "text": "Everyone climbs out of the pool, dripping wet. The best thing to get them dry, says the Dodo, is a {CAUCUS} {RACE}: they all run round in a {CIRCLE}, starting and stopping whenever they like. After half an hour the {DODO} declares, “{EVERYBODY} has won, and all must have {PRIZES}!” Alice hands round her {COMFITS}, and the Dodo solemnly presents her with her own {THIMBLE}.",
+    "image": "art/tenniel-1865/alice-10.jpg",
+    "caption": "We beg your acceptance of this elegant thimble",
+    "credit": "John Tenniel, 1865"
+  }
+}

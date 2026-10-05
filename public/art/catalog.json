@@ -2818,5 +2818,665 @@
   "kind": "scan",
   "source": "https://upload.wikimedia.org/wikipedia/commons/4/40/Illustration_by_C_E_Brock_for_Pride_and_Prejudice_-_You_write_uncommonly_fast.jpg",
   "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-title.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "Title page",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/imgtitle.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-001.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "Three Little Pigs",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img001.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-plate-1.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "she sent them out to seek their fortune",
+  "kind": "plate",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/imgplate-1.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-002.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "the old sow",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img002.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-003.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "Man with a bundle of straw",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img003.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-plate-2.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "Then I'll huff and I'll puff",
+  "kind": "plate",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/imgplate-2.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-004.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "Then along came the Wolf",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img004.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-005.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "The wolf",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img005.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-plate-3.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "He built his house with bricks",
+  "kind": "plate",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/imgplate-3.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-006.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "He could not get the house down",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img006.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-007.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "I will be ready",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img007.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-plate-4.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "A nice pot-full for dinner",
+  "kind": "plate",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/imgplate-4.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-plate-5.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "Pig and turnips",
+  "kind": "plate",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/imgplate-5.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-008.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "The little Pig woke at four",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img008.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-009.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "He had to climb the tree",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img009.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-plate-6.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "The little pig jumped down",
+  "kind": "plate",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/imgplate-6.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-010.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "The wolf came again",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img010.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-011.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "The little pig at the fair",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img011.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-plate-7.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "So he got into the churn to hide",
+  "kind": "plate",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/imgplate-7.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-012.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "Rolling down the hill",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img012.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-013.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "Wolf on the roof",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img013.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-plate-8.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "He hung on the pot full of water",
+  "kind": "plate",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/imgplate-8.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-014.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "And ate him for supper",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img014.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "brooke-1904/pigs-015.jpg",
+  "artist": "L. Leslie Brooke",
+  "edition": "The Story of the Three Little Pigs, Frederick Warne, 1904",
+  "chapter": null,
+  "caption": "He lived happy ever after",
+  "kind": "heading",
+  "source": "https://www.gutenberg.org/ebooks/18155 (images/img015.jpg)",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-01.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/2/2f/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_01.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-02.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/f/f3/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_02.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-03.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/8/8d/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_03.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-04.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/9/9e/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_04.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-05.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/f/f4/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_05.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-06.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/6/6a/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_06.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-07.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/d/d1/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_07.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-08.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/d/de/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_08.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-09.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/6/61/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_09.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-10.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/9/94/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_10.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-11.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/a/a6/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_11.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-12.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/a/a8/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_12.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-13.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/1/1a/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_13.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-14.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/c2/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_14.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-15.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/8/84/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_15.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-16.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/c8/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_16.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-17.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/3/31/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_17.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-18.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/e/e5/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_18.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-19.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/d/d1/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_19.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-20.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/b/b0/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_20.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-21.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/d/db/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_21.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-22.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/3/3e/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_22.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-23.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/b/b3/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_23.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-24.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/a/ad/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_24.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-25.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/3/36/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_25.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-26.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/b/b5/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_26.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-27.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/5/5a/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_27.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-28.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/e/e2/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_28.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-29.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/e/ef/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_29.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-30.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/a/ad/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_30.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-31.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/8/8b/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_31.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-32.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/b/bd/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_32.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-33.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/a/af/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_33.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-34.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/c0/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_34.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-35.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/3/3b/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_35.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-36.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/0/02/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_36.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-37.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/8/83/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_37.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-38.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/2/21/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_38.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-39.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/b/b1/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_39.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-40.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/a/ad/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_40.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-41.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/4/4f/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_41.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "tenniel-1865/alice-42.jpg",
+  "artist": "John Tenniel",
+  "edition": "Alice’s Adventures in Wonderland, Macmillan, 1865 (the woodblocks as reprinted in 1869)",
+  "chapter": null,
+  "caption": "",
+  "kind": "plate",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/5/51/De_Alice%27s_Abenteuer_im_Wunderland_Carroll_pic_42.jpg",
+  "license": "Public domain"
  }
 ]
