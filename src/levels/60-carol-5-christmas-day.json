@@ -1,0 +1,55 @@
+{
+  "id": "carol-5-christmas-day",
+  "book": "a-christmas-carol",
+  "chapter": 5,
+  "title": "Your Uncle Scrooge",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "TLEARE",
+    "URGNNN",
+    "EKNDIC",
+    "YPEIRH",
+    "EHFSTM",
+    "WREASA",
+    "YEHTHC",
+    "OBLOOS"
+  ],
+  "words": [
+    {
+      "text": "CHRISTMAS",
+      "path": [17, 23, 22, 21, 27, 28, 29, 35, 34]
+    },
+    {
+      "text": "FEATHER",
+      "path": [26, 32, 33, 39, 38, 37, 31]
+    },
+    {
+      "text": "ANGEL",
+      "path": [3, 9, 8, 2, 1]
+    },
+    {
+      "text": "SCHOOLBOY",
+      "path": [47, 41, 40, 46, 45, 44, 43, 42, 36]
+    },
+    {
+      "text": "TURKEY",
+      "path": [0, 6, 7, 13, 12, 18]
+    },
+    {
+      "text": "NEPHEW",
+      "path": [14, 20, 19, 25, 24, 30]
+    },
+    {
+      "text": "DINNER",
+      "path": [15, 16, 10, 11, 5, 4]
+    }
+  ],
+  "story": {
+    "text": "Scrooge wakes in his own bed, and it is {CHRISTMAS} Day! He is as light as a {FEATHER}, as happy as an {ANGEL}, as merry as a {SCHOOLBOY}. He sends the prize {TURKEY} to Bob Cratchit, and walks to his {NEPHEW}’s door. “It’s I, your uncle Scrooge. I have come to {DINNER}. Will you let me in, Fred?”",
+    "image": "art/rackham-1915/031-img11.jpg",
+    "caption": "“It’s I, your uncle Scrooge. I have come to dinner. Will you let me in, Fred?”",
+    "credit": "Arthur Rackham, 1915",
+    "colour": true
+  }
+}

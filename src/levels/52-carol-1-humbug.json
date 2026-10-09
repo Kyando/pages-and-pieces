@@ -1,0 +1,44 @@
+{
+  "id": "carol-1-humbug",
+  "book": "a-christmas-carol",
+  "chapter": 1,
+  "title": "Bah! Humbug!",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "WORKSEE",
+    "HUOHQUZ",
+    "GMUSENI",
+    "UBCOSGS",
+    "STEVISA",
+    "UOCHRTM"
+  ],
+  "words": [
+    {
+      "text": "SQUEEZING",
+      "path": [4, 11, 12, 5, 6, 13, 20, 19, 26]
+    },
+    {
+      "text": "COVETOUS",
+      "path": [23, 24, 31, 30, 29, 36, 35, 28]
+    },
+    {
+      "text": "CHRISTMAS",
+      "path": [37, 38, 39, 32, 33, 40, 41, 34, 27]
+    },
+    {
+      "text": "HUMBUG",
+      "path": [7, 8, 15, 22, 21, 14]
+    },
+    {
+      "text": "WORKHOUSES",
+      "path": [0, 1, 2, 3, 10, 9, 16, 17, 18, 25]
+    }
+  ],
+  "story": {
+    "text": "Marley was dead, to begin with. His old partner, Ebenezer Scrooge, is a {SQUEEZING}, grasping, {COVETOUS} old sinner. When his nephew Fred wishes him a merry {CHRISTMAS}, Scrooge answers: “Bah! {HUMBUG}!” And when two portly gentlemen ask him to give something to the poor, he only asks: are there no prisons? Are there no {WORKHOUSES}?",
+    "image": "art/rackham-1915/007-they-were-portly-gentlemen-pleasant-to-behold.jpg",
+    "caption": "They were portly gentlemen, pleasant to behold",
+    "credit": "Arthur Rackham, 1915"
+  }
+}

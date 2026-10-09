@@ -1,0 +1,59 @@
+{
+  "id": "jane-15-fire",
+  "book": "jane-eyre",
+  "chapter": 15,
+  "title": "Who Did It?",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "WEKSBE",
+    "ATOMTD",
+    "FEROHH",
+    "LESRUG",
+    "AMFNAL",
+    "LEICAI",
+    "DDEMON"
+  ],
+  "words": [
+    {
+      "text": "THORNFIELD",
+      "path": [10, 16, 15, 21, 27, 26, 32, 31, 30, 36]
+    },
+    {
+      "text": "DEMONIAC",
+      "path": [37, 38, 39, 40, 41, 35, 34, 33]
+    },
+    {
+      "text": "LAUGH",
+      "path": [29, 28, 22, 23, 17]
+    },
+    {
+      "text": "SMOKE",
+      "path": [3, 9, 8, 2, 1]
+    },
+    {
+      "text": "FLAMES",
+      "path": [12, 18, 24, 25, 19, 20]
+    },
+    {
+      "text": "WATER",
+      "path": [0, 6, 7, 13, 14]
+    },
+    {
+      "text": "BED",
+      "path": [4, 5, 11]
+    }
+  ],
+  "story": {
+    "text": "Mr. Rochester, the master of {THORNFIELD}, is moody and abrupt, yet Jane loves to talk with him. One night she hears a {DEMONIAC} {LAUGH} outside her door, and {SMOKE}! His bed is in {FLAMES}. She drenches it with {WATER} and saves his life. “What is it and who did it?” he asks, and makes her swear to say nothing of his {BED}.",
+    "image": "art/townsend-1897/003-what-is-it-and-who-did-it-he-asked.jpg",
+    "caption": "“What is it and who did it?” he asked",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.86
+    ]
+  }
+}

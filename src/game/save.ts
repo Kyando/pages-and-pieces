@@ -15,6 +15,8 @@ export interface SaveData {
   version: 1;
   /** The finished chapters, by id. */
   levels: Record<string, { done: true }>;
+  /** The paid shelves the player owns (see SHELVES in core/books.ts). */
+  shelves: string[];
   settings: { sound: boolean; seenHelp: boolean };
 }
 
@@ -25,6 +27,7 @@ const KEY = 'pages-and-pieces:v1';
 const defaults = (): SaveData => ({
   version: 1,
   levels: {},
+  shelves: [],
   settings: { sound: true, seenHelp: false },
 });
 
@@ -34,13 +37,14 @@ export function loadSave(): SaveData {
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return defaults();
-    const data = JSON.parse(raw) as { version?: number; levels?: Record<string, { done?: boolean }>; settings?: Partial<SaveData['settings']> };
+    const data = JSON.parse(raw) as { version?: number; levels?: Record<string, { done?: boolean }>; settings?: Partial<SaveData['settings']>; shelves?: unknown };
     if (data.version !== 1) return defaults();
     // Older saves also kept the words found in unfinished chapters: only the finished ones stay.
     const levels: SaveData['levels'] = {};
     for (const [id, p] of Object.entries(data.levels ?? {})) if (p?.done) levels[id] = { done: true };
     const { sound, seenHelp } = { ...defaults().settings, ...data.settings };
-    return { version: 1, levels, settings: { sound, seenHelp } };
+    const shelves = Array.isArray(data.shelves) ? data.shelves.filter((s): s is string => typeof s === 'string') : [];
+    return { version: 1, levels, shelves, settings: { sound, seenHelp } };
   } catch {
     return defaults();
   }

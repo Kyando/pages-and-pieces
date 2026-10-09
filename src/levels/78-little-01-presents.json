@@ -1,0 +1,48 @@
+{
+  "id": "little-01-presents",
+  "book": "little-women",
+  "chapter": 1,
+  "title": "Without Any Presents",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "RESMRET",
+    "GLOOTET",
+    "RVERHLS",
+    "UMSAERT",
+    "LBLLSEN",
+    "ESODERP"
+  ],
+  "words": [
+    {
+      "text": "PRESENTS",
+      "path": [41, 40, 39, 32, 33, 34, 27, 20]
+    },
+    {
+      "text": "GRUMBLES",
+      "path": [7, 14, 21, 22, 29, 28, 35, 36]
+    },
+    {
+      "text": "DOLLAR",
+      "path": [38, 37, 30, 31, 24, 17]
+    },
+    {
+      "text": "MOTHER",
+      "path": [3, 10, 11, 18, 25, 26]
+    },
+    {
+      "text": "LETTER",
+      "path": [19, 12, 13, 6, 5, 4]
+    },
+    {
+      "text": "RESOLVES",
+      "path": [0, 1, 2, 9, 8, 15, 16, 23]
+    }
+  ],
+  "story": {
+    "text": "“Christmas won’t be Christmas without any {PRESENTS},” {GRUMBLES} Jo, lying on the rug. The four March sisters, Meg, Jo, Beth and Amy, are poor this year, with Father away at the war. Each has a {DOLLAR} to spend on herself, but they decide to buy gifts for their {MOTHER} instead. That night a cheerful {LETTER} comes from Father, and each girl {RESOLVES} to be better.",
+    "image": "art/merrill-1880/007-christmas-won-t-be-christmas-without-any-presents.jpg",
+    "caption": "“Christmas won’t be Christmas without any presents”",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

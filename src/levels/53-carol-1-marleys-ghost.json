@@ -1,0 +1,55 @@
+{
+  "id": "carol-1-marleys-ghost",
+  "book": "a-christmas-carol",
+  "chapter": 1,
+  "title": "Marley’s Ghost",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "EESSFO",
+    "PACTDR",
+    "MYRIEG",
+    "AEIPCC",
+    "RLSSLI",
+    "DLKNAT",
+    "AOCKUS",
+    "PGNIAC"
+  ],
+  "words": [
+    {
+      "text": "CLANKING",
+      "path": [22, 28, 34, 33, 39, 45, 44, 43]
+    },
+    {
+      "text": "MARLEY",
+      "path": [12, 18, 24, 25, 19, 13]
+    },
+    {
+      "text": "PADLOCKS",
+      "path": [42, 36, 30, 31, 37, 38, 32, 26]
+    },
+    {
+      "text": "CAUSTIC",
+      "path": [47, 46, 40, 41, 35, 29, 23]
+    },
+    {
+      "text": "FORGED",
+      "path": [4, 5, 11, 17, 16, 10]
+    },
+    {
+      "text": "ESCAPE",
+      "path": [1, 2, 8, 7, 6, 0]
+    },
+    {
+      "text": "SPIRITS",
+      "path": [27, 21, 20, 14, 15, 9, 3]
+    }
+  ],
+  "story": {
+    "text": "That night, in his gloomy rooms, Scrooge hears the {CLANKING} of a chain. Through the locked door comes the ghost of Jacob {MARLEY}, wrapped in cash-boxes, keys and {PADLOCKS}. “How now?” says Scrooge, {CAUSTIC} and cold as ever. “I wear the chain I {FORGED} in life,” the ghost answers. Scrooge may yet {ESCAPE} his fate: three {SPIRITS} will come.",
+    "image": "art/rackham-1915/001-img01.jpg",
+    "caption": "“How now?” said Scrooge, caustic and cold as ever",
+    "credit": "Arthur Rackham, 1915",
+    "colour": true
+  }
+}

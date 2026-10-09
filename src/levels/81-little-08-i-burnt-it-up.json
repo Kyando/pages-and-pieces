@@ -1,0 +1,52 @@
+{
+  "id": "little-08-i-burnt-it-up",
+  "book": "little-women",
+  "chapter": 8,
+  "title": "I Burnt It Up",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "THESREE",
+    "RTANRVG",
+    "EECBUEN",
+    "REITGBB",
+    "FPMENIO",
+    "ORGIVES"
+  ],
+  "words": [
+    {
+      "text": "THEATRE",
+      "path": [0, 1, 2, 9, 8, 7, 14]
+    },
+    {
+      "text": "REVENGE",
+      "path": [4, 5, 12, 19, 20, 13, 6]
+    },
+    {
+      "text": "BURNS",
+      "path": [17, 18, 11, 10, 3]
+    },
+    {
+      "text": "FORGIVE",
+      "path": [28, 35, 36, 37, 38, 39, 40]
+    },
+    {
+      "text": "ICE",
+      "path": [23, 16, 15]
+    },
+    {
+      "text": "SOBBING",
+      "path": [41, 34, 27, 26, 33, 32, 25]
+    },
+    {
+      "text": "TEMPER",
+      "path": [24, 31, 30, 29, 22, 21]
+    }
+  ],
+  "story": {
+    "text": "Left behind when Jo and Meg go to the {THEATRE}, Amy takes her {REVENGE}: she {BURNS} the little book Jo has worked on for years. “I burnt it up,” she says, and Jo will not {FORGIVE} her. Next day Amy follows her to the river, and the {ICE} gives way. Laurie and Jo pull her out, and Jo, {SOBBING}, vows to master her {TEMPER}.",
+    "image": "art/merrill-1880/047-i-burnt-it-up.jpg",
+    "caption": "I burnt it up",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

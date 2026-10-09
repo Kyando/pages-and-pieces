@@ -1,4 +1,4 @@
-import { BOOKS } from '../core/books.ts';
+import { BOOKS, FREE_CHAPTERS, SHELVES, type ShelfId } from '../core/books.ts';
 import { emptyProgress, loadSave, writeSave, type LevelProgress } from '../game/save.ts';
 import { Session } from '../game/session.ts';
 import { detectLocale, setLocale, t, type MessageKey } from '../i18n/index.ts';
@@ -83,7 +83,7 @@ export class App {
   /** Can this screen be shown now? A chapter not yet reached can't. */
   private valid(route: Route): boolean {
     if (route.screen === 'library') return !!BOOKS[route.book] && this.chaptersOf(route.book).length > 0;
-    if (route.screen === 'level') return !!CATALOG[route.index] && this.stateOf(route.index) !== 'locked';
+    if (route.screen === 'level') return !!CATALOG[route.index] && this.playable(route.index);
     return true;
   }
 
@@ -177,15 +177,29 @@ export class App {
     return !!this.save.levels[CATALOG[index].def.id]?.done;
   }
 
+  /** The paid shelf a book is on, if the player doesn't own it yet. */
+  private unowned(book: string): ShelfId | undefined {
+    const shelf = BOOKS[book]?.shelf;
+    return shelf && !this.save.shelves.includes(shelf) ? shelf : undefined;
+  }
+
   /**
    * Each book's chapters open in order: the first, any finished, and the one after a finished
-   * chapter. Names are only hidden once the story has introduced them, so it reads in order.
+   * chapter. Names are only hidden once the story has introduced them, so it reads in order. A
+   * paid book the player doesn't own stops after its free chapters.
    */
   private stateOf(index: number): ChapterState {
     if (this.isDone(index)) return 'done';
+    const book = CATALOG[index].def.book;
+    if (this.unowned(book) && this.chaptersOf(book).indexOf(index) >= FREE_CHAPTERS) return 'sealed';
     const prev = this.neighbour(index, -1);
     if (prev === undefined || this.isDone(prev)) return 'open';
     return 'locked';
+  }
+
+  private playable(index: number): boolean {
+    const state = this.stateOf(index);
+    return state === 'done' || state === 'open';
   }
 
   /** Where to pick up in a book: its first chapter not yet finished; undefined once it's done. */
@@ -199,7 +213,11 @@ export class App {
   private makeShelf(): Shelf {
     const books = Object.entries(BOOKS).flatMap(([key, book]) => {
       const chapters = this.chaptersOf(key);
-      return chapters.length ? [{ key, book, total: chapters.length, done: chapters.filter((i) => this.isDone(i)).length }] : [];
+      if (!chapters.length) return [];
+      // A paid book not owned yet counts only its free chapters.
+      const sample = !!this.unowned(key);
+      const open = sample ? chapters.slice(0, FREE_CHAPTERS) : chapters;
+      return [{ key, book, sample, total: open.length, done: open.filter((i) => this.isDone(i)).length }];
     });
     return new Shelf({
       books,
@@ -218,6 +236,8 @@ export class App {
       onOpen: (i) => this.go({ screen: 'level', index: chapters[i] }, 'push'),
       onBack: () => this.up(),
       onSettings: () => this.openSettings(book),
+      shelf: this.unowned(book),
+      onUnlock: (shelf) => this.openUnlock(shelf),
     });
   }
 
@@ -246,7 +266,7 @@ export class App {
       sfx: this.sfx,
       onPrev: prev === undefined ? undefined : () => this.go({ screen: 'level', index: prev }, 'replace'),
       onNext: next === undefined ? undefined : () => this.go({ screen: 'level', index: next }, 'replace'),
-      nextLocked: next !== undefined && this.stateOf(next) === 'locked',
+      nextLocked: next !== undefined && !this.playable(next),
       nextTitle: next === undefined ? undefined : CATALOG[next].def.title,
       onChapters: () => this.up(),
       menuItems: () => [this.soundItem(), this.helpItem()],
@@ -255,6 +275,17 @@ export class App {
   }
 
   // ── menus and dialogs ───────────────────────────────────────────────────
+
+  /** What a paid shelf holds. Buying comes with the store releases; until then, this says so. */
+  private openUnlock(shelf: ShelfId): void {
+    const { title, blurb } = SHELVES[shelf];
+    const modal = openModal({
+      title,
+      className: 'modal--unlock',
+      body: h('div', { class: 'unlock' }, h('p', {}, t('unlock.body', { blurb })), h('p', { class: 'unlock-soon' }, t('unlock.soon'))),
+      actions: [h('button', { type: 'button', class: 'btn btn--primary', onclick: () => modal.close() }, t('unlock.ok'))],
+    });
+  }
 
   private soundItem(): SheetItem {
     return { icon: ICONS.soundOn, label: t('settings.sound'), on: this.save.settings.sound, onSelect: () => this.toggleSound() };

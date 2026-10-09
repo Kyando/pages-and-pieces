@@ -1,0 +1,57 @@
+{
+  "id": "emma-06-the-portrait",
+  "book": "emma",
+  "chapter": 6,
+  "title": "Frequently Coming to Look",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "TRSTN",
+    "IACAI",
+    "AVIPS",
+    "RTPGI",
+    "DROHS",
+    "EFRUE",
+    "MAEQN",
+    "FRYLT"
+  ],
+  "words": [
+    {
+      "text": "VICAR",
+      "path": [11, 12, 7, 6, 1]
+    },
+    {
+      "text": "PAINTS",
+      "path": [13, 8, 9, 4, 3, 2]
+    },
+    {
+      "text": "PORTRAIT",
+      "path": [17, 22, 21, 16, 15, 10, 5, 0]
+    },
+    {
+      "text": "FREQUENTLY",
+      "path": [26, 27, 32, 33, 28, 29, 34, 39, 38, 37]
+    },
+    {
+      "text": "SIGHS",
+      "path": [14, 19, 18, 23, 24]
+    },
+    {
+      "text": "FRAMED",
+      "path": [35, 36, 31, 30, 25, 20]
+    }
+  ],
+  "story": {
+    "text": "Emma decides that Mr. Elton, the handsome {VICAR}, is just the man for Harriet. To show off her friend, she {PAINTS} Harriet’s {PORTRAIT}, and Mr. Elton cannot keep still, {FREQUENTLY} coming to look. He {SIGHS} over every stroke, and offers to carry it to London to be {FRAMED}.",
+    "image": "art/emma-brock-1909/emma-ce-brock-1909-vol-i-chapter-vi.jpg",
+    "caption": "Frequently coming to look",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.08,
+      0.05,
+      0.92,
+      0.85
+    ],
+    "colour": true
+  }
+}

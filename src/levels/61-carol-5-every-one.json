@@ -1,0 +1,58 @@
+{
+  "id": "carol-5-every-one",
+  "book": "a-christmas-carol",
+  "chapter": 5,
+  "title": "A Second Father",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "NEYRLE",
+    "EILAAT",
+    "EGASEF",
+    "THCDIR",
+    "REITYI",
+    "FHEARE",
+    "ATSIDN"
+  ],
+  "words": [
+    {
+      "text": "EIGHTEEN",
+      "path": [1, 7, 13, 19, 18, 12, 6, 0]
+    },
+    {
+      "text": "LATE",
+      "path": [4, 10, 11, 5]
+    },
+    {
+      "text": "RAISE",
+      "path": [34, 33, 39, 38, 32]
+    },
+    {
+      "text": "SALARY",
+      "path": [15, 14, 8, 9, 3, 2]
+    },
+    {
+      "text": "FRIEND",
+      "path": [17, 23, 29, 35, 41, 40]
+    },
+    {
+      "text": "CITY",
+      "path": [20, 26, 27, 28]
+    },
+    {
+      "text": "DIE",
+      "path": [21, 22, 16]
+    },
+    {
+      "text": "FATHER",
+      "path": [30, 36, 37, 31, 25, 24]
+    }
+  ],
+  "story": {
+    "text": "Next morning Bob comes in {EIGHTEEN} minutes {LATE}. “Now, I’ll tell you what, my friend,” says Scrooge. “I am about to {RAISE} your {SALARY}!” He becomes as good a {FRIEND}, as good a man, as the good old {CITY} ever knew; and to Tiny Tim, who did not {DIE}, a second {FATHER}. God bless us, every one!",
+    "image": "art/rackham-1915/032-img12.jpg",
+    "caption": "“Now, I’ll tell you what, my friend,” said Scrooge",
+    "credit": "Arthur Rackham, 1915",
+    "colour": true
+  }
+}

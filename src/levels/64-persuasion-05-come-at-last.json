@@ -1,0 +1,56 @@
+{
+  "id": "persuasion-05-come-at-last",
+  "book": "persuasion",
+  "chapter": 5,
+  "title": "So You Are Come at Last",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "NOYPM",
+    "HINAO",
+    "SAFMC",
+    "SPKUS",
+    "AEACI",
+    "FCOAG",
+    "OSTTE"
+  ],
+  "words": [
+    {
+      "text": "COTTAGE",
+      "path": [26, 27, 32, 33, 28, 29, 34]
+    },
+    {
+      "text": "COMPANY",
+      "path": [14, 9, 4, 3, 8, 7, 2]
+    },
+    {
+      "text": "SOFA",
+      "path": [31, 30, 25, 20]
+    },
+    {
+      "text": "SPEAK",
+      "path": [15, 16, 21, 22, 17]
+    },
+    {
+      "text": "MUSIC",
+      "path": [13, 18, 19, 24, 23]
+    },
+    {
+      "text": "FASHION",
+      "path": [12, 11, 10, 5, 6, 1, 0]
+    }
+  ],
+  "story": {
+    "text": "Anne goes to Uppercross {COTTAGE} to keep her sister Mary {COMPANY}. Mary is lying on the faded {SOFA}, sure she is ill. “So you are come at last!” she cries. “I can hardly {SPEAK}.” Mary married Charles Musgrove, heir of the Great House, where his young sisters are all {MUSIC} and {FASHION}.",
+    "image": "art/persuasion-brock-1898/pers-brock-06.jpg",
+    "caption": "So you are come at last!",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.1,
+      0.08,
+      0.92,
+      0.86
+    ],
+    "colour": true
+  }
+}

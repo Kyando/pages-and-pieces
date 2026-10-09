@@ -269,6 +269,70 @@ async function brooke(): Promise<void> {
   }
 }
 
+// ── Other illustrated editions on Project Gutenberg ────────────────────────────
+
+/**
+ * Every picture in a Gutenberg HTML edition, in the book's order: the larger copy where the page
+ * links one, its caption (the alt text or title), and the chapter it falls in, from the headings
+ * before it. Files are named by their place in the book.
+ */
+async function gutenbergEdition(id: number, folder: string, artist: string, edition: string, skip: RegExp = /cover/): Promise<void> {
+  const dir = mkdtempSync(join(tmpdir(), `pg${id}-`));
+  try {
+    const zip = join(dir, `pg${id}-h.zip`);
+    writeFileSync(zip, await download(`https://www.gutenberg.org/cache/epub/${id}/pg${id}-h.zip`));
+    try {
+      execSync(`unzip -q "${zip}" -d "${dir}"`);
+    } catch {
+      execSync(`tar -xf "${zip}" -C "${dir}"`);
+    }
+    const find = (d: string): string => {
+      const f = readdirSync(d).find((n) => /\.html?$/.test(n));
+      if (f) return join(d, f);
+      const sub = readdirSync(d).find((n) => existsSync(join(d, n, 'images')) || readdirSync(join(d, n)).some((x) => /\.html?$/.test(x)));
+      return find(join(d, sub!));
+    };
+    const htmlFile = find(dir);
+    const base = join(htmlFile, '..');
+    const html = readFileSync(htmlFile, 'utf8');
+    // Chapter headings and pictures, in order. A picture inside a link to a larger copy uses that.
+    const re = /<h[1-4][^>]*>([\s\S]*?)<\/h[1-4]>|(?:<a[^>]*href="(images\/[^"]+\.(?:jpe?g|png|gif))"[^>]*>\s*)?<img([^>]*)>/gi;
+    let chapter = '';
+    let n = 0;
+    const seen = new Set<string>();
+    for (let m; (m = re.exec(html)); ) {
+      if (m[1] !== undefined) {
+        const h = text(m[1]);
+        if (/chapter|stave|^[IVXL]+\.?$/i.test(h)) chapter = h.slice(0, 40);
+        continue;
+      }
+      const attrs = m[3];
+      const src = attrs.match(/src="(images\/[^"]+)"/)?.[1];
+      if (!src) continue;
+      const name = (m[2] ?? src).replace(/^images\//, '');
+      if (seen.has(name) || skip.test(name)) continue;
+      seen.add(name);
+      const caption = text(attrs.match(/alt="([^"]*)"/)?.[1] || attrs.match(/title="([^"]*)"/)?.[1] || '');
+      n++;
+      const file = `${folder}/${String(n).padStart(3, '0')}-${slug(caption).slice(0, 50) || name.replace(/\.\w+$/, '')}.jpg`;
+      const path = existsSync(join(base, 'images', name)) ? join(base, 'images', name) : join(base, src);
+      await save(readFileSync(path), file);
+      catalog.push({
+        file,
+        artist,
+        edition,
+        chapter: null,
+        caption: chapter ? `${caption} [${chapter}]` : caption,
+        kind: 'plate',
+        source: `https://www.gutenberg.org/ebooks/${id} (images/${name})`,
+        license: 'Public domain',
+      });
+    }
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+
 /**
  * Each source and the folders it fills. `npm run art:fetch -- tenniel` fetches only that one again,
  * keeping the others' files and catalog entries.
@@ -285,6 +349,24 @@ const SOURCES: Record<string, { folders: string[]; fetch: () => Promise<void> }>
   tenniel: { folders: ['tenniel-1865'], fetch: tenniel },
   nursery: { folders: ['nursery-alice-1890'], fetch: nurseryAlice },
   brooke: { folders: ['brooke-1904'], fetch: brooke },
+  rackham: { folders: ['rackham-1915'], fetch: () => gutenbergEdition(24022, 'rackham-1915', 'Arthur Rackham', 'A Christmas Carol, Heinemann, 1915') },
+  persuasion: {
+    folders: ['persuasion-thomson-1897', 'persuasion-brock-1898'],
+    fetch: async () => {
+      await commons('Persuasion_(Hugh_Thomson)', 'persuasion-thomson-1897', 'Hugh Thomson', 'Persuasion, Macmillan, 1897');
+      await commons('Persuasion_(C._E._Brock)', 'persuasion-brock-1898', 'C. E. Brock', 'Persuasion, Dent, 1898');
+    },
+  },
+  emma: {
+    folders: ['emma-thomson-1896', 'emma-brock-1909'],
+    fetch: async () => {
+      await commons('Emma_(Hugh_Thomson)', 'emma-thomson-1896', 'Hugh Thomson', 'Emma, Macmillan, 1896');
+      await commons('Emma_(C.E._Brock)', 'emma-brock-1909', 'C. E. Brock', 'Emma, Dent, 1898 and 1909');
+    },
+  },
+  sense: { folders: ['sense-thomson-1896'], fetch: () => gutenbergEdition(21839, 'sense-thomson-1896', 'Hugh Thomson', 'Sense and Sensibility, Macmillan, 1896 (1902 printing)') },
+  townsend: { folders: ['townsend-1897'], fetch: () => gutenbergEdition(1260, 'townsend-1897', 'F. H. Townsend', 'Jane Eyre, Service & Paton, 1897') },
+  merrill: { folders: ['merrill-1880'], fetch: () => gutenbergEdition(37106, 'merrill-1880', 'Frank T. Merrill', 'Little Women, Roberts Brothers, 1880') },
 };
 
 const chosen = process.argv.length > 2 ? process.argv.slice(2) : Object.keys(SOURCES);

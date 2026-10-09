@@ -1,0 +1,63 @@
+{
+  "id": "carol-3-blind-mans-buff",
+  "book": "a-christmas-carol",
+  "chapter": 3,
+  "title": "Blind Man’s Buff",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "EFFSES",
+    "GAUBGS",
+    "SRTUUE",
+    "HGMOST",
+    "AUUSIA",
+    "LPRECY",
+    "FITTSI",
+    "UNIESS"
+  ],
+  "words": [
+    {
+      "text": "LAUGHS",
+      "path": [30, 24, 25, 19, 18, 12]
+    },
+    {
+      "text": "PITIES",
+      "path": [31, 37, 38, 44, 45, 46]
+    },
+    {
+      "text": "MUSIC",
+      "path": [20, 26, 27, 28, 34]
+    },
+    {
+      "text": "BUFF",
+      "path": [9, 8, 2, 1]
+    },
+    {
+      "text": "SISTER",
+      "path": [47, 41, 40, 39, 33, 32]
+    },
+    {
+      "text": "OUTRAGE",
+      "path": [21, 15, 14, 13, 7, 6, 0]
+    },
+    {
+      "text": "STAY",
+      "path": [22, 23, 29, 35]
+    },
+    {
+      "text": "GUESSES",
+      "path": [10, 16, 17, 11, 5, 4, 3]
+    },
+    {
+      "text": "FUN",
+      "path": [36, 42, 43]
+    }
+  ],
+  "story": {
+    "text": "At his nephew Fred’s house, everyone {LAUGHS} at Uncle Scrooge, though Fred only {PITIES} him. Then there is {MUSIC}, and a game of blind man’s {BUFF}. Topper is the blind man, and the way he goes after the plump {SISTER} in the lace tucker is an {OUTRAGE}! Scrooge, unseen, begs to {STAY}, and {GUESSES} as loud as anyone, full of {FUN}.",
+    "image": "art/rackham-1915/026-img08.jpg",
+    "caption": "The way he went after that plump sister in the lace tucker!",
+    "credit": "Arthur Rackham, 1915",
+    "colour": true
+  }
+}

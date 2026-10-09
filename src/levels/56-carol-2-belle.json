@@ -1,0 +1,60 @@
+{
+  "id": "carol-2-belle",
+  "book": "a-christmas-carol",
+  "chapter": 2,
+  "title": "Another Idol",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "TREEPAR",
+    "EAFRDET",
+    "HYRLGAN",
+    "MARRNIE",
+    "MOIIGLD",
+    "ERDOLOG"
+  ],
+  "words": [
+    {
+      "text": "GIRL",
+      "path": [32, 31, 24, 17]
+    },
+    {
+      "text": "MARRY",
+      "path": [21, 22, 23, 16, 15]
+    },
+    {
+      "text": "IDOL",
+      "path": [30, 37, 38, 39]
+    },
+    {
+      "text": "GOLDEN",
+      "path": [41, 40, 33, 34, 27, 20]
+    },
+    {
+      "text": "GAIN",
+      "path": [18, 19, 26, 25]
+    },
+    {
+      "text": "FREE",
+      "path": [9, 10, 3, 2]
+    },
+    {
+      "text": "HEART",
+      "path": [14, 7, 8, 1, 0]
+    },
+    {
+      "text": "PARTED",
+      "path": [4, 5, 6, 13, 12, 11]
+    },
+    {
+      "text": "MORE",
+      "path": [28, 29, 36, 35]
+    }
+  ],
+  "story": {
+    "text": "Then the spirit shows him a fair young {GIRL} named Belle, whom he once meant to {MARRY}. “Another {IDOL} has displaced me,” she tells him: a {GOLDEN} one. His love of {GAIN} has mastered him. So she sets him {FREE}, with a full {HEART}, and they {PARTED}. “Spirit!” Scrooge cries. “Show me no {MORE}!”",
+    "image": "art/rackham-1915/017-she-left-him-and-they-parted.jpg",
+    "caption": "She left him, and they parted",
+    "credit": "Arthur Rackham, 1915"
+  }
+}

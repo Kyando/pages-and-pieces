@@ -1,0 +1,59 @@
+{
+  "id": "carol-4-old-joe",
+  "book": "a-christmas-carol",
+  "chapter": 4,
+  "title": "Yet to Come",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "SRTGRO",
+    "HIARBB",
+    "EMVEED",
+    "SANPSS",
+    "NRUOTN",
+    "BLOINI",
+    "NAMCUA",
+    "KETSRT"
+  ],
+  "words": [
+    {
+      "text": "POINTS",
+      "path": [21, 27, 33, 34, 28, 22]
+    },
+    {
+      "text": "ROBBED",
+      "path": [4, 5, 11, 10, 16, 17]
+    },
+    {
+      "text": "SHIRT",
+      "path": [0, 6, 7, 1, 2]
+    },
+    {
+      "text": "BLANKETS",
+      "path": [30, 31, 37, 36, 42, 43, 44, 45]
+    },
+    {
+      "text": "CURTAINS",
+      "path": [39, 40, 46, 47, 41, 35, 29, 23]
+    },
+    {
+      "text": "MOURNS",
+      "path": [38, 32, 26, 25, 24, 18]
+    },
+    {
+      "text": "GRAVE",
+      "path": [3, 9, 8, 14, 15]
+    },
+    {
+      "text": "NAME",
+      "path": [20, 19, 13, 12]
+    }
+  ],
+  "story": {
+    "text": "The last spirit, the Ghost of Christmas Yet to Come, never speaks; it only {POINTS}. In a filthy shop, old Joe buys a dead man’s things from those who {ROBBED} him: his {SHIRT}, his {BLANKETS}, even his bed-{CURTAINS}, rings and all. Nobody {MOURNS} the man. In a churchyard, the spirit points to a {GRAVE}, and Scrooge reads his own {NAME}.",
+    "image": "art/rackham-1915/029-img010.jpg",
+    "caption": "“Bed-curtains!” “Ah!” returned the woman, laughing",
+    "credit": "Arthur Rackham, 1915",
+    "colour": true
+  }
+}

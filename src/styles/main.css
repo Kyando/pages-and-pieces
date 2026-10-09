@@ -87,6 +87,48 @@ body {
 /* Only reading text may be selected. */
 .help,
 .credits-text,
+/* A paid book's free chapters end here: where the story goes on, and the way there. */
+.library-unlock {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.library-unlock svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.library-more {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  margin: 8px auto 28px;
+  padding: 20px 16px;
+  max-width: 420px;
+  border-top: 1px solid var(--faint);
+  text-align: center;
+}
+
+.library-more p {
+  margin: 0;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink-soft);
+}
+
+.unlock p {
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.unlock-soon {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
 .erase-text {
   -webkit-user-select: text;
   user-select: text;

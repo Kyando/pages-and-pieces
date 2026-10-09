@@ -1,0 +1,50 @@
+{
+  "id": "carol-2-fezziwig",
+  "book": "a-christmas-carol",
+  "chapter": 2,
+  "title": "Old Fezziwig’s Ball",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "FEBARE",
+    "ZZWLLL",
+    "IGAIDD",
+    "WIRFPA",
+    "SEEATS",
+    "UOHPPR",
+    "ECITNE"
+  ],
+  "words": [
+    {
+      "text": "PAST",
+      "path": [22, 23, 29, 28]
+    },
+    {
+      "text": "WAREHOUSE",
+      "path": [8, 14, 20, 26, 32, 31, 30, 24, 25]
+    },
+    {
+      "text": "APPRENTICE",
+      "path": [27, 33, 34, 35, 41, 40, 39, 38, 37, 36]
+    },
+    {
+      "text": "BALL",
+      "path": [2, 3, 9, 10]
+    },
+    {
+      "text": "FIDDLER",
+      "path": [21, 15, 16, 17, 11, 5, 4]
+    },
+    {
+      "text": "FEZZIWIG",
+      "path": [0, 1, 7, 6, 12, 18, 19, 13]
+    }
+  ],
+  "story": {
+    "text": "At one o’clock the first of the three spirits, the Ghost of Christmas {PAST}, takes Scrooge back to his youth: to the {WAREHOUSE} of old Fezziwig, where he was an {APPRENTICE}. It is Christmas Eve, and the place is swept clean for a {BALL}. In comes a {FIDDLER}, and all the young people, and then old Fezziwig stands out to dance with Mrs. {FEZZIWIG}.",
+    "image": "art/rackham-1915/016-img05.jpg",
+    "caption": "Then old Fezziwig stood out to dance with Mrs. Fezziwig",
+    "credit": "Arthur Rackham, 1915",
+    "colour": true
+  }
+}

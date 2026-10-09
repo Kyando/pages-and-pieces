@@ -44,11 +44,12 @@ describe('chapters', () => {
     expect(def.words.map((w) => w.text)).toEqual(blanksOf(spec.story.text));
   });
 
-  it('come from known books, a book at a time in shelf order, each in reading order', () => {
+  it('come from known books, a book at a time, each in reading order', () => {
     for (const def of levels) expect(BOOKS[def.book]).toBeDefined();
-    // One run per book (its chapters aren't scattered among another's), in the shelf's order.
+    // One run per book (its chapters aren't scattered among another's). New books are added at the
+    // end, so the files keep their numbers; the shelf's order is BOOKS's.
     const runs = levels.map((l) => l.book).filter((b, i, all) => b !== all[i - 1]);
-    expect(runs).toEqual(Object.keys(BOOKS).filter((b) => runs.includes(b)));
+    expect(runs).toEqual([...new Set(runs)]);
     for (const book of runs) {
       const chapters = levels.filter((l) => l.book === book).map((l) => l.chapter);
       expect(chapters).toEqual([...chapters].sort((a, b) => a - b));

@@ -1,0 +1,55 @@
+{
+  "id": "carol-1-phantoms",
+  "book": "a-christmas-carol",
+  "chapter": 1,
+  "title": "The Air Filled with Phantoms",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "PHANDE",
+    "SEWTCH",
+    "PEMOTP",
+    "WISREO",
+    "ENWWEW",
+    "XDOGRM",
+    "HSTNIO",
+    "AUEDNA"
+  ],
+  "words": [
+    {
+      "text": "WINDOW",
+      "path": [18, 19, 25, 31, 32, 26]
+    },
+    {
+      "text": "PHANTOMS",
+      "path": [0, 1, 2, 3, 9, 15, 14, 20]
+    },
+    {
+      "text": "MOANING",
+      "path": [35, 41, 47, 46, 40, 39, 33]
+    },
+    {
+      "text": "WEEPS",
+      "path": [8, 7, 13, 12, 6]
+    },
+    {
+      "text": "WRETCHED",
+      "path": [27, 21, 22, 16, 10, 11, 5, 4]
+    },
+    {
+      "text": "POWER",
+      "path": [17, 23, 29, 28, 34]
+    },
+    {
+      "text": "EXHAUSTED",
+      "path": [24, 30, 36, 42, 43, 37, 38, 44, 45]
+    }
+  ],
+  "story": {
+    "text": "Marley’s ghost floats out of the open {WINDOW}, and Scrooge follows to look. The air is filled with {PHANTOMS}, wandering hither and thither, {MOANING} as they go. Each wears a chain, and each one {WEEPS} because it longs to help the {WRETCHED} people below, and has lost the {POWER} for ever. Scrooge closes the window and, {EXHAUSTED}, falls asleep at once.",
+    "image": "art/rackham-1915/012-img04.jpg",
+    "caption": "The air was filled with phantoms",
+    "credit": "Arthur Rackham, 1915",
+    "colour": true
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "persuasion-03-that-old-fellow",
+  "book": "persuasion",
+  "chapter": 3,
+  "title": "Eight Years Ago",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "ESAIRS",
+    "NUTLOD",
+    "FORFRN",
+    "LAMDIE",
+    "DRIARE",
+    "EGBLMG",
+    "EADOOR",
+    "NGETTE"
+  ],
+  "words": [
+    {
+      "text": "SAILORS",
+      "path": [1, 2, 3, 9, 10, 4, 5]
+    },
+    {
+      "text": "ADMIRAL",
+      "path": [27, 21, 20, 26, 25, 19, 18]
+    },
+    {
+      "text": "ENGAGED",
+      "path": [36, 42, 43, 37, 31, 30, 24]
+    },
+    {
+      "text": "FORTUNE",
+      "path": [12, 13, 14, 8, 7, 6, 0]
+    },
+    {
+      "text": "FRIEND",
+      "path": [15, 16, 22, 23, 17, 11]
+    },
+    {
+      "text": "REGRETTED",
+      "path": [28, 29, 35, 41, 47, 46, 45, 44, 38]
+    },
+    {
+      "text": "BLOOM",
+      "path": [32, 33, 39, 40, 34]
+    }
+  ],
+  "story": {
+    "text": "Admiral Croft will take Kellynch, though Sir Walter scorns {SAILORS} and their weathered faces. But the {ADMIRAL}’s wife has a brother, Frederick Wentworth. Eight years ago, Anne was {ENGAGED} to him, a young officer with no {FORTUNE}. Lady Russell, her mother’s old {FRIEND}, persuaded her to give him up. Anne has {REGRETTED} it ever since, and has lost her {BLOOM}.",
+    "image": "art/persuasion-thomson-1897/persuasion-illustration-chapter-1.jpg",
+    "caption": "In the name of heaven, who is that old fellow?",
+    "credit": "Hugh Thomson, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.9
+    ]
+  }
+}

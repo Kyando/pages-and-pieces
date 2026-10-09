@@ -1,0 +1,60 @@
+{
+  "id": "emma-04-survey",
+  "book": "emma",
+  "chapter": 4,
+  "title": "An Opportunity of Survey",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "SUPAR",
+    "SMRRL",
+    "UMEUO",
+    "RVELE",
+    "FAYAN",
+    "MREMI",
+    "EEHOM",
+    "RVORP"
+  ],
+  "words": [
+    {
+      "text": "PARLOUR",
+      "path": [2, 3, 4, 9, 14, 13, 8]
+    },
+    {
+      "text": "IMPROVE",
+      "path": [29, 34, 39, 38, 37, 36, 31]
+    },
+    {
+      "text": "HOME",
+      "path": [32, 33, 28, 27]
+    },
+    {
+      "text": "SUMMER",
+      "path": [0, 1, 6, 11, 12, 7]
+    },
+    {
+      "text": "LANE",
+      "path": [18, 23, 24, 19]
+    },
+    {
+      "text": "SURVEY",
+      "path": [5, 10, 15, 16, 17, 22]
+    },
+    {
+      "text": "FARMER",
+      "path": [20, 21, 26, 25, 30, 35]
+    }
+  ],
+  "story": {
+    "text": "Emma takes up pretty Harriet Smith, a {PARLOUR} boarder at the school, and means to {IMPROVE} her. Harriet talks only of the Martins, whose {HOME} she shared one happy {SUMMER}. Then young Robert Martin meets them in the {LANE}, and Emma is glad of the chance to {SURVEY} him: a {FARMER}, quite beneath Harriet.",
+    "image": "art/emma-thomson-1896/emma-frontispice-ch04.jpg",
+    "caption": "Emma was not sorry to have such an opportunity of survey",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.04,
+      0.03,
+      0.96,
+      0.89
+    ]
+  }
+}

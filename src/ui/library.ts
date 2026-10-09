@@ -1,4 +1,4 @@
-import { BOOKS } from '../core/books.ts';
+import { BOOKS, SHELVES, type ShelfId } from '../core/books.ts';
 import type { LevelDef } from '../core/types.ts';
 import { t } from '../i18n/index.ts';
 import { roman } from './desk.ts';
@@ -8,7 +8,8 @@ import { barButton, screenBar } from './bar.ts';
 import { toast } from './overlay.ts';
 import { commonsThumb, loadPicture } from './picture.ts';
 
-export type ChapterState = 'done' | 'open' | 'locked';
+/** Finished, playable now, not reached yet, or part of a paid shelf the player doesn't own. */
+export type ChapterState = 'done' | 'open' | 'locked' | 'sealed';
 
 export interface LibraryOptions {
   chapters: { def: LevelDef; state: ChapterState }[];
@@ -19,6 +20,9 @@ export interface LibraryOptions {
   onBack(): void;
   /** The book's menu: sound, how to play, starting the book again. */
   onSettings(): void;
+  /** The paid shelf the book is on, when the player doesn't own it: its chapters stop after the free ones. */
+  shelf?: ShelfId;
+  onUnlock(shelf: ShelfId): void;
 }
 
 /** Each print lies a little askew, like pictures dropped on a table. */
@@ -54,7 +58,12 @@ export class Library {
     const first = chapters[0]?.def;
     const book = first ? BOOKS[first.book] : null;
     const started = chapters.some((c) => c.state === 'done');
-    const finished = chapters.every((c) => c.state === 'done');
+    const shelf = opts.shelf;
+    const finished = !shelf && chapters.every((c) => c.state === 'done');
+    const unlock = (primary: boolean) =>
+      shelf
+        ? h('button', { type: 'button', class: `btn${primary ? ' btn--primary' : ''} library-unlock`, onclick: () => opts.onUnlock(shelf) }, svg(ICONS.lock), t('library.unlock', { shelf: SHELVES[shelf].title }))
+        : '';
     const next = chapters[current];
 
     const head = h(
@@ -69,7 +78,9 @@ export class Library {
             h('span', { class: 'library-continue-text' }, h('small', {}, t(started ? 'library.continue' : 'library.begin')), next.def.title),
             svg(ICONS.next),
           )
-        : h('p', { class: 'library-end' }, t('library.finished')),
+        : shelf
+          ? unlock(true)
+          : h('p', { class: 'library-end' }, t('library.finished')),
     );
 
     const shelves = (book?.volumes ?? [{ from: 1, name: '', title: '' }]).map((volume, v, all) => {
@@ -85,7 +96,10 @@ export class Library {
     });
 
     const bar = screenBar(barButton(t('top.shelf'), ICONS.prev, () => opts.onBack()), null, barButton(t('top.settings'), ICONS.settings, () => opts.onSettings()));
-    this.el = h('section', { class: 'library', 'aria-label': t('library.label') }, bar, h('div', { class: 'library-inner' }, head, ...shelves.filter((s) => s !== null)));
+    // A free sample ends on where the story goes on, and the way there.
+    const more =
+      shelf && next ? h('aside', { class: 'library-more' }, h('p', {}, t('library.continues', { shelf: SHELVES[shelf].title })), unlock(false)) : '';
+    this.el = h('section', { class: 'library', 'aria-label': t('library.label') }, bar, h('div', { class: 'library-inner' }, head, ...shelves.filter((s) => s !== null), more));
   }
 
   private print(def: LevelDef, state: ChapterState, i: number, isCurrent: boolean, opts: LibraryOptions): HTMLElement {
@@ -98,18 +112,25 @@ export class Library {
     } else {
       pic.append(h('span', { class: 'print-numeral', 'aria-hidden': 'true' }, roman(def.chapter)));
     }
-    const classes = ['print', `is-${state}`, isCurrent && 'is-current'].filter(Boolean).join(' ');
+    const closed = state === 'locked' || state === 'sealed';
+    const classes = ['print', `is-${state}`, closed && 'is-locked', isCurrent && 'is-current'].filter(Boolean).join(' ');
+    const shelf = opts.shelf ? SHELVES[opts.shelf].title : '';
     return h(
       'button',
       {
         type: 'button',
         class: classes,
         style: `--tilt: ${TILTS[i % TILTS.length]}deg`,
-        'aria-disabled': state === 'locked' ? 'true' : undefined,
-        'aria-label': state === 'locked' ? t('library.locked', { chapter: number }) : `${number}: ${def.title}`,
+        'aria-disabled': closed ? 'true' : undefined,
+        'aria-label':
+          state === 'sealed' ? t('library.sealed', { chapter: number, shelf }) : state === 'locked' ? t('library.locked', { chapter: number }) : `${number}: ${def.title}`,
         onclick: (e: Event) => {
-          if (state !== 'locked') {
+          if (!closed) {
             opts.onOpen(i);
+            return;
+          }
+          if (state === 'sealed' && opts.shelf) {
+            opts.onUnlock(opts.shelf);
             return;
           }
           // Not reached yet: a little shake, and what to read first.
@@ -123,7 +144,7 @@ export class Library {
       },
       pic,
       h('span', { class: 'print-number' }, number),
-      state === 'locked' ? '' : h('span', { class: 'print-title' }, def.title),
+      closed ? '' : h('span', { class: 'print-title' }, def.title),
     );
   }
 

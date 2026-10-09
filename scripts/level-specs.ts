@@ -810,5 +810,501 @@ const PIGS: LevelSpec[] = [
   },
 ];
 
-/** The shelf, book by book, each in reading order. */
-export const SPECS: LevelSpec[] = [...PRIDE, ...ALICE, ...PIGS];
+/**
+ * A Christmas Carol, the whole story in ten scenes, free for everyone. Arthur Rackham's 1915
+ * edition (Gutenberg #24022): his twelve colour plates, and line drawings where a scene has none.
+ * Its five parts are Dickens's staves; `chapter` is the stave.
+ */
+const CAROL_BOOK = 'a-christmas-carol';
+const RACKHAM = 'Arthur Rackham, 1915';
+const rackham = (file: string) => art(`rackham-1915/${file}.jpg`);
+
+const CAROL: LevelSpec[] = [
+  {
+    id: 'carol-1-humbug',
+    book: CAROL_BOOK,
+    chapter: 1,
+    title: 'Bah! Humbug!',
+    rows: 6,
+    cols: 7,
+    story: {
+      text: 'Marley was dead, to begin with. His old partner, Ebenezer Scrooge, is a {SQUEEZING}, grasping, {COVETOUS} old sinner. When his nephew Fred wishes him a merry {CHRISTMAS}, Scrooge answers: “Bah! {HUMBUG}!” And when two portly gentlemen ask him to give something to the poor, he only asks: are there no prisons? Are there no {WORKHOUSES}?',
+      image: rackham('007-they-were-portly-gentlemen-pleasant-to-behold'),
+      caption: 'They were portly gentlemen, pleasant to behold',
+      credit: RACKHAM,
+    },
+  },
+  {
+    id: 'carol-1-marleys-ghost',
+    book: CAROL_BOOK,
+    chapter: 1,
+    title: 'Marley’s Ghost',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'That night, in his gloomy rooms, Scrooge hears the {CLANKING} of a chain. Through the locked door comes the ghost of Jacob {MARLEY}, wrapped in cash-boxes, keys and {PADLOCKS}. “How now?” says Scrooge, {CAUSTIC} and cold as ever. “I wear the chain I {FORGED} in life,” the ghost answers. Scrooge may yet {ESCAPE} his fate: three {SPIRITS} will come.',
+      image: rackham('001-img01'),
+      caption: '“How now?” said Scrooge, caustic and cold as ever',
+      credit: RACKHAM,
+      colour: true,
+    },
+  },
+  {
+    id: 'carol-1-phantoms',
+    book: CAROL_BOOK,
+    chapter: 1,
+    title: 'The Air Filled with Phantoms',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'Marley’s ghost floats out of the open {WINDOW}, and Scrooge follows to look. The air is filled with {PHANTOMS}, wandering hither and thither, {MOANING} as they go. Each wears a chain, and each one {WEEPS} because it longs to help the {WRETCHED} people below, and has lost the {POWER} for ever. Scrooge closes the window and, {EXHAUSTED}, falls asleep at once.',
+      image: rackham('012-img04'),
+      caption: 'The air was filled with phantoms',
+      credit: RACKHAM,
+      colour: true,
+    },
+  },
+  {
+    id: 'carol-2-fezziwig',
+    book: CAROL_BOOK,
+    chapter: 2,
+    title: 'Old Fezziwig’s Ball',
+    rows: 7,
+    cols: 6,
+    story: {
+      text: 'At one o’clock the first of the three spirits, the Ghost of Christmas {PAST}, takes Scrooge back to his youth: to the {WAREHOUSE} of old Fezziwig, where he was an {APPRENTICE}. It is Christmas Eve, and the place is swept clean for a {BALL}. In comes a {FIDDLER}, and all the young people, and then old Fezziwig stands out to dance with Mrs. {FEZZIWIG}.',
+      image: rackham('016-img05'),
+      caption: 'Then old Fezziwig stood out to dance with Mrs. Fezziwig',
+      credit: RACKHAM,
+      colour: true,
+    },
+  },
+  {
+    id: 'carol-2-belle',
+    book: CAROL_BOOK,
+    chapter: 2,
+    title: 'Another Idol',
+    rows: 6,
+    cols: 7,
+    story: {
+      text: 'Then the spirit shows him a fair young {GIRL} named Belle, whom he once meant to {MARRY}. “Another {IDOL} has displaced me,” she tells him: a {GOLDEN} one. His love of {GAIN} has mastered him. So she sets him {FREE}, with a full {HEART}, and they {PARTED}. “Spirit!” Scrooge cries. “Show me no {MORE}!”',
+      image: rackham('017-she-left-him-and-they-parted'),
+      caption: 'She left him, and they parted',
+      credit: RACKHAM,
+    },
+  },
+  {
+    id: 'carol-3-the-cratchits',
+    book: CAROL_BOOK,
+    chapter: 3,
+    title: 'God Bless Us, Every One',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'The second spirit, the Ghost of Christmas {PRESENT}, takes Scrooge to the little house of his clerk, Bob Cratchit. Bob comes home from church with Tiny Tim on his {SHOULDER}, a little {CRUTCH} in the boy’s hand. There is a {GOOSE}, and then Mrs. Cratchit brings in the {PUDDING}, blazing with {BRANDY}. Tim says, “God {BLESS} us, every one!” Scrooge asks if the child will {LIVE}.',
+      image: rackham('025-with-the-pudding'),
+      caption: 'With the pudding',
+      credit: RACKHAM,
+    },
+  },
+  {
+    id: 'carol-3-blind-mans-buff',
+    book: CAROL_BOOK,
+    chapter: 3,
+    title: 'Blind Man’s Buff',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'At his nephew Fred’s house, everyone {LAUGHS} at Uncle Scrooge, though Fred only {PITIES} him. Then there is {MUSIC}, and a game of blind man’s {BUFF}. Topper is the blind man, and the way he goes after the plump {SISTER} in the lace tucker is an {OUTRAGE}! Scrooge, unseen, begs to {STAY}, and {GUESSES} as loud as anyone, full of {FUN}.',
+      image: rackham('026-img08'),
+      caption: 'The way he went after that plump sister in the lace tucker!',
+      credit: RACKHAM,
+      colour: true,
+    },
+  },
+  {
+    id: 'carol-4-old-joe',
+    book: CAROL_BOOK,
+    chapter: 4,
+    title: 'Yet to Come',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'The last spirit, the Ghost of Christmas Yet to Come, never speaks; it only {POINTS}. In a filthy shop, old Joe buys a dead man’s things from those who {ROBBED} him: his {SHIRT}, his {BLANKETS}, even his bed-{CURTAINS}, rings and all. Nobody {MOURNS} the man. In a churchyard, the spirit points to a {GRAVE}, and Scrooge reads his own {NAME}.',
+      image: rackham('029-img010'),
+      caption: '“Bed-curtains!” “Ah!” returned the woman, laughing',
+      credit: RACKHAM,
+      colour: true,
+    },
+  },
+  {
+    id: 'carol-5-christmas-day',
+    book: CAROL_BOOK,
+    chapter: 5,
+    title: 'Your Uncle Scrooge',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'Scrooge wakes in his own bed, and it is {CHRISTMAS} Day! He is as light as a {FEATHER}, as happy as an {ANGEL}, as merry as a {SCHOOLBOY}. He sends the prize {TURKEY} to Bob Cratchit, and walks to his {NEPHEW}’s door. “It’s I, your uncle Scrooge. I have come to {DINNER}. Will you let me in, Fred?”',
+      image: rackham('031-img11'),
+      caption: '“It’s I, your uncle Scrooge. I have come to dinner. Will you let me in, Fred?”',
+      credit: RACKHAM,
+      colour: true,
+    },
+  },
+  {
+    id: 'carol-5-every-one',
+    book: CAROL_BOOK,
+    chapter: 5,
+    title: 'A Second Father',
+    rows: 7,
+    cols: 6,
+    story: {
+      text: 'Next morning Bob comes in {EIGHTEEN} minutes {LATE}. “Now, I’ll tell you what, my friend,” says Scrooge. “I am about to {RAISE} your {SALARY}!” He becomes as good a {FRIEND}, as good a man, as the good old {CITY} ever knew; and to Tiny Tim, who did not {DIE}, a second {FATHER}. God bless us, every one!',
+      image: rackham('032-img12'),
+      caption: '“Now, I’ll tell you what, my friend,” said Scrooge',
+      credit: RACKHAM,
+      colour: true,
+    },
+  },
+];
+
+/**
+ * The paid shelves' free samples: each book's first four scenes. Brock's plates for Persuasion
+ * and Emma are coloured, and framed with a hand-lettered caption, which `crop` leaves out; the
+ * Thomson Emma plates are scans of whole pages.
+ */
+const PERSUASION_BOOK = 'persuasion';
+
+const PERSUASION: LevelSpec[] = [
+  {
+    id: 'persuasion-01-the-baronetage',
+    book: PERSUASION_BOOK,
+    chapter: 1,
+    title: 'The Baronetage',
+    rows: 8,
+    cols: 5,
+    story: {
+      text: 'Sir Walter Elliot of Kellynch Hall never takes up any book but the {BARONETAGE}, where he reads of himself. Vain of his looks and his rank, he has lived far beyond his {INCOME}. His agent, Mr. Shepherd, drops {UNWELCOME} hints: they must {RETRENCH}, or let Kellynch. And Anne, the {KINDEST} of his daughters, is nobody to him.',
+      image: art('persuasion-brock-1898/2pers-01.jpg'),
+      caption: 'The unwelcome hints of Mr. Shepherd, his agent',
+      credit: 'C. E. Brock, 1898',
+      crop: [0.1, 0.06, 0.92, 0.86],
+      colour: true,
+    },
+  },
+  {
+    id: 'persuasion-03-that-old-fellow',
+    book: PERSUASION_BOOK,
+    chapter: 3,
+    title: 'Eight Years Ago',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'Admiral Croft will take Kellynch, though Sir Walter scorns {SAILORS} and their weathered faces. But the {ADMIRAL}’s wife has a brother, Frederick Wentworth. Eight years ago, Anne was {ENGAGED} to him, a young officer with no {FORTUNE}. Lady Russell, her mother’s old {FRIEND}, persuaded her to give him up. Anne has {REGRETTED} it ever since, and has lost her {BLOOM}.',
+      image: art('persuasion-thomson-1897/persuasion-illustration-chapter-1.jpg'),
+      caption: 'In the name of heaven, who is that old fellow?',
+      credit: 'Hugh Thomson, 1897',
+      crop: [0, 0, 1, 0.9],
+    },
+  },
+  {
+    id: 'persuasion-05-come-at-last',
+    book: PERSUASION_BOOK,
+    chapter: 5,
+    title: 'So You Are Come at Last',
+    rows: 7,
+    cols: 5,
+    story: {
+      text: 'Anne goes to Uppercross {COTTAGE} to keep her sister Mary {COMPANY}. Mary is lying on the faded {SOFA}, sure she is ill. “So you are come at last!” she cries. “I can hardly {SPEAK}.” Mary married Charles Musgrove, heir of the Great House, where his young sisters are all {MUSIC} and {FASHION}.',
+      image: art('persuasion-brock-1898/pers-brock-06.jpg'),
+      caption: 'So you are come at last!',
+      credit: 'C. E. Brock, 1909',
+      crop: [0.1, 0.08, 0.92, 0.86],
+      colour: true,
+    },
+  },
+  {
+    id: 'persuasion-08-divided',
+    book: PERSUASION_BOOK,
+    chapter: 8,
+    title: 'Divided by Mrs. Musgrove',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'Captain {WENTWORTH} comes at last, rich in prize money from the war. To Anne he is cold and {CEREMONIOUS}; she hears that he found her “so {ALTERED} he should not have known her again.” One evening they sit on the same sofa, divided only by Mrs. {MUSGROVE}, {SIGHING} for the {SAILOR} son she lost.',
+      image: art('persuasion-brock-1898/pers-brock-09.jpg'),
+      caption: 'They were divided only by Mrs. Musgrove',
+      credit: 'C. E. Brock, 1909',
+      crop: [0.1, 0.15, 0.92, 0.82],
+      colour: true,
+    },
+  },
+];
+
+const EMMA_BOOK = 'emma';
+
+const EMMA: LevelSpec[] = [
+  {
+    id: 'emma-01-the-match',
+    book: EMMA_BOOK,
+    chapter: 1,
+    title: 'I Planned the Match',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'Emma Woodhouse, handsome, {CLEVER} and rich, has lived nearly twenty-one years with very little to {DISTRESS} or vex her. Now her {GOVERNESS}, Miss Taylor, has married Mr. Weston, and Emma is sure she {PLANNED} the match herself. Her father sighs for “poor Miss Taylor”. Mr. Knightley, an old {FRIEND}, tells her it was a lucky {GUESS}, not {SUCCESS}.',
+      image: art('emma-brock-1909/emma-ce-brock-1909-vol-i-chapter-i.jpg'),
+      caption: 'I planned the match from that hour',
+      credit: 'C. E. Brock, 1909',
+      crop: [0.08, 0.06, 0.92, 0.82],
+      colour: true,
+    },
+  },
+  {
+    id: 'emma-04-survey',
+    book: EMMA_BOOK,
+    chapter: 4,
+    title: 'An Opportunity of Survey',
+    rows: 8,
+    cols: 5,
+    story: {
+      text: 'Emma takes up pretty Harriet Smith, a {PARLOUR} boarder at the school, and means to {IMPROVE} her. Harriet talks only of the Martins, whose {HOME} she shared one happy {SUMMER}. Then young Robert Martin meets them in the {LANE}, and Emma is glad of the chance to {SURVEY} him: a {FARMER}, quite beneath Harriet.',
+      image: art('emma-thomson-1896/emma-frontispice-ch04.jpg'),
+      caption: 'Emma was not sorry to have such an opportunity of survey',
+      credit: 'Hugh Thomson, 1896',
+      crop: [0.04, 0.03, 0.96, 0.89],
+    },
+  },
+  {
+    id: 'emma-06-the-portrait',
+    book: EMMA_BOOK,
+    chapter: 6,
+    title: 'Frequently Coming to Look',
+    rows: 8,
+    cols: 5,
+    story: {
+      text: 'Emma decides that Mr. Elton, the handsome {VICAR}, is just the man for Harriet. To show off her friend, she {PAINTS} Harriet’s {PORTRAIT}, and Mr. Elton cannot keep still, {FREQUENTLY} coming to look. He {SIGHS} over every stroke, and offers to carry it to London to be {FRAMED}.',
+      image: art('emma-brock-1909/emma-ce-brock-1909-vol-i-chapter-vi.jpg'),
+      caption: 'Frequently coming to look',
+      credit: 'C. E. Brock, 1909',
+      crop: [0.08, 0.05, 0.92, 0.85],
+      colour: true,
+    },
+  },
+  {
+    id: 'emma-08-great-spirits',
+    book: EMMA_BOOK,
+    chapter: 8,
+    title: 'Rode Off in Great Spirits',
+    rows: 8,
+    cols: 5,
+    story: {
+      text: 'Mr. Elton rides off to London with the portrait, in great {SPIRITS}. Meanwhile Robert Martin writes Harriet a good, plain {LETTER} asking her to marry him, and Emma guides her to {REFUSE}. Mr. Knightley is {FURIOUS}: Martin is sensible and {WORTHY}, and Elton will never marry {UNWISELY}.',
+      image: art('emma-thomson-1896/emma-ch08-i-8.jpg'),
+      caption: 'Rode off in great spirits',
+      credit: 'Hugh Thomson, 1896',
+      crop: [0.03, 0.08, 1, 0.92],
+    },
+  },
+];
+
+const SENSE_BOOK = 'sense-and-sensibility';
+const THOMSON_1896 = 'Hugh Thomson, 1896';
+const sense = (file: string) => art(`sense-thomson-1896/${file}.jpg`);
+
+const SENSE: LevelSpec[] = [
+  {
+    id: 'sense-01-norland',
+    book: SENSE_BOOK,
+    chapter: 1,
+    title: 'Norland Park',
+    rows: 8,
+    cols: 5,
+    story: {
+      text: 'At Norland Park, old Mr. Dashwood leaves his {ESTATE} to his nephew Henry for life, and after him to Henry’s son John and John’s little {BOY}, whose {PRATTLE} had charmed the old man. A year later Henry dies, and his wife and three {DAUGHTERS}, Elinor, Marianne and Margaret, are left with very little money. Dying, he begs John to {PROVIDE} for them, and John {PROMISES}.',
+      image: sense('002-his-son-s-son-a-child-of-four-years-old'),
+      caption: 'His son’s son, a child of four years old',
+      credit: THOMSON_1896,
+    },
+  },
+  {
+    id: 'sense-02-half-of-it',
+    book: SENSE_BOOK,
+    chapter: 2,
+    title: 'How They Will Spend Half of It',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'John thinks three thousand {POUNDS} would be generous. His wife Fanny fears it would {IMPOVERISH} their boy. Fifteen hundred, then? An {ANNUITY}? “I cannot imagine how they will spend half of it,” says Fanny. In the end, presents of {FISH} and game will do. But Fanny’s {BROTHER} Edward, {SHY} and {GENTLE}, quietly wins Elinor’s {HEART}.',
+      image: sense('003-image_035'),
+      caption: '“I cannot imagine how they will spend half of it”',
+      credit: THOMSON_1896,
+    },
+  },
+  {
+    id: 'sense-10-they-sang-together',
+    book: SENSE_BOOK,
+    chapter: 10,
+    title: 'They Sang Together',
+    rows: 8,
+    cols: 5,
+    story: {
+      text: 'At Barton Cottage, Marianne runs down a rainy hill, falls and twists her {ANKLE}. A handsome {STRANGER}, John Willoughby, {CARRIES} her home in his arms. He loves the same {MUSIC}, the same {POETS}, the same everything. They sing together, and soon the whole {VALLEY} says they are in {LOVE}. Only Colonel Brandon, silent and grave, looks on.',
+      image: sense('005-they-sang-together'),
+      caption: 'They sang together',
+      credit: THOMSON_1896,
+    },
+  },
+  {
+    id: 'sense-12-a-lock-of-hair',
+    book: SENSE_BOOK,
+    chapter: 12,
+    title: 'A Lock of Her Hair',
+    rows: 8,
+    cols: 5,
+    story: {
+      text: 'Margaret has seen it with her own eyes: Willoughby cut off a long {LOCK} of Marianne’s {HAIR}, {KISSED} it, and folded it into his {POCKETBOOK}. He offers her a {HORSE}, and calls her by her {NAME}. Surely they are {ENGAGED}? Elinor wonders why no one says so.',
+      image: sense('006-he-cut-off-a-long-lock-of-her-hair'),
+      caption: 'He cut off a long lock of her hair',
+      credit: THOMSON_1896,
+      crop: [0, 0, 1, 0.96],
+    },
+  },
+];
+
+const JANE_BOOK = 'jane-eyre';
+const TOWNSEND = 'F. H. Townsend, 1897';
+const townsend = (file: string) => art(`townsend-1897/${file}.jpg`);
+
+const JANE: LevelSpec[] = [
+  {
+    id: 'jane-04-how-dare-i',
+    book: JANE_BOOK,
+    chapter: 4,
+    title: 'How Dare I?',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: '{ORPHANED} Jane Eyre grows up at Gateshead, unloved by her aunt, Mrs. Reed, and beaten by her {COUSIN} John. Locked in the red-room, she {FAINTS} with terror. Now she is to be sent to {SCHOOL}, called a {LIAR} before its stern master. At last Jane {SPEAKS} up: “How dare I, Mrs. Reed? Because it is the {TRUTH}!” She has never felt such {FREEDOM}.',
+      image: townsend('001-how-dare-i-mrs-reed-how-dare-i-because-it-is-the-t'),
+      caption: '“How dare I, Mrs. Reed? How dare I? Because it is the truth”',
+      credit: TOWNSEND,
+      crop: [0, 0, 1, 0.88],
+    },
+  },
+  {
+    id: 'jane-12-the-stranger',
+    book: JANE_BOOK,
+    chapter: 12,
+    title: 'The Stranger in the Lane',
+    rows: 7,
+    cols: 6,
+    story: {
+      text: 'After eight hard years at Lowood school, Jane becomes {GOVERNESS} to little Adèle at Thornfield Hall. One icy {EVENING} in the lane, a great {DOG} runs past her, then a {HORSE} slips and falls with its rider. Jane helps the stern, dark {STRANGER} back into the {SADDLE}. Only at the hall does she learn his {NAME}.',
+      image: townsend('002-i-was-mortally-afraid-of-its-trampling-forefeet'),
+      caption: 'I was mortally afraid of its trampling forefeet',
+      credit: TOWNSEND,
+      crop: [0, 0, 1, 0.88],
+    },
+  },
+  {
+    id: 'jane-15-fire',
+    book: JANE_BOOK,
+    chapter: 15,
+    title: 'Who Did It?',
+    rows: 7,
+    cols: 6,
+    story: {
+      text: 'Mr. Rochester, the master of {THORNFIELD}, is moody and abrupt, yet Jane loves to talk with him. One night she hears a {DEMONIAC} {LAUGH} outside her door, and {SMOKE}! His bed is in {FLAMES}. She drenches it with {WATER} and saves his life. “What is it and who did it?” he asks, and makes her swear to say nothing of his {BED}.',
+      image: townsend('003-what-is-it-and-who-did-it-he-asked'),
+      caption: '“What is it and who did it?” he asked',
+      credit: TOWNSEND,
+      crop: [0, 0, 1, 0.86],
+    },
+  },
+  {
+    id: 'jane-18-never-turned-a-page',
+    book: JANE_BOOK,
+    chapter: 18,
+    title: 'She Never Turned a Page',
+    rows: 8,
+    cols: 6,
+    story: {
+      text: 'Thornfield fills with grand {GUESTS}, and Mr. Rochester seems set to marry the {PROUD}, {BEAUTIFUL} Blanche Ingram. Jane, unseen in a corner, watches, and her heart {ACHES}. Then an old {GYPSY} comes to tell {FORTUNES}. Blanche comes back from her, sits with a book and never turns a {PAGE}, her face growing {DARKER} every minute.',
+      image: townsend('004-during-all-that-time-she-never-turned-a-page'),
+      caption: 'During all that time she never turned a page',
+      credit: TOWNSEND,
+      crop: [0, 0, 1, 0.9],
+    },
+  },
+];
+
+const LITTLE_BOOK = 'little-women';
+const MERRILL = 'Frank T. Merrill, 1880';
+const merrill = (file: string) => art(`merrill-1880/${file}.jpg`);
+
+const LITTLE: LevelSpec[] = [
+  {
+    id: 'little-01-presents',
+    book: LITTLE_BOOK,
+    chapter: 1,
+    title: 'Without Any Presents',
+    rows: 6,
+    cols: 7,
+    story: {
+      text: '“Christmas won’t be Christmas without any {PRESENTS},” {GRUMBLES} Jo, lying on the rug. The four March sisters, Meg, Jo, Beth and Amy, are poor this year, with Father away at the war. Each has a {DOLLAR} to spend on herself, but they decide to buy gifts for their {MOTHER} instead. That night a cheerful {LETTER} comes from Father, and each girl {RESOLVES} to be better.',
+      image: merrill('007-christmas-won-t-be-christmas-without-any-presents'),
+      caption: '“Christmas won’t be Christmas without any presents”',
+      credit: MERRILL,
+    },
+  },
+  {
+    id: 'little-02-procession',
+    book: LITTLE_BOOK,
+    chapter: 2,
+    title: 'The Procession Set Out',
+    rows: 5,
+    cols: 8,
+    story: {
+      text: 'On Christmas morning Marmee asks a favour: a poor woman, Mrs. Hummel, has a new {BABY} and six children huddled in one bed, with no {FIRE} and no {FOOD}. The girls give up their own {BREAKFAST}, and the procession sets out through the {SNOW} with the {BUCKWHEATS}, the {BREAD} and the cream.',
+      image: merrill('016-the-procession-set-out'),
+      caption: 'The procession set out',
+      credit: MERRILL,
+    },
+  },
+  {
+    id: 'little-03-the-laurence-boy',
+    book: LITTLE_BOOK,
+    chapter: 3,
+    title: 'The Laurence Boy',
+    rows: 6,
+    cols: 7,
+    story: {
+      text: 'Meg and Jo go to a New Year’s {DANCE}, Meg in {BORROWED} gloves and Jo hiding the {SCORCH} on her dress. Jo slips into a curtained {RECESS}, and comes face to face with the Laurence boy from next door. Laurie is {SHY} too, and they talk and {LAUGH} like old friends, and even {POLKA} in the {HALL}.',
+      image: merrill('025-face-to-face-with-the-laurence-boy'),
+      caption: 'Face to face with the Laurence boy',
+      credit: MERRILL,
+    },
+  },
+  {
+    id: 'little-08-i-burnt-it-up',
+    book: LITTLE_BOOK,
+    chapter: 8,
+    title: 'I Burnt It Up',
+    rows: 6,
+    cols: 7,
+    story: {
+      text: 'Left behind when Jo and Meg go to the {THEATRE}, Amy takes her {REVENGE}: she {BURNS} the little book Jo has worked on for years. “I burnt it up,” she says, and Jo will not {FORGIVE} her. Next day Amy follows her to the river, and the {ICE} gives way. Laurie and Jo pull her out, and Jo, {SOBBING}, vows to master her {TEMPER}.',
+      image: merrill('047-i-burnt-it-up'),
+      caption: 'I burnt it up',
+      credit: MERRILL,
+    },
+  },
+];
+
+/**
+ * The shelf, book by book, each in reading order. New books go at the end, so the files already
+ * made keep their numbers (and their layouts).
+ */
+export const SPECS: LevelSpec[] = [...PRIDE, ...ALICE, ...PIGS, ...CAROL, ...PERSUASION, ...EMMA, ...SENSE, ...JANE, ...LITTLE];

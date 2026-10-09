@@ -1,0 +1,54 @@
+{
+  "id": "sense-10-they-sang-together",
+  "book": "sense-and-sensibility",
+  "chapter": 10,
+  "title": "They Sang Together",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "VAEYM",
+    "CLLSU",
+    "AREIC",
+    "SRVRE",
+    "EIOLG",
+    "EPOAN",
+    "LKERT",
+    "ANTSS"
+  ],
+  "words": [
+    {
+      "text": "ANKLE",
+      "path": [35, 36, 31, 30, 25]
+    },
+    {
+      "text": "STRANGER",
+      "path": [39, 34, 33, 28, 29, 24, 19, 18]
+    },
+    {
+      "text": "CARRIES",
+      "path": [5, 10, 11, 16, 21, 20, 15]
+    },
+    {
+      "text": "MUSIC",
+      "path": [4, 9, 8, 13, 14]
+    },
+    {
+      "text": "POETS",
+      "path": [26, 27, 32, 37, 38]
+    },
+    {
+      "text": "VALLEY",
+      "path": [0, 1, 6, 7, 2, 3]
+    },
+    {
+      "text": "LOVE",
+      "path": [23, 22, 17, 12]
+    }
+  ],
+  "story": {
+    "text": "At Barton Cottage, Marianne runs down a rainy hill, falls and twists her {ANKLE}. A handsome {STRANGER}, John Willoughby, {CARRIES} her home in his arms. He loves the same {MUSIC}, the same {POETS}, the same everything. They sing together, and soon the whole {VALLEY} says they are in {LOVE}. Only Colonel Brandon, silent and grave, looks on.",
+    "image": "art/sense-thomson-1896/005-they-sang-together.jpg",
+    "caption": "They sang together",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "id": "little-03-the-laurence-boy",
+  "book": "little-women",
+  "chapter": 3,
+  "title": "The Laurence Boy",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "HSHHALR",
+    "ALYGUCE",
+    "PLEADEB",
+    "OLCNSSO",
+    "HKASEDR",
+    "CROCWOR"
+  ],
+  "words": [
+    {
+      "text": "DANCE",
+      "path": [18, 17, 24, 23, 16]
+    },
+    {
+      "text": "BORROWED",
+      "path": [20, 27, 34, 41, 40, 39, 32, 33]
+    },
+    {
+      "text": "SCORCH",
+      "path": [31, 38, 37, 36, 35, 28]
+    },
+    {
+      "text": "RECESS",
+      "path": [6, 13, 12, 19, 26, 25]
+    },
+    {
+      "text": "SHY",
+      "path": [1, 2, 9]
+    },
+    {
+      "text": "LAUGH",
+      "path": [5, 4, 11, 10, 3]
+    },
+    {
+      "text": "POLKA",
+      "path": [14, 21, 22, 29, 30]
+    },
+    {
+      "text": "HALL",
+      "path": [0, 7, 8, 15]
+    }
+  ],
+  "story": {
+    "text": "Meg and Jo go to a New Year’s {DANCE}, Meg in {BORROWED} gloves and Jo hiding the {SCORCH} on her dress. Jo slips into a curtained {RECESS}, and comes face to face with the Laurence boy from next door. Laurie is {SHY} too, and they talk and {LAUGH} like old friends, and even {POLKA} in the {HALL}.",
+    "image": "art/merrill-1880/025-face-to-face-with-the-laurence-boy.jpg",
+    "caption": "Face to face with the Laurence boy",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

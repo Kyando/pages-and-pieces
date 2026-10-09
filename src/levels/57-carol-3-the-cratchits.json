@@ -1,0 +1,58 @@
+{
+  "id": "carol-3-the-cratchits",
+  "book": "a-christmas-carol",
+  "chapter": 3,
+  "title": "God Bless Us, Every One",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "SHOSSB",
+    "TEULEL",
+    "NSODEH",
+    "EGOBRC",
+    "SEARCT",
+    "PRNDRU",
+    "ELPYIN",
+    "VIUDDG"
+  ],
+  "words": [
+    {
+      "text": "PRESENT",
+      "path": [30, 31, 25, 24, 18, 12, 6]
+    },
+    {
+      "text": "SHOULDER",
+      "path": [0, 1, 2, 8, 9, 15, 16, 22]
+    },
+    {
+      "text": "CRUTCH",
+      "path": [28, 34, 35, 29, 23, 17]
+    },
+    {
+      "text": "GOOSE",
+      "path": [19, 20, 14, 13, 7]
+    },
+    {
+      "text": "PUDDING",
+      "path": [38, 44, 45, 46, 40, 41, 47]
+    },
+    {
+      "text": "BRANDY",
+      "path": [21, 27, 26, 32, 33, 39]
+    },
+    {
+      "text": "BLESS",
+      "path": [5, 11, 10, 4, 3]
+    },
+    {
+      "text": "LIVE",
+      "path": [37, 43, 42, 36]
+    }
+  ],
+  "story": {
+    "text": "The second spirit, the Ghost of Christmas {PRESENT}, takes Scrooge to the little house of his clerk, Bob Cratchit. Bob comes home from church with Tiny Tim on his {SHOULDER}, a little {CRUTCH} in the boy’s hand. There is a {GOOSE}, and then Mrs. Cratchit brings in the {PUDDING}, blazing with {BRANDY}. Tim says, “God {BLESS} us, every one!” Scrooge asks if the child will {LIVE}.",
+    "image": "art/rackham-1915/025-with-the-pudding.jpg",
+    "caption": "With the pudding",
+    "credit": "Arthur Rackham, 1915"
+  }
+}

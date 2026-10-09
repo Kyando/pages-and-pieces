@@ -1,0 +1,60 @@
+{
+  "id": "sense-12-a-lock-of-hair",
+  "book": "sense-and-sensibility",
+  "chapter": 12,
+  "title": "A Lock of Her Hair",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "HRDKI",
+    "AIESS",
+    "PLOCE",
+    "OEMKN",
+    "CNAAG",
+    "KDEGE",
+    "ETBRS",
+    "KOOOH"
+  ],
+  "words": [
+    {
+      "text": "LOCK",
+      "path": [11, 12, 13, 18]
+    },
+    {
+      "text": "HAIR",
+      "path": [0, 5, 6, 1]
+    },
+    {
+      "text": "KISSED",
+      "path": [3, 4, 9, 8, 7, 2]
+    },
+    {
+      "text": "POCKETBOOK",
+      "path": [10, 15, 20, 25, 30, 31, 32, 37, 36, 35]
+    },
+    {
+      "text": "HORSE",
+      "path": [39, 38, 33, 34, 29]
+    },
+    {
+      "text": "NAME",
+      "path": [21, 22, 17, 16]
+    },
+    {
+      "text": "ENGAGED",
+      "path": [14, 19, 24, 23, 28, 27, 26]
+    }
+  ],
+  "story": {
+    "text": "Margaret has seen it with her own eyes: Willoughby cut off a long {LOCK} of Marianne’s {HAIR}, {KISSED} it, and folded it into his {POCKETBOOK}. He offers her a {HORSE}, and calls her by her {NAME}. Surely they are {ENGAGED}? Elinor wonders why no one says so.",
+    "image": "art/sense-thomson-1896/006-he-cut-off-a-long-lock-of-her-hair.jpg",
+    "caption": "He cut off a long lock of her hair",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0,
+      0,
+      1,
+      0.96
+    ]
+  }
+}

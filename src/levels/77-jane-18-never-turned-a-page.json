@@ -1,0 +1,64 @@
+{
+  "id": "jane-18-never-turned-a-page",
+  "book": "jane-eyre",
+  "chapter": 18,
+  "title": "She Never Turned a Page",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "RPRDSE",
+    "EKOUUN",
+    "ARSETR",
+    "DECHFO",
+    "AGAGUY",
+    "PLTSES",
+    "FUSGYP",
+    "ITUAEB"
+  ],
+  "words": [
+    {
+      "text": "GUESTS",
+      "path": [27, 28, 34, 33, 32, 38]
+    },
+    {
+      "text": "PROUD",
+      "path": [1, 2, 8, 9, 3]
+    },
+    {
+      "text": "BEAUTIFUL",
+      "path": [47, 46, 45, 44, 43, 42, 36, 37, 31]
+    },
+    {
+      "text": "ACHES",
+      "path": [26, 20, 21, 15, 14]
+    },
+    {
+      "text": "GYPSY",
+      "path": [39, 40, 41, 35, 29]
+    },
+    {
+      "text": "FORTUNES",
+      "path": [22, 23, 17, 16, 10, 11, 5, 4]
+    },
+    {
+      "text": "PAGE",
+      "path": [30, 24, 25, 19]
+    },
+    {
+      "text": "DARKER",
+      "path": [18, 12, 13, 7, 6, 0]
+    }
+  ],
+  "story": {
+    "text": "Thornfield fills with grand {GUESTS}, and Mr. Rochester seems set to marry the {PROUD}, {BEAUTIFUL} Blanche Ingram. Jane, unseen in a corner, watches, and her heart {ACHES}. Then an old {GYPSY} comes to tell {FORTUNES}. Blanche comes back from her, sits with a book and never turns a {PAGE}, her face growing {DARKER} every minute.",
+    "image": "art/townsend-1897/004-during-all-that-time-she-never-turned-a-page.jpg",
+    "caption": "During all that time she never turned a page",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.9
+    ]
+  }
+}
