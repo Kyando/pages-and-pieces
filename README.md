@@ -6,6 +6,14 @@ Each chapter is a scene from the book. Its key words are listed above the grid, 
 
 The game opens on the shelf: the books standing side by side, each showing how far it has been read, with the books for young readers on a shelf of their own. A book opens on its library: its chapters as prints on a table, volume by volume. Finished chapters show their illustration, the next one waits as a blank sheet, and the rest stay face down until the story reaches them. Each book is read in its own order; finishing a chapter of one never opens another's.
 
+It is built to become a phone app (wrapped with Capacitor), so it behaves like one rather than a web page:
+
+- **No site header.** Each screen has its own bar, clear of the phone's notch. In a chapter, it holds the way back to the chapters, the chapter between its arrows with one dot per word, and a ⋯ menu (start over, with a confirmation; sound; how to play). The shelf and the chapter list have a settings sheet: sound, how to play, the credits, and starting a book (or everything) again.
+- **The back button works like an app's.** Every step deeper (shelf → chapters → chapter) is a history entry, and so is every open dialog. Back (a phone's button, or the browser's) closes the dialog, then steps out one screen at a time, and only leaves from the shelf. A reload keeps the screen.
+- **Offline-ready type.** The fonts ship with the game (`src/fonts.ts`, from Fontsource) instead of loading from Google.
+- **Touch, not mouse.** No double-tap zoom, no text selection or system menu on a long press (except reading text), hover effects only where there is a mouse, and a press effect on every button.
+- **Sharing** opens the phone's share sheet with the chapter's picture attached, where the device allows it.
+
 The shelf holds:
 
 - **Pride and Prejudice** (Jane Austen, 1813): 41 chapters covering the whole story, with Hugh Thomson's 1894 illustrations and, where he left a scene undrawn, C. E. Brock's from 1895. The passages retell each scene in plain modern English and keep Austen's best-known lines.

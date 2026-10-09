@@ -1,3 +1,4 @@
+import './fonts.ts';
 import './styles/main.css';
 import { App } from './ui/app.ts';
 

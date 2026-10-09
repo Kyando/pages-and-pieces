@@ -4,6 +4,8 @@ import { t } from '../i18n/index.ts';
 import { roman } from './desk.ts';
 import { h, svg } from './dom.ts';
 import { ICONS } from './icons.ts';
+import { barButton, screenBar } from './bar.ts';
+import { toast } from './overlay.ts';
 import { commonsThumb, loadPicture } from './picture.ts';
 
 export type ChapterState = 'done' | 'open' | 'locked';
@@ -13,8 +15,10 @@ export interface LibraryOptions {
   /** The chapter to pick up: the first not yet finished. */
   current: number;
   onOpen(index: number): void;
-  /** Wipes the player's progress; offered only once they have some. */
-  onErase?: () => void;
+  /** Back to the shelf. */
+  onBack(): void;
+  /** The book's menu: sound, how to play, starting the book again. */
+  onSettings(): void;
 }
 
 /** Each print lies a little askew, like pictures dropped on a table. */
@@ -80,7 +84,8 @@ export class Library {
       );
     });
 
-    this.el = h('section', { class: 'library', 'aria-label': t('library.label') }, h('div', { class: 'library-inner' }, head, ...shelves.filter((s) => s !== null), opts.onErase ? h('footer', { class: 'library-foot' }, h('button', { type: 'button', class: 'btn btn--tool library-erase', onclick: () => opts.onErase?.() }, t('library.erase'))) : ''));
+    const bar = screenBar(barButton(t('top.shelf'), ICONS.prev, () => opts.onBack()), null, barButton(t('top.settings'), ICONS.settings, () => opts.onSettings()));
+    this.el = h('section', { class: 'library', 'aria-label': t('library.label') }, bar, h('div', { class: 'library-inner' }, head, ...shelves.filter((s) => s !== null)));
   }
 
   private print(def: LevelDef, state: ChapterState, i: number, isCurrent: boolean, opts: LibraryOptions): HTMLElement {
@@ -100,9 +105,21 @@ export class Library {
         type: 'button',
         class: classes,
         style: `--tilt: ${TILTS[i % TILTS.length]}deg`,
-        disabled: state === 'locked',
+        'aria-disabled': state === 'locked' ? 'true' : undefined,
         'aria-label': state === 'locked' ? t('library.locked', { chapter: number }) : `${number}: ${def.title}`,
-        onclick: () => opts.onOpen(i),
+        onclick: (e: Event) => {
+          if (state !== 'locked') {
+            opts.onOpen(i);
+            return;
+          }
+          // Not reached yet: a little shake, and what to read first.
+          (e.currentTarget as HTMLElement).animate(
+            [{ translate: '0' }, { translate: '-6px' }, { translate: '5px' }, { translate: '-3px' }, { translate: '0' }],
+            { duration: 360, easing: 'ease-out' },
+          );
+          const before = opts.chapters[opts.current]?.def;
+          if (before) toast(t('library.lockedHint', { title: before.title }));
+        },
       },
       pic,
       h('span', { class: 'print-number' }, number),

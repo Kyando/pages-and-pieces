@@ -13,5 +13,12 @@ export const ICONS = {
   prev: base('<path d="m15 5-7 7 7 7"/>'),
   next: base('<path d="m9 5 7 7-7 7"/>'),
   arrow: base('<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>'),
-  share: base('<rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V5.5C16 4.7 15.3 4 14.5 4h-9C4.7 4 4 4.7 4 5.5v9c0 .8.7 1.5 1.5 1.5H8"/>'),
+  /** Share: the box with an arrow leaving it, as phones show it. */
+  share: base('<path d="M12 3.5v11"/><path d="m8 7.5 4-4 4 4"/><path d="M8.5 10.5H7a2 2 0 0 0-2 2V18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5.5a2 2 0 0 0-2-2h-1.5"/>'),
+  settings: base('<path d="M10.3 3.2a1.8 1.8 0 0 1 3.4 0l.4 1.2a1.8 1.8 0 0 0 2.4 1l1.2-.5a1.8 1.8 0 0 1 2.4 2.4l-.5 1.2a1.8 1.8 0 0 0 1 2.4l1.2.4a1.8 1.8 0 0 1 0 3.4l-1.2.4a1.8 1.8 0 0 0-1 2.4l.5 1.2a1.8 1.8 0 0 1-2.4 2.4l-1.2-.5a1.8 1.8 0 0 0-2.4 1l-.4 1.2a1.8 1.8 0 0 1-3.4 0l-.4-1.2a1.8 1.8 0 0 0-2.4-1l-1.2.5a1.8 1.8 0 0 1-2.4-2.4l.5-1.2a1.8 1.8 0 0 0-1-2.4l-1.2-.4a1.8 1.8 0 0 1 0-3.4l1.2-.4a1.8 1.8 0 0 0 1-2.4l-.5-1.2a1.8 1.8 0 0 1 2.4-2.4l1.2.5a1.8 1.8 0 0 0 2.4-1z"/><circle cx="12" cy="12" r="3.2"/>'),
+  more: base('<circle cx="5.5" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="18.5" cy="12" r="1.2" fill="currentColor"/>'),
+  /** The book's chapters, as a grid of prints. */
+  chapters: base('<rect x="4" y="4" width="6.5" height="7" rx="1.2"/><rect x="13.5" y="4" width="6.5" height="7" rx="1.2"/><rect x="4" y="14" width="6.5" height="6" rx="1.2"/><rect x="13.5" y="14" width="6.5" height="6" rx="1.2"/>'),
+  info: base('<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6h.01"/>'),
+  lock: base('<rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>'),
 } as const;

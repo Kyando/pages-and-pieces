@@ -1,6 +1,8 @@
 import type { Book } from '../core/books.ts';
 import { t, tn } from '../i18n/index.ts';
+import { barButton, screenBar, wordmark } from './bar.ts';
 import { h } from './dom.ts';
+import { ICONS } from './icons.ts';
 
 export interface ShelfBook {
   key: string;
@@ -13,6 +15,7 @@ export interface ShelfBook {
 export interface ShelfOptions {
   books: ShelfBook[];
   onOpen(key: string): void;
+  onSettings(): void;
 }
 
 /** Each book's cloth, in shelf order. */
@@ -27,13 +30,9 @@ export class Shelf {
   readonly el: HTMLElement;
 
   constructor(opts: ShelfOptions) {
-    const head = h(
-      'header',
-      { class: 'library-head' },
-      h('p', { class: 'eyebrow' }, t('game.name')),
-      h('h1', { class: 'library-title' }, t('shelf.title')),
-      h('p', { class: 'shelf-intro' }, t('shelf.intro')),
-    );
+    // The game's name once, in the bar; the shelf itself is the screen's title.
+    const bar = screenBar(null, wordmark(t('game.name')), barButton(t('top.settings'), ICONS.settings, () => opts.onSettings()));
+    const head = h('header', { class: 'shelf-head' }, h('h1', { class: 'visually-hidden' }, t('shelf.title')), h('p', { class: 'shelf-intro' }, t('shelf.intro')));
     const groups = [
       { name: t('shelf.classics'), books: opts.books.filter((b) => !b.book.young) },
       { name: t('shelf.young'), books: opts.books.filter((b) => b.book.young) },
@@ -46,7 +45,7 @@ export class Shelf {
         h('ol', { class: 'bookcase' }, ...g.books.map((b) => h('li', {}, this.book(b, opts.books.indexOf(b), opts)))),
       ),
     );
-    this.el = h('section', { class: 'library shelf-view', 'aria-label': t('shelf.label') }, h('div', { class: 'library-inner' }, head, ...sections));
+    this.el = h('section', { class: 'library shelf-view', 'aria-label': t('shelf.label') }, bar, h('div', { class: 'library-inner' }, head, ...sections));
   }
 
   private book({ key, book, done, total }: ShelfBook, i: number, opts: ShelfOptions): HTMLElement {

@@ -8,7 +8,9 @@ import { Desk } from './desk.ts';
 import { h, svg } from './dom.ts';
 import { replay } from './fx.ts';
 import { ICONS } from './icons.ts';
-import { toast } from './overlay.ts';
+import { barButton } from './bar.ts';
+import { roman } from './desk.ts';
+import { confirmAction, openSheet, toast, type SheetItem } from './overlay.ts';
 import { INK_STAGGER_MS, inkDuration, PieceLayer } from './pieces.ts';
 import { pieceOutline } from './shape.ts';
 import type { Sfx } from './sfx.ts';
@@ -25,8 +27,10 @@ export interface LevelViewOptions {
   nextTitle?: string;
   /** Deal the chapter in: heading, word chips and tiles arrive one after another. */
   intro?: boolean;
-  /** Back to the library: the button after the last chapter. */
+  /** Back to the book's chapters: the bar's first button, and the desk's after the last chapter. */
   onChapters(): void;
+  /** What the chapter's menu offers besides starting over (sound, how to play). */
+  menuItems(): SheetItem[];
 }
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -72,7 +76,8 @@ export class LevelView {
   private readonly flying = new Set<number>();
   private readonly tiles: HTMLElement[] = [];
   private readonly traceEl: HTMLElement;
-  private readonly counter = h('span', { class: 'counter' });
+  /** One dot per word, filled as words are found: the chapter's progress, in the bar. */
+  private readonly dots: HTMLElement;
   /** The finished chapter, laid out on the desk. */
   private desk: Desk | null = null;
   private destroyed = false;
@@ -98,18 +103,23 @@ export class LevelView {
     const def = p.def;
     const story = def.story;
 
-    // Heading flanked by arrows, so chapters are always one tap away.
+    // The game's bar: back to the chapters, the chapter (flanked by arrows to its neighbours, with
+    // a dot per word), and its menu. No site header above it: the board gets the height.
+    this.dots = h('span', { class: 'word-dots', role: 'img' }, ...p.words.map(() => h('i', {})));
     const heading = (this.heading = h(
       'header',
       { class: 'chapter' },
+      barButton(t('top.library'), ICONS.chapters, () => opts.onChapters(), 'bar-chapters'),
       arrow(t('level.prev'), ICONS.prev, opts.onPrev),
       h(
         'div',
         { class: 'chapter-text' },
-        h('p', { class: 'eyebrow' }, h('span', {}, t('level.eyebrow', { book: BOOKS[def.book].title, chapter: def.chapter }))),
+        h('p', { class: 'eyebrow' }, t('level.eyebrow', { chapter: roman(def.chapter) })),
         h('h1', {}, def.title),
+        this.dots,
       ),
       (this.nextArrow = opts.nextLocked ? arrow(t('level.nextLocked'), ICONS.next) : arrow(t('level.next'), ICONS.next, opts.onNext)),
+      barButton(t('level.menu'), ICONS.more, () => this.openMenu(), 'bar-more'),
     ));
 
     // While playing, a compact list of the words to find (alphabetical, so it doesn't spoil the
@@ -125,23 +135,7 @@ export class LevelView {
           return chip;
         }),
     );
-    this.panel = h(
-      'section',
-      { class: 'story-panel' },
-      h(
-        'header',
-        { class: 'story-head' },
-        h('span', {}, t('level.words')),
-        h(
-          'span',
-          { class: 'story-head-end' },
-          this.counter,
-          // On phones "Start over" lives here, so the board gets the row it would take.
-          h('button', { type: 'button', class: 'head-restart', 'aria-label': t('level.restart'), title: t('level.restart'), onclick: () => this.restart() }, svg(ICONS.restart)),
-        ),
-      ),
-      this.wordList,
-    );
+    this.panel = h('section', { class: 'story-panel' }, this.wordList);
     const panel = this.panel;
 
     // Board: the picture's pieces at the bottom, the letter tiles over them, then the trace line.
@@ -168,18 +162,7 @@ export class LevelView {
     // The bubble sits right above the board, where the eye already is while tracing (on phones it
     // floats over the chapter title instead, so the board can take the whole width).
     this.boardWrap = h('div', { class: 'board-wrap' }, this.traceEl, this.board);
-    const restartBtn = h(
-      'button',
-      { type: 'button', class: 'btn btn--tool', onclick: () => this.restart() },
-      svg(ICONS.restart),
-      h('span', { class: 'btn-label' }, t('level.restart')),
-    );
-    this.el = h(
-      'main',
-      { class: 'stage' },
-      heading,
-      h('div', { class: 'play' }, panel, h('div', { class: 'board-area' }, this.boardWrap, h('nav', { class: 'tools' }, restartBtn))),
-    );
+    this.el = h('main', { class: 'stage' }, heading, h('div', { class: 'play' }, panel, h('div', { class: 'board-area' }, this.boardWrap)));
 
     this.resizeObserver = new ResizeObserver(() => this.fit());
     this.resizeObserver.observe(this.boardWrap);
@@ -494,6 +477,26 @@ export class LevelView {
     });
   }
 
+  /** The chapter's menu: starting over (once there's something to lose), then the App's items. */
+  private openMenu(): void {
+    const items: SheetItem[] = [];
+    if (this.s.foundCount && !this.s.solved) {
+      items.push({
+        icon: ICONS.restart,
+        label: t('level.restart'),
+        onSelect: () =>
+          confirmAction({
+            title: t('restart.title'),
+            body: t('restart.body'),
+            cancel: t('restart.cancel'),
+            confirm: t('restart.confirm'),
+            onConfirm: () => this.restart(),
+          }),
+      });
+    }
+    openSheet(this.s.puzzle.def.title, [...items, ...this.opts.menuItems()]);
+  }
+
   private restart(): void {
     if (!this.s.foundCount) return;
     this.s.reset();
@@ -567,15 +570,32 @@ export class LevelView {
       onNext: () => (this.opts.onNext ?? this.opts.onChapters)(),
       onRestart: () => this.restart(),
       onTurn: () => this.opts.sfx.sheet(),
-      onShare: () => {
-        const text = t('desk.shareText', { game: t('game.name'), book: BOOKS[def.book].title, chapter: def.chapter, title: def.title });
-        navigator.clipboard?.writeText(text).then(
-          () => toast(t('desk.copied')),
-          () => toast(t('desk.copyFailed')),
-        );
-      },
+      onShare: () => void this.share(),
     });
     return this.desk;
+  }
+
+  /**
+   * Shares the finished chapter through the phone's own share sheet, with the picture the player
+   * pieced together attached; where that can't be done, just the line of text, and failing that it's
+   * copied.
+   */
+  private async share(): Promise<void> {
+    const def = this.s.puzzle.def;
+    const text = t('desk.shareText', { game: t('game.name'), book: BOOKS[def.book].title, chapter: def.chapter, title: def.title });
+    try {
+      if (navigator.share) {
+        const blob = await fetch(this.pieces.picture).then((r) => r.blob()).catch(() => null);
+        const files = blob ? [new File([blob], `${def.id}.jpg`, { type: blob.type || 'image/jpeg' })] : [];
+        await navigator.share(files.length && navigator.canShare?.({ files }) ? { files, text } : { text });
+        return;
+      }
+      await navigator.clipboard.writeText(text);
+      toast(t('desk.copied'));
+    } catch (err) {
+      // Closing the share sheet isn't a failure.
+      if ((err as Error)?.name !== 'AbortError') toast(t('desk.copyFailed'));
+    }
   }
 
   private async openDesk(desk: Desk): Promise<void> {
@@ -620,7 +640,8 @@ export class LevelView {
     if (this.trace.length) this.showTrace(this.trace.map((c) => p.letters[c]).join(''));
     this.board.classList.toggle('is-tracing', this.trace.length > 0);
     p.words.forEach((w) => this.chips[w.index].classList.toggle('is-found', this.s.isFound(w.index) && !this.flying.has(w.index)));
-    this.counter.textContent = tn('level.wordCount', p.words.length, { found: this.s.foundCount });
+    [...this.dots.children].forEach((dot, i) => dot.classList.toggle('is-on', i < this.s.foundCount));
+    this.dots.setAttribute('aria-label', tn('level.wordCount', p.words.length, { found: this.s.foundCount }));
     this.drawTrace();
   }
 

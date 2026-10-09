@@ -6,6 +6,11 @@ export class Sfx {
 
   constructor(enabled: boolean) {
     this.enabled = enabled;
+    // Put away (another app, the home screen, a locked phone): its sound stops with it.
+    document.addEventListener('visibilitychange', () => {
+      if (!this.ctx) return;
+      void (document.hidden ? this.ctx.suspend() : this.ctx.resume()).catch(() => undefined);
+    });
   }
 
   /** Seconds between scheduling a sound and hearing it: the output's buffering. */

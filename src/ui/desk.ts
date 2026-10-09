@@ -85,16 +85,19 @@ export class Desk {
       h('span', {}, opts.nextTitle ? t('desk.next') : t('desk.chapters')),
       svg(ICONS.arrow),
     );
+    // The way on in the middle, a round button either side: play again, and share the picture.
+    const round = (label: string, glyph: string, act: () => void) =>
+      h('button', { type: 'button', class: 'round-btn', 'aria-label': label, title: label, onclick: act }, svg(glyph));
     this.foot = h(
       'footer',
       { class: 'desk-foot' },
       this.hint,
-      next,
       h(
         'nav',
-        { class: 'desk-links' },
-        h('button', { type: 'button', class: 'desk-link', onclick: () => opts.onRestart() }, t('desk.again')),
-        h('button', { type: 'button', class: 'desk-link', onclick: () => opts.onShare() }, t('desk.share')),
+        { class: 'desk-actions' },
+        round(t('desk.again'), ICONS.restart, () => opts.onRestart()),
+        next,
+        round(t('desk.share'), ICONS.share, () => opts.onShare()),
       ),
     );
     this.el = h('section', { class: 'desk', 'aria-label': t('desk.label') }, this.pile, this.foot);

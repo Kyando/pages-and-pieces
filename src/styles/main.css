@@ -57,6 +57,12 @@ body {
   height: 100%;
 }
 
+html {
+  background: var(--paper);
+  /* No double-tap zoom: a tap is a tap. */
+  touch-action: manipulation;
+}
+
 body {
   margin: 0;
   color: var(--ink);
@@ -66,6 +72,27 @@ body {
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
+  /* Holding a finger on a button or a title shouldn't select it, or bring up the system's menu. */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Only reading text may be selected. */
+.help,
+.credits-text,
+.erase-text {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* Paper grain + soft vignette */
@@ -105,41 +132,50 @@ button {
   display: flex;
 }
 
-/* ── Top bar ────────────────────────────────────────────────────────────── */
+/* ── Screen bars ────────────────────────────────────────────────────────────
+   Each menu screen's own bar: back on the left, its menu on the right, clear of the notch. It stays
+   put while the screen scrolls under it. */
 
-.topbar {
+.screen-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: grid;
-  /* The title takes what the buttons leave, so a longer name still fits a phone. */
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 48px 1fr 48px;
   align-items: center;
-  gap: 8px;
-  padding-block: 6px;
-  padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right));
-  border-bottom: 2px dashed var(--faint);
+  gap: 4px;
+  padding-top: max(6px, env(safe-area-inset-top));
+  padding-bottom: 6px;
+  padding-inline: max(8px, env(safe-area-inset-left)) max(8px, env(safe-area-inset-right));
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(6px);
 }
 
-.topbar-side {
+.screen-bar-side {
   display: flex;
-  gap: 2px;
 }
 
-.topbar-side.end {
+.screen-bar-side.end {
   justify-content: flex-end;
 }
 
-.brand {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(18px, 4.8vw, 30px);
-  letter-spacing: 0.01em;
+.screen-bar-middle {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.wordmark {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 21px;
   white-space: nowrap;
 }
 
-.brand-mark {
+.wordmark-mark {
   color: var(--accent);
   font-size: 0.7em;
 }
@@ -147,18 +183,29 @@ button {
 .icon-btn {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   border: 2px solid transparent;
   background: transparent;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.15s, border-color 0.15s, scale 0.1s;
 }
 
-.icon-btn:hover {
-  background: var(--panel);
-  border-color: var(--faint);
+@media (hover: hover) {
+  .icon-btn:hover {
+    background: var(--panel);
+    border-color: var(--faint);
+  }
+}
+
+/* Every tap answers: what's pressed sinks a little. */
+.icon-btn:active:not(:disabled),
+.round-btn:active,
+.sheet-item:active,
+.print:active,
+.book:active .book-cover {
+  scale: 0.94;
 }
 
 /* ── Stage ──────────────────────────────────────────────────────────────── */
@@ -172,20 +219,56 @@ button {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-block: 10px max(12px, env(safe-area-inset-bottom));
-  padding-inline: 16px;
+  padding-top: max(6px, env(safe-area-inset-top));
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right));
 }
 
+/* The game's bar: chapters, then the chapter between its arrows (with a dot per word), then its menu. */
 .chapter {
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: 44px 1fr 44px;
+  grid-template-columns: 44px 34px 1fr 34px 44px;
   align-items: center;
   text-align: center;
 }
 
 .level-arrow {
-  width: 44px;
+  width: 34px;
   height: 44px;
+  border-radius: 12px;
+  color: var(--ink-soft);
+}
+
+.chapter-text {
+  min-width: 0;
+}
+
+.chapter .eyebrow {
+  font-size: 10px;
+}
+
+.word-dots {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.word-dots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink-soft);
+  transition: background 0.3s, border-color 0.3s, scale 0.3s;
+}
+
+.word-dots i.is-on {
+  background: var(--accent);
+  border-color: var(--accent);
+  scale: 1.15;
 }
 
 .level-arrow:disabled {
@@ -231,11 +314,12 @@ button {
 }
 
 .chapter h1 {
-  margin: 2px 0 0;
+  margin: 1px 0 0;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(22px, 5vw, 32px);
+  font-size: clamp(18px, 4.6vw, 28px);
   line-height: 1.1;
+  text-wrap: balance;
 }
 
 .subtitle {
@@ -260,10 +344,6 @@ button {
   display: flex;
   flex-direction: column;
   gap: 6px;
-}
-
-.counter {
-  font-variant-numeric: tabular-nums;
 }
 
 /* ── Trace ──────────────────────────────────────────────────────────────── */
@@ -434,46 +514,9 @@ button {
   flex: none;
   display: flex;
   flex-direction: column;
-  border: 2.5px dashed var(--faint);
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--panel) 45%, transparent);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--panel) 55%, transparent);
   overflow: hidden;
-}
-
-.story-head {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 14px 0;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.story-head-end {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.head-restart {
-  display: none;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  margin: -6px -8px -6px 0;
-  padding: 0;
-  border: 0;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--ink-soft);
-  cursor: pointer;
-}
-
-.head-restart svg {
-  width: 17px;
-  height: 17px;
 }
 
 /* ── Story chapters ───────────────────────────────────────────────────────
@@ -661,14 +704,6 @@ button {
   display: none;
 }
 
-.stage:not(.is-complete) .head-restart {
-  display: grid;
-}
-
-.stage:not(.is-complete) .tools {
-  display: none;
-}
-
 /* ── Phones: tighter, so the board reaches the thumbs ── */
 
 @media (max-width: 859px), (max-aspect-ratio: 5/4) {
@@ -677,13 +712,8 @@ button {
     padding-top: 6px;
   }
 
-  .story-head {
-    padding: 6px 12px 0;
-    font-size: 10px;
-  }
-
   .chapter h1 {
-    font-size: clamp(20px, 5.6vw, 28px);
+    font-size: clamp(17px, 4.8vw, 24px);
   }
 
   .word-list {
@@ -703,16 +733,6 @@ button {
   .trace-pill {
     font-size: 17px;
   }
-}
-
-/* ── Tools ──────────────────────────────────────────────────────────────── */
-
-.tools {
-  flex: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
 }
 
 .btn[hidden] {
@@ -775,10 +795,12 @@ button {
   box-shadow: none;
 }
 
-.btn--tool:hover:not(:disabled) {
-  color: var(--ink);
-  background: var(--panel);
-  border-color: var(--faint);
+@media (hover: hover) {
+  .btn--tool:hover:not(:disabled) {
+    color: var(--ink);
+    background: var(--panel);
+    border-color: var(--faint);
+  }
 }
 
 .btn--tool[aria-pressed='true'] {
@@ -795,7 +817,7 @@ button {
 
 .toast {
   position: fixed;
-  top: 62px;
+  top: calc(62px + env(safe-area-inset-top));
   left: 50%;
   z-index: 300;
   max-width: calc(100vw - 32px);
@@ -863,6 +885,153 @@ button {
   margin-top: 18px;
 }
 
+/* A menu sliding up from the bottom, where the thumb is. */
+.menu-sheet {
+  width: 100%;
+  max-width: 520px;
+  max-height: 85dvh;
+  margin: auto auto 0;
+  padding: 0;
+  border: 3px solid var(--stroke);
+  border-bottom: 0;
+  border-radius: 22px 22px 0 0;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.menu-sheet[open] {
+  animation: sheet-in 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.menu-sheet::backdrop {
+  background: var(--backdrop);
+}
+
+.sheet-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 14px max(14px, env(safe-area-inset-bottom));
+}
+
+.sheet-grip {
+  align-self: center;
+  width: 40px;
+  height: 5px;
+  margin-bottom: 8px;
+  border-radius: 3px;
+  background: var(--faint);
+}
+
+.sheet-title {
+  margin: 2px 6px 8px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 19px;
+  text-align: center;
+}
+
+.sheet-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 54px;
+  padding: 0 10px;
+  border: 0;
+  border-top: 1.5px solid var(--faint);
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  transition: scale 0.1s;
+}
+
+.sheet-item.is-danger {
+  color: var(--danger);
+}
+
+.sheet-label {
+  flex: 1;
+}
+
+/* A switch: a pill with a knob, on the right. */
+.sheet-switch {
+  position: relative;
+  width: 44px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--faint);
+  transition: background 0.2s;
+}
+
+.sheet-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--panel);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.25);
+  transition: translate 0.2s;
+}
+
+.sheet-item[aria-checked='true'] .sheet-switch {
+  background: var(--ok);
+}
+
+.sheet-item[aria-checked='true'] .sheet-switch::after {
+  translate: 18px 0;
+}
+
+.sheet-cancel {
+  min-height: 50px;
+  margin-top: 8px;
+  border: 2.5px solid var(--stroke);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+@keyframes sheet-in {
+  from { translate: 0 100%; }
+  to { translate: 0 0; }
+}
+
+.credits-text p {
+  margin: 0 0 12px;
+  line-height: 1.45;
+}
+
+.credits-text ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.credits-text li {
+  padding: 10px 0;
+  border-top: 1.5px solid var(--faint);
+  line-height: 1.35;
+}
+
+.credits-text small {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
 /* Help */
 .help p,
 .help li {
@@ -899,12 +1068,17 @@ button {
   overflow-y: auto;
   overscroll-behavior: contain;
   background: var(--paper);
+  scrollbar-width: none;
+}
+
+.library::-webkit-scrollbar {
+  display: none;
 }
 
 .library-inner {
   max-width: 760px;
   margin-inline: auto;
-  padding: 22px 16px max(36px, env(safe-area-inset-bottom));
+  padding: 6px max(16px, env(safe-area-inset-left)) max(36px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right));
 }
 
 .library-head {
@@ -978,12 +1152,6 @@ button {
   color: var(--ink-soft);
 }
 
-.library-foot {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
-
 .erase-text {
   margin: 0;
   line-height: 1.45;
@@ -1048,9 +1216,14 @@ button {
   transition: transform 0.2s cubic-bezier(0.3, 1.4, 0.5, 1);
 }
 
-.print:not(:disabled):hover,
 .print:focus-visible {
   transform: rotate(0deg) translateY(-3px);
+}
+
+@media (hover: hover) {
+  .print:not(.is-locked):hover {
+    transform: rotate(0deg) translateY(-3px);
+  }
 }
 
 .print:focus-visible {
@@ -1151,12 +1324,14 @@ button {
   opacity: 0.6;
 }
 
-/* On the shelf, the back button has nowhere to go. */
-.icon-btn.is-here {
-  visibility: hidden;
-}
-
 /* ── Shelf (the first screen) ───────────────────────────────────────────── */
+
+.shelf-head {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 22px;
+  text-align: center;
+}
 
 .shelf-intro {
   max-width: 34ch;
@@ -1174,8 +1349,10 @@ button {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 180px));
-  justify-content: center;
+  /* Two books abreast on a phone, three on a wider screen. */
+  max-width: 620px;
+  margin-inline: auto;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 34px var(--gap);
 }
 
@@ -1232,14 +1409,22 @@ button {
   box-shadow: 0 4px 6px rgb(40 26 14 / 0.25);
 }
 
-.book:hover .book-cover,
 .book:focus-visible .book-cover {
   transform: translateY(-5px);
 }
 
-.book:hover .book-cover::after,
 .book:focus-visible .book-cover::after {
   transform: translateY(5px);
+}
+
+@media (hover: hover) {
+  .book:hover .book-cover {
+    transform: translateY(-5px);
+  }
+
+  .book:hover .book-cover::after {
+    transform: translateY(5px);
+  }
 }
 
 .book:focus-visible {
@@ -1423,7 +1608,8 @@ button {
 }
 
 /* The pages carry the title now; the heading keeps only the book line and the arrows. */
-.stage.is-complete .chapter h1 {
+.stage.is-complete .chapter h1,
+.stage.is-complete .word-dots {
   display: none;
 }
 
@@ -1648,27 +1834,30 @@ button {
   opacity: 0;
 }
 
-.desk-next {
-  min-width: 220px;
-}
-
-.desk-links {
+.desk-actions {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 22px;
+  gap: 14px;
 }
 
-.desk-link {
-  border: 0;
-  background: none;
-  padding: 4px;
-  color: var(--ink-soft);
-  font: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  text-decoration: underline dotted 1.5px;
-  text-underline-offset: 4px;
+.desk-next {
+  min-width: 190px;
+}
+
+.round-btn {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 2.5px solid var(--stroke);
+  border-radius: 50%;
+  background: var(--panel);
+  box-shadow: 0 3px 0 var(--stroke);
+  color: var(--ink);
   cursor: pointer;
+  transition: scale 0.1s;
 }
 
 @keyframes window-light {
@@ -1753,8 +1942,8 @@ button {
 /* The word list and the title fold away before the drawing lifts off. */
 .stage.is-leaving .story-panel,
 .stage.is-leaving .chapter h1,
-.stage.is-leaving .trace,
-.stage.is-leaving .tools {
+.stage.is-leaving .word-dots,
+.stage.is-leaving .trace {
   animation: fold-out 0.3s ease-in forwards;
 }
 
