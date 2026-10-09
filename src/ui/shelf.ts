@@ -24,7 +24,7 @@ export interface ShelfOptions {
 const CLOTHS = ['#6f2f2a', '#2f4f5c', '#5a6b2f', '#4a3a68', '#7a5a22'];
 
 /**
- * The first screen: the books, standing on a shelf, classics first and the books for young readers
+ * The first screen: the books, standing on a shelf, the free classics first and the kids’ edition
  * on a shelf of their own. Each cover shows how far the player has read; opening one leads to its
  * chapters.
  */
@@ -35,15 +35,15 @@ export class Shelf {
     // The game's name once, in the bar; the shelf itself is the screen's title.
     const bar = screenBar(null, wordmark(t('game.name')), barButton(t('top.settings'), ICONS.settings, () => opts.onSettings()));
     const head = h('header', { class: 'shelf-head' }, h('h1', { class: 'visually-hidden' }, t('shelf.title')), h('p', { class: 'shelf-intro' }, t('shelf.intro')));
-    // The free books first, then each paid shelf (its first chapters free), then the young readers'.
+    // The free books first, then each paid shelf (its first chapters free), then the kids’ edition.
     const groups = [
-      { name: t('shelf.free'), note: '', books: opts.books.filter((b) => !b.book.young && !b.book.shelf) },
+      { name: t('shelf.free'), note: '', books: opts.books.filter((b) => !b.book.kids && !b.book.shelf) },
       ...(Object.keys(SHELVES) as ShelfId[]).map((id) => ({
         name: SHELVES[id].title,
         note: opts.books.some((b) => b.book.shelf === id && b.sample) ? t('shelf.sample', { count: FREE_CHAPTERS }) : '',
         books: opts.books.filter((b) => b.book.shelf === id),
       })),
-      { name: t('shelf.young'), note: '', books: opts.books.filter((b) => b.book.young) },
+      { name: t('shelf.kids'), note: t('shelf.kidsNote'), books: opts.books.filter((b) => b.book.kids) },
     ].filter((g) => g.books.length);
     const sections = groups.map((g) =>
       h(

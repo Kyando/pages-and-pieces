@@ -13,6 +13,11 @@ export interface Book {
    */
   young?: boolean;
   /**
+   * Part of the kids’ edition, a shelf of its own. Not in the first release: only the dev server, or
+   * a build with VITE_KIDS_EDITION=true, includes it (see src/levels/catalog.ts).
+   */
+  kids?: boolean;
+  /**
    * The book's characters and places, as written in the grid. A passage may only hide one of these
    * after the player has met it in plain text (see `unintroducedNames`).
    */
@@ -129,6 +134,7 @@ export const BOOKS: Record<string, Book> = {
     year: 1865,
     cover: 'art/nursery-alice-1890/c06544-02.jpg',
     blurb: 'A girl follows a White Rabbit down a hole, and nothing makes sense ever after.',
+    kids: true,
     names: ['ALICE', 'DINAH', 'DODO', 'BILL', 'WONDERLAND'],
   },
   'three-little-pigs': {
@@ -138,6 +144,7 @@ export const BOOKS: Record<string, Book> = {
     cover: 'art/brooke-1904/pigs-title.jpg',
     blurb: 'Straw, sticks or bricks? A story to read together.',
     young: true,
+    kids: true,
     names: [],
   },
 };
