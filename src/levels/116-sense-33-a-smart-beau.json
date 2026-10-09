@@ -1,0 +1,45 @@
+{
+  "id": "sense-33-a-smart-beau",
+  "book": "sense-and-sensibility",
+  "chapter": 33,
+  "title": "A Very Smart Beau",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "SLEPB",
+    "GRAOM",
+    "OLTCC",
+    "DDOXO",
+    "ETOTK",
+    "EICHC",
+    "CNOPI"
+  ],
+  "words": [
+    {
+      "text": "COXCOMB",
+      "path": [14, 19, 18, 13, 8, 9, 4]
+    },
+    {
+      "text": "TOOTHPICK",
+      "path": [12, 17, 22, 23, 28, 33, 34, 29, 24]
+    },
+    {
+      "text": "GOLD",
+      "path": [5, 10, 11, 16]
+    },
+    {
+      "text": "PEARLS",
+      "path": [3, 2, 7, 6, 1, 0]
+    },
+    {
+      "text": "CONCEITED",
+      "path": [27, 32, 31, 30, 25, 26, 21, 20, 15]
+    }
+  ],
+  "story": {
+    "text": "In a London jeweller’s, Elinor and Marianne wait while a young {COXCOMB} spends a quarter of an hour choosing a {TOOTHPICK} case of ivory, {GOLD} and {PEARLS}. He turns out to be Robert Ferrars, Edward’s {CONCEITED} younger brother.",
+    "image": "art/sense-thomson-1896/019-a-very-smart-beau.jpg",
+    "caption": "A very smart beau",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

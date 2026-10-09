@@ -1,0 +1,51 @@
+{
+  "id": "little-47-harvest-time",
+  "book": "little-women",
+  "chapter": 47,
+  "title": "Harvest Time",
+  "rows": 5,
+  "cols": 8,
+  "grid": [
+    "SCTWINPR",
+    "SHLBSSUO",
+    "SOOOYTDH",
+    "EPPPOSEA",
+    "NIAHORVR"
+  ],
+  "words": [
+    {
+      "text": "SCHOOL",
+      "path": [0, 1, 9, 17, 18, 10]
+    },
+    {
+      "text": "POOR",
+      "path": [27, 28, 36, 37]
+    },
+    {
+      "text": "HARVEST",
+      "path": [23, 31, 39, 38, 30, 29, 21]
+    },
+    {
+      "text": "TWINS",
+      "path": [2, 3, 4, 5, 13]
+    },
+    {
+      "text": "BOYS",
+      "path": [11, 19, 20, 12]
+    },
+    {
+      "text": "PROUD",
+      "path": [6, 7, 15, 14, 22]
+    },
+    {
+      "text": "HAPPINESS",
+      "path": [35, 34, 26, 25, 33, 32, 24, 16, 8]
+    }
+  ],
+  "story": {
+    "text": "Aunt March leaves Jo her old house, Plumfield, and Jo and her Professor make it a {SCHOOL} for boys, rich ones and {POOR}. Five years on, the whole family gathers for the apple {HARVEST}: Meg’s {TWINS}, Amy and Laurie’s little Beth, and Jo’s own two {BOYS}. Marmee looks round, {PROUD} and grateful: “I can never wish you a greater {HAPPINESS} than this!”",
+    "image": "art/merrill-1880/201-harvest-time.jpg",
+    "caption": "Harvest time",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

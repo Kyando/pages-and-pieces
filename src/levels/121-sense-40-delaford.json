@@ -1,0 +1,45 @@
+{
+  "id": "sense-40-delaford",
+  "book": "sense-and-sensibility",
+  "chapter": 40,
+  "title": "Considerable Amusement",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "GNCME",
+    "VIALK",
+    "IOMTA",
+    "LVISS",
+    "GERHR",
+    "NOPEA",
+    "ISORP"
+  ],
+  "words": [
+    {
+      "text": "LIVING",
+      "path": [15, 10, 5, 6, 1, 0]
+    },
+    {
+      "text": "OVERHEARS",
+      "path": [11, 16, 21, 22, 23, 28, 29, 24, 19]
+    },
+    {
+      "text": "PROPOSING",
+      "path": [34, 33, 32, 27, 26, 31, 30, 25, 20]
+    },
+    {
+      "text": "CALM",
+      "path": [2, 7, 8, 3]
+    },
+    {
+      "text": "MISTAKE",
+      "path": [12, 17, 18, 13, 14, 9, 4]
+    }
+  ],
+  "story": {
+    "text": "Colonel Brandon offers Edward the {LIVING} at Delaford, and asks Elinor to tell him. Mrs. Jennings {OVERHEARS} them, and is sure he is {PROPOSING} to Elinor! So Elinor herself gives Edward the means to marry Lucy, {CALM} as ever. The {MISTAKE} amuses them all later.",
+    "image": "art/sense-thomson-1896/029-both-gained-considerable-amusement.jpg",
+    "caption": "Both gained considerable amusement",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

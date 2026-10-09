@@ -1,0 +1,59 @@
+{
+  "id": "persuasion-09-taking-him",
+  "book": "persuasion",
+  "chapter": 9,
+  "title": "Someone Was Taking Him",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "THNSIN",
+    "NAURGG",
+    "KROINY",
+    "KBMPTL",
+    "CALENB",
+    "SIIERR",
+    "KCSHTO"
+  ],
+  "words": [
+    {
+      "text": "NURSING",
+      "path": [2, 8, 9, 3, 4, 5, 11]
+    },
+    {
+      "text": "SICK",
+      "path": [30, 31, 37, 36]
+    },
+    {
+      "text": "BROTHER",
+      "path": [29, 35, 41, 40, 39, 33, 34]
+    },
+    {
+      "text": "ROMPING",
+      "path": [13, 14, 20, 21, 15, 16, 10]
+    },
+    {
+      "text": "BACK",
+      "path": [19, 25, 24, 18]
+    },
+    {
+      "text": "SILENTLY",
+      "path": [38, 32, 26, 27, 28, 22, 23, 17]
+    },
+    {
+      "text": "THANK",
+      "path": [0, 1, 7, 6, 12]
+    }
+  ],
+  "story": {
+    "text": "Wentworth is soon at home at Uppercross, and Charles’s sisters, Louisa and Henrietta, are both half in love with him. One morning Anne is {NURSING} Mary’s {SICK} little boy, hurt in a fall, when his {BROTHER}, a {ROMPING} two-year-old, climbs onto her {BACK} and will not let go. Suddenly someone lifts him off: Wentworth, {SILENTLY}. Anne cannot even {THANK} him.",
+    "image": "art/persuasion-thomson-1897/thomson-ch9-aide-bienvenue.jpg",
+    "caption": "Some one was taking him from her",
+    "credit": "Hugh Thomson, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.93
+    ]
+  }
+}

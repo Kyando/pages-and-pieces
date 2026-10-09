@@ -1,0 +1,59 @@
+{
+  "id": "jane-28-will-you-give-me-that",
+  "book": "jane-eyre",
+  "chapter": 28,
+  "title": "Will You Give Me That?",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "PNLITG",
+    "OIAGHN",
+    "RRRTSI",
+    "SIDARV",
+    "EVGGYL",
+    "LOEIPI",
+    "GGREED"
+  ],
+  "words": [
+    {
+      "text": "STARVING",
+      "path": [16, 15, 21, 22, 23, 17, 11, 5]
+    },
+    {
+      "text": "GLOVES",
+      "path": [36, 30, 31, 25, 24, 18]
+    },
+    {
+      "text": "PORRIDGE",
+      "path": [0, 6, 12, 13, 19, 20, 26, 32]
+    },
+    {
+      "text": "PIG",
+      "path": [34, 33, 27]
+    },
+    {
+      "text": "GREEDILY",
+      "path": [37, 38, 39, 40, 41, 35, 29, 28]
+    },
+    {
+      "text": "RAIN",
+      "path": [14, 8, 7, 1]
+    },
+    {
+      "text": "LIGHT",
+      "path": [2, 3, 9, 10, 4]
+    }
+  ],
+  "story": {
+    "text": "For days Jane wanders, {STARVING}, sleeping out under the sky. She offers her {GLOVES} for a roll, and is refused. At last she sees a girl about to throw cold {PORRIDGE} to a {PIG}. “Will you give me that?” she asks, and eats it {GREEDILY}. In the {RAIN}, she follows a far {LIGHT} across the moor.",
+    "image": "art/townsend-1897/008-will-you-give-me-that-i-asked.jpg",
+    "caption": "“Will you give me that?” I asked",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

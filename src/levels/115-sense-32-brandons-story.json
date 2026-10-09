@@ -1,0 +1,54 @@
+{
+  "id": "sense-32-brandons-story",
+  "book": "sense-and-sensibility",
+  "chapter": 32,
+  "title": "One of Folly’s Puppies",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "DBINGN",
+    "EETDIA",
+    "YARRTN",
+    "DHTEDU",
+    "EGUALE",
+    "SEPDDR",
+    "TRUSEA",
+    "EDPPIW"
+  ],
+  "words": [
+    {
+      "text": "DAUGHTER",
+      "path": [33, 27, 26, 25, 19, 20, 21, 15]
+    },
+    {
+      "text": "WARD",
+      "path": [47, 41, 35, 34]
+    },
+    {
+      "text": "BETRAYED",
+      "path": [1, 7, 8, 14, 13, 12, 6, 0]
+    },
+    {
+      "text": "DESERTED",
+      "path": [18, 24, 30, 31, 37, 36, 42, 43]
+    },
+    {
+      "text": "DUEL",
+      "path": [22, 23, 29, 28]
+    },
+    {
+      "text": "INDIGNANT",
+      "path": [2, 3, 9, 10, 4, 5, 11, 17, 16]
+    },
+    {
+      "text": "PUPPIES",
+      "path": [32, 38, 44, 45, 46, 40, 39]
+    }
+  ],
+  "story": {
+    "text": "Colonel Brandon tells Elinor the truth about Willoughby. Long ago Brandon loved a girl called Eliza, and her {DAUGHTER}, his young {WARD}, was {BETRAYED} by Willoughby and {DESERTED}. The colonel even fought him in a {DUEL}. Sir John is {INDIGNANT} too: and he had offered the man one of his dog Folly’s {PUPPIES}!",
+    "image": "art/sense-thomson-1896/018-offered-him-one-of-folly-s-puppies.jpg",
+    "caption": "Offered him one of Folly’s puppies",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

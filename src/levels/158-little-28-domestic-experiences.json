@@ -1,0 +1,48 @@
+{
+  "id": "little-28-domestic-experiences",
+  "book": "little-women",
+  "chapter": 28,
+  "title": "Domestic Experiences",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "UNDECYR",
+    "YANUNOR",
+    "LLNOHSH",
+    "EEJGUUO",
+    "LAUSESE",
+    "BBQSFIW"
+  ],
+  "words": [
+    {
+      "text": "HOUSEWIFE",
+      "path": [20, 27, 26, 33, 34, 41, 40, 39, 32]
+    },
+    {
+      "text": "JELLY",
+      "path": [23, 22, 15, 14, 7]
+    },
+    {
+      "text": "UNANNOUNCED",
+      "path": [0, 1, 8, 9, 16, 17, 10, 11, 4, 3, 2]
+    },
+    {
+      "text": "SQUABBLE",
+      "path": [38, 37, 30, 29, 36, 35, 28, 21]
+    },
+    {
+      "text": "SORRY",
+      "path": [19, 12, 13, 6, 5]
+    },
+    {
+      "text": "HUGS",
+      "path": [18, 25, 24, 31]
+    }
+  ],
+  "story": {
+    "text": "Meg means to be a perfect {HOUSEWIFE}. One day her currant {JELLY} will not jell, and John brings a friend home to dinner {UNANNOUNCED}. Tears, a {SQUABBLE}, and both feel desperately uncomfortable, until Meg says {SORRY}, and John {HUGS} her.",
+    "image": "art/merrill-1880/133-both-felt-desperately-uncomfortable.jpg",
+    "caption": "Both felt desperately uncomfortable",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

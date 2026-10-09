@@ -1,0 +1,50 @@
+{
+  "id": "sense-44-willoughby",
+  "book": "sense-and-sensibility",
+  "chapter": 44,
+  "title": "Willoughby at Cleveland",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "DMELM",
+    "IOYBI",
+    "SNEAS",
+    "OWNRE",
+    "DREDS",
+    "SUNVE",
+    "TBKIG",
+    "DEFOR"
+  ],
+  "words": [
+    {
+      "text": "DRUNK",
+      "path": [20, 21, 26, 27, 32]
+    },
+    {
+      "text": "DEBTS",
+      "path": [35, 36, 31, 30, 25]
+    },
+    {
+      "text": "DISOWNED",
+      "path": [0, 5, 10, 15, 16, 17, 22, 23]
+    },
+    {
+      "text": "MONEY",
+      "path": [1, 6, 11, 12, 7]
+    },
+    {
+      "text": "MISERABLE",
+      "path": [4, 9, 14, 19, 18, 13, 8, 3, 2]
+    },
+    {
+      "text": "FORGIVES",
+      "path": [37, 38, 39, 34, 33, 28, 29, 24]
+    }
+  ],
+  "story": {
+    "text": "That night a carriage drives up. It is not her mother but Willoughby, half {DRUNK}, come to explain. He did love Marianne; but he had {DEBTS}, and his aunt {DISOWNED} him over Eliza, so he married for {MONEY}. Now he is {MISERABLE}. Against her will, Elinor almost {FORGIVES} him.",
+    "image": "art/sense-thomson-1896/035-image_318.jpg",
+    "caption": "It was Willoughby",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

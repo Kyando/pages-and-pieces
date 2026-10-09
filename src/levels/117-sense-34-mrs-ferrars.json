@@ -1,0 +1,50 @@
+{
+  "id": "sense-34-mrs-ferrars",
+  "book": "sense-and-sensibility",
+  "chapter": 34,
+  "title": "Mrs. Ferrars",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "STHGI",
+    "LTEPR",
+    "IGRUS",
+    "THCLO",
+    "SSEEM",
+    "SSWON",
+    "SOULS",
+    "ENRLA"
+  ],
+  "words": [
+    {
+      "text": "UPRIGHT",
+      "path": [13, 8, 9, 4, 3, 2, 1]
+    },
+    {
+      "text": "SALLOW",
+      "path": [34, 39, 38, 33, 28, 27]
+    },
+    {
+      "text": "SOLEMN",
+      "path": [14, 19, 18, 23, 24, 29]
+    },
+    {
+      "text": "SOURNESS",
+      "path": [26, 31, 32, 37, 36, 35, 30, 25]
+    },
+    {
+      "text": "SECRET",
+      "path": [21, 22, 17, 12, 7, 6]
+    },
+    {
+      "text": "SLIGHTS",
+      "path": [0, 5, 10, 11, 16, 15, 20]
+    }
+  ],
+  "story": {
+    "text": "At a dinner at John and Fanny’s, Elinor meets Edward’s mother at last: small, {UPRIGHT}, {SALLOW}, and {SOLEMN} to the point of {SOURNESS}. Mrs. Ferrars is gracious to Lucy, never guessing she is her son’s {SECRET} love, and {SLIGHTS} Elinor. Marianne bursts into tears in her defence.",
+    "image": "art/sense-thomson-1896/022-mrs-ferrars.jpg",
+    "caption": "Mrs. Ferrars",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

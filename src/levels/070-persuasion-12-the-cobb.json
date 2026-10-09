@@ -1,0 +1,57 @@
+{
+  "id": "persuasion-12-the-cobb",
+  "book": "persuasion",
+  "chapter": 12,
+  "title": "I Am Determined I Will",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "NHRJP",
+    "OEIUM",
+    "ISSEF",
+    "TAELI",
+    "SRIML",
+    "LLNDA",
+    "FAAME",
+    "GENTL"
+  ],
+  "words": [
+    {
+      "text": "GENTLEMAN",
+      "path": [35, 36, 37, 38, 39, 34, 33, 32, 27]
+    },
+    {
+      "text": "ADMIRATION",
+      "path": [29, 28, 23, 22, 21, 16, 15, 10, 5, 0]
+    },
+    {
+      "text": "HEIR",
+      "path": [1, 6, 7, 2]
+    },
+    {
+      "text": "JUMP",
+      "path": [3, 8, 9, 4]
+    },
+    {
+      "text": "FALLS",
+      "path": [30, 31, 26, 25, 20]
+    },
+    {
+      "text": "LIFELESS",
+      "path": [24, 19, 14, 13, 18, 17, 12, 11]
+    }
+  ],
+  "story": {
+    "text": "On the steps at Lyme, a passing {GENTLEMAN} gazes at Anne in {ADMIRATION}, and Wentworth notices. It was Mr. Elliot, her father’s {HEIR}, though they only learn it later. Then, on the Cobb, Louisa wants Wentworth to {JUMP} her down the high steps once more. “I am determined I will!” She springs too soon, {FALLS}, and lies {LIFELESS}.",
+    "image": "art/persuasion-brock-1898/pers-brock-14.jpg",
+    "caption": "The horror of that moment to all who stood around!",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.1,
+      0.08,
+      0.92,
+      0.84
+    ],
+    "colour": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "persuasion-06-well-done",
+  "book": "persuasion",
+  "chapter": 6,
+  "title": "Well Done, Miss Anne!",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "SILCO",
+    "POEDN",
+    "POLIF",
+    "BLETI",
+    "RYEAD",
+    "OTTNG",
+    "EHLBR",
+    "RSEMU"
+  ],
+  "words": [
+    {
+      "text": "CONFIDANTE",
+      "path": [3, 4, 9, 14, 19, 24, 23, 28, 27, 22]
+    },
+    {
+      "text": "GRUMBLES",
+      "path": [29, 34, 39, 38, 33, 32, 37, 36]
+    },
+    {
+      "text": "SPOILED",
+      "path": [0, 5, 6, 1, 2, 7, 8]
+    },
+    {
+      "text": "POLITELY",
+      "path": [10, 11, 12, 13, 18, 17, 16, 21]
+    },
+    {
+      "text": "BROTHER",
+      "path": [15, 20, 25, 26, 31, 30, 35]
+    }
+  ],
+  "story": {
+    "text": "At Uppercross, Anne finds that nobody gives Kellynch a thought. She becomes everyone’s {CONFIDANTE}: Mary {GRUMBLES} about the Musgroves, and the Musgroves about Mary’s {SPOILED} boys. In the evenings Anne plays for the young ones to dance. “Well done, Miss Anne!” they say {POLITELY}, and nobody listens. Then the Crofts come to Kellynch, and Mrs. Croft’s {BROTHER} is expected.",
+    "image": "art/persuasion-brock-1898/2pers-02.jpg",
+    "caption": "“Well done, Miss Anne!”",
+    "credit": "C. E. Brock, 1898",
+    "crop": [
+      0.1,
+      0.06,
+      0.92,
+      0.86
+    ],
+    "colour": true
+  }
+}

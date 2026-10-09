@@ -1,0 +1,56 @@
+{
+  "id": "emma-42-strawberries",
+  "book": "emma",
+  "chapter": 42,
+  "title": "Strawberries at Donwell",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "SOEMST",
+    "TOHOAR",
+    "HESBWD",
+    "TERESE",
+    "TAORET",
+    "DHVRIA",
+    "ECERIT",
+    "TAEHGA"
+  ],
+  "words": [
+    {
+      "text": "STRAWBERRIES",
+      "path": [4, 5, 11, 10, 16, 15, 21, 27, 33, 34, 28, 22]
+    },
+    {
+      "text": "CHATTERS",
+      "path": [37, 31, 25, 24, 18, 19, 20, 14]
+    },
+    {
+      "text": "HOME",
+      "path": [8, 9, 3, 2]
+    },
+    {
+      "text": "AGITATED",
+      "path": [47, 46, 40, 41, 35, 29, 23, 17]
+    },
+    {
+      "text": "OVERHEATED",
+      "path": [26, 32, 38, 39, 45, 44, 43, 42, 36, 30]
+    },
+    {
+      "text": "SOOTHE",
+      "path": [0, 1, 7, 6, 12, 13]
+    }
+  ],
+  "story": {
+    "text": "Mr. Knightley invites everyone to pick {STRAWBERRIES} at Donwell Abbey. Mrs. Elton, in a large bonnet, {CHATTERS} until the heat wears her out. Jane slips away early, walking {HOME} alone, {AGITATED}. Frank arrives late, cross and {OVERHEATED}, and only Emma can {SOOTHE} him.",
+    "image": "art/emma-thomson-1896/emma-ch42-iii-6.jpg",
+    "caption": "Able to take an interest in their employment",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

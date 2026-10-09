@@ -1,0 +1,63 @@
+{
+  "id": "jane-36-thornfield-in-ruins",
+  "book": "jane-eyre",
+  "chapter": 36,
+  "title": "A Blackened Ruin",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "INSBLD",
+    "SNERIN",
+    "MANVAS",
+    "HSIUNT",
+    "EDERDE",
+    "FORCRH",
+    "ROIFUS"
+  ],
+  "words": [
+    {
+      "text": "RUIN",
+      "path": [27, 21, 20, 14]
+    },
+    {
+      "text": "INN",
+      "path": [0, 1, 7]
+    },
+    {
+      "text": "FIRE",
+      "path": [39, 38, 32, 26]
+    },
+    {
+      "text": "SERVANTS",
+      "path": [2, 8, 9, 15, 16, 22, 23, 17]
+    },
+    {
+      "text": "ROOF",
+      "path": [36, 37, 31, 30]
+    },
+    {
+      "text": "SMASHED",
+      "path": [6, 12, 13, 19, 18, 24, 25]
+    },
+    {
+      "text": "CRUSHED",
+      "path": [33, 34, 40, 41, 35, 29, 28]
+    },
+    {
+      "text": "BLIND",
+      "path": [3, 4, 10, 11, 5]
+    }
+  ],
+  "story": {
+    "text": "Jane hurries back to Thornfield, and finds a blackened {RUIN}. At the {INN} the landlord tells her: Bertha set the house on {FIRE}. Mr. Rochester got the {SERVANTS} out, and climbed to the {ROOF} to save his wife; but she leapt, and the next minute lay {SMASHED} on the pavement. He was {CRUSHED} by the falling stairs. Now he is {BLIND}, has lost a hand, and lives alone at Ferndean.",
+    "image": "art/townsend-1897/012-the-next-minute-she-lay-smashed-on-the-pavement.jpg",
+    "caption": "The next minute she lay smashed on the pavement",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

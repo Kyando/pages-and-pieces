@@ -1,0 +1,56 @@
+{
+  "id": "emma-26-the-pianoforte",
+  "book": "emma",
+  "chapter": 26,
+  "title": "Frank Churchill Sang Again",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "SEVDT",
+    "GNOUE",
+    "SILAG",
+    "PISER",
+    "NARCE",
+    "OTESE",
+    "FORTE"
+  ],
+  "words": [
+    {
+      "text": "PIANOFORTE",
+      "path": [15, 16, 21, 20, 25, 30, 31, 32, 33, 34]
+    },
+    {
+      "text": "SECRET",
+      "path": [17, 18, 23, 22, 27, 26]
+    },
+    {
+      "text": "AGREES",
+      "path": [13, 14, 19, 24, 29, 28]
+    },
+    {
+      "text": "SINGS",
+      "path": [10, 11, 6, 5, 0]
+    },
+    {
+      "text": "DUET",
+      "path": [3, 8, 9, 4]
+    },
+    {
+      "text": "LOVE",
+      "path": [12, 7, 2, 1]
+    }
+  ],
+  "story": {
+    "text": "At the Coles’ dinner, the talk is all of a {PIANOFORTE} sent to Jane Fairfax by a {SECRET} giver. Emma whispers to Frank that it must be from Mr. Dixon, the husband of Jane’s friend, and Frank {AGREES}, laughing. Later he {SINGS} a {DUET} with Jane, and Mrs. Weston wonders if Mr. Knightley is in {LOVE} with her.",
+    "image": "art/emma-brock-1909/emma-ce-brock-1898-vol-ii-chapter-viii.jpg",
+    "caption": "Frank Churchill sang again",
+    "credit": "C. E. Brock, 1898",
+    "crop": [
+      0.1,
+      0.06,
+      0.9,
+      0.86
+    ],
+    "colour": true
+  }
+}

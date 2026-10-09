@@ -86,7 +86,7 @@ export const BOOKS: Record<string, Book> = {
     title: 'Emma',
     author: 'Jane Austen',
     year: 1815,
-    cover: 'art/emma-brock-1909/emma-ce-brock-1909-vol-iii-chapter-vii.jpg',
+    cover: 'art/emma-thomson-1896/emma-ch01-i-1.jpg',
     blurb: 'Handsome, clever and rich, she means never to marry, only to arrange everyone else.',
     shelf: 'austen',
     names: [
@@ -111,6 +111,8 @@ export const BOOKS: Record<string, Book> = {
     title: 'Jane Eyre',
     author: 'Charlotte Brontë',
     year: 1847,
+    // Townsend drew only fourteen plates, and every one is a scene; this one, Jane alone on the moor,
+    // gives nothing away.
     cover: 'art/townsend-1897/007-i-said-my-evening-prayers.jpg',
     blurb: 'A plain, poor governess who will not be anyone’s possession, not even his.',
     shelf: 'heroines',

@@ -1,0 +1,57 @@
+{
+  "id": "emma-39-the-gipsies",
+  "book": "emma",
+  "chapter": 39,
+  "title": "A Great Service",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "SSEECD",
+    "EURVNE",
+    "SCCIAN",
+    "EREOME",
+    "AESRHT",
+    "DRRIGD",
+    "MIFOUE",
+    "SURRND"
+  ],
+  "words": [
+    {
+      "text": "SURROUNDED",
+      "path": [42, 43, 44, 45, 39, 40, 46, 47, 41, 35]
+    },
+    {
+      "text": "FRIGHTENED",
+      "path": [38, 32, 33, 34, 28, 29, 23, 17, 11, 5]
+    },
+    {
+      "text": "RESCUES",
+      "path": [19, 18, 12, 13, 7, 6, 0]
+    },
+    {
+      "text": "ROMANCE",
+      "path": [27, 21, 22, 16, 10, 4, 3]
+    },
+    {
+      "text": "ADMIRES",
+      "path": [24, 30, 36, 37, 31, 25, 26]
+    },
+    {
+      "text": "SERVICE",
+      "path": [1, 2, 8, 9, 15, 14, 20]
+    }
+  ],
+  "story": {
+    "text": "Walking near Highbury, Harriet is {SURROUNDED} by gipsy children begging, and is too {FRIGHTENED} to run. Frank Churchill comes by and {RESCUES} her. Emma sees a {ROMANCE} at once. Soon Harriet burns her keepsakes of Mr. Elton, and says she {ADMIRES} someone far above her, who did her a great {SERVICE}.",
+    "image": "art/emma-brock-1909/emma-ce-brock-1909-vol-iii-chapter-iii.jpg",
+    "caption": "The terror which the woman and boy had been creating in Harriet was then their own portion",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.08,
+      0.05,
+      0.92,
+      0.82
+    ],
+    "colour": true
+  }
+}

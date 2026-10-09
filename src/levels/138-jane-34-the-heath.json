@@ -1,0 +1,55 @@
+{
+  "id": "jane-34-the-heath",
+  "book": "jane-eyre",
+  "chapter": 34,
+  "title": "Jane! Jane! Jane!",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "STIMSY",
+    "YRRBUR",
+    "EFAMNA",
+    "RIWIOS",
+    "ELSSSI",
+    "NEIMTE",
+    "TLESSR"
+  ],
+  "words": [
+    {
+      "text": "MISSIONARY",
+      "path": [33, 32, 26, 27, 21, 22, 16, 17, 11, 5]
+    },
+    {
+      "text": "MARRY",
+      "path": [15, 14, 8, 7, 6]
+    },
+    {
+      "text": "WIFE",
+      "path": [20, 19, 13, 12]
+    },
+    {
+      "text": "SISTER",
+      "path": [23, 29, 28, 34, 35, 41]
+    },
+    {
+      "text": "RELENTLESS",
+      "path": [18, 24, 25, 31, 30, 36, 37, 38, 39, 40]
+    },
+    {
+      "text": "SUBMITS",
+      "path": [4, 10, 9, 3, 2, 1, 0]
+    }
+  ],
+  "story": {
+    "text": "St. John is going to India as a {MISSIONARY}. He asks Jane to {MARRY} him and come too, not for love, but because she would make a useful {WIFE}. She will go, but only as his {SISTER}. He is cold and {RELENTLESS}, and she nearly {SUBMITS}, until one night she hears a voice crying across the moor: “Jane! Jane! Jane!”",
+    "image": "art/townsend-1897/011-he-threw-himself-down-on-a-swell-of-heath-and-ther.jpg",
+    "caption": "He threw himself down on a swell of heath, and there lay still",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

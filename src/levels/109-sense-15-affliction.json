@@ -1,0 +1,54 @@
+{
+  "id": "sense-15-affliction",
+  "book": "sense-and-sensibility",
+  "chapter": 15,
+  "title": "In Violent Affliction",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "ETISRT",
+    "ETRUAE",
+    "NAEOAF",
+    "GAAVNF",
+    "EGFIOL",
+    "DNSTCI",
+    "SOEGLU",
+    "AERIND"
+  ],
+  "words": [
+    {
+      "text": "TEARS",
+      "path": [5, 11, 10, 4, 3]
+    },
+    {
+      "text": "AFFLICTION",
+      "path": [16, 17, 23, 29, 35, 34, 33, 27, 28, 22]
+    },
+    {
+      "text": "REASON",
+      "path": [44, 43, 42, 36, 37, 31]
+    },
+    {
+      "text": "EAT",
+      "path": [14, 13, 7]
+    },
+    {
+      "text": "INDULGES",
+      "path": [45, 46, 47, 41, 40, 39, 38, 32]
+    },
+    {
+      "text": "FAVOURITE",
+      "path": [26, 20, 21, 15, 9, 8, 2, 1, 0]
+    },
+    {
+      "text": "ENGAGED",
+      "path": [6, 12, 18, 19, 25, 24, 30]
+    }
+  ],
+  "story": {
+    "text": "Coming home, Mrs. Dashwood and Elinor find Marianne rushing out of the parlour in {TEARS}, apparently in violent {AFFLICTION}. Willoughby is leaving for London, at once, and for no {REASON} he will give. Marianne will not {EAT} or sleep; she {INDULGES} her grief, playing his {FAVOURITE} songs, and still no one knows if they are {ENGAGED}.",
+    "image": "art/sense-thomson-1896/008-apparently-in-violent-affliction.jpg",
+    "caption": "Apparently in violent affliction",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

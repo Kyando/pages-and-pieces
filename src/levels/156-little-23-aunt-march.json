@@ -1,0 +1,45 @@
+{
+  "id": "little-23-aunt-march",
+  "book": "little-women",
+  "chapter": 23,
+  "title": "Aunt March Settles the Question",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "TIDDE",
+    "IMDPT",
+    "SMEEA",
+    "IAYCC",
+    "DDGNI",
+    "SEFTH",
+    "DNEON"
+  ],
+  "words": [
+    {
+      "text": "TIMID",
+      "path": [0, 5, 6, 1, 2]
+    },
+    {
+      "text": "NOTHING",
+      "path": [34, 33, 28, 29, 24, 23, 22]
+    },
+    {
+      "text": "DEFENDS",
+      "path": [21, 26, 27, 32, 31, 30, 25]
+    },
+    {
+      "text": "ACCEPTED",
+      "path": [14, 19, 18, 13, 8, 9, 4, 3]
+    },
+    {
+      "text": "DISMAYED",
+      "path": [20, 15, 10, 11, 16, 17, 12, 7]
+    }
+  ],
+  "story": {
+    "text": "Mr. Brooke asks Meg to marry him, and Meg, {TIMID}, almost says no. Then Aunt March arrives, says he only wants her money, and threatens to leave Meg {NOTHING}. Meg flares up and {DEFENDS} him. John Brooke has heard it all, and is {ACCEPTED} on the spot. Jo is {DISMAYED}.",
+    "image": "art/merrill-1880/118-bless-me-what-s-all-this.jpg",
+    "caption": "“Bless me, what’s all this?”",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

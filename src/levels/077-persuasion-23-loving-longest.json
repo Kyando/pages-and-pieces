@@ -1,0 +1,55 @@
+{
+  "id": "persuasion-23-loving-longest",
+  "book": "persuasion",
+  "chapter": 23,
+  "title": "Loving Longest",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "WRGNHO",
+    "SITIEP",
+    "EPLACG",
+    "VOEPIN",
+    "GLXRIL",
+    "TSIIVE",
+    "ENCEEG"
+  ],
+  "words": [
+    {
+      "text": "WRITING",
+      "path": [0, 1, 7, 8, 9, 3, 2]
+    },
+    {
+      "text": "PRIVILEGE",
+      "path": [21, 27, 33, 34, 28, 29, 35, 41, 40]
+    },
+    {
+      "text": "EXISTENCE",
+      "path": [20, 26, 32, 31, 30, 36, 37, 38, 39]
+    },
+    {
+      "text": "HOPE",
+      "path": [4, 5, 11, 10]
+    },
+    {
+      "text": "GLOVES",
+      "path": [24, 25, 19, 18, 12, 6]
+    },
+    {
+      "text": "PLACING",
+      "path": [13, 14, 15, 16, 22, 23, 17]
+    }
+  ],
+  "story": {
+    "text": "At the White Hart, Anne and Captain Harville argue over who loves longest, men or women. Wentworth sits {WRITING} by the window, and his pen falls. “All the {PRIVILEGE} I claim for my own sex,” says Anne, “is that of loving longest, when {EXISTENCE} or when {HOPE} is gone.” Wentworth hurries out, comes back for his {GLOVES}, and slips away again after {PLACING} a letter before her.",
+    "image": "art/persuasion-thomson-1897/thomson-ch23-lettre.jpg",
+    "caption": "Placed it before Anne",
+    "credit": "Hugh Thomson, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.94
+    ]
+  }
+}

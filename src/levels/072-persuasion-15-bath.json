@@ -1,0 +1,57 @@
+{
+  "id": "persuasion-15-bath",
+  "book": "persuasion",
+  "chapter": 15,
+  "title": "Camden Place",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "SEFES",
+    "SNACW",
+    "IBLEA",
+    "ENGTN",
+    "SAESG",
+    "TRDAL",
+    "CRMSS",
+    "HAING"
+  ],
+  "words": [
+    {
+      "text": "GLASS",
+      "path": [24, 29, 28, 33, 34]
+    },
+    {
+      "text": "FACES",
+      "path": [2, 7, 8, 3, 4]
+    },
+    {
+      "text": "ESTRANGED",
+      "path": [15, 20, 25, 26, 21, 16, 17, 22, 27]
+    },
+    {
+      "text": "CHARMING",
+      "path": [30, 35, 36, 31, 32, 37, 38, 39]
+    },
+    {
+      "text": "SENSIBLE",
+      "path": [0, 1, 6, 5, 10, 11, 12, 13]
+    },
+    {
+      "text": "WANTS",
+      "path": [9, 14, 19, 18, 23]
+    }
+  ],
+  "story": {
+    "text": "Anne joins her father and Elizabeth in their fine rooms in Bath. Sir Walter admires himself in every {GLASS}, and counts the plain {FACES} in the street; Mrs. Clay never leaves Elizabeth’s side. Mr. Elliot, long {ESTRANGED}, now calls every day, so {CHARMING} and {SENSIBLE} that only Anne wonders what he {WANTS}. Her one pleasure is an old school friend, Mrs. Smith, poor and ill.",
+    "image": "art/persuasion-brock-1898/pers-brock-03.jpg",
+    "caption": "Few women could think more of their personal appearance than he did",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.1,
+      0.08,
+      0.92,
+      0.84
+    ],
+    "colour": true
+  }
+}

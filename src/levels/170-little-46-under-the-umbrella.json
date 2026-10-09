@@ -1,0 +1,58 @@
+{
+  "id": "little-46-under-the-umbrella",
+  "book": "little-women",
+  "chapter": 46,
+  "title": "Under the Umbrella",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "SSHPIN",
+    "NIOPTG",
+    "TFFARA",
+    "SESLHE",
+    "SWELGO",
+    "ODRCPS",
+    "EDBAIS",
+    "NUMRRY"
+  ],
+  "words": [
+    {
+      "text": "GOSSIP",
+      "path": [28, 29, 35, 41, 40, 34]
+    },
+    {
+      "text": "WEST",
+      "path": [25, 19, 18, 12]
+    },
+    {
+      "text": "SHOPPING",
+      "path": [1, 2, 8, 9, 3, 4, 5, 11]
+    },
+    {
+      "text": "SNIFFS",
+      "path": [0, 6, 7, 13, 14, 20]
+    },
+    {
+      "text": "UMBRELLA",
+      "path": [43, 44, 38, 32, 26, 27, 21, 15]
+    },
+    {
+      "text": "SODDEN",
+      "path": [24, 30, 31, 37, 36, 42]
+    },
+    {
+      "text": "HEART",
+      "path": [22, 23, 17, 16, 10]
+    },
+    {
+      "text": "CARRY",
+      "path": [33, 39, 45, 46, 47]
+    }
+  ],
+  "story": {
+    "text": "For a fortnight Mr. Bhaer comes every day, and the neighbours {GOSSIP}. Then he says he is going {WEST} to teach. Out {SHOPPING} in the rain, Jo {SNIFFS} back her tears, and he sees them. Under the {UMBRELLA}, in the {SODDEN} lane, he asks her: “Can you make a little place in your {HEART} for old Fritz?” Jo says yes, and lets him {CARRY} the parcels.",
+    "image": "art/merrill-1880/199-under-the-umbrella.jpg",
+    "caption": "Under the umbrella",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

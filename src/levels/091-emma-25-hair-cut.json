@@ -1,0 +1,56 @@
+{
+  "id": "emma-25-hair-cut",
+  "book": "emma",
+  "chapter": 25,
+  "title": "Having His Hair Cut",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "GLTRI",
+    "DAILF",
+    "HANGR",
+    "IIRFE",
+    "NVIUS",
+    "BSTAE",
+    "USETN",
+    "SINIO"
+  ],
+  "words": [
+    {
+      "text": "HAIR",
+      "path": [10, 11, 16, 17]
+    },
+    {
+      "text": "TRIFLING",
+      "path": [2, 3, 4, 9, 8, 7, 12, 13]
+    },
+    {
+      "text": "BUSINESS",
+      "path": [25, 30, 35, 36, 37, 32, 31, 26]
+    },
+    {
+      "text": "REFUSE",
+      "path": [14, 19, 18, 23, 24, 29]
+    },
+    {
+      "text": "INVITATION",
+      "path": [15, 20, 21, 22, 27, 28, 33, 38, 39, 34]
+    },
+    {
+      "text": "GLAD",
+      "path": [0, 1, 6, 5]
+    }
+  ],
+  "story": {
+    "text": "Next day Frank rides sixteen miles to London just to have his {HAIR} cut. Mr. Knightley calls him a {TRIFLING}, silly fellow. Then the Coles, who made their money in {BUSINESS}, ask everyone to dinner. Emma means to {REFUSE}, to teach them their place; but when her {INVITATION} comes late, she is {GLAD} to go.",
+    "image": "art/emma-thomson-1896/emma-ch25-ii-7.jpg",
+    "caption": "Having his hair cut",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

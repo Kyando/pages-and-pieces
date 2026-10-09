@@ -1,0 +1,56 @@
+{
+  "id": "persuasion-11-lyme",
+  "book": "persuasion",
+  "chapter": 11,
+  "title": "He Carpentered",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "ELYCA",
+    "MARTR",
+    "PSEEP",
+    "ROPOE",
+    "MOSRN",
+    "RUEET",
+    "NGGAT",
+    "INCOT"
+  ],
+  "words": [
+    {
+      "text": "LAME",
+      "path": [1, 6, 5, 0]
+    },
+    {
+      "text": "COTTAGE",
+      "path": [37, 38, 39, 34, 33, 32, 27]
+    },
+    {
+      "text": "CARPENTERS",
+      "path": [3, 4, 9, 14, 19, 24, 29, 28, 23, 22]
+    },
+    {
+      "text": "MOURNING",
+      "path": [20, 21, 26, 25, 30, 35, 36, 31]
+    },
+    {
+      "text": "POETRY",
+      "path": [17, 18, 13, 8, 7, 2]
+    },
+    {
+      "text": "PROSE",
+      "path": [10, 15, 16, 11, 12]
+    }
+  ],
+  "story": {
+    "text": "The young people go to Lyme, to see Wentworth’s friend Captain Harville, {LAME} from the war, in a tiny {COTTAGE} by the sea. Harville makes the most of every corner: he {CARPENTERS}, glues and mends. With him lives Captain Benwick, {MOURNING} his fiancée, Harville’s sister Fanny. Anne advises him to read less {POETRY}, and more {PROSE}.",
+    "image": "art/persuasion-thomson-1897/thomson-ch11harville.jpg",
+    "caption": "He carpentered",
+    "credit": "Hugh Thomson, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.93
+    ]
+  }
+}

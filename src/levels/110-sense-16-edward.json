@@ -1,0 +1,58 @@
+{
+  "id": "sense-16-edward",
+  "book": "sense-and-sensibility",
+  "chapter": 16,
+  "title": "A Lock of Hair in a Ring",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "YSTEHO",
+    "LECIUR",
+    "TERRQS",
+    "GHAETE",
+    "LRIGSI",
+    "OOMNRS",
+    "OCYIED",
+    "LOURRI"
+  ],
+  "words": [
+    {
+      "text": "RIDER",
+      "path": [46, 47, 41, 40, 34]
+    },
+    {
+      "text": "HORSE",
+      "path": [4, 5, 11, 17, 23]
+    },
+    {
+      "text": "QUIET",
+      "path": [16, 10, 9, 3, 2]
+    },
+    {
+      "text": "GLOOMY",
+      "path": [18, 24, 30, 31, 32, 38]
+    },
+    {
+      "text": "HAIR",
+      "path": [19, 20, 26, 25]
+    },
+    {
+      "text": "SISTER",
+      "path": [35, 29, 28, 22, 21, 15]
+    },
+    {
+      "text": "COLOURING",
+      "path": [37, 36, 42, 43, 44, 45, 39, 33, 27]
+    },
+    {
+      "text": "SECRETLY",
+      "path": [1, 7, 8, 14, 13, 12, 6, 0]
+    }
+  ],
+  "story": {
+    "text": "Out walking, Marianne sees a {RIDER} coming down the hill and runs to meet him: Willoughby! But it is Edward Ferrars, on a borrowed {HORSE}. All week he is {QUIET} and {GLOOMY}, and wears a ring with a lock of {HAIR} in it: his {SISTER}’s, he says, {COLOURING}. Elinor thinks it is her own, and is {SECRETLY} glad.",
+    "image": "art/sense-thomson-1896/009-begging-her-to-stop.jpg",
+    "caption": "Begging her to stop",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

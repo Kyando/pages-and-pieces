@@ -1,0 +1,56 @@
+{
+  "id": "emma-21-miss-bates",
+  "book": "emma",
+  "chapter": 21,
+  "title": "Chatty and Good-Humoured",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "DECTT",
+    "SLHAY",
+    "KOSNO",
+    "NASKC",
+    "THDEE",
+    "SANSW",
+    "UTTGN",
+    "OHIDI"
+  ],
+  "words": [
+    {
+      "text": "THANKS",
+      "path": [20, 21, 16, 15, 10, 5]
+    },
+    {
+      "text": "CHATTY",
+      "path": [2, 7, 8, 3, 4, 9]
+    },
+    {
+      "text": "TIDINGS",
+      "path": [32, 37, 38, 39, 34, 33, 28]
+    },
+    {
+      "text": "THOUSAND",
+      "path": [31, 36, 35, 30, 25, 26, 27, 22]
+    },
+    {
+      "text": "CONSOLED",
+      "path": [19, 14, 13, 12, 11, 6, 1, 0]
+    },
+    {
+      "text": "WEEKS",
+      "path": [29, 24, 23, 18, 17]
+    }
+  ],
+  "story": {
+    "text": "Mr. Knightley {THANKS} Emma for being kind to Jane, and she glows. Then Miss Bates bursts in, very {CHATTY} and good-humoured, with {TIDINGS}: Mr. Elton is to marry a Miss Hawkins of Bath, with ten {THOUSAND} pounds! He has {CONSOLED} himself in four {WEEKS}. Now Emma must tell poor Harriet.",
+    "image": "art/emma-thomson-1896/emma-ch21a-ii-3.jpg",
+    "caption": "“Miss Bates was very chatty and good-humoured.”",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

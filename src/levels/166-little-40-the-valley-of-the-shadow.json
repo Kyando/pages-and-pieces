@@ -1,0 +1,48 @@
+{
+  "id": "little-40-the-valley-of-the-shadow",
+  "book": "little-women",
+  "chapter": 40,
+  "title": "The Valley of the Shadow",
+  "rows": 6,
+  "cols": 8,
+  "grid": [
+    "GNINMBHT",
+    "KITROREA",
+    "RSTESREN",
+    "EUNNCDLI",
+    "KASSHOOH",
+    "WEHINELC"
+  ],
+  "words": [
+    {
+      "text": "WEAKER",
+      "path": [40, 41, 33, 32, 24, 16]
+    },
+    {
+      "text": "KITTENS",
+      "path": [8, 9, 10, 18, 19, 27, 35]
+    },
+    {
+      "text": "SUNSHINE",
+      "path": [17, 25, 26, 34, 42, 43, 44, 45]
+    },
+    {
+      "text": "SCHOOLCHILDREN",
+      "path": [20, 28, 36, 37, 38, 46, 47, 39, 31, 30, 29, 21, 22, 23]
+    },
+    {
+      "text": "MORNING",
+      "path": [4, 12, 11, 3, 2, 1, 0]
+    },
+    {
+      "text": "BREATH",
+      "path": [5, 13, 14, 15, 7, 6]
+    }
+  ],
+  "story": {
+    "text": "At home, Beth grows {WEAKER} through the spring. The family gives her the best room, with her piano, her {KITTENS}, and the window full of {SUNSHINE}. She sews little things for the {SCHOOLCHILDREN} who pass by. Then one {MORNING}, with Jo beside her, Beth draws her last {BREATH}.",
+    "image": "art/merrill-1880/177-the-valley-of-the-shadow.jpg",
+    "caption": "The Valley of the Shadow",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

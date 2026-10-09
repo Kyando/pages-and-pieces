@@ -1,0 +1,48 @@
+{
+  "id": "little-15-a-telegram",
+  "book": "little-women",
+  "chapter": 15,
+  "title": "A Telegram",
+  "rows": 6,
+  "cols": 6,
+  "grid": [
+    "WBEAYS",
+    "EEMUTR",
+    "SPATLA",
+    "RGRRLO",
+    "IELOCD",
+    "AHETSE"
+  ],
+  "words": [
+    {
+      "text": "TELEGRAM",
+      "path": [33, 32, 26, 25, 19, 20, 14, 8]
+    },
+    {
+      "text": "ESCORT",
+      "path": [35, 34, 28, 27, 21, 15]
+    },
+    {
+      "text": "DOLLARS",
+      "path": [29, 23, 22, 16, 17, 11, 5]
+    },
+    {
+      "text": "HAIR",
+      "path": [31, 30, 24, 18]
+    },
+    {
+      "text": "BEAUTY",
+      "path": [1, 2, 3, 9, 10, 4]
+    },
+    {
+      "text": "WEEPS",
+      "path": [0, 6, 7, 13, 12]
+    }
+  ],
+  "story": {
+    "text": "A {TELEGRAM}: Father is very ill in Washington. Marmee must go to him at once, and Mr. Brooke will {ESCORT} her. Jo comes home with twenty-five {DOLLARS} for the journey, and takes off her bonnet: she has sold her {HAIR}, her one {BEAUTY}. That night she {WEEPS} over it in secret.",
+    "image": "art/merrill-1880/087-the-man-clipped.jpg",
+    "caption": "The man clipped",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

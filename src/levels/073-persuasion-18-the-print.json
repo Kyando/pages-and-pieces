@@ -1,0 +1,57 @@
+{
+  "id": "persuasion-18-the-print",
+  "book": "persuasion",
+  "chapter": 18,
+  "title": "Such a Boat!",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "LPSAS",
+    "EANOT",
+    "PRIEE",
+    "NISFR",
+    "TRHIN",
+    "DEYRG",
+    "ECOTE",
+    "REVPO"
+  ],
+  "words": [
+    {
+      "text": "PRINT",
+      "path": [10, 11, 16, 15, 20]
+    },
+    {
+      "text": "ASTONISHING",
+      "path": [3, 4, 9, 8, 7, 12, 17, 22, 23, 24, 29]
+    },
+    {
+      "text": "RECOVERED",
+      "path": [21, 26, 31, 32, 37, 36, 35, 30, 25]
+    },
+    {
+      "text": "POETRY",
+      "path": [38, 39, 34, 33, 28, 27]
+    },
+    {
+      "text": "FREE",
+      "path": [18, 19, 14, 13]
+    },
+    {
+      "text": "LEAPS",
+      "path": [0, 5, 6, 1, 2]
+    }
+  ],
+  "story": {
+    "text": "In Milsom Street Anne finds Admiral Croft staring at a {PRINT} in a shop window: “Such a boat! I would not go to sea in it.” Walking her home, he brings {ASTONISHING} news. Louisa is to marry not Wentworth but Captain Benwick! They fell in love while she {RECOVERED}, reading {POETRY} together. Wentworth is {FREE}, and Anne’s heart {LEAPS}.",
+    "image": "art/persuasion-brock-1898/pers-brock-17.jpg",
+    "caption": "In earnest contemplation of some print",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.1,
+      0.08,
+      0.92,
+      0.84
+    ],
+    "colour": true
+  }
+}

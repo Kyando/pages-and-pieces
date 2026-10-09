@@ -1,0 +1,49 @@
+{
+  "id": "little-43-surprises",
+  "book": "little-women",
+  "chapter": 43,
+  "title": "Surprises",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "GLERU",
+    "DAPOE",
+    "YTHGK",
+    "HSOON",
+    "POKCE",
+    "OSPID",
+    "LIHRB"
+  ],
+  "words": [
+    {
+      "text": "GHOST",
+      "path": [13, 12, 17, 16, 11]
+    },
+    {
+      "text": "EUROPE",
+      "path": [9, 4, 3, 8, 7, 2]
+    },
+    {
+      "text": "BRIDE",
+      "path": [34, 33, 28, 29, 24]
+    },
+    {
+      "text": "KNOCK",
+      "path": [14, 19, 18, 23, 22]
+    },
+    {
+      "text": "GLAD",
+      "path": [0, 1, 6, 5]
+    },
+    {
+      "text": "PHILOSOPHY",
+      "path": [27, 32, 31, 30, 25, 26, 21, 20, 15, 10]
+    }
+  ],
+  "story": {
+    "text": "One evening a lifelike {GHOST} leans over Jo’s chair: Laurie, home from {EUROPE}, with Amy his {BRIDE}! Then comes a {KNOCK}, and there stands Professor Bhaer. “O Mr. Bhaer, I am so {GLAD} to see you!” Father and he talk {PHILOSOPHY} all evening, and he fits in as if he had always been there.",
+    "image": "art/merrill-1880/187-o-mr-bhaer-i-am-so-glad-to-see-you.jpg",
+    "caption": "“O Mr. Bhaer, I am so glad to see you!”",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

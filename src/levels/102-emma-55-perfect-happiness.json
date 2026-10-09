@@ -1,0 +1,56 @@
+{
+  "id": "emma-55-perfect-happiness",
+  "book": "emma",
+  "chapter": 55,
+  "title": "Hung About Him",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "ELGSE",
+    "ABNAF",
+    "REIDW",
+    "ISFDE",
+    "MTASY",
+    "SHERE",
+    "TACTK",
+    "PECUR"
+  ],
+  "words": [
+    {
+      "text": "ACCEPTS",
+      "path": [31, 32, 37, 36, 35, 30, 25]
+    },
+    {
+      "text": "FATHER",
+      "path": [17, 22, 21, 26, 27, 28]
+    },
+    {
+      "text": "MISERABLE",
+      "path": [20, 15, 16, 11, 10, 5, 6, 1, 0]
+    },
+    {
+      "text": "WEDDING",
+      "path": [14, 19, 18, 13, 12, 7, 2]
+    },
+    {
+      "text": "TURKEYS",
+      "path": [33, 38, 39, 34, 29, 24, 23]
+    },
+    {
+      "text": "SAFE",
+      "path": [3, 8, 9, 4]
+    }
+  ],
+  "story": {
+    "text": "Harriet {ACCEPTS} Robert Martin after all. Emma cannot leave her {FATHER}, so Mr. Knightley offers to come and live at Hartfield. Mr. Woodhouse is {MISERABLE} at the thought of a {WEDDING}, until thieves steal the neighbours’ {TURKEYS}, and he only feels {SAFE} with Mr. Knightley in the house.",
+    "image": "art/emma-thomson-1896/emma-ch53-iii-17.jpg",
+    "caption": "Emma hung about him affectionately",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

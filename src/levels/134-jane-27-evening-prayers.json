@@ -1,0 +1,55 @@
+{
+  "id": "jane-27-evening-prayers",
+  "book": "jane-eyre",
+  "chapter": 27,
+  "title": "On the Moor",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "MREEF",
+    "OSHWI",
+    "ORTAP",
+    "FLEER",
+    "SSEHA",
+    "ESUEY",
+    "REFRS"
+  ],
+  "words": [
+    {
+      "text": "WIFE",
+      "path": [8, 9, 4, 3]
+    },
+    {
+      "text": "REFUSES",
+      "path": [30, 31, 32, 27, 26, 25, 20]
+    },
+    {
+      "text": "FLEES",
+      "path": [15, 16, 17, 22, 21]
+    },
+    {
+      "text": "MOORS",
+      "path": [0, 5, 10, 11, 6]
+    },
+    {
+      "text": "PRAYERS",
+      "path": [14, 19, 24, 29, 28, 33, 34]
+    },
+    {
+      "text": "HEATHER",
+      "path": [23, 18, 13, 12, 7, 2, 1]
+    }
+  ],
+  "story": {
+    "text": "At the altar a stranger stops the wedding: Mr. Rochester has a {WIFE} living! Bertha, mad, is kept in the attic, with Grace Poole to guard her. He begs Jane to stay with him all the same. She {REFUSES}, and {FLEES} at dawn with almost nothing. The coach leaves her on the empty {MOORS}, and she says her evening {PRAYERS} under the {HEATHER}.",
+    "image": "art/townsend-1897/007-i-said-my-evening-prayers.jpg",
+    "caption": "I said my evening prayers",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.9
+    ]
+  }
+}

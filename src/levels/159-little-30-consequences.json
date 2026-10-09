@@ -1,0 +1,52 @@
+{
+  "id": "little-30-consequences",
+  "book": "little-women",
+  "chapter": 30,
+  "title": "Another Table",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "CNERBTR",
+    "ORSFOUA",
+    "ASELUQS",
+    "VPWOEOU",
+    "POERTIC",
+    "ULARGRA"
+  ],
+  "words": [
+    {
+      "text": "ART",
+      "path": [13, 6, 5]
+    },
+    {
+      "text": "FLOWER",
+      "path": [10, 17, 24, 23, 30, 31]
+    },
+    {
+      "text": "CORNER",
+      "path": [0, 7, 8, 1, 2, 3]
+    },
+    {
+      "text": "GRACIOUS",
+      "path": [39, 40, 41, 34, 33, 26, 27, 20]
+    },
+    {
+      "text": "VASES",
+      "path": [21, 14, 15, 16, 9]
+    },
+    {
+      "text": "BOUQUET",
+      "path": [4, 11, 12, 19, 18, 25, 32]
+    },
+    {
+      "text": "POPULAR",
+      "path": [22, 29, 28, 35, 36, 37, 38]
+    }
+  ],
+  "story": {
+    "text": "Amy is given the pretty {ART} table at a charity fair, but jealous May Chester takes it from her, and puts Amy at the {FLOWER} table in a dark {CORNER}. Amy is {GRACIOUS}, and even lends May her own {VASES}. Next day Laurie and his friends buy up every {BOUQUET}, and Amy’s table is the most {POPULAR} in the hall.",
+    "image": "art/merrill-1880/141-you-shall-have-another-table.jpg",
+    "caption": "You shall have another table",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

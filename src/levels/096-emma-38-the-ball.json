@@ -1,0 +1,55 @@
+{
+  "id": "emma-38-the-ball",
+  "book": "emma",
+  "chapter": 38,
+  "title": "The Ball at the Crown",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "STRBA",
+    "LEALL",
+    "DAIGH",
+    "SSKRT",
+    "YLMIS",
+    "ERSUN",
+    "DLEBS"
+  ],
+  "words": [
+    {
+      "text": "BALL",
+      "path": [3, 4, 9, 8]
+    },
+    {
+      "text": "ELDERLY",
+      "path": [32, 31, 30, 25, 26, 21, 20]
+    },
+    {
+      "text": "STRAIGHT",
+      "path": [0, 1, 2, 7, 12, 13, 14, 19]
+    },
+    {
+      "text": "SNUBS",
+      "path": [24, 29, 28, 33, 34]
+    },
+    {
+      "text": "SMIRKS",
+      "path": [27, 22, 23, 18, 17, 16]
+    },
+    {
+      "text": "LEADS",
+      "path": [5, 6, 11, 10, 15]
+    }
+  ],
+  "story": {
+    "text": "At the {BALL} at the Crown, Mr. Knightley will not dance; he stands among the {ELDERLY} men, tall and {STRAIGHT}. Mr. Elton {SNUBS} Harriet in front of everyone, and Mrs. Elton {SMIRKS}. Then Mr. Knightley {LEADS} Harriet to the set himself, and Emma could kiss him for it.",
+    "image": "art/emma-thomson-1896/emma-ch38-iii-2.jpg",
+    "caption": "Among the bulky forms and stooping shoulders",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "id": "jane-19-the-gypsy",
+  "book": "jane-eyre",
+  "chapter": 19,
+  "title": "The Gypsy",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "SCHANG",
+    "TABBSE",
+    "FEMEDG",
+    "ACAEYY",
+    "DICRSP",
+    "GSSASN",
+    "UISEHE"
+  ],
+  "words": [
+    {
+      "text": "GYPSY",
+      "path": [17, 23, 29, 28, 22]
+    },
+    {
+      "text": "FACE",
+      "path": [12, 18, 19, 13]
+    },
+    {
+      "text": "CHANGES",
+      "path": [1, 2, 3, 4, 5, 11, 10]
+    },
+    {
+      "text": "DISGUISE",
+      "path": [24, 25, 31, 30, 36, 37, 38, 39]
+    },
+    {
+      "text": "ASHEN",
+      "path": [33, 34, 40, 41, 35]
+    },
+    {
+      "text": "SCREAM",
+      "path": [32, 26, 27, 21, 20, 14]
+    },
+    {
+      "text": "STABBED",
+      "path": [0, 6, 7, 8, 9, 15, 16]
+    }
+  ],
+  "story": {
+    "text": "The {GYPSY} calls Jane in last. By the fire she reads Jane’s {FACE}, not her palm, and seems to know her heart. Then the voice {CHANGES}: it is Mr. Rochester in {DISGUISE}! But when Jane tells him a Mr. Mason has come from the West Indies, he turns {ASHEN}. That night a {SCREAM} wakes the house: Mason has been {STABBED}.",
+    "image": "art/townsend-1897/005-she-did-not-stoop-towards-me-but-only-gazed-leanin.jpg",
+    "caption": "She did not stoop towards me, but only gazed, leaning back in her chair",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "sense-50-ever-after",
+  "book": "sense-and-sensibility",
+  "chapter": 50,
+  "title": "Within Sight of Each Other",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "DTEHEG",
+    "ERACOA",
+    "TNETNN",
+    "FTTPSO",
+    "LAEARD",
+    "HAROVE",
+    "DNSTED"
+  ],
+  "words": [
+    {
+      "text": "PARSONAGE",
+      "path": [21, 27, 28, 22, 23, 17, 11, 5, 4]
+    },
+    {
+      "text": "CONTENTED",
+      "path": [9, 10, 16, 15, 14, 13, 12, 6, 0]
+    },
+    {
+      "text": "HAND",
+      "path": [30, 31, 37, 36]
+    },
+    {
+      "text": "HEART",
+      "path": [3, 2, 8, 7, 1]
+    },
+    {
+      "text": "FLATTERS",
+      "path": [18, 24, 25, 19, 20, 26, 32, 38]
+    },
+    {
+      "text": "DEVOTED",
+      "path": [29, 35, 34, 33, 39, 40, 41]
+    }
+  ],
+  "story": {
+    "text": "Edward and Elinor marry, and live in the {PARSONAGE} at Delaford, poor but {CONTENTED}. And Marianne, who once swore she could love only once, gives her {HAND} to Colonel Brandon, and in time her whole {HEART}. Lucy {FLATTERS} her way into Mrs. Ferrars’s favour; and the two sisters live within sight of each other, ever {DEVOTED}.",
+    "image": "art/sense-thomson-1896/039-image_362.jpg",
+    "caption": "Within sight of each other",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "jane-25-the-veil",
+  "book": "jane-eyre",
+  "chapter": 25,
+  "title": "The Torn Veil",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "DHCROW",
+    "RAIDDE",
+    "GGNVLG",
+    "NINEIH",
+    "LITYSA",
+    "EGHLTA",
+    "LARECC",
+    "PMTPTS"
+  ],
+  "words": [
+    {
+      "text": "ORCHARD",
+      "path": [4, 3, 2, 1, 7, 6, 0]
+    },
+    {
+      "text": "ACCEPTS",
+      "path": [35, 41, 40, 39, 45, 46, 47]
+    },
+    {
+      "text": "LIGHTNING",
+      "path": [24, 25, 31, 32, 26, 20, 19, 18, 12]
+    },
+    {
+      "text": "WEDDING",
+      "path": [5, 11, 10, 9, 8, 14, 13]
+    },
+    {
+      "text": "GHASTLY",
+      "path": [17, 23, 29, 28, 34, 33, 27]
+    },
+    {
+      "text": "VEIL",
+      "path": [15, 21, 22, 16]
+    },
+    {
+      "text": "TRAMPLE",
+      "path": [44, 38, 37, 43, 42, 36, 30]
+    }
+  ],
+  "story": {
+    "text": "Under the chestnut tree in the {ORCHARD}, Jane tells Mr. Rochester she is no bird, but a free human being. Then he asks her to marry him, and she {ACCEPTS}. That night {LIGHTNING} splits the tree in two. Two nights before the {WEDDING}, Jane wakes to see a {GHASTLY} woman put on her {VEIL}, tear it in two, and {TRAMPLE} it.",
+    "image": "art/townsend-1897/006-it-removed-my-veil-from-its-gaunt-head-rent-it-in-.jpg",
+    "caption": "It removed my veil from its gaunt head, rent it in two parts, and trampled on them",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

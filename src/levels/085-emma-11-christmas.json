@@ -1,0 +1,60 @@
+{
+  "id": "emma-11-christmas",
+  "book": "emma",
+  "chapter": 11,
+  "title": "Flying Henry’s Kite",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "EKPEE",
+    "TIGAC",
+    "HINCN",
+    "TYLHE",
+    "LAFIR",
+    "GEHLD",
+    "NODEE",
+    "ITAGR"
+  ],
+  "words": [
+    {
+      "text": "CHILDREN",
+      "path": [13, 18, 23, 28, 29, 24, 19, 14]
+    },
+    {
+      "text": "PEACE",
+      "path": [2, 3, 8, 9, 4]
+    },
+    {
+      "text": "AGREE",
+      "path": [37, 38, 39, 34, 33]
+    },
+    {
+      "text": "DOTING",
+      "path": [32, 31, 36, 35, 30, 25]
+    },
+    {
+      "text": "FLYING",
+      "path": [22, 17, 16, 11, 12, 7]
+    },
+    {
+      "text": "KITE",
+      "path": [1, 6, 5, 0]
+    },
+    {
+      "text": "HEALTH",
+      "path": [27, 26, 21, 20, 15, 10]
+    }
+  ],
+  "story": {
+    "text": "At Christmas, Emma’s sister Isabella comes to Hartfield with her husband, John Knightley, and their five {CHILDREN}. Emma and Mr. Knightley make {PEACE} over the baby: they will never agree about Harriet, but they {AGREE} about nephews. Mr. Knightley is a {DOTING} uncle, {FLYING} little Henry’s {KITE}, and Mr. Woodhouse frets over everyone’s {HEALTH}.",
+    "image": "art/emma-thomson-1896/emma-ch11-i-11.jpg",
+    "caption": "Flying Henry’s kite for him",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

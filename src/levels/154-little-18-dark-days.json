@@ -1,0 +1,52 @@
+{
+  "id": "little-18-dark-days",
+  "book": "little-women",
+  "chapter": 18,
+  "title": "Dark Days",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "SSELSRE",
+    "NPEWCHV",
+    "OWEATFE",
+    "NAVSHEL",
+    "EELWPTE",
+    "TTIRARG"
+  ],
+  "words": [
+    {
+      "text": "TELEGRAPHS",
+      "path": [33, 26, 27, 34, 41, 40, 39, 32, 25, 24]
+    },
+    {
+      "text": "WRITTEN",
+      "path": [31, 38, 37, 36, 35, 28, 21]
+    },
+    {
+      "text": "WATCH",
+      "path": [10, 17, 18, 11, 12]
+    },
+    {
+      "text": "FEVER",
+      "path": [19, 20, 13, 6, 5]
+    },
+    {
+      "text": "SLEEPS",
+      "path": [4, 3, 2, 9, 8, 1]
+    },
+    {
+      "text": "SNOW",
+      "path": [0, 7, 14, 15]
+    },
+    {
+      "text": "LEAVE",
+      "path": [30, 29, 22, 23, 16]
+    }
+  ],
+  "story": {
+    "text": "Beth gets worse, and does not know Jo. Hannah says it is time to send for Marmee. Jo {TELEGRAPHS}, but Laurie has already {WRITTEN}. Through the long night the sisters {WATCH}; at midnight the {FEVER} turns, and Beth {SLEEPS}. Marmee arrives through the {SNOW}, and will not {LEAVE} Beth’s side.",
+    "image": "art/merrill-1880/106-mrs-march-would-not-leave-beth-s-side.jpg",
+    "caption": "Mrs. March would not leave Beth’s side",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

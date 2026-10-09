@@ -1,0 +1,47 @@
+{
+  "id": "little-22-pleasant-meadows",
+  "book": "little-women",
+  "chapter": 22,
+  "title": "Another Christmas Present",
+  "rows": 5,
+  "cols": 7,
+  "grid": [
+    "RDCIRSE",
+    "OOHACRI",
+    "GNTSMUF",
+    "PORGNRF",
+    "RAISIEL"
+  ],
+  "words": [
+    {
+      "text": "DOOR",
+      "path": [1, 8, 7, 0]
+    },
+    {
+      "text": "MUFFLER",
+      "path": [18, 19, 20, 27, 34, 33, 26]
+    },
+    {
+      "text": "CRIES",
+      "path": [11, 12, 13, 6, 5]
+    },
+    {
+      "text": "STRONG",
+      "path": [17, 16, 23, 22, 15, 14]
+    },
+    {
+      "text": "CHAIR",
+      "path": [2, 9, 10, 3, 4]
+    },
+    {
+      "text": "PRAISING",
+      "path": [21, 28, 29, 30, 31, 32, 25, 24]
+    }
+  ],
+  "story": {
+    "text": "On Christmas Day Laurie opens the parlour {DOOR}: “Here’s another Christmas present for the March family!” It is Father, home from the war, wrapped up in a {MUFFLER}. Everyone {CRIES} at once. Beth runs into his arms, {STRONG} enough at last, and that night he sits in the big {CHAIR}, {PRAISING} each girl in turn.",
+    "image": "art/merrill-1880/115-he-sat-in-the-big-chair.jpg",
+    "caption": "He sat in the big chair",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

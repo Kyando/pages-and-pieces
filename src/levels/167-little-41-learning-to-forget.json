@@ -1,0 +1,56 @@
+{
+  "id": "little-41-learning-to-forget",
+  "book": "little-women",
+  "chapter": 41,
+  "title": "How Well We Pull Together",
+  "rows": 6,
+  "cols": 8,
+  "grid": [
+    "SEUNDEEL",
+    "RRODARKA",
+    "IGHEWSTA",
+    "SETFITRN",
+    "CYORGOED",
+    "OMFTETHS"
+  ],
+  "words": [
+    {
+      "text": "COMFORT",
+      "path": [32, 40, 41, 42, 34, 35, 43]
+    },
+    {
+      "text": "LAKE",
+      "path": [7, 15, 14, 6]
+    },
+    {
+      "text": "TOGETHER",
+      "path": [29, 37, 36, 44, 45, 46, 38, 30]
+    },
+    {
+      "text": "WIFE",
+      "path": [20, 28, 27, 19]
+    },
+    {
+      "text": "YES",
+      "path": [33, 25, 24]
+    },
+    {
+      "text": "RIGHT",
+      "path": [8, 16, 17, 18, 26]
+    },
+    {
+      "text": "UNDERSTANDS",
+      "path": [2, 3, 4, 5, 13, 21, 22, 23, 31, 39, 47]
+    },
+    {
+      "text": "ADORES",
+      "path": [12, 11, 10, 9, 1, 0]
+    }
+  ],
+  "story": {
+    "text": "News of Beth reaches Amy in Switzerland, and Laurie hurries to {COMFORT} her. Rowing on the {LAKE}, they find how well they pull {TOGETHER}, and he asks her to be his {WIFE}. Amy says {YES}. Jo was {RIGHT}: Amy is the one who {UNDERSTANDS} him, and he {ADORES} her.",
+    "image": "art/merrill-1880/182-how-well-we-pull-together.jpg",
+    "caption": "How well we pull together",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

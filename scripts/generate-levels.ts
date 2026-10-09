@@ -27,7 +27,7 @@ let failed = 0;
 SPECS.forEach((spec, i) => {
   const n = i + 1;
   if (only.length && !only.includes(n)) return;
-  const prefix = `${String(n).padStart(2, '0')}-`;
+  const prefix = `${String(n).padStart(3, '0')}-`;
   const file = `${prefix}${spec.id}.json`;
   const started = performance.now();
   const def = generateLevel(spec, hash(spec.id) + seedOffset);

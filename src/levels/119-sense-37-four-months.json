@@ -1,0 +1,50 @@
+{
+  "id": "sense-37-four-months",
+  "book": "sense-and-sensibility",
+  "chapter": 37,
+  "title": "Four Months",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "SHOMSS",
+    "STNDCE",
+    "ILSIIL",
+    "NEIERF",
+    "TSNTSI",
+    "EPHSHN",
+    "EREYHE",
+    "WITSSS"
+  ],
+  "words": [
+    {
+      "text": "HYSTERICS",
+      "path": [40, 39, 33, 27, 21, 22, 16, 10, 4]
+    },
+    {
+      "text": "DISINHERITS",
+      "path": [9, 15, 14, 20, 26, 32, 38, 37, 43, 44, 45]
+    },
+    {
+      "text": "MONTHS",
+      "path": [3, 2, 8, 7, 1, 0]
+    },
+    {
+      "text": "SILENT",
+      "path": [6, 12, 13, 19, 18, 24]
+    },
+    {
+      "text": "WEEPS",
+      "path": [42, 36, 30, 31, 25]
+    },
+    {
+      "text": "SELFISHNESS",
+      "path": [5, 11, 17, 23, 29, 28, 34, 35, 41, 47, 46]
+    }
+  ],
+  "story": {
+    "text": "Anne Steele lets the secret slip, and Fanny falls into {HYSTERICS}. Mrs. Ferrars orders Edward to give Lucy up; he will not break his word, so she {DISINHERITS} him, and settles everything on Robert. Marianne learns that Elinor has known for four {MONTHS}, and kept {SILENT}. “Four months!” She {WEEPS}, ashamed of her own {SELFISHNESS}.",
+    "image": "art/sense-thomson-1896/026-talking-over-the-business.jpg",
+    "caption": "Talking over the business",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

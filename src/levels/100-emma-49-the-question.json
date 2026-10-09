@@ -1,0 +1,56 @@
+{
+  "id": "emma-49-the-question",
+  "book": "emma",
+  "chapter": 49,
+  "title": "If I Loved You Less",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "HLEDA",
+    "EOVRR",
+    "RSWOE",
+    "CELFN",
+    "ONDEG",
+    "ESSGA",
+    "LOHRU",
+    "YREBB"
+  ],
+  "words": [
+    {
+      "text": "ENGAGED",
+      "path": [14, 19, 24, 29, 28, 23, 22]
+    },
+    {
+      "text": "ARROW",
+      "path": [4, 9, 8, 13, 12]
+    },
+    {
+      "text": "HERSELF",
+      "path": [0, 5, 10, 11, 16, 17, 18]
+    },
+    {
+      "text": "SHRUBBERY",
+      "path": [27, 32, 33, 34, 39, 38, 37, 36, 35]
+    },
+    {
+      "text": "CONSOLE",
+      "path": [15, 20, 21, 26, 31, 30, 25]
+    },
+    {
+      "text": "LOVED",
+      "path": [1, 6, 7, 2, 3]
+    }
+  ],
+  "story": {
+    "text": "Frank and Jane were secretly {ENGAGED} all along! And Harriet hopes for Mr. Knightley himself. It darts through Emma with the speed of an {ARROW}: Mr. Knightley must marry no one but {HERSELF}. In the {SHRUBBERY} he comes to {CONSOLE} her for Frank, and stays to ask his question. “If I {LOVED} you less, I might be able to talk about it more.”",
+    "image": "art/emma-thomson-1896/emma-ch49-iii-13.jpg",
+    "caption": "He stopped to look the question",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

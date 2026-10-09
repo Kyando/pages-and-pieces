@@ -1,0 +1,55 @@
+{
+  "id": "emma-24-frank-churchill",
+  "book": "emma",
+  "chapter": 24,
+  "title": "He Stopt to Look In",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "CLIRO",
+    "OEVMO",
+    "MLYBA",
+    "PSPSL",
+    "LIOTL",
+    "EMCHM",
+    "NTSAR"
+  ],
+  "words": [
+    {
+      "text": "LIVELY",
+      "path": [1, 2, 7, 6, 11, 12]
+    },
+    {
+      "text": "COMPLIMENTS",
+      "path": [0, 5, 10, 15, 20, 21, 26, 25, 30, 31, 32]
+    },
+    {
+      "text": "STOPS",
+      "path": [18, 23, 22, 17, 16]
+    },
+    {
+      "text": "ROOM",
+      "path": [3, 4, 9, 8]
+    },
+    {
+      "text": "BALL",
+      "path": [13, 14, 19, 24]
+    },
+    {
+      "text": "CHARM",
+      "path": [27, 28, 33, 34, 29]
+    }
+  ],
+  "story": {
+    "text": "At last Frank Churchill arrives, {LIVELY} and full of {COMPLIMENTS}. Walking through Highbury with Emma, he {STOPS} to look in at every window, and longs to dance in the old {ROOM} at the Crown, built for a {BALL}. Everyone hopes he and Emma will fall in love, and Emma does feel his {CHARM}.",
+    "image": "art/emma-thomson-1896/emma-ch24-ii-6.jpg",
+    "caption": "He stopt to look in",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

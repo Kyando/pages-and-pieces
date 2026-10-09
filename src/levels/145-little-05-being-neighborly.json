@@ -1,0 +1,49 @@
+{
+  "id": "little-05-being-neighborly",
+  "book": "little-women",
+  "chapter": 5,
+  "title": "Being Neighbourly",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "FFSNE",
+    "WURTT",
+    "ONGIK",
+    "KSHES",
+    "INONT",
+    "LDSOY",
+    "ONEME"
+  ],
+  "words": [
+    {
+      "text": "LONESOME",
+      "path": [25, 30, 31, 32, 27, 28, 33, 34]
+    },
+    {
+      "text": "SNOW",
+      "path": [16, 11, 10, 5]
+    },
+    {
+      "text": "KITTENS",
+      "path": [14, 13, 8, 9, 4, 3, 2]
+    },
+    {
+      "text": "GRUFF",
+      "path": [12, 7, 6, 1, 0]
+    },
+    {
+      "text": "HONESTY",
+      "path": [17, 22, 23, 18, 19, 24, 29]
+    },
+    {
+      "text": "KIND",
+      "path": [15, 20, 21, 26]
+    }
+  ],
+  "story": {
+    "text": "Laurie is ill and {LONESOME} in the big house next door, so Jo marches over through the {SNOW} with blancmange and Beth’s {KITTENS}. She makes him laugh, and meets his {GRUFF} old grandfather, Mr. Laurence, who likes her {HONESTY} at once. “He’s got {KIND} eyes,” Jo decides.",
+    "image": "art/merrill-1880/037-putting-his-finger-under-her-chin.jpg",
+    "caption": "Putting his finger under her chin",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

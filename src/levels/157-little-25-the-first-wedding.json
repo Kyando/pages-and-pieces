@@ -1,0 +1,47 @@
+{
+  "id": "little-25-the-first-wedding",
+  "book": "little-women",
+  "chapter": 25,
+  "title": "The First Wedding",
+  "rows": 5,
+  "cols": 8,
+  "grid": [
+    "ESTSPARF",
+    "GCOEUOLR",
+    "ATTHGURI",
+    "VYEERSNE",
+    "ALLFLEDS"
+  ],
+  "words": [
+    {
+      "text": "PARLOUR",
+      "path": [4, 5, 6, 14, 13, 21, 22]
+    },
+    {
+      "text": "HERSELF",
+      "path": [19, 27, 28, 29, 37, 36, 35]
+    },
+    {
+      "text": "VALLEY",
+      "path": [24, 32, 33, 34, 26, 25]
+    },
+    {
+      "text": "GUESTS",
+      "path": [20, 12, 11, 3, 2, 1]
+    },
+    {
+      "text": "FRIENDS",
+      "path": [7, 15, 23, 31, 30, 38, 39]
+    },
+    {
+      "text": "COTTAGE",
+      "path": [9, 10, 18, 17, 16, 8, 0]
+    }
+  ],
+  "story": {
+    "text": "Three years later, with the war over, Meg marries John Brooke in the old {PARLOUR}, in a simple gown she made {HERSELF}, with lilies of the {VALLEY} in her hair. There are no grand {GUESTS}, only {FRIENDS}. Then she goes off on John’s arm to the {COTTAGE} he has made ready for her, the Dove-cote.",
+    "image": "art/merrill-1880/124-the-first-wedding.jpg",
+    "caption": "The First Wedding",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

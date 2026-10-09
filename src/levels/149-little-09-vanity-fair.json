@@ -1,0 +1,49 @@
+{
+  "id": "little-09-vanity-fair",
+  "book": "little-women",
+  "chapter": 9,
+  "title": "I Wouldn’t, Meg",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "SREDGN",
+    "TRIWOI",
+    "CALFPH",
+    "HSMEDT",
+    "AHAERY",
+    "MPAVSK",
+    "ENGEIL"
+  ],
+  "words": [
+    {
+      "text": "ASHAMED",
+      "path": [13, 19, 25, 26, 20, 21, 22]
+    },
+    {
+      "text": "POWDER",
+      "path": [16, 10, 9, 3, 2, 1]
+    },
+    {
+      "text": "SILK",
+      "path": [34, 40, 41, 35]
+    },
+    {
+      "text": "FLIRTS",
+      "path": [15, 14, 8, 7, 6, 0]
+    },
+    {
+      "text": "CHAMPAGNE",
+      "path": [12, 18, 24, 30, 31, 32, 38, 37, 36]
+    },
+    {
+      "text": "EVERYTHING",
+      "path": [39, 33, 27, 28, 29, 23, 17, 11, 5, 4]
+    }
+  ],
+  "story": {
+    "text": "Meg spends a fortnight with the rich Moffats, and is {ASHAMED} of her old dresses. For a party the Moffat girls {POWDER} and curl her, and squeeze her into a borrowed blue {SILK}. Laurie is there, and does not like it: “I wouldn’t, Meg.” Meg {FLIRTS}, drinks {CHAMPAGNE}, and comes home sorry, to tell Marmee {EVERYTHING}.",
+    "image": "art/merrill-1880/052-i-wouldn-t-meg.jpg",
+    "caption": "“I wouldn’t, Meg”",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

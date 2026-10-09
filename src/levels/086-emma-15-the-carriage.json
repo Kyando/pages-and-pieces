@@ -1,0 +1,60 @@
+{
+  "id": "emma-15-the-carriage",
+  "book": "emma",
+  "chapter": 15,
+  "title": "In the Carriage",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "ENSEQS",
+    "WIOZUC",
+    "EFFEEA",
+    "NDEDRR",
+    "SERDIA",
+    "CLAEEG",
+    "ESCKSW",
+    "DHOSNO"
+  ],
+  "words": [
+    {
+      "text": "SQUEEZES",
+      "path": [5, 4, 10, 16, 15, 9, 3, 2]
+    },
+    {
+      "text": "SNOWS",
+      "path": [45, 46, 47, 41, 40]
+    },
+    {
+      "text": "CARRIAGE",
+      "path": [11, 17, 23, 22, 28, 29, 35, 34]
+    },
+    {
+      "text": "WINE",
+      "path": [6, 7, 1, 0]
+    },
+    {
+      "text": "DECLARES",
+      "path": [42, 36, 30, 31, 32, 26, 25, 24]
+    },
+    {
+      "text": "SHOCKED",
+      "path": [37, 43, 44, 38, 39, 33, 27]
+    },
+    {
+      "text": "OFFENDED",
+      "path": [8, 14, 13, 12, 18, 19, 20, 21]
+    }
+  ],
+  "story": {
+    "text": "At the Westons’ Christmas party, Mr. Elton {SQUEEZES} onto the sofa beside Emma. Then it {SNOWS}, and everyone hurries home. Alone with Emma in the {CARRIAGE}, Mr. Elton, warm with {WINE}, {DECLARES} his love: for her, not Harriet! Emma is {SHOCKED}; he is {OFFENDED} that she could think him meant for Harriet Smith.",
+    "image": "art/emma-thomson-1896/emma-ch15-i-15.jpg",
+    "caption": "“Is this fair, Mrs. Weston?”",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

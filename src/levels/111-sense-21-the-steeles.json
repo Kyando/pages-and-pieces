@@ -1,0 +1,45 @@
+{
+  "id": "sense-21-the-steeles",
+  "book": "sense-and-sensibility",
+  "chapter": 21,
+  "title": "Mischievous Tricks",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "HAMIS",
+    "RIBHC",
+    "IAEIE",
+    "GUXOV",
+    "NOSUG",
+    "ARDAN",
+    "NTORI"
+  ],
+  "words": [
+    {
+      "text": "BEAUX",
+      "path": [7, 12, 11, 16, 17]
+    },
+    {
+      "text": "IGNORANT",
+      "path": [10, 15, 20, 21, 26, 25, 30, 31]
+    },
+    {
+      "text": "ADORING",
+      "path": [28, 27, 32, 33, 34, 29, 24]
+    },
+    {
+      "text": "MISCHIEVOUS",
+      "path": [2, 3, 4, 9, 8, 13, 14, 19, 18, 23, 22]
+    },
+    {
+      "text": "HAIR",
+      "path": [0, 1, 6, 5]
+    }
+  ],
+  "story": {
+    "text": "Sir John brings two new cousins to Barton Park, the Miss Steeles. Anne, the elder, talks of nothing but {BEAUX}; Lucy is pretty, sharp and {IGNORANT}. They win Lady Middleton by {ADORING} her spoilt children, laughing at all their {MISCHIEVOUS} tricks, even when the little ones pull their {HAIR}.",
+    "image": "art/sense-thomson-1896/012-mischievous-tricks.jpg",
+    "caption": "Mischievous tricks",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

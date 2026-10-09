@@ -1,0 +1,60 @@
+{
+  "id": "emma-21-the-martins",
+  "book": "emma",
+  "chapter": 21,
+  "title": "Elizabeth and Her Brother",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "BRAPU",
+    "LEVDD",
+    "YBELS",
+    "SESOH",
+    "TKDPA",
+    "FINKW",
+    "LUTWA",
+    "RETDR"
+  ],
+  "words": [
+    {
+      "text": "BRAVELY",
+      "path": [0, 1, 2, 7, 6, 5, 10]
+    },
+    {
+      "text": "SHOP",
+      "path": [14, 19, 18, 23]
+    },
+    {
+      "text": "AWKWARD",
+      "path": [24, 29, 28, 33, 34, 39, 38]
+    },
+    {
+      "text": "KIND",
+      "path": [21, 26, 27, 22]
+    },
+    {
+      "text": "BEST",
+      "path": [11, 16, 15, 20]
+    },
+    {
+      "text": "PUDDLES",
+      "path": [3, 4, 9, 8, 13, 12, 17]
+    },
+    {
+      "text": "FLUTTER",
+      "path": [25, 30, 31, 32, 37, 36, 35]
+    }
+  ],
+  "story": {
+    "text": "Harriet takes the news of Mr. Elton {BRAVELY}. Then, sheltering from the rain in Ford’s {SHOP}, she sees Elizabeth Martin, and Robert Martin with her! They are {AWKWARD}, but so {KIND}: he even shows her the {BEST} way round to avoid the {PUDDLES}. Harriet is all in a {FLUTTER}.",
+    "image": "art/emma-thomson-1896/emma-ch21b-ii-3.jpg",
+    "caption": "“Who should come in but Elizabeth and her brother!”",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

@@ -19,8 +19,8 @@ The shelf holds:
 - **Pride and Prejudice** (Jane Austen, 1813): 41 chapters covering the whole story, with Hugh Thomson's 1894 illustrations and, where he left a scene undrawn, C. E. Brock's from 1895. The passages retell each scene in plain modern English and keep Austen's best-known lines.
 - **Alice's Adventures in Wonderland** (Lewis Carroll, 1865): a first taste, five scenes from chapters I–IV, with John Tenniel's drawings as he coloured them for *The Nursery "Alice"* (1890), Carroll's own telling for small children.
 - **A Christmas Carol** (Charles Dickens, 1843), free: the whole story in ten scenes, with Arthur Rackham’s 1915 colour plates and drawings.
-- **Austen’s Shelf** (paid; four free scenes each so far): **Persuasion** with C. E. Brock’s coloured plates and Hugh Thomson’s drawings, **Emma** with Brock’s 1909 colour and Thomson’s 1896 drawings, **Sense and Sensibility** with Thomson’s 1896 drawings.
-- **The Heroines** (paid; four free scenes each so far): **Jane Eyre** with F. H. Townsend’s 1897 drawings, **Little Women** with Frank T. Merrill’s 1880 drawings.
+- **Austen’s Shelf** (paid; each book’s first four scenes free): **Persuasion**, the whole story in 17 scenes, with C. E. Brock’s coloured plates and Hugh Thomson’s drawings; **Emma** in 24 scenes, with Thomson’s 1896 drawings and Brock’s colour plates; **Sense and Sensibility** in 25 scenes, with Thomson’s 1896 drawings.
+- **The Heroines** (paid; each book’s first four scenes free): **Jane Eyre** in 14 scenes, one for each of F. H. Townsend’s 1897 drawings; **Little Women** in 30 scenes, both parts (with *Good Wives*), with Frank T. Merrill’s 1880 drawings.
 - **The Three Little Pigs** (L. Leslie Brooke, 1904), for young readers (6+): the whole tale in five short scenes to read aloud, with Brooke's colour plates. Its boards are small (4 × 5 and 5 × 6), and its words run straight or bend only once, reading forwards wherever they can. The telling is a kind one: the wolf eats nobody, and runs off for good.
 
 ## Playing
@@ -53,11 +53,12 @@ Chapters are described in `scripts/level-specs.ts`: book, chapter number, title,
 ```bash
 npm run levels:generate              # all chapters
 npm run levels:generate -- 3 --seed 7   # redo only the third, with another layout
+npm run levels:check -- emma            # letters against grid size, and words inside other words
 ```
 
 It randomizes layouts and only accepts grids where each word can be traced in **exactly one place**. It keeps the bendiest valid layout; for a book marked `young`, it instead allows one bend per word at most and prefers words that read forwards and straight. Pick a grid shape close to the illustration's, so the reveal crops as little of it as possible. Most chapters use 6×7 to 7×8; on phones, 8 columns is the practical limit. A picture that is a scan of a whole page takes a `crop` (fractions of the image) to keep only the drawing.
 
-Books are listed in `src/core/books.ts`, in shelf order, each with its cover picture (one no chapter reveals) and a line for the shelf. Chapter files are numbered across the whole shelf, a book at a time, in the order the books were added (`01`–`41` Pride and Prejudice, then Alice, the Pigs, A Christmas Carol, Persuasion, Emma, Sense and Sensibility, Jane Eyre, Little Women), so `levels:generate -- 42` is Alice's first scene. A new book goes at the end of `SPECS`, so existing files keep their numbers and layouts; its place on the shelf comes from `BOOKS`.
+Books are listed in `src/core/books.ts`, in shelf order, each with its cover picture (one no chapter reveals) and a line for the shelf. Chapter files are numbered across the whole shelf, a book at a time, in the order the books were added (`01`–`41` Pride and Prejudice, then Alice, the Pigs, A Christmas Carol, Persuasion, Emma, Sense and Sensibility, Jane Eyre, Little Women), so `levels:generate -- 42` is Alice's first scene. Files are numbered with three digits (`001-…`), since there are more than 99. A new book goes at the end of `SPECS`; its place on the shelf comes from `BOOKS`. A layout depends only on its scene's id, so inserting scenes into a book renumbers the files after it but leaves their boards as they were.
 
 ## Languages
 

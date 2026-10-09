@@ -1,0 +1,48 @@
+{
+  "id": "little-17-little-faithful",
+  "book": "little-women",
+  "chapter": 17,
+  "title": "Little Faithful",
+  "rows": 6,
+  "cols": 6,
+  "grid": [
+    "HFEVSC",
+    "SIRERA",
+    "DAYKLE",
+    "GNWNAT",
+    "EIHBRC",
+    "RTEABY"
+  ],
+  "words": [
+    {
+      "text": "WHITE",
+      "path": [20, 26, 25, 31, 32]
+    },
+    {
+      "text": "BABY",
+      "path": [27, 33, 34, 35]
+    },
+    {
+      "text": "SCARLET",
+      "path": [4, 5, 11, 10, 16, 17, 23]
+    },
+    {
+      "text": "FEVERISH",
+      "path": [1, 2, 3, 9, 8, 7, 6, 0]
+    },
+    {
+      "text": "CRANKY",
+      "path": [29, 28, 22, 21, 15, 14]
+    },
+    {
+      "text": "DANGER",
+      "path": [12, 13, 19, 18, 24, 30]
+    }
+  ],
+  "story": {
+    "text": "With Marmee away, only Beth keeps visiting the poor Hummels. One day she comes home {WHITE}: the {BABY} died in her lap, of {SCARLET} fever. Soon Beth is {FEVERISH} too, and Amy is sent to stay with {CRANKY} Aunt March, out of {DANGER}.",
+    "image": "art/merrill-1880/094-it-didn-t-stir-and-i-knew-it-was-dead.jpg",
+    "caption": "“It didn’t stir, and I knew it was dead”",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

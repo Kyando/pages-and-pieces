@@ -1,0 +1,47 @@
+{
+  "id": "little-42-all-alone",
+  "book": "little-women",
+  "chapter": 42,
+  "title": "All Alone",
+  "rows": 5,
+  "cols": 8,
+  "grid": [
+    "EMYRBAGU",
+    "TPLAGLES",
+    "YSENOUFS",
+    "MOINLMFT",
+    "ETHGCOOR"
+  ],
+  "words": [
+    {
+      "text": "EMPTY",
+      "path": [0, 1, 9, 8, 16]
+    },
+    {
+      "text": "USEFUL",
+      "path": [7, 15, 14, 22, 21, 13]
+    },
+    {
+      "text": "RAGBAG",
+      "path": [3, 11, 12, 4, 5, 6]
+    },
+    {
+      "text": "LONELY",
+      "path": [28, 20, 19, 18, 10, 2]
+    },
+    {
+      "text": "COMFORTS",
+      "path": [36, 37, 29, 30, 38, 39, 31, 23]
+    },
+    {
+      "text": "SOMETHING",
+      "path": [17, 25, 24, 32, 33, 34, 26, 27, 35]
+    }
+  ],
+  "story": {
+    "text": "Without Beth, the house is {EMPTY}. Jo tries to take her place, cheerful and {USEFUL}, but up in the garret she lays her head on the {RAGBAG} and cries. She feels {LONELY}, with no one to love her best. Marmee {COMFORTS} her, and says, gently, “Write {SOMETHING}.”",
+    "image": "art/merrill-1880/184-jo-laid-her-head-on-a-comfortable-rag-bag-and-crie.jpg",
+    "caption": "Jo laid her head on a comfortable rag-bag and cried",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "sense-48-it-was-edward",
+  "book": "sense-and-sensibility",
+  "chapter": 48,
+  "title": "It Was Edward",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "GAJIF",
+    "ETTLR",
+    "WDEEE",
+    "EEPHI",
+    "GNIFM",
+    "ETROS",
+    "NUFLE"
+  ],
+  "words": [
+    {
+      "text": "GATE",
+      "path": [0, 1, 6, 5]
+    },
+    {
+      "text": "JILTED",
+      "path": [2, 3, 8, 7, 12, 11]
+    },
+    {
+      "text": "FORTUNE",
+      "path": [23, 28, 27, 26, 31, 30, 25]
+    },
+    {
+      "text": "FREE",
+      "path": [4, 9, 14, 13]
+    },
+    {
+      "text": "HIMSELF",
+      "path": [18, 19, 24, 29, 34, 33, 32]
+    },
+    {
+      "text": "WEEPING",
+      "path": [10, 15, 16, 17, 22, 21, 20]
+    }
+  ],
+  "story": {
+    "text": "A man rides up to the {GATE}. It was Edward! He is not married: Lucy has {JILTED} him for his brother Robert, who has the {FORTUNE}. Edward is {FREE}, and has come to speak for {HIMSELF}. Elinor runs out of the room, {WEEPING} for joy.",
+    "image": "art/sense-thomson-1896/038-it-was-edward.jpg",
+    "caption": "It was Edward",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

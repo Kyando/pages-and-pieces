@@ -1,0 +1,54 @@
+{
+  "id": "sense-43-fever",
+  "book": "sense-and-sensibility",
+  "chapter": 43,
+  "title": "The Fever",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "DAWER",
+    "GNWTE",
+    "ERAEV",
+    "DCTFS",
+    "EHBRK",
+    "SINEA",
+    "PAGHC",
+    "RIFET"
+  ],
+  "words": [
+    {
+      "text": "WET",
+      "path": [2, 3, 8]
+    },
+    {
+      "text": "FEVER",
+      "path": [18, 13, 14, 9, 4]
+    },
+    {
+      "text": "DANGER",
+      "path": [0, 1, 6, 5, 10, 11]
+    },
+    {
+      "text": "FETCH",
+      "path": [37, 38, 39, 34, 33]
+    },
+    {
+      "text": "WATCHING",
+      "path": [7, 12, 17, 16, 21, 26, 27, 32]
+    },
+    {
+      "text": "DESPAIR",
+      "path": [15, 20, 25, 30, 31, 36, 35]
+    },
+    {
+      "text": "BREAKS",
+      "path": [22, 23, 28, 29, 24, 19]
+    }
+  ],
+  "story": {
+    "text": "On the way home, at the Palmers’ house, Cleveland, Marianne takes long walks in the {WET} grass, and catches a {FEVER}. For days she lies in {DANGER}. Colonel Brandon rides through the night to {FETCH} her mother, and Elinor, {WATCHING} alone by her bed, begins to {DESPAIR}. Then, at last, the fever {BREAKS}.",
+    "image": "art/sense-thomson-1896/033-image_306.jpg",
+    "caption": "Watching for the carriage",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

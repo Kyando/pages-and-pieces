@@ -1,0 +1,57 @@
+{
+  "id": "persuasion-12-her-father-and-mother",
+  "book": "persuasion",
+  "chapter": 12,
+  "title": "So Capable as Anne",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "EPANS",
+    "LTSIC",
+    "BAERD",
+    "SPACE",
+    "UNOPS",
+    "RGEAS",
+    "RTRIE",
+    "EASUR"
+  ],
+  "words": [
+    {
+      "text": "PANICS",
+      "path": [1, 2, 3, 8, 9, 4]
+    },
+    {
+      "text": "DESPAIR",
+      "path": [14, 19, 24, 23, 28, 33, 32]
+    },
+    {
+      "text": "SURGEON",
+      "path": [15, 20, 25, 26, 27, 22, 21]
+    },
+    {
+      "text": "REST",
+      "path": [13, 12, 7, 6]
+    },
+    {
+      "text": "CAPABLE",
+      "path": [18, 17, 16, 11, 10, 5, 0]
+    },
+    {
+      "text": "TREASURES",
+      "path": [31, 30, 35, 36, 37, 38, 39, 34, 29]
+    }
+  ],
+  "story": {
+    "text": "Everyone {PANICS}. Wentworth kneels by Louisa in {DESPAIR}: “Oh God! her father and mother!” Only Anne keeps her head. “A {SURGEON}!” she cries, and Benwick runs. They carry Louisa to the Harvilles’, where she must {REST} for weeks. Wentworth says no one is so {CAPABLE} as Anne, and Anne {TREASURES} it.",
+    "image": "art/persuasion-brock-1898/2pers-04.jpg",
+    "caption": "“Oh God! her father and mother!”",
+    "credit": "C. E. Brock, 1898",
+    "crop": [
+      0.1,
+      0.06,
+      0.92,
+      0.86
+    ],
+    "colour": true
+  }
+}

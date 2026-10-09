@@ -1,0 +1,55 @@
+{
+  "id": "jane-33-a-hard-woman",
+  "book": "jane-eyre",
+  "chapter": 33,
+  "title": "A Hard Woman",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "STSNFA",
+    "RSIIIM",
+    "EHTYLD",
+    "TCHOAN",
+    "EACUSG",
+    "NIOHAN",
+    "SSUSRI"
+  ],
+  "words": [
+    {
+      "text": "TEACHER",
+      "path": [18, 24, 25, 19, 13, 12, 6]
+    },
+    {
+      "text": "THOUSAND",
+      "path": [14, 20, 21, 27, 28, 22, 23, 17]
+    },
+    {
+      "text": "COUSINS",
+      "path": [26, 32, 38, 37, 31, 30, 36]
+    },
+    {
+      "text": "INSISTS",
+      "path": [9, 3, 2, 8, 7, 1, 0]
+    },
+    {
+      "text": "SHARING",
+      "path": [39, 33, 34, 40, 41, 35, 29]
+    },
+    {
+      "text": "FAMILY",
+      "path": [4, 5, 11, 10, 16, 15]
+    }
+  ],
+  "story": {
+    "text": "Jane becomes the {TEACHER} of a village school. One snowy night St. John brings news: an uncle in Madeira has died and left her twenty {THOUSAND} pounds. And the Riverses are her {COUSINS}! Jane, a hard woman, impossible to put off, {INSISTS} on {SHARING} it with them: five thousand each. At last she has a {FAMILY}.",
+    "image": "art/townsend-1897/010-and-i-am-a-hard-woman-impossible-to-put-off.jpg",
+    "caption": "And I am a hard woman, impossible to put off",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

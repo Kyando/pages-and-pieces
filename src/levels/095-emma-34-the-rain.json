@@ -1,0 +1,55 @@
+{
+  "id": "emma-34-the-rain",
+  "book": "emma",
+  "chapter": 34,
+  "title": "Out in the Rain",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "TSOSE",
+    "TSPHO",
+    "IILSS",
+    "NSETR",
+    "SGNTE",
+    "ORIDE",
+    "YRLDM"
+  ],
+  "words": [
+    {
+      "text": "SORRY",
+      "path": [20, 25, 26, 31, 30]
+    },
+    {
+      "text": "POST",
+      "path": [7, 2, 1, 0]
+    },
+    {
+      "text": "SHOES",
+      "path": [13, 8, 9, 4, 3]
+    },
+    {
+      "text": "INSIST",
+      "path": [10, 15, 16, 11, 6, 5]
+    },
+    {
+      "text": "LETTERS",
+      "path": [12, 17, 18, 23, 24, 19, 14]
+    },
+    {
+      "text": "MEDDLING",
+      "path": [34, 29, 28, 33, 32, 27, 22, 21]
+    }
+  ],
+  "story": {
+    "text": "At a dinner at Hartfield, Mr. Woodhouse is {SORRY} to hear that Jane walked to the {POST} office in the rain, in thin {SHOES}. Why does she {INSIST} on fetching her own {LETTERS} every day? Jane only colours. Mrs. Elton cannot stop {MEDDLING}: she will send her own servant.",
+    "image": "art/emma-thomson-1896/emma-ch34-ii-16.jpg",
+    "caption": "“I am very sorry to hear, Miss Fairfax, of your being out this morning in the rain.”",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

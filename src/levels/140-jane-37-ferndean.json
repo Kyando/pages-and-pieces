@@ -1,0 +1,55 @@
+{
+  "id": "jane-37-ferndean",
+  "book": "jane-eyre",
+  "chapter": 37,
+  "title": "Altogether a Human Being",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "ESNDHC",
+    "CRUEOU",
+    "OSRRTI",
+    "MCANEN",
+    "PAWTDD",
+    "INARNE",
+    "ONTEEP"
+  ],
+  "words": [
+    {
+      "text": "WATER",
+      "path": [26, 32, 38, 39, 33]
+    },
+    {
+      "text": "SCARRED",
+      "path": [13, 19, 20, 14, 15, 9, 3]
+    },
+    {
+      "text": "TOUCH",
+      "path": [16, 10, 11, 5, 4]
+    },
+    {
+      "text": "INDEPENDENT",
+      "path": [17, 23, 29, 35, 41, 40, 34, 28, 22, 21, 27]
+    },
+    {
+      "text": "NURSE",
+      "path": [2, 8, 7, 1, 0]
+    },
+    {
+      "text": "COMPANION",
+      "path": [6, 12, 18, 24, 25, 31, 30, 36, 37]
+    }
+  ],
+  "story": {
+    "text": "At Ferndean, Jane carries a glass of {WATER} in to the blind master, {SCARRED} and alone. He knows her {TOUCH} at once. “You are altogether a human being, Jane? You are certain of that?” She is rich now, and {INDEPENDENT}, and she means to stay: as his {NURSE}, his {COMPANION}, and more, if he will have her.",
+    "image": "art/townsend-1897/013-you-are-altogether-a-human-being-jane-you-are-cert.jpg",
+    "caption": "You are altogether a human being, Jane? You are certain of that?",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

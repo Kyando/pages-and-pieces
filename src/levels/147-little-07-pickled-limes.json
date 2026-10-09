@@ -1,0 +1,48 @@
+{
+  "id": "little-07-pickled-limes",
+  "book": "little-women",
+  "chapter": 7,
+  "title": "Pickled Limes",
+  "rows": 6,
+  "cols": 6,
+  "grid": [
+    "WISELD",
+    "ENDMIE",
+    "MAOWNN",
+    "RHSFAB",
+    "ULILGN",
+    "RENCHI"
+  ],
+  "words": [
+    {
+      "text": "LIMES",
+      "path": [4, 10, 9, 3, 2]
+    },
+    {
+      "text": "BANNED",
+      "path": [23, 22, 16, 17, 11, 5]
+    },
+    {
+      "text": "WINDOW",
+      "path": [0, 1, 7, 8, 14, 15]
+    },
+    {
+      "text": "RULER",
+      "path": [18, 24, 25, 31, 30]
+    },
+    {
+      "text": "FLINCHING",
+      "path": [21, 27, 26, 32, 33, 34, 35, 29, 28]
+    },
+    {
+      "text": "SHAME",
+      "path": [20, 19, 13, 12, 6]
+    }
+  ],
+  "story": {
+    "text": "At school, everyone trades pickled {LIMES}, and Amy has a whole bag. But Mr. Davis has {BANNED} them. He makes her throw them out of the {WINDOW}, and strikes her hand with a {RULER}. Amy bears it without {FLINCHING}, and never goes back, burning with {SHAME}.",
+    "image": "art/merrill-1880/044-amy-bore-without-flinching-several-tingling-blows.jpg",
+    "caption": "Amy bore without flinching several tingling blows",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

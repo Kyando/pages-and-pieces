@@ -1,0 +1,61 @@
+{
+  "id": "persuasion-19-the-umbrella",
+  "book": "persuasion",
+  "chapter": 19,
+  "title": "In Milsom Street",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "CNICO",
+    "UTARN",
+    "ASUUF",
+    "RMMSE",
+    "SRBAD",
+    "EELLC",
+    "IDSUO",
+    "LAINS"
+  ],
+  "words": [
+    {
+      "text": "RAIN",
+      "path": [8, 7, 2, 1]
+    },
+    {
+      "text": "UMBRELLA",
+      "path": [12, 17, 22, 21, 26, 27, 28, 23]
+    },
+    {
+      "text": "CONFUSED",
+      "path": [3, 4, 9, 14, 13, 18, 19, 24]
+    },
+    {
+      "text": "CUTS",
+      "path": [0, 5, 6, 11]
+    },
+    {
+      "text": "ARM",
+      "path": [10, 15, 16]
+    },
+    {
+      "text": "LADIES",
+      "path": [35, 36, 31, 30, 25, 20]
+    },
+    {
+      "text": "COUSINS",
+      "path": [29, 34, 33, 32, 37, 38, 39]
+    }
+  ],
+  "story": {
+    "text": "Caught in the {RAIN} on Milsom Street, Anne waits in a shop while Mr. Elliot fetches an {UMBRELLA}. In walks Wentworth, {CONFUSED} and red. Elizabeth {CUTS} him dead, but he offers Anne his own. Mr. Elliot comes back and leads her off on his {ARM}, and the {LADIES} whisper that surely the {COUSINS} will marry.",
+    "image": "art/persuasion-brock-1898/pers-brock-19.jpg",
+    "caption": "In spite of the formidable father and sister in the background",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.1,
+      0.08,
+      0.92,
+      0.84
+    ],
+    "colour": true
+  }
+}

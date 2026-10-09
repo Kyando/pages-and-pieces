@@ -1,0 +1,53 @@
+{
+  "id": "persuasion-10-a-nut",
+  "book": "persuasion",
+  "chapter": 10,
+  "title": "Here Is a Nut",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "TUDES",
+    "WNLEO",
+    "ORAZP",
+    "GEHRO",
+    "DESPE",
+    "FHSAG",
+    "INEIR",
+    "RMCAR"
+  ],
+  "words": [
+    {
+      "text": "HEDGEROW",
+      "path": [26, 21, 20, 15, 16, 11, 10, 5]
+    },
+    {
+      "text": "FIRMNESS",
+      "path": [25, 30, 35, 36, 31, 32, 27, 22]
+    },
+    {
+      "text": "HAZELNUT",
+      "path": [17, 12, 13, 8, 7, 6, 1, 0]
+    },
+    {
+      "text": "PROPOSED",
+      "path": [23, 18, 19, 14, 9, 4, 3, 2]
+    },
+    {
+      "text": "CARRIAGE",
+      "path": [37, 38, 39, 34, 33, 28, 29, 24]
+    }
+  ],
+  "story": {
+    "text": "On a long autumn walk, Anne rests behind a {HEDGEROW} and overhears Wentworth praising Louisa’s {FIRMNESS}. He holds up a glossy {HAZELNUT} that has outlasted every storm: “Let those who would be happy be firm.” Then Anne hears that Charles once {PROPOSED} to her. Later, seeing her worn out, Wentworth quietly hands her into the Crofts’ {CARRIAGE}.",
+    "image": "art/persuasion-brock-1898/pers-brock-11.jpg",
+    "caption": "“Here is a nut,” said he, “to exemplify”",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.1,
+      0.08,
+      0.92,
+      0.84
+    ],
+    "colour": true
+  }
+}

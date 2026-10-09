@@ -1,0 +1,58 @@
+{
+  "id": "sense-06-barton",
+  "book": "sense-and-sensibility",
+  "chapter": 6,
+  "title": "So Shy Before Company",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "EGATCO",
+    "LCOTDL",
+    "ENNSTA",
+    "FLACRO",
+    "SONWOC",
+    "ELIDST",
+    "MYSUIA",
+    "NHSOCW"
+  ],
+  "words": [
+    {
+      "text": "COTTAGE",
+      "path": [7, 8, 9, 3, 2, 1, 0]
+    },
+    {
+      "text": "COUSIN",
+      "path": [46, 45, 39, 38, 32, 26]
+    },
+    {
+      "text": "CROWD",
+      "path": [21, 22, 28, 27, 33]
+    },
+    {
+      "text": "COLD",
+      "path": [4, 5, 11, 10]
+    },
+    {
+      "text": "SHY",
+      "path": [44, 43, 37]
+    },
+    {
+      "text": "SOLEMN",
+      "path": [24, 25, 31, 30, 36, 42]
+    },
+    {
+      "text": "FLANNEL",
+      "path": [18, 19, 20, 14, 13, 12, 6]
+    },
+    {
+      "text": "WAISTCOATS",
+      "path": [47, 41, 40, 34, 35, 29, 23, 17, 16, 15]
+    }
+  ],
+  "story": {
+    "text": "The Dashwood women move to Barton {COTTAGE} in Devonshire, lent by a {COUSIN}, Sir John Middleton, a hearty man who loves a {CROWD}. His wife is elegant and {COLD}, and their spoilt boy is “so {SHY} before company”. His friend Colonel Brandon is quiet and {SOLEMN}, and past thirty-five: to Marianne, an old man who must wear {FLANNEL} {WAISTCOATS}.",
+    "image": "art/sense-thomson-1896/004-so-shy-before-company.jpg",
+    "caption": "So shy before company",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

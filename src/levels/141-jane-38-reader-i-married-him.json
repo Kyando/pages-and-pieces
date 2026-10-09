@@ -1,0 +1,59 @@
+{
+  "id": "jane-38-reader-i-married-him",
+  "book": "jane-eyre",
+  "chapter": 38,
+  "title": "Reader, I Married Him",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "MRIINA",
+    "AREKDI",
+    "BADCAL",
+    "HBYWEB",
+    "ASHTDD",
+    "PIGSSI",
+    "PINEGN"
+  ],
+  "words": [
+    {
+      "text": "MARRIED",
+      "path": [0, 6, 7, 1, 2, 8, 14]
+    },
+    {
+      "text": "WEDDING",
+      "path": [21, 22, 28, 29, 35, 41, 40]
+    },
+    {
+      "text": "HAPPINESS",
+      "path": [18, 24, 30, 36, 37, 38, 39, 33, 34]
+    },
+    {
+      "text": "SIGHT",
+      "path": [25, 31, 32, 26, 27]
+    },
+    {
+      "text": "BABY",
+      "path": [12, 13, 19, 20]
+    },
+    {
+      "text": "BLACK",
+      "path": [23, 17, 16, 15, 9]
+    },
+    {
+      "text": "INDIA",
+      "path": [3, 4, 10, 11, 5]
+    }
+  ],
+  "story": {
+    "text": "Reader, I {MARRIED} him. A quiet {WEDDING}, and years of {HAPPINESS}: Jane is his eyes. In time his {SIGHT} begins to return. One morning he asks if she has a pale blue dress on: she has! When their first {BABY} is put into his arms, he can see the boy has his own eyes, as they once were, large, brilliant and {BLACK}. St. John labours on in {INDIA}.",
+    "image": "art/townsend-1897/014-and-have-you-a-pale-blue-dress-on.jpg",
+    "caption": "And have you a pale blue dress on?",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.88
+    ]
+  }
+}

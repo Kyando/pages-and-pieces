@@ -1,0 +1,45 @@
+{
+  "id": "sense-47-mr-ferrars-is-married",
+  "book": "sense-and-sensibility",
+  "chapter": 47,
+  "title": "Mr. Ferrars Is Married",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "PAEXE",
+    "CLEET",
+    "HSERS",
+    "AIIMT",
+    "COLEN",
+    "SMPRE",
+    "UFFED"
+  ],
+  "words": [
+    {
+      "text": "EXETER",
+      "path": [2, 3, 4, 9, 8, 13]
+    },
+    {
+      "text": "CHAISE",
+      "path": [5, 10, 15, 16, 11, 12]
+    },
+    {
+      "text": "COMPLIMENTS",
+      "path": [20, 21, 26, 27, 22, 17, 18, 23, 24, 19, 14]
+    },
+    {
+      "text": "PALE",
+      "path": [0, 1, 6, 7]
+    },
+    {
+      "text": "SUFFERED",
+      "path": [25, 30, 31, 32, 33, 28, 29, 34]
+    }
+  ],
+  "story": {
+    "text": "Their servant Thomas comes back from {EXETER} with news: “I suppose you know, ma’am, that Mr. Ferrars is married.” He saw Lucy in a {CHAISE}, and she sent her {COMPLIMENTS}. Elinor turns {PALE}, and her mother sees at last how much she has {SUFFERED}.",
+    "image": "art/sense-thomson-1896/037-quot-i-suppose-you-know-ma-am-that-mr-ferrars-is-m.jpg",
+    "caption": "“I suppose you know, ma’am, that Mr. Ferrars is married.”",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

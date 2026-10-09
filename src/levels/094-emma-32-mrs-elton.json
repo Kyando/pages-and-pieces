@@ -1,0 +1,56 @@
+{
+  "id": "emma-32-mrs-elton",
+  "book": "emma",
+  "chapter": 32,
+  "title": "Mrs. Elton",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "YELTH",
+    "ERBIG",
+    "DIKNE",
+    "NVVUH",
+    "IARLC",
+    "PEAGU",
+    "REGRO",
+    "OTEAB"
+  ],
+  "words": [
+    {
+      "text": "BRIDE",
+      "path": [7, 6, 11, 10, 5]
+    },
+    {
+      "text": "VAIN",
+      "path": [16, 21, 20, 15]
+    },
+    {
+      "text": "VULGAR",
+      "path": [17, 18, 23, 28, 27, 22]
+    },
+    {
+      "text": "BAROUCHE",
+      "path": [39, 38, 33, 34, 29, 24, 19, 14]
+    },
+    {
+      "text": "KNIGHTLEY",
+      "path": [12, 13, 8, 9, 4, 3, 2, 1, 0]
+    },
+    {
+      "text": "PROTEGEE",
+      "path": [25, 30, 35, 36, 37, 32, 31, 26]
+    }
+  ],
+  "story": {
+    "text": "Mr. Elton brings home his {BRIDE}. Mrs. Elton is first seen at church, and soon everywhere: {VAIN}, {VULGAR}, forever talking of her sister’s {BAROUCHE} and Maple Grove. She calls Mr. Knightley “{KNIGHTLEY}”, and takes up Jane Fairfax as her {PROTEGEE}, whether Jane likes it or not.",
+    "image": "art/emma-thomson-1896/emma-ch32-ii-14.jpg",
+    "caption": "Mrs. Elton was first seen at church",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

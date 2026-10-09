@@ -1,0 +1,54 @@
+{
+  "id": "sense-13-allenham",
+  "book": "sense-and-sensibility",
+  "chapter": 13,
+  "title": "A Letter at Breakfast",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "RTELNO",
+    "ETENAI",
+    "AUEOLS",
+    "TNXCUR",
+    "URDIOP",
+    "YGELBS",
+    "LEAERT",
+    "TNKFAS"
+  ],
+  "words": [
+    {
+      "text": "EXCURSION",
+      "path": [14, 20, 21, 22, 23, 17, 11, 5, 4]
+    },
+    {
+      "text": "BREAKFAST",
+      "path": [34, 40, 39, 38, 44, 45, 46, 47, 41]
+    },
+    {
+      "text": "LETTER",
+      "path": [3, 2, 1, 7, 6, 0]
+    },
+    {
+      "text": "URGENTLY",
+      "path": [24, 25, 31, 37, 43, 42, 36, 30]
+    },
+    {
+      "text": "SPOILED",
+      "path": [35, 29, 28, 27, 33, 32, 26]
+    },
+    {
+      "text": "ALONE",
+      "path": [10, 16, 15, 9, 8]
+    },
+    {
+      "text": "AUNT",
+      "path": [12, 13, 19, 18]
+    }
+  ],
+  "story": {
+    "text": "Everyone is ready for an {EXCURSION} to Whitwell, but at {BREAKFAST} Colonel Brandon gets a {LETTER}, and rides off to London {URGENTLY}, saying nothing. The day is {SPOILED}. So Willoughby drives Marianne, {ALONE}, to see Allenham, the house he will inherit from his {AUNT}.",
+    "image": "art/sense-thomson-1896/007-image_083.jpg",
+    "caption": "At breakfast, a letter for Colonel Brandon",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "little-06-the-palace-beautiful",
+  "book": "little-women",
+  "chapter": 6,
+  "title": "The Palace Beautiful",
+  "rows": 6,
+  "cols": 6,
+  "grid": [
+    "DUNENC",
+    "NASEBA",
+    "SRGTIE",
+    "LIPENM",
+    "REPDIB",
+    "SSREOR"
+  ],
+  "words": [
+    {
+      "text": "GRAND",
+      "path": [14, 13, 7, 6, 0]
+    },
+    {
+      "text": "UNSEEN",
+      "path": [1, 2, 8, 9, 3, 4]
+    },
+    {
+      "text": "EMBROIDERS",
+      "path": [17, 23, 29, 35, 34, 28, 27, 33, 32, 31]
+    },
+    {
+      "text": "SLIPPERS",
+      "path": [12, 18, 19, 20, 26, 25, 24, 30]
+    },
+    {
+      "text": "CABINET",
+      "path": [5, 11, 10, 16, 22, 21, 15]
+    }
+  ],
+  "story": {
+    "text": "Shy Beth longs to play the {GRAND} piano next door, and Mr. Laurence lets her come and play whenever she likes, {UNSEEN}. She {EMBROIDERS} him a pair of {SLIPPERS} to say thank you, and he sends her a little {CABINET} piano. Beth runs straight over, and kisses him.",
+    "image": "art/merrill-1880/042-she-put-both-arms-around-his-neck-and-kissed-him.jpg",
+    "caption": "She put both arms around his neck and kissed him",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "emma-53-the-news",
+  "book": "emma",
+  "chapter": 53,
+  "title": "The News Goes Round",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "FFORG",
+    "RIEVI",
+    "SESDE",
+    "DNOCK",
+    "ELHSG",
+    "MBRFN",
+    "UHEEI"
+  ],
+  "words": [
+    {
+      "text": "SHOCKED",
+      "path": [23, 22, 17, 18, 19, 14, 13]
+    },
+    {
+      "text": "FREEING",
+      "path": [28, 27, 32, 33, 34, 29, 24]
+    },
+    {
+      "text": "HUMBLE",
+      "path": [31, 30, 25, 26, 21, 20]
+    },
+    {
+      "text": "FORGIVES",
+      "path": [1, 2, 3, 4, 9, 8, 7, 12]
+    },
+    {
+      "text": "FRIENDS",
+      "path": [0, 5, 6, 11, 16, 15, 10]
+    }
+  ],
+  "story": {
+    "text": "The news flies round Highbury, to Mrs. Cole, Mrs. Perry, and Mrs. Elton, who is {SHOCKED}: poor Knightley! His proud aunt has died, {FREEING} Frank to marry Jane openly. He writes Mrs. Weston a long, {HUMBLE} letter, and Emma {FORGIVES} him. She and Jane part {FRIENDS} at last.",
+    "image": "art/emma-thomson-1896/emma-ch53b-iii-17.jpg",
+    "caption": "It passed to Mrs. Cole, Mrs. Perry, and Mrs. Elton",
+    "credit": "Hugh Thomson, 1896",
+    "crop": [
+      0.03,
+      0.04,
+      0.97,
+      0.9
+    ]
+  }
+}

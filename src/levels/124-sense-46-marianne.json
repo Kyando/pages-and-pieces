@@ -1,0 +1,49 @@
+{
+  "id": "sense-46-marianne",
+  "book": "sense-and-sensibility",
+  "chapter": 46,
+  "title": "Back at Barton",
+  "rows": 7,
+  "cols": 5,
+  "grid": [
+    "ESRRE",
+    "CTEGT",
+    "AROSE",
+    "EPNGV",
+    "SYDSL",
+    "KLUTO",
+    "WARES"
+  ],
+  "words": [
+    {
+      "text": "STRONG",
+      "path": [1, 6, 11, 12, 17, 18]
+    },
+    {
+      "text": "RESOLVES",
+      "path": [32, 33, 34, 29, 24, 19, 14, 13]
+    },
+    {
+      "text": "STUDY",
+      "path": [23, 28, 27, 22, 21]
+    },
+    {
+      "text": "WALKS",
+      "path": [30, 31, 26, 25, 20]
+    },
+    {
+      "text": "REGRET",
+      "path": [2, 7, 8, 3, 4, 9]
+    },
+    {
+      "text": "PEACE",
+      "path": [16, 15, 10, 5, 0]
+    }
+  ],
+  "story": {
+    "text": "Back at Barton, Marianne grows {STRONG} again, and {RESOLVES} to live by sense: to {STUDY}, to take long {WALKS}, and to love her family better. Elinor tells her of Willoughby’s {REGRET}, and Marianne is at {PEACE}.",
+    "image": "art/sense-thomson-1896/036-image_332.jpg",
+    "caption": "Back at Barton",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

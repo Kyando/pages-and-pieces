@@ -1,0 +1,50 @@
+{
+  "id": "sense-38-listening",
+  "book": "sense-and-sensibility",
+  "chapter": 38,
+  "title": "Listening at the Door",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "POLRE",
+    "ROETT",
+    "CLNAM",
+    "GERGY",
+    "NILHT",
+    "ENUFI",
+    "TSRDA",
+    "LIOOF"
+  ],
+  "words": [
+    {
+      "text": "LISTENING",
+      "path": [35, 36, 31, 30, 25, 26, 21, 20, 15]
+    },
+    {
+      "text": "DOOR",
+      "path": [33, 38, 37, 32]
+    },
+    {
+      "text": "CLERGYMAN",
+      "path": [10, 11, 16, 17, 18, 19, 14, 13, 12]
+    },
+    {
+      "text": "POOR",
+      "path": [0, 1, 6, 5]
+    },
+    {
+      "text": "FAITHFUL",
+      "path": [39, 34, 29, 24, 23, 28, 27, 22]
+    },
+    {
+      "text": "LETTER",
+      "path": [2, 7, 8, 9, 4, 3]
+    }
+  ],
+  "story": {
+    "text": "Anne Steele tells Elinor everything Edward and Lucy said, for she heard it all by {LISTENING} at the {DOOR}. Edward means to be a {CLERGYMAN}, though they will be very {POOR}, and Lucy, ever {FAITHFUL}, will wait for him. She writes Elinor a {LETTER} to boast of it.",
+    "image": "art/sense-thomson-1896/028-listening-at-the-door.jpg",
+    "caption": "Listening at the door",
+    "credit": "Hugh Thomson, 1896"
+  }
+}

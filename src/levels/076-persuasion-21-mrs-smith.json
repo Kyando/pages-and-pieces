@@ -1,0 +1,61 @@
+{
+  "id": "persuasion-21-mrs-smith",
+  "book": "persuasion",
+  "chapter": 21,
+  "title": "Such a Letter",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "ELRET",
+    "ITRET",
+    "TOOLD",
+    "NPMBE",
+    "IUATG",
+    "DRRRN",
+    "EDNYI",
+    "NOABA"
+  ],
+  "words": [
+    {
+      "text": "POOR",
+      "path": [16, 11, 12, 7]
+    },
+    {
+      "text": "DEBT",
+      "path": [14, 19, 18, 23]
+    },
+    {
+      "text": "RUIN",
+      "path": [26, 21, 20, 15]
+    },
+    {
+      "text": "ABANDONED",
+      "path": [39, 38, 37, 32, 31, 36, 35, 30, 25]
+    },
+    {
+      "text": "LETTER",
+      "path": [13, 8, 9, 4, 3, 2]
+    },
+    {
+      "text": "MARRYING",
+      "path": [17, 22, 27, 28, 33, 34, 29, 24]
+    },
+    {
+      "text": "TITLE",
+      "path": [10, 5, 6, 1, 0]
+    }
+  ],
+  "story": {
+    "text": "Mrs. Smith, Anne’s {POOR}, crippled friend, hears that Anne will marry Mr. Elliot, and tells her the truth at last. He led her husband into {DEBT} and {RUIN}, then {ABANDONED} the widow. She shows Anne an old {LETTER} in which he mocks Sir Walter. Now he courts Anne only to stop Mrs. Clay {MARRYING} her father, and to keep his {TITLE}.",
+    "image": "art/persuasion-brock-1898/pers-brock-21.jpg",
+    "caption": "Such a letter could not be read without putting Anne in a glow",
+    "credit": "C. E. Brock, 1909",
+    "crop": [
+      0.1,
+      0.08,
+      0.92,
+      0.84
+    ],
+    "colour": true
+  }
+}

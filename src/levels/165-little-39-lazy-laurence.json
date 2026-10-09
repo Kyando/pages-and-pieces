@@ -1,0 +1,48 @@
+{
+  "id": "little-39-lazy-laurence",
+  "book": "little-women",
+  "chapter": 39,
+  "title": "Lazy Laurence",
+  "rows": 6,
+  "cols": 7,
+  "grid": [
+    "SERUHSS",
+    "ELATLIE",
+    "HYZCEFL",
+    "CTEDEGN",
+    "ENKSTLI",
+    "DIMREDI"
+  ],
+  "words": [
+    {
+      "text": "IDLING",
+      "path": [41, 40, 33, 34, 27, 26]
+    },
+    {
+      "text": "SKETCHES",
+      "path": [31, 30, 23, 22, 21, 14, 7, 0]
+    },
+    {
+      "text": "LECTURE",
+      "path": [11, 18, 17, 10, 3, 2, 1]
+    },
+    {
+      "text": "LAZY",
+      "path": [8, 9, 16, 15]
+    },
+    {
+      "text": "SELFISH",
+      "path": [6, 13, 20, 19, 12, 5, 4]
+    },
+    {
+      "text": "DETERMINED",
+      "path": [24, 25, 32, 39, 38, 37, 36, 29, 28, 35]
+    }
+  ],
+  "story": {
+    "text": "Laurie lingers in Nice, {IDLING} about with Amy and doing nothing. One day she {SKETCHES} him lying on the turf, then gives him a {LECTURE}: he is {LAZY} and {SELFISH}, and wasting his life. Stung, Laurie leaves for his grandfather’s side, {DETERMINED} to do better.",
+    "image": "art/merrill-1880/175-laurie-threw-himself-down-on-the-turf.jpg",
+    "caption": "Laurie threw himself down on the turf",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

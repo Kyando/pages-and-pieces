@@ -1,0 +1,61 @@
+{
+  "id": "persuasion-23-half-agony",
+  "book": "persuasion",
+  "chapter": 23,
+  "title": "Half Agony, Half Hope",
+  "rows": 8,
+  "cols": 5,
+  "grid": [
+    "PRCLG",
+    "IEEER",
+    "BREVA",
+    "DITAR",
+    "EYNLO",
+    "AGOSL",
+    "RNIAI",
+    "EUTED"
+  ],
+  "words": [
+    {
+      "text": "PIERCE",
+      "path": [0, 5, 6, 1, 2, 7]
+    },
+    {
+      "text": "AGONY",
+      "path": [25, 26, 27, 22, 21]
+    },
+    {
+      "text": "LATE",
+      "path": [23, 18, 17, 12]
+    },
+    {
+      "text": "GRAVEL",
+      "path": [4, 9, 14, 13, 8, 3]
+    },
+    {
+      "text": "REUNITED",
+      "path": [30, 35, 36, 31, 32, 37, 38, 39]
+    },
+    {
+      "text": "SAILOR",
+      "path": [28, 33, 34, 29, 24, 19]
+    },
+    {
+      "text": "BRIDE",
+      "path": [10, 11, 16, 15, 20]
+    }
+  ],
+  "story": {
+    "text": "“You {PIERCE} my soul. I am half {AGONY}, half hope. Tell me not that I am too {LATE}.” Wentworth finds Anne in the street, and on the quiet {GRAVEL} walk they are {REUNITED}, wiser than eight years ago. Mr. Elliot runs off with Mrs. Clay, Sir Walter consents, and Anne becomes a {SAILOR}’s {BRIDE}, glad to pay the tax of quick alarm.",
+    "image": "art/persuasion-brock-1898/2pers-06.jpg",
+    "caption": "With eyes of glowing entreaty fixed on her",
+    "credit": "C. E. Brock, 1898",
+    "crop": [
+      0.1,
+      0.06,
+      0.92,
+      0.86
+    ],
+    "colour": true
+  }
+}

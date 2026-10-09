@@ -1,0 +1,53 @@
+{
+  "id": "little-33-jos-journal",
+  "book": "little-women",
+  "chapter": 33,
+  "title": "Professor Bhaer",
+  "rows": 7,
+  "cols": 6,
+  "grid": [
+    "COASSE",
+    "SKTSRN",
+    "OCOVEY",
+    "SBGKDL",
+    "OOSINS",
+    "KETPMD",
+    "SKCOEN"
+  ],
+  "words": [
+    {
+      "text": "GOVERNESS",
+      "path": [20, 14, 15, 16, 10, 11, 5, 4, 3]
+    },
+    {
+      "text": "KINDLY",
+      "path": [21, 27, 28, 22, 23, 17]
+    },
+    {
+      "text": "SOCKS",
+      "path": [18, 12, 13, 7, 6]
+    },
+    {
+      "text": "POCKETS",
+      "path": [33, 39, 38, 37, 31, 32, 26]
+    },
+    {
+      "text": "BOOKS",
+      "path": [19, 25, 24, 30, 36]
+    },
+    {
+      "text": "MENDS",
+      "path": [34, 40, 41, 35, 29]
+    },
+    {
+      "text": "COATS",
+      "path": [0, 1, 2, 8, 9]
+    }
+  ],
+  "story": {
+    "text": "Restless Jo goes to New York, to work as a {GOVERNESS} in a boarding-house. There she meets Professor Bhaer, a poor, {KINDLY} German teacher, with holes in his {SOCKS} and {POCKETS} full of {BOOKS}. He teaches her German, and she {MENDS} his {COATS}.",
+    "image": "art/merrill-1880/153-he-waved-his-hand-sock-and-all.jpg",
+    "caption": "He waved his hand, sock and all",
+    "credit": "Frank T. Merrill, 1880"
+  }
+}

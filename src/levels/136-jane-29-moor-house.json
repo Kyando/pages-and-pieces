@@ -1,0 +1,64 @@
+{
+  "id": "jane-29-moor-house",
+  "book": "jane-eyre",
+  "chapter": 29,
+  "title": "A Word to Say to the Woman",
+  "rows": 8,
+  "cols": 6,
+  "grid": [
+    "PETSOD",
+    "NNAROC",
+    "URMYGL",
+    "ESSIRE",
+    "EMSSTE",
+    "NAHBSR",
+    "CDUEGG",
+    "OLTSRA"
+  ],
+  "words": [
+    {
+      "text": "BEGGAR",
+      "path": [33, 39, 40, 41, 47, 46]
+    },
+    {
+      "text": "SHUTS",
+      "path": [26, 32, 38, 44, 45]
+    },
+    {
+      "text": "DOORSTEP",
+      "path": [5, 4, 10, 9, 3, 2, 1, 0]
+    },
+    {
+      "text": "COLD",
+      "path": [36, 42, 43, 37]
+    },
+    {
+      "text": "CLERGYMAN",
+      "path": [11, 17, 23, 22, 16, 15, 14, 8, 7]
+    },
+    {
+      "text": "SISTERS",
+      "path": [20, 21, 27, 28, 29, 35, 34]
+    },
+    {
+      "text": "NURSE",
+      "path": [6, 12, 13, 19, 18]
+    },
+    {
+      "text": "NAME",
+      "path": [30, 31, 25, 24]
+    }
+  ],
+  "story": {
+    "text": "The light is Moor House. Hannah, the old servant, takes Jane for a {BEGGAR} and {SHUTS} the door. Jane sinks on the {DOORSTEP} in the wet and {COLD}. Then a young {CLERGYMAN}, St. John Rivers, comes home: “Hush, Hannah; I have a word to say to the woman.” He and his {SISTERS}, Diana and Mary, take her in and {NURSE} her. She gives a false {NAME}.",
+    "image": "art/townsend-1897/009-hush-hannah-i-have-a-word-to-say-to-the-woman.jpg",
+    "caption": "“Hush, Hannah; I have a word to say to the woman”",
+    "credit": "F. H. Townsend, 1897",
+    "crop": [
+      0,
+      0,
+      1,
+      0.9
+    ]
+  }
+}
