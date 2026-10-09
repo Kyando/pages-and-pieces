@@ -14,7 +14,8 @@
     "art:fetch": "node scripts/fetch-art.ts",
     "app:icons": "node scripts/make-icons.ts",
     "app:sync": "npm run build && cap sync",
-    "app:android": "npm run app:sync && cap open android"
+    "app:android": "npm run app:sync && cap open android",
+    "app:grid": "node scripts/icon-grid.ts"
   },
   "devDependencies": {
     "@capacitor/cli": "^8.5.3",

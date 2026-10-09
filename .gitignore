@@ -4,3 +4,4 @@ dist
 .claude/settings.local.json
 .tmp
 app-builds
+store/icon-candidates
