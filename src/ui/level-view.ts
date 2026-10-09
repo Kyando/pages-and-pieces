@@ -4,6 +4,7 @@ import { HOLE_LETTER, matchTrace, type Word } from '../core/puzzle.ts';
 import { steer } from '../core/steer.ts';
 import type { Session } from '../game/session.ts';
 import { t, tn } from '../i18n/index.ts';
+import { buzz, sharePicture } from '../native.ts';
 import { Desk } from './desk.ts';
 import { h, svg } from './dom.ts';
 import { replay } from './fx.ts';
@@ -406,7 +407,7 @@ export class LevelView {
     this.pieces.add(word.index, word.path, calm ? undefined : word.path.map((c) => this.s.puzzle.letters[c]));
     this.showTrace(word.text, 'is-found');
     this.opts.sfx.piece(word.path.length, STAGGER_MS);
-    navigator.vibrate?.(12);
+    buzz('light');
     const settle = calm ? 0 : Math.max((word.path.length - 1) * STAGGER_MS + FLIGHT_MS, inkDuration(word.path.length));
     // The finish begins while the last piece's outline is still being drawn.
     if (result.solved) window.setTimeout(() => this.celebrate(), Math.max(0, settle - 150));
@@ -525,7 +526,7 @@ export class LevelView {
    */
   private celebrate(): void {
     this.opts.sfx.win();
-    navigator.vibrate?.([20, 60, 30]);
+    buzz('win');
     this.finish(true);
   }
 
@@ -584,17 +585,12 @@ export class LevelView {
     const def = this.s.puzzle.def;
     const text = t('desk.shareText', { game: t('game.name'), book: BOOKS[def.book].title, chapter: def.chapter, title: def.title });
     try {
-      if (navigator.share) {
-        const blob = await fetch(this.pieces.picture).then((r) => r.blob()).catch(() => null);
-        const files = blob ? [new File([blob], `${def.id}.jpg`, { type: blob.type || 'image/jpeg' })] : [];
-        await navigator.share(files.length && navigator.canShare?.({ files }) ? { files, text } : { text });
-        return;
-      }
+      const picture = await fetch(this.pieces.picture).then((r) => r.blob()).catch(() => null);
+      if (await sharePicture(picture, `${def.id}.jpg`, text)) return;
       await navigator.clipboard.writeText(text);
       toast(t('desk.copied'));
-    } catch (err) {
-      // Closing the share sheet isn't a failure.
-      if ((err as Error)?.name !== 'AbortError') toast(t('desk.copyFailed'));
+    } catch {
+      toast(t('desk.copyFailed'));
     }
   }
 
@@ -609,7 +605,7 @@ export class LevelView {
     const sfx = this.opts.sfx;
     window.setTimeout(() => {
       sfx.land();
-      navigator.vibrate?.(14);
+      buzz('land');
     }, at.land);
     window.setTimeout(() => sfx.sheet(), at.pages);
   }

@@ -18,6 +18,8 @@ export interface SaveData {
   settings: { sound: boolean; seenHelp: boolean };
 }
 
+import { keepStored, restoreStored } from '../native.ts';
+
 const KEY = 'pages-and-pieces:v1';
 
 const defaults = (): SaveData => ({
@@ -44,9 +46,14 @@ export function loadSave(): SaveData {
   }
 }
 
+/** In the phone app, brings back the save kept outside the WebView; call before the first loadSave. */
+export const restoreSave = (): Promise<void> => restoreStored(KEY);
+
 export function writeSave(data: SaveData): void {
+  const raw = JSON.stringify(data);
+  keepStored(KEY, raw);
   try {
-    localStorage.setItem(KEY, JSON.stringify(data));
+    localStorage.setItem(KEY, raw);
   } catch {
     // Storage unavailable (private mode, quota): the game still works for this session.
   }

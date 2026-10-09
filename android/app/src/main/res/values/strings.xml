@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Twice Told Tales</string>
+    <string name="title_activity_main">Twice Told Tales</string>
+    <string name="package_name">games.kyando.twicetoldtales</string>
+    <string name="custom_url_scheme">games.kyando.twicetoldtales</string>
+</resources>

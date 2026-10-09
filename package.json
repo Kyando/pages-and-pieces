@@ -11,16 +11,31 @@
     "test": "vitest run",
     "levels:generate": "node scripts/generate-levels.ts",
     "deploy": "node scripts/deploy-pages.ts",
-    "art:fetch": "node scripts/fetch-art.ts"
+    "art:fetch": "node scripts/fetch-art.ts",
+    "app:icons": "node scripts/make-icons.ts",
+    "app:sync": "npm run build && cap sync",
+    "app:android": "npm run app:sync && cap open android"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.3",
     "@types/node": "^26.6.0",
+    "@types/opentype.js": "^1.3.10",
+    "opentype.js": "^2.0.0",
     "sharp": "^0.35.5",
     "typescript": "^7.0.2",
     "vite": "^8.3.0",
     "vitest": "^5.0.1"
   },
   "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/filesystem": "^8.1.4",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.5.3",
+    "@capacitor/preferences": "^8.0.1",
+    "@capacitor/share": "^8.0.3",
+    "@capacitor/splash-screen": "^8.0.2",
     "@fontsource/eb-garamond": "^5.3.0",
     "@fontsource/fraunces": "^5.3.0",
     "@fontsource/im-fell-english": "^5.3.0",

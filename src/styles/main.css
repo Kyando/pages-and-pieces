@@ -1,6 +1,12 @@
 /* ── Tokens ─────────────────────────────────────────────────────────────── */
 
 :root {
+  /* The phone's notch and gesture bar. The Android app hands these over as --safe-area-inset-*,
+     because older Android WebViews report env() as 0 (see capacitor.config.ts). */
+  --inset-top: var(--safe-area-inset-top, env(safe-area-inset-top));
+  --inset-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom));
+  --inset-left: var(--safe-area-inset-left, env(safe-area-inset-left));
+  --inset-right: var(--safe-area-inset-right, env(safe-area-inset-right));
   --paper: #f5ead6;
   --paper-edge: #e6d2ae;
   --panel: #fffaf1;
@@ -144,9 +150,9 @@ button {
   grid-template-columns: 48px 1fr 48px;
   align-items: center;
   gap: 4px;
-  padding-top: max(6px, env(safe-area-inset-top));
+  padding-top: max(6px, var(--inset-top));
   padding-bottom: 6px;
-  padding-inline: max(8px, env(safe-area-inset-left)) max(8px, env(safe-area-inset-right));
+  padding-inline: max(8px, var(--inset-left)) max(8px, var(--inset-right));
   background: color-mix(in srgb, var(--paper) 92%, transparent);
   backdrop-filter: blur(6px);
 }
@@ -219,9 +225,9 @@ button {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-top: max(6px, env(safe-area-inset-top));
-  padding-bottom: max(12px, env(safe-area-inset-bottom));
-  padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right));
+  padding-top: max(6px, var(--inset-top));
+  padding-bottom: max(12px, var(--inset-bottom));
+  padding-inline: max(12px, var(--inset-left)) max(12px, var(--inset-right));
 }
 
 /* The game's bar: chapters, then the chapter between its arrows (with a dot per word), then its menu. */
@@ -817,7 +823,7 @@ button {
 
 .toast {
   position: fixed;
-  top: calc(62px + env(safe-area-inset-top));
+  top: calc(62px + var(--inset-top));
   left: 50%;
   z-index: 300;
   max-width: calc(100vw - 32px);
@@ -910,7 +916,7 @@ button {
 .sheet-inner {
   display: flex;
   flex-direction: column;
-  padding: 8px 14px max(14px, env(safe-area-inset-bottom));
+  padding: 8px 14px max(14px, var(--inset-bottom));
 }
 
 .sheet-grip {
@@ -1078,7 +1084,7 @@ button {
 .library-inner {
   max-width: 760px;
   margin-inline: auto;
-  padding: 6px max(16px, env(safe-area-inset-left)) max(36px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right));
+  padding: 6px max(16px, var(--inset-left)) max(36px, var(--inset-bottom)) max(16px, var(--inset-right));
 }
 
 .library-head {
