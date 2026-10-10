@@ -46,14 +46,15 @@
   ],
   "story": {
     "text": "Lydia comes home a married woman, flashing her {RING} without a trace of {SHAME}, and {WICKHAM} is as {DELIGHTED} with himself as ever. Then Lydia lets slip a {SECRET}: Mr. Darcy was at her {WEDDING}! Elizabeth writes to her {AUNT} at once to find out why.",
-    "image": "art/thomson-1894/ch51-i_414_a.jpg",
-    "caption": "With an affectionate smile",
-    "credit": "Hugh Thomson, 1894",
+    "image": "art/brock-1895/lydia-showing-her-ring-ch51.jpg",
+    "caption": "She went after dinner to show her ring",
+    "credit": "C. E. Brock, 1895 (coloured 1907)",
+    "colour": true,
     "crop": [
       0,
-      0,
+      0.008,
       1,
-      0.915
+      0.943
     ]
   }
 }

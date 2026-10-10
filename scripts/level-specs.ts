@@ -21,6 +21,8 @@ const THOMSON = 'Hugh Thomson, 1894';
 /** A picture the game serves itself, from public/art (see scripts/fetch-art.ts and its catalog.json). */
 const art = (file: string) => `art/${file}`;
 const BROCK = 'C. E. Brock, 1895';
+/** Brock's own drawings for that edition, in the coloured printing (Dent, 1907). */
+const BROCK_COLOUR = 'C. E. Brock, 1895 (coloured 1907)';
 
 const PRIDE: LevelSpec[] = [
   {
@@ -58,14 +60,16 @@ const PRIDE: LevelSpec[] = [
     book: PP,
     chapter: 3,
     title: 'She Is Tolerable',
-    rows: 7,
-    cols: 7,
+    rows: 8,
+    cols: 6,
     story: {
-      text: 'Across the {BALL} at {MERYTON}, {BINGLEY} begs his friend to dance with Elizabeth Bennet. {DARCY} barely glances at her: “She is {TOLERABLE}, but not {HANDSOME} enough to tempt me.” {ELIZABETH} hears every word, and turns it into a story that makes all her friends laugh.',
-      image: art('thomson-1894/ch03-i_044.jpg'),
-      caption: 'She is tolerable',
-      credit: THOMSON,
-      crop: [0, 0, 1, 0.925],
+      text: 'Across the ballroom at {MERYTON}, Bingley begs his friend to dance with Elizabeth Bennet. {DARCY} barely glances at her: “She is {TOLERABLE}, but not {HANDSOME} enough to {TEMPT} me.” {ELIZABETH} hears every word, and turns it into a story that makes all her friends {LAUGH}.',
+      // Black and white, as first made: art('thomson-1894/ch03-i_044.jpg'), credit THOMSON, crop [0, 0, 1, 0.925].
+      image: art('brock-1895/prideandprejudicech3.jpg'),
+      caption: 'She is tolerable, but not handsome enough to tempt me',
+      credit: BROCK_COLOUR,
+      colour: true,
+      crop: [0.018, 0.01, 0.983, 0.964],
     },
   },
   {
@@ -77,10 +81,12 @@ const PRIDE: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'At Lucas Lodge, Sir William Lucas tries to {PRESENT} Elizabeth to Mr. Darcy as a {PARTNER} for the next {DANCE}, but she {REFUSES} with a smile. Darcy is left thinking about her pair of {FINE} {EYES}. Meanwhile Charlotte Lucas, Elizabeth’s closest {FRIEND}, warns that Jane hides her {FEELINGS} so well that Mr. Bingley may never know she cares.',
-      image: art('brock-1895/mr-darcy-you-must-allow-me-to-present-this-young-lady-to-you-as-a-very-desirable.jpg'),
+      // Black and white, as first made: art('brock-1895/mr-darcy-you-must-allow-me-to-present-this-young-lady-to-you-as-a-very-desirable.jpg'), credit BROCK, crop [0.044, 0.068, 0.95, 0.8].
+      image: art('brock-1895/prideandprejudicech6.jpg'),
       caption: 'Mr. Darcy, you must allow me to present this young lady to you',
-      credit: BROCK,
-      crop: [0.044, 0.068, 0.95, 0.8],
+      credit: BROCK_COLOUR,
+      colour: true,
+      crop: [0.009, 0.007, 1, 0.963],
     },
   },
   {
@@ -167,10 +173,12 @@ const PRIDE: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'On a walk into {MERYTON}, the sisters meet a stranger full of easy {CHARM}: Mr. Wickham, about to join the {REGIMENT} with the other {OFFICERS}. Then Mr. {DARCY} rides by. When the two men catch sight of each other, one turns {WHITE}, the other {RED}. What could have happened between Darcy and {WICKHAM}?',
-      image: art('thomson-1894/ch16-i_126.jpg'),
-      caption: 'The officers of the ——shire',
-      credit: THOMSON,
-      crop: [0, 0, 1, 0.905],
+      // Black and white, as first made: art('thomson-1894/ch16-i_126.jpg'), credit THOMSON, crop [0, 0, 1, 0.905].
+      image: art('brock-1895/prideandprejudicech15.jpg'),
+      caption: 'Mr. Denny entreated permission to introduce his friend',
+      credit: BROCK_COLOUR,
+      colour: true,
+      crop: [0.011, 0.016, 0.972, 0.951],
     },
   },
   {
@@ -208,14 +216,16 @@ const PRIDE: LevelSpec[] = [
     book: PP,
     chapter: 19,
     title: 'Mr. Collins Proposes',
-    rows: 7,
-    cols: 7,
+    rows: 8,
+    cols: 6,
     story: {
-      text: 'The morning after the ball, Mr. Collins asks for a private word with Elizabeth. He lists his {REASONS} for marrying: it is right for a {CLERGYMAN}, it will add to his {HAPPINESS}, and Lady Catherine {WISHES} it. Only then does he speak of {LOVE}. Elizabeth {REFUSES} him, but he takes it for {MODESTY}.',
-      image: art('thomson-1894/ch19-i_161_a.jpg'),
-      caption: 'To assure you in the most animated language',
-      credit: THOMSON,
-      crop: [0, 0, 1, 0.92],
+      text: 'The morning after the ball, Mr. Collins asks for a private word with Elizabeth. He lists his {REASONS} for marrying: it is right for a {CLERGYMAN}, it will add to his {HAPPINESS}, and Lady Catherine {WANTS} it. Only then does he speak of {LOVE}. Elizabeth {REFUSES} him, but he takes it for {MODESTY}.',
+      // Black and white, as first made: art('thomson-1894/ch19-i_161_a.jpg'), credit THOMSON, crop [0, 0, 1, 0.92].
+      image: art('brock-1895/pride-and-prejudice-ch-19.jpg'),
+      caption: 'Almost as soon as I entered the house, I singled you out as the companion of my future life',
+      credit: BROCK_COLOUR,
+      colour: true,
+      crop: [0.002, 0.012, 0.995, 0.966],
     },
   },
   {
@@ -283,14 +293,16 @@ const PRIDE: LevelSpec[] = [
     book: PP,
     chapter: 29,
     title: 'Dinner at Rosings',
-    rows: 6,
-    cols: 7,
+    rows: 7,
+    cols: 6,
     story: {
       text: 'Charlotte seems content in her parsonage at Hunsford, keeping Mr. Collins busy in his {GARDEN}. Soon they are all summoned to Rosings to dine with his {PATRONESS}, Lady {CATHERINE} de Bourgh, who gives her {OPINION} on everything. She is astonished that Elizabeth, not yet twenty-one, {DARES} to answer back with such {SPIRIT}.',
-      image: art('thomson-1894/ch28-i_227.jpg'),
-      caption: 'In conversation with the ladies',
-      credit: THOMSON,
-      crop: [0, 0, 1, 0.89],
+      // Black and white, as first made: art('thomson-1894/ch28-i_227.jpg'), credit THOMSON, crop [0, 0, 1, 0.89].
+      image: art('brock-1895/p-p-ch-28.jpg'),
+      caption: 'Mr. Collins and Charlotte were both standing at the gate in conversation with the ladies',
+      credit: BROCK_COLOUR,
+      colour: true,
+      crop: [0.038, 0.031, 0.982, 0.938],
     },
   },
   {
@@ -302,10 +314,12 @@ const PRIDE: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'Mr. Darcy and his cousin, Colonel Fitzwilliam, come to {ROSINGS} for Easter. One evening Elizabeth plays the {PIANO}, and Darcy moves to stand {BESIDE} her. “You mean to {FRIGHTEN} me,” she laughs, and tells the Colonel how Darcy avoided {DANCING} at the ball. Darcy admits he lacks the {TALENT} of talking easily to {STRANGERS}.',
-      image: art('brock-1895/you-mean-to-frighten-me-mr-darcy.jpg'),
+      // Black and white, as first made: art('brock-1895/you-mean-to-frighten-me-mr-darcy.jpg'), credit BROCK, crop [0.086, 0.073, 0.934, 0.864].
+      image: art('brock-1895/prideandprejudicech31.jpg'),
       caption: 'You mean to frighten me, Mr. Darcy',
-      credit: BROCK,
-      crop: [0.086, 0.073, 0.934, 0.864],
+      credit: BROCK_COLOUR,
+      colour: true,
+      crop: [0.009, 0.024, 0.981, 0.961],
     },
   },
   {
@@ -434,10 +448,12 @@ const PRIDE: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'Walking the grounds, they turn a corner and there is Darcy himself, home a day {EARLY}. Elizabeth {BLUSHES} deeply, but he is {POLITE}, even {GENTLE}. He invites Mr. Gardiner to {FISH} in the {RIVER}, and asks if he may {INTRODUCE} his sister. Can this be the same proud man?',
-      image: art('thomson-1894/ch45-i_356_a.jpg'),
-      caption: 'Engaged by the river',
-      credit: THOMSON,
-      crop: [0, 0, 1, 0.945],
+      // Black and white, as first made: art('thomson-1894/ch45-i_356_a.jpg'), credit THOMSON, crop [0, 0, 1, 0.945].
+      image: art('brock-1895/pride-and-prejudice-ch-43.jpg'),
+      caption: 'The introduction, however, was immediately made',
+      credit: BROCK_COLOUR,
+      colour: true,
+      crop: [0.022, 0.011, 0.976, 0.964],
     },
   },
   {
@@ -509,10 +525,12 @@ const PRIDE: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'Lydia comes home a married woman, flashing her {RING} without a trace of {SHAME}, and {WICKHAM} is as {DELIGHTED} with himself as ever. Then Lydia lets slip a {SECRET}: Mr. Darcy was at her {WEDDING}! Elizabeth writes to her {AUNT} at once to find out why.',
-      image: art('thomson-1894/ch51-i_414_a.jpg'),
-      caption: 'With an affectionate smile',
-      credit: THOMSON,
-      crop: [0, 0, 1, 0.915],
+      // Black and white, as first made: art('thomson-1894/ch51-i_414_a.jpg'), credit THOMSON, crop [0, 0, 1, 0.915].
+      image: art('brock-1895/lydia-showing-her-ring-ch51.jpg'),
+      caption: 'She went after dinner to show her ring',
+      credit: BROCK_COLOUR,
+      colour: true,
+      crop: [0, 0.008, 1, 0.943],
     },
   },
   {
@@ -554,10 +572,12 @@ const PRIDE: LevelSpec[] = [
     cols: 6,
     story: {
       text: 'Bingley calls again and again. Mrs. Bennet keeps finding excuses to leave him alone with Jane, and {WINKS} at her other daughters to follow. At last Elizabeth walks in to find them standing {TOGETHER} by the fire. Bingley has {PROPOSED}! Jane is the {HAPPIEST} creature in the {WORLD}, and Mr. Bennet says they are so {GENEROUS} that they will always {EXCEED} their income.',
-      image: art('brock-1895/she-perceived-her-sister-and-bingley-standing-together.jpg'),
+      // Black and white, as first made: art('brock-1895/she-perceived-her-sister-and-bingley-standing-together.jpg'), credit BROCK, crop [0.096, 0.12, 0.972, 0.785].
+      image: art('brock-1895/bingley-jane-ch-55.jpg'),
       caption: 'She perceived her sister and Bingley standing together',
-      credit: BROCK,
-      crop: [0.096, 0.12, 0.972, 0.785],
+      credit: BROCK_COLOUR,
+      colour: true,
+      crop: [0, 0.007, 0.997, 0.955],
     },
   },
   {
@@ -565,13 +585,16 @@ const PRIDE: LevelSpec[] = [
     book: PP,
     chapter: 56,
     title: 'Lady Catherine Calls',
-    rows: 7,
-    cols: 8,
+    rows: 8,
+    cols: 7,
     story: {
       text: 'One morning Lady {CATHERINE} sweeps into Longbourn and orders Elizabeth into the {GARDEN}. She has heard a shocking {RUMOUR}: that Elizabeth means to marry her {NEPHEW}. Will she {PROMISE} never to accept him? Elizabeth will not: “I am only {RESOLVED} to act in that manner which will constitute my {HAPPINESS}.” Her Ladyship leaves very {ANGRY} indeed.',
-      image: art('thomson-1894/ch56-i_460_a.jpg'),
-      caption: 'Lady Catherine at Longbourn',
-      credit: THOMSON,
+      // Black and white, as first made: art('thomson-1894/ch56-i_460_a.jpg'), credit THOMSON.
+      image: art('brock-1895/ladycatherine-elisabeth.jpg'),
+      caption: 'Miss Bennet, I insist on being satisfied',
+      credit: BROCK_COLOUR,
+      colour: true,
+      crop: [0.009, 0.009, 1, 0.957],
     },
   },
   {

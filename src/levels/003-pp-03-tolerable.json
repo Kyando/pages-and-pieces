@@ -3,57 +3,59 @@
   "book": "pride-and-prejudice",
   "chapter": 3,
   "title": "She Is Tolerable",
-  "rows": 7,
-  "cols": 7,
+  "rows": 8,
+  "cols": 6,
   "grid": [
-    "ELBARDB",
-    "MONLEAI",
-    "ETTOCRN",
-    "RYEMYLG",
-    "HLEOHEY",
-    "TIZSABL",
-    "EBADNAL"
+    "ELBNOT",
+    "TPARRY",
+    "EMDEEE",
+    "TRALMM",
+    "YCTOSO",
+    "LAANDH",
+    "GUHZAT",
+    "HELIBE"
   ],
   "words": [
     {
-      "text": "BALL",
-      "path": [40, 47, 48, 41]
-    },
-    {
       "text": "MERYTON",
-      "path": [7, 14, 21, 22, 15, 8, 9]
-    },
-    {
-      "text": "BINGLEY",
-      "path": [6, 13, 20, 27, 26, 33, 34]
+      "path": [22, 16, 10, 11, 5, 4, 3]
     },
     {
       "text": "DARCY",
-      "path": [5, 12, 19, 18, 25]
+      "path": [14, 20, 19, 25, 24]
     },
     {
       "text": "TOLERABLE",
-      "path": [16, 17, 10, 11, 4, 3, 2, 1, 0]
+      "path": [26, 27, 21, 15, 9, 8, 2, 1, 0]
     },
     {
       "text": "HANDSOME",
-      "path": [32, 39, 46, 45, 38, 31, 24, 23]
+      "path": [38, 32, 33, 34, 28, 29, 23, 17]
+    },
+    {
+      "text": "TEMPT",
+      "path": [18, 12, 13, 7, 6]
     },
     {
       "text": "ELIZABETH",
-      "path": [30, 29, 36, 37, 44, 43, 42, 35, 28]
+      "path": [43, 44, 45, 39, 40, 46, 47, 41, 35]
+    },
+    {
+      "text": "LAUGH",
+      "path": [30, 31, 37, 36, 42]
     }
   ],
   "story": {
-    "text": "Across the {BALL} at {MERYTON}, {BINGLEY} begs his friend to dance with Elizabeth Bennet. {DARCY} barely glances at her: “She is {TOLERABLE}, but not {HANDSOME} enough to tempt me.” {ELIZABETH} hears every word, and turns it into a story that makes all her friends laugh.",
-    "image": "art/thomson-1894/ch03-i_044.jpg",
-    "caption": "She is tolerable",
-    "credit": "Hugh Thomson, 1894",
+    "text": "Across the ballroom at {MERYTON}, Bingley begs his friend to dance with Elizabeth Bennet. {DARCY} barely glances at her: “She is {TOLERABLE}, but not {HANDSOME} enough to {TEMPT} me.” {ELIZABETH} hears every word, and turns it into a story that makes all her friends {LAUGH}.",
+    "image": "art/brock-1895/prideandprejudicech3.jpg",
+    "caption": "She is tolerable, but not handsome enough to tempt me",
+    "credit": "C. E. Brock, 1895 (coloured 1907)",
+    "colour": true,
     "crop": [
-      0,
-      0,
-      1,
-      0.925
+      0.018,
+      0.01,
+      0.983,
+      0.964
     ]
   }
 }

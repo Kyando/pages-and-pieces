@@ -46,14 +46,15 @@
   ],
   "story": {
     "text": "Walking the grounds, they turn a corner and there is Darcy himself, home a day {EARLY}. Elizabeth {BLUSHES} deeply, but he is {POLITE}, even {GENTLE}. He invites Mr. Gardiner to {FISH} in the {RIVER}, and asks if he may {INTRODUCE} his sister. Can this be the same proud man?",
-    "image": "art/thomson-1894/ch45-i_356_a.jpg",
-    "caption": "Engaged by the river",
-    "credit": "Hugh Thomson, 1894",
+    "image": "art/brock-1895/pride-and-prejudice-ch-43.jpg",
+    "caption": "The introduction, however, was immediately made",
+    "credit": "C. E. Brock, 1895 (coloured 1907)",
+    "colour": true,
     "crop": [
-      0,
-      0,
-      1,
-      0.945
+      0.022,
+      0.011,
+      0.976,
+      0.964
     ]
   }
 }
