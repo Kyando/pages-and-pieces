@@ -84,9 +84,6 @@ body {
   -webkit-touch-callout: none;
 }
 
-/* Only reading text may be selected. */
-.help,
-.credits-text,
 /* A paid book's free chapters end here: where the story goes on, and the way there. */
 .library-unlock {
   display: inline-flex;
@@ -129,6 +126,9 @@ body {
   font-size: 14px;
 }
 
+/* Only reading text may be selected. */
+.help,
+.credits-text,
 .erase-text {
   -webkit-user-select: text;
   user-select: text;
@@ -1080,19 +1080,149 @@ button {
   font-size: 13px;
 }
 
-/* Help */
-.help p,
-.help li {
-  line-height: 1.45;
+/* Help: the rules in three small pictures, each beside a line or two. */
+.help-lead {
+  margin: -4px 0 16px;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--ink-soft);
 }
 
-.help ul {
-  padding-left: 20px;
-  margin: 12px 0 0;
+.help-steps {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.help li + li {
-  margin-top: 6px;
+.help-step {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.help-step h3 {
+  margin: 0 0 2px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.help-step p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.help-note {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.modal--help .modal-actions .btn {
+  flex: 1;
+}
+
+/* The pictures loop every 4 s: the word or the picture builds up, holds, and starts again. */
+.help-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+
+.help-board span {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border: 2px solid var(--stroke);
+  border-radius: 3px;
+  background: var(--panel);
+  box-shadow: 0 2px 0 var(--stroke);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.help-board .is-word {
+  animation: help-trace 4s calc(var(--i) * 0.28s) infinite;
+}
+
+@keyframes help-trace {
+  0% { background: var(--panel); }
+  6%, 72% { background: var(--trace); }
+  82%, 100% { background: var(--panel); }
+}
+
+.help-picture {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  aspect-ratio: 4 / 5;
+  padding: 3px;
+  border: 2px solid var(--stroke);
+  border-radius: 4px;
+  background: var(--panel-2);
+}
+
+.help-picture span {
+  background-size: 200% 200%;
+  background-position: 0 0;
+  animation: help-piece 4s calc(var(--i) * 0.45s) infinite backwards;
+}
+
+.help-picture span:nth-child(2) { background-position: 100% 0; }
+.help-picture span:nth-child(3) { background-position: 0 100%; }
+.help-picture span:nth-child(4) { background-position: 100% 100%; }
+
+@keyframes help-piece {
+  0% { opacity: 0; transform: scale(0.7); }
+  10%, 80% { opacity: 1; transform: none; }
+  92%, 100% { opacity: 0; transform: none; }
+}
+
+.help-page {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 6px;
+  aspect-ratio: 4 / 5;
+  padding: 10px 10px;
+  border: 2px solid var(--stroke);
+  border-radius: 4px;
+  background: #fbf3e2;
+  box-shadow: 3px 3px 0 var(--paper-edge);
+  transform: rotate(-3deg);
+}
+
+.help-page i {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--faint);
+}
+
+.help-page i:nth-of-type(2) { width: 70%; }
+.help-page i:last-of-type { width: 55%; }
+
+.help-page b {
+  padding: 1px 6px;
+  border: 1.5px solid var(--stroke);
+  border-radius: 4px;
+  background: var(--trace);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .help-board .is-word { animation: none; background: var(--trace); }
+  .help-picture span { animation: none; }
 }
 
 .particle {

@@ -70,7 +70,7 @@ export class App {
     if (!this.save.settings.seenHelp) {
       this.save.settings.seenHelp = true;
       this.persist();
-      this.openHelp();
+      this.openHelp(true);
     }
   }
 
@@ -306,26 +306,53 @@ export class App {
     openSheet(t('settings.title'), items);
   }
 
-  private openHelp(): void {
-    const withStrong = (key: MessageKey, strongKey: MessageKey) => {
-      const [before, after] = t(key).split('{strong}');
-      return [before, h('b', {}, t(strongKey)), after ?? ''];
-    };
+  /** The rules in three small pictures: shown by itself the first time, as a welcome. */
+  private openHelp(first = false): void {
+    // A little board with TALE traced through it, bending once.
+    const word = ['0,0', '0,1', '1,1', '1,2'];
+    const board = h(
+      'div',
+      { class: 'help-board', 'aria-hidden': 'true' },
+      ...['TAOR', 'SLEW', 'INKD'].flatMap((row, r) =>
+        [...row].map((letter, c) => {
+          const i = word.indexOf(`${r},${c}`);
+          return h('span', i < 0 ? {} : { class: 'is-word', style: `--i: ${i}` }, letter);
+        }),
+      ),
+    );
+    // A painted plate (A Christmas Carol's cover), coming in piece by piece.
+    const cover = BOOKS['a-christmas-carol'].cover;
+    const picture = h(
+      'div',
+      { class: 'help-picture', 'aria-hidden': 'true' },
+      ...[0, 1, 2, 3].map((i) => h('span', { style: `--i: ${[0, 2, 3, 1][i]}; background-image: url("${cover}")` })),
+    );
+    const page = h(
+      'div',
+      { class: 'help-page', 'aria-hidden': 'true' },
+      h('i'),
+      h('i'),
+      h('b', {}, 'TALE'),
+      h('i'),
+      h('i'),
+    );
+    const step = (art: Node, title: MessageKey, body: MessageKey) =>
+      h('li', { class: 'help-step' }, art, h('div', {}, h('h3', {}, t(title)), h('p', {}, t(body))));
     const modal = openModal({
-      title: t('help.title'),
+      title: t(first ? 'help.welcome' : 'help.title'),
       className: 'modal--help',
       body: h(
         'div',
         { class: 'help' },
-        h('p', {}, ...withStrong('help.intro', 'help.introStrong')),
+        h('p', { class: 'help-lead' }, t('help.lead')),
         h(
-          'ul',
-          {},
-          h('li', {}, ...withStrong('help.drag', 'help.dragStrong')),
-          h('li', {}, t('help.reveal')),
-          h('li', {}, t('help.both')),
-          h('li', {}, t('help.finish')),
+          'ol',
+          { class: 'help-steps' },
+          step(board, 'help.trace', 'help.traceBody'),
+          step(picture, 'help.reveal', 'help.revealBody'),
+          step(page, 'help.read', 'help.readBody'),
         ),
+        h('p', { class: 'help-note' }, t('help.note')),
       ),
       actions: [h('button', { type: 'button', class: 'btn btn--primary', onclick: () => modal.close() }, t('help.go'))],
     });
