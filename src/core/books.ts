@@ -47,7 +47,7 @@ export const BOOKS: Record<string, Book> = {
     title: 'Pride and Prejudice',
     author: 'Jane Austen',
     year: 1813,
-    cover: 'art/thomson-1894/ch00-front.jpg',
+    cover: 'art/brock-1895/prideandprejudicech3.jpg',
     blurb: 'Five sisters, one proud gentleman, and a first impression that is all wrong.',
     names: [
       'BENNET', 'ELIZABETH', 'LIZZY', 'JANE', 'MARY', 'KITTY', 'LYDIA',
